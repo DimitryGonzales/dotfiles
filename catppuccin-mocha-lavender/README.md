@@ -9,6 +9,6 @@ Follow the setup instructions inside each folder.
 ## Screenshots
 **Not everything are in the following images!**
 
-![example-1](source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-1.png)
-![example-2](source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-2.png)
-![example-3](source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-3.png)
+![example-1](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-1.png)
+![example-2](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-2.png)
+![example-3](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-3.png)
