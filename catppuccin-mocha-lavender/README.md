@@ -52,7 +52,7 @@ A configuration setup based on the [Catppuccin](https://catppuccin.com/palette/)
 #### Official Repositories (using `pacman`):
 
 ```bash
-pacman -S --needed cliphist ttf-font-awesome otf-font-awesome foot hyprland hyprlock hyprpicker nwg-look ttf-jetbrains-mono kitty mission-center neofetch nerd-fonts rofi rofi-emoji swaync thunar waybar zsh
+sudo pacman -S --needed cliphist ttf-font-awesome otf-font-awesome foot hyprland hyprlock hyprpicker nwg-look ttf-jetbrains-mono kitty mission-center neofetch nerd-fonts rofi rofi-emoji swaync thunar waybar zsh
 ```
 
 #### AUR (using `yay` or `paru`):
@@ -105,10 +105,8 @@ paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-me
 
 ### Spotify
 
-1. Follow the [official Spicetify setup guide](https://spicetify.app/docs/getting-started).  
-   _(`spicetify-cli` should already be installed from the [dependency step](#required-dependencies-for-full-functionality))_
-2. Follow the [official Marketplace setup guide](https://spicetify.app/docs/getting-started).
-   _(`spicetify-marketplace-bin` should already be installed from the [dependency step](#required-dependencies-for-full-functionality))_
+1. Follow the [official Spicetify setup guide](https://spicetify.app/docs/getting-started). _(`spicetify-cli` should already be installed from the [dependency step](#required-dependencies-for-full-functionality))_
+2. Follow the [official Marketplace setup guide](https://spicetify.app/docs/getting-started). _(`spicetify-marketplace-bin` should already be installed from the [dependency step](#required-dependencies-for-full-functionality))_
 3. In Spotify, go to `Marketplace > Themes` and install **Catppuccin**.
 4. Go to `Settings` and change the accent color to **Lavender**.
 
