@@ -8,4 +8,4 @@ To use a specific theme, navigate to its folder and follow the setup instruction
 
 ## Themes
 
-- `catppuccin-mocha-lavender` – based on [catppuccin](https://catppuccin.com/palette/) **mocha** color palette, uses **lavender** as accent color.
+- `catppuccin-mocha-lavender` – based on [Catppuccin](https://catppuccin.com/palette/) **Mocha** color palette, uses **Lavender** as accent color.
