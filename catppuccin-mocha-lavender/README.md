@@ -121,7 +121,7 @@ paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-me
 
 ### Waybar
 
-> 📌 Remember to add your user to the `insert` group (required for full functionality of waybar).
+> 📌 Remember to add your user to the `input` group (required for full functionality of waybar).
 
 1. Copy `dotfiles/.config/waybar` to `~/.config/`.
 
