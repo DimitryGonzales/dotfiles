@@ -8,10 +8,10 @@ A configuration setup based on the [Catppuccin](https://catppuccin.com/palette/)
 
 > ⚠️ *These screenshots do not showcase all features/configurations.*
 
-![example-1](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-1.png)  
-![example-2](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-2.png)  
-![example-3](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-3.png)
-![example-4](/source/examples/catppuccin-mocha-lavender/catppucin-mocha-lavender-4.png)
+![example-1](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png)
+![example-2](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png)  
+![example-3](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png)
+![example-4](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png)
 
 ---
 
