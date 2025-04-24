@@ -4,9 +4,7 @@ This repository contains my configuration files for Linux.
 
 ## Usage
 
-To use a specific theme, navigate to its folder and follow the setup instructions (if any).
-
-> Each folder represents a different theme or setup.
+To use a specific theme, navigate to its folder and follow the setup instructions.
 
 ## Themes
 
