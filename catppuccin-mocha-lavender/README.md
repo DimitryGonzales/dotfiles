@@ -124,5 +124,6 @@ paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-me
 > 📌 Remember to add your user to the `input` group (required for full functionality of waybar).
 
 1. Copy `dotfiles/.config/waybar` to `~/.config/`.
+2. Inside `~/.config/waybar/config.jsonc`, locate both Waybar configurations (one for each monitor) and change the **output** field in each section to match your respective monitors. If you only have one monitor, update the **output** value in the section corresponding to that monitor. This determines which monitor each Waybar appears on.
 
 ---
