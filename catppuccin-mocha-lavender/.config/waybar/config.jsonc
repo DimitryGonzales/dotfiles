@@ -27,16 +27,16 @@
             "format": " {:%T}",
             "tooltip-format": "<tt><small>{calendar}</small></tt>",
             "calendar": {
-                "mode": "month",
+                "mode": "year",
                 "mode-mon-col": 3,
                 "weeks-pos": "right",
                 "on-scroll": 1,
                 "format": {
-                    "months": "<span color='#a6adc8'><b>{}</b></span>",
+                    "months": "<span color='#cdd6f4'><b>{}</b></span>",
                     "days": "<span color='#a6adc8'><b>{}</b></span>",
-                    "weeks": "<span color='#a6adc8'><b>W{}</b></span>",
-                    "weekdays": "<span color='#a6adc8'><b>{}</b></span>",
-                    "today": "<span color='#cdd6f4'><b><u>{}</u></b></span>"
+                    "weeks": "<span color='#cdd6f4'><b>W{}</b></span>",
+                    "weekdays": "<span color='#cdd6f4'><b>{}</b></span>",
+                    "today": "<span color='#b4befe'><b><u>{}</u></b></span>"
                 }
             }
         },
@@ -158,16 +158,16 @@
             "format": " {:%T}",
             "tooltip-format": "<tt><small>{calendar}</small></tt>",
             "calendar": {
-                "mode": "month",
+                "mode": "year",
                 "mode-mon-col": 3,
                 "weeks-pos": "right",
                 "on-scroll": 1,
                 "format": {
-                    "months": "<span color='#a6adc8'><b>{}</b></span>",
+                    "months": "<span color='#cdd6f4'><b>{}</b></span>",
                     "days": "<span color='#a6adc8'><b>{}</b></span>",
-                    "weeks": "<span color='#a6adc8'><b>W{}</b></span>",
-                    "weekdays": "<span color='#a6adc8'><b>{}</b></span>",
-                    "today": "<span color='#cdd6f4'><b><u>{}</u></b></span>"
+                    "weeks": "<span color='#cdd6f4'><b>W{}</b></span>",
+                    "weekdays": "<span color='#cdd6f4'><b>{}</b></span>",
+                    "today": "<span color='#b4befe'><b><u>{}</u></b></span>"
                 }
             }
         },
