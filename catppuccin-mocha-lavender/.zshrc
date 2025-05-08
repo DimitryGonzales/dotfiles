@@ -103,4 +103,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# Personal Config
+
+# Neofetch
 neofetch --chafa ~/.config/neofetch/images/ado/2.png --size 450px
+
+# Aliases
+alias refresh-mirrors='sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist'
