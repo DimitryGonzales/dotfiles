@@ -1,6 +1,6 @@
 # Catppuccin Mocha Lavender
 
-A configuration setup based on the [Catppuccin](https://catppuccin.com/palette/) **Mocha** color palette, using **Lavender** as the accent color.
+A configuration setup based on the **[Catppuccin](https://catppuccin.com/palette/) Mocha** color palette, using **Lavender** as the accent color.
 
 ---
 
