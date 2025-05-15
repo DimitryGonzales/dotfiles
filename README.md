@@ -82,10 +82,6 @@ paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-me
 3. In Spotify, go to `Marketplace > Themes` and install **Catppuccin**.
 4. Go to `Settings` and change the accent color to **Lavender**.
 
-### Vesktop
-
-Inside Vesktop, go to `User Settings > Themes` and enable **Catppuccin Mocha**.
-
 ### Waybar
 
 Inside `~/.config/waybar/config.jsonc`, locate both Waybar configurations (one for each monitor) and change the **output** field in each section to match your respective monitors. If you only have one monitor, update the **output** value in the section corresponding to that monitor. This determines which monitor each Waybar appears on.
