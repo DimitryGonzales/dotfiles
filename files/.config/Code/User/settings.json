@@ -1,0 +1,55 @@
+{
+    /// Options
+    
+    // Copilot
+    "github.copilot.enable": {
+        "*": false
+    },
+
+    // Editor
+    "editor.linkedEditing": true,
+    "editor.minimap.showSlider": "always",
+    "editor.stickyScroll.enabled": false,
+    "editor.wordWrap": "on",
+
+    // Explorer
+    "explorer.compactFolders": false,
+
+    // Files 
+    "files.autoSave": "onFocusChange",
+
+    // Git
+    "git.confirmSync": false,
+
+    // Workbench
+    "workbench.editor.empty.hint": "hidden",
+
+
+    /// Style
+
+    // Font
+    "editor.fontFamily": "JetBrains Mono",
+
+    // Icons
+    "workbench.iconTheme": "material-icon-theme",
+
+    // Theme
+    "workbench.colorTheme": "Catppuccin Mocha",
+
+    // Catppucin
+    "catppuccin.accentColor": "lavender",
+
+
+    /// Extentions
+
+    // Code Runner
+    "code-runner.ignoreSelection": true,
+    "code-runner.runInTerminal": true,
+
+    // Discord
+    "discord.removeLowerDetails": true,
+
+    // Live Server
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+}

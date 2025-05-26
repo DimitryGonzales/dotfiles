@@ -1,0 +1,100 @@
+/*********/
+/*Palette*/
+/*********/
+
+/* Catppuccin Mocha */
+@import url("palette.css");
+
+@define-color accent @lavender;
+
+/******************/
+/*General settings*/
+/******************/
+
+* {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+
+    border-radius: 2px;
+    
+    font-size: 13px;
+    font-family: "JetBrains Mono", "Font Awesome 6 Free";
+
+    transition: all 0.05s linear;
+}
+
+/*****/
+/*Bar*/
+/*****/
+
+window#waybar {
+    background-color: @base;
+    border-bottom: 0.05px solid @accent;
+    border-radius: 0;
+}
+
+/*********/
+/*Tooltip*/
+/*********/
+
+tooltip {
+    background-color: @base;
+    border: 2px solid @accent;
+}
+
+tooltip label {
+    color: @text;
+}
+
+/********************************/
+/* Modules (alphabetical order) */
+/********************************/
+
+/* Same setting modules */
+#clock, #custom-media, #custom-notification, #disk, #language, #memory, #network, #pulseaudio, #tray {
+    background-color: transparent;
+    color: @text;
+
+    padding: 0 15px;
+}
+
+/* Same hover setting modules */
+#clock:hover, #custom-media:hover, #custom-notification:hover, #disk:hover, #language:hover, #language:hover, #memory:hover, #network:hover, #pulseaudio:hover, #tray:hover {
+    background-color: @surface0;
+    color: @accent;
+}
+
+/******************/
+/* Extra settings */
+/******************/
+
+/* Tray */
+#tray menu {
+    background-color: @base;
+    border: 2px solid @accent;
+}
+
+/* Workspaces */
+#workspaces {
+    background-color: transparent;
+}
+
+#workspaces button {
+    min-width: 35px;
+
+    color: @overlay0;
+}
+
+#workspaces button:hover {
+    background-color: @surface0;
+}
+
+#workspaces button.visible {
+    color: @text;
+}
+
+#workspaces button.active {
+    color: @accent;
+}
