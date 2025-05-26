@@ -92,9 +92,9 @@ hyprctl monitors
 
 ### Catppuccin Mocha Lavender
 
-![example-1](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png)
-![example-2](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png)  
-![example-3](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png)
-![example-4](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png)
+![example-1](examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png)
+![example-2](examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png)  
+![example-3](examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png)
+![example-4](examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png)
 
 ---
