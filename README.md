@@ -61,9 +61,9 @@ paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-me
 
 ## After Installing Dependencies
 
-📌 **Copy everything inside `files` to your `HOME` folder**.
+📌 **Copy everything inside `files` to your `HOME` folder.**
 
-️ℹ️ **Apply/Change theme with `theme.sh` script**
+️ℹ️ **Apply/Change theme with `theme.sh` script.**
 
 ### Spotify
 
@@ -90,7 +90,7 @@ hyprctl monitors
 
 > ⚠️ *These images do not showcase all features/configurations.*
 
-# Catppuccin Mocha Lavender
+### Catppuccin Mocha Lavender
 
 ![example-1](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png)
 ![example-2](/source/examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png)  
