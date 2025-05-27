@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
 # Functions 
+apply_wallpaper() {
+    local WALLPAPER="$1"
+
+    if hyprctl hyprpaper reload ,"$WALLPAPER" > /dev/null; then
+        printf "✅ Applied: '%s'\n" "$WALLPAPER"
+    else
+        printf "❌ Failed to apply wallpaper(must be a png): '%s', check errors above\n" "$WALLPAPER"
+    fi
+}
+
 check_directory() {
     local DIRECTORY="$1"
 
@@ -54,15 +64,20 @@ edit_option_in_json() {
         if [[ "$CURRENT_VALUE" == "$VALUE" ]]; then
             printf "ℹ️ '%s' is already set to: '%s'\n" "$OPTION" "$VALUE"
         else
-            printf "✅ Updated '%s' to: '%s'\n" "$OPTION" "$VALUE"
-            sed -i 's/\("'"$OPTION"'"[[:space:]]*:[[:space:]]*"\)[^"]*\("\)/\1'"$VALUE"'\2/' "$FILE"
+            if sed -i 's/\("'"$OPTION"'"[[:space:]]*:[[:space:]]*"\)[^"]*\("\)/\1'"$VALUE"'\2/' "$FILE"; then
+                printf "✅ Updated '%s' to: '%s'\n" "$OPTION" "$VALUE"
+            else
+                printf "❌ Failed to update '%s' to: '%s'\n" "$OPTION" "$VALUE"
+            fi
         fi
     else
-        printf "✅ Inserted: '%s: %s'\n" "$OPTION" "$VALUE"
-        sed -i '$i\  "'"$OPTION"'": "'"$VALUE"'",' "$FILE"
+        if sed -i '$i\  "'"$OPTION"'": "'"$VALUE"'",' "$FILE"; then
+            printf "✅ Inserted: '%s: %s'\n" "$OPTION" "$VALUE"
+        else
+            printf "❌ Failed to insert '%s: %s'\n" "$OPTION" "$VALUE"
+        fi
     fi
 }
-
 
 restart_app() {
     local APP="$1"
@@ -293,10 +308,7 @@ echo
 printf "• Wallpaper\n"
 
 start_app "hyprpaper"
-
-if hyprctl hyprpaper reload ,"$WALLPAPER" > /dev/null; then
-    printf "✅ Applied: '%s'\n" "$WALLPAPER"
-fi
+apply_wallpaper "$WALLPAPER"
 echo
 
 # Waybar
