@@ -1,17 +1,6 @@
 #!/usr/bin/env bash
 
 # Functions 
-copy() {
-    local FILE="$1"
-    local DIRECTORY="$2"
-
-    if cp "$FILE" "$DIRECTORY"; then
-        printf "✅ Copied: '%s' to '%s'\n" "$FILE" "$DIRECTORY"
-    else
-        printf "❌ Failed to copy: '%s' to '%s', check errors above\n" "$FILE" "$DIRECTORY"
-    fi
-}
-
 check_directory() {
     local DIRECTORY="$1"
 
@@ -28,24 +17,54 @@ check_directory() {
     fi
 }
 
-start_app_if_not_running() {
-    local APP="$1"
+copy() {
+    local FILE="$1"
+    local DIRECTORY="$2"
 
-    if pgrep -x "$APP" > /dev/null; then
-        printf "🚦 App is already running: '%s'\n" "$APP"
+    if cp "$FILE" "$DIRECTORY"; then
+        printf "✅ Copied: '%s' to '%s'\n" "$FILE" "$DIRECTORY"
     else
-        printf "⚠️ App is not running (starting...): '%s'\n" "$APP"
-        
-        if hyprctl dispatch exec "$APP" > /dev/null; then
-            sleep 1
-            printf "🚀 Started app: '%s'\n" "$APP"
+        printf "❌ Failed to copy: '%s' to '%s', check errors above\n" "$FILE" "$DIRECTORY"
+    fi
+}
+
+create_empty_json() {
+    local FILE="$1"
+
+    if [ -f "$FILE" ]; then
+        printf "📄 JSON file already exists: %s\n" "$FILE"
+    else
+        if echo {} > "$FILE"; then
+            printf "🛠️ Created empty JSON file: '%s'\n" "$FILE"
         else
-            printf "❌ Failed to start app: '%s', check errors above\n" "$APP"
+            printf "❌ Failed to create empty JSON file: '%s', check errors above\n" "$FILE"
         fi
     fi
 }
 
-restart_or_start_app() {
+edit_option_in_json() {
+    local FILE="$1"
+    local OPTION="$2"
+    local VALUE="$3"
+
+    if grep -q "\"$OPTION\"" "$FILE"; then
+        local CURRENT_VALUE
+        CURRENT_VALUE=$(grep "\"$OPTION\"" "$FILE" | sed -E 's/.*"'$OPTION'":[[:space:]]*"(.*)".*/\1/')
+
+        if [[ "$CURRENT_VALUE" == "$VALUE" ]]; then
+            printf "ℹ️ '%s' is already set to: '%s'\n" "$OPTION" "$VALUE"
+        else
+            printf "✅ Updated '%s' to: '%s'\n" "$OPTION" "$VALUE"
+            sed -i 's/\("'"$OPTION"'"[[:space:]]*:[[:space:]]*"\)[^"]*\("\)/\1'"$VALUE"'\2/' "$FILE"
+        fi
+    else
+        printf "✅ Inserted: '%s: %s'\n" "$OPTION" "$VALUE"
+        sed -i '$i\  "'"$OPTION"'": "'"$VALUE"'",' "$FILE"
+    fi
+}
+
+
+restart_app() {
     local APP="$1"
 
     if pgrep -x "$APP" > /dev/null; then
@@ -59,6 +78,23 @@ restart_or_start_app() {
     else
         printf "⚠️ App is not running (starting...): '%s'\n" "$APP"
 
+        if hyprctl dispatch exec "$APP" > /dev/null; then
+            sleep 1
+            printf "🚀 Started app: '%s'\n" "$APP"
+        else
+            printf "❌ Failed to start app: '%s', check errors above\n" "$APP"
+        fi
+    fi
+}
+
+start_app() {
+    local APP="$1"
+
+    if pgrep -x "$APP" > /dev/null; then
+        printf "🚦 App is already running: '%s'\n" "$APP"
+    else
+        printf "⚠️ App is not running (starting...): '%s'\n" "$APP"
+        
         if hyprctl dispatch exec "$APP" > /dev/null; then
             sleep 1
             printf "🚀 Started app: '%s'\n" "$APP"
@@ -89,11 +125,11 @@ if [ "$SHELL" != "$(command -v zsh)" ]; then
                 break
                 ;;
             n|no)
-                printf "❌ Skipping ZSH default shell setup.\n\n"
+                printf "❌ Skipped ZSH default shell setup.\n\n"
                 break
                 ;;
             *)
-                printf "⚠️ Invalid input. Please enter (y)es or (n)o.\n\n"
+                printf "⚠️ Invalid input! Please enter (y)es or (n)o.\n\n"
                 ;;
         esac
     done
@@ -146,12 +182,12 @@ HYPRLAND_STYLE="$SOURCES_HYPRLAND_DIR/$THEME/style.conf"
 HYPRLOCK_CONFIG="$SOURCES_HYPRLAND_DIR/$THEME/hyprlock.conf"
 HYPRPAPER_CONFIG="$SOURCES_HYPRLAND_DIR/$THEME/hyprpaper.conf"
 KITTY_CONFIG="$SOURCES_KITTY_DIR/$THEME/kitty.conf"
-KITTY_PALETTE="$SOURCES_KITTY_DIR/$THEME/$THEME.conf"
+KITTY_PALETTE="$SOURCES_KITTY_DIR/$THEME/palette.conf"
 NEOFETCH_CONFIG="$SOURCES_NEOFETCH_DIR/$THEME/config.conf"
 ROFI_CONFIG="$SOURCES_ROFI_DIR/$THEME/config.rasi"
-ROFI_PALETTE="$SOURCES_ROFI_DIR/$THEME/$THEME.rasi"
+ROFI_THEME="$SOURCES_ROFI_DIR/$THEME/theme.rasi"
 SWAYNC_STYLE="$SOURCES_SWAYNC_DIR/$THEME/style.css"
-VESKTOP_THEME="$SOURCES_VESKTOP_DIR/$THEME/themes/$THEME.css"
+VESKTOP_THEME="$SOURCES_VESKTOP_DIR/$THEME/themes/theme.css"
 VESKTOP_SETTINGS="$SOURCES_VESKTOP_DIR/$THEME/settings/settings.json"
 VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
 WALLPAPER="$SOURCES_WALLPAPER_DIR/$THEME.png"
@@ -227,7 +263,7 @@ printf "• Rofi\n"
 
 check_directory "$ROFI_DIR"
 copy "$ROFI_CONFIG" "$ROFI_DIR"
-copy "$ROFI_PALETTE" "$ROFI_DIR"
+copy "$ROFI_THEME" "$ROFI_DIR"
 echo
 
 # SwayNC
@@ -249,29 +285,14 @@ echo
 #VSCode
 printf "• VSCode\n"
 
-if [ -f "$VSCODE_SETTINGS" ]; then
-    printf "📄 File already exists: %s\n" "$VSCODE_SETTINGS"
-else
-    if echo {} > "$VSCODE_SETTINGS"; then
-        printf "🛠️ Created file: '%s'\n" "$VSCODE_SETTINGS"
-    else
-        printf "❌ Failed to create file: '%s', check errors above\n" "$VSCODE_SETTINGS"
-    fi
-fi
-
-if grep -q '"workbench.colorTheme"' "$VSCODE_SETTINGS"; then
-    printf "✅ Updated color theme (install if you don't have it): '%s'\n" "$VSCODE_THEME"
-    sed -i 's/\("workbench.colorTheme"[[:space:]]*:[[:space:]]*"\)[^"]*\("\)/\1'"$VSCODE_THEME"'\2/' "$VSCODE_SETTINGS"
-else
-    printf "✅ Inserted color theme (install if you don't have it): '%s'\n" "$VSCODE_THEME"
-    sed -i '$i\  "workbench.colorTheme": "'"$VSCODE_THEME"'",' "$VSCODE_SETTINGS"
-fi
+create_empty_json "$VSCODE_SETTINGS"
+edit_option_in_json "$VSCODE_SETTINGS" "workbench.colorTheme" "$VSCODE_THEME"
 echo
 
 # Wallpaper
 printf "• Wallpaper\n"
 
-start_app_if_not_running "hyprpaper"
+start_app "hyprpaper"
 
 if hyprctl hyprpaper reload ,"$WALLPAPER" > /dev/null; then
     printf "✅ Applied: '%s'\n" "$WALLPAPER"
@@ -285,7 +306,7 @@ check_directory "$WAYBAR_DIR"
 copy "$WAYBAR_CONFIG" "$WAYBAR_DIR"
 copy "$WAYBAR_PALETTE" "$WAYBAR_DIR"
 copy "$WAYBAR_STYLE" "$WAYBAR_DIR"
-restart_or_start_app "waybar"
+restart_app "waybar"
 echo
 
 # ZSH

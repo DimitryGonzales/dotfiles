@@ -4,7 +4,7 @@
     "useQuickCss": true,
     "themeLinks": [],
     "enabledThemes": [
-        "catppuccin-mocha-lavender.css"
+        "theme.css"
     ],
     "enableReactDevtools": false,
     "frameless": false,

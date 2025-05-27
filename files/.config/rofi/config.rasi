@@ -9,4 +9,4 @@ configuration {
     display-filebrowser: "filebrowser:";
 }
 
-@theme "~/.config/rofi/catppuccin-mocha-lavender.rasi"
+@theme "~/.config/rofi/theme.rasi"
