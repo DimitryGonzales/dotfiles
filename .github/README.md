@@ -108,7 +108,7 @@ hyprctl monitors
 
 <table>
     <tr>
-        <td><img src="./examples/gruvbox-dark/gruvbox-dark.png" alt="example-1"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-1.png" alt="example-1"></td>
         <td><img src="./examples/gruvbox-dark/gruvbox-dark-2.png" alt="example-2"></td>
     </tr>
     <tr>
