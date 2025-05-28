@@ -13,7 +13,7 @@ PS1='[\u@\h \W]\$ '
 # Personal Config
 
 # Neofetch
-neofetch --chafa ~/sources/neofetch/gruvbox-dark/gruvbox-dark.png --size 450px
+neofetch --chafa ~/sources/neofetch/gruvbox-dark/gruvbox-dark.png --size 400px
 
 # Aliases
 alias refresh-mirrors='sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist'
