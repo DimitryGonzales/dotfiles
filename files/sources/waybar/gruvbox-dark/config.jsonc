@@ -1,0 +1,264 @@
+[
+    {
+        "output": "DP-3",
+        "position": "top",
+
+        "height": 35,
+
+        "modules-left": [
+            "clock",
+            "custom/media"
+        ],
+
+        "modules-center": [
+            "hyprland/workspaces"
+        ],
+        
+        "modules-right": [
+            "network",
+            "pulseaudio",
+            "tray",
+            "hyprland/language",
+            "custom/notification"
+        ],
+        
+        "clock": {
+            "interval": 1,
+            "format": "<span foreground='#d79921'></span> {:%T}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "year",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "months": "<span color='#fbf1c7'><b>{}</b></span>",
+                    "days": "<span color='#a89984'><b>{}</b></span>",
+                    "weeks": "<span color='#fbf1c7'><b>W{}</b></span>",
+                    "weekdays": "<span color='#fbf1c7'><b>{}</b></span>",
+                    "today": "<span color='#d79921'><b><u>{}</u></b></span>"
+                }
+            }
+        },
+
+        "custom/media": {
+            "format": "<span foreground='#d79921'>{icon}</span> {text}",
+            "return-type": "json",
+            "max-length": 40,
+            "format-icons": {
+                "spotify": "",
+                "default": ""
+            },
+            "escape": true,
+            "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+        },
+
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "on-click": "activate",
+            "all-outputs": true,
+            "format-icons": {
+                "1": "I",
+                "2": "II",
+                "3": "III",
+                "4": "IV",
+                "5": "V",
+                "6": "VI",
+                "7": "VII",
+                "8": "VIII",
+                "9": "IX",
+                "10": "X"
+            },
+            "sort-by-number": true
+        },
+
+        "network": {
+            "format-wifi": "",
+            "format-ethernet": "",
+            "format-disconnected": "Disconnected ",
+            "tooltip-format": "{essid}"
+        },
+
+        "pulseaudio": {
+            "format": "<span foreground='#d79921'></span> {volume}% {format_source}",
+            "format-bluetooth": "{volume}% {icon} {format_source}",
+            "format-bluetooth-muted": " {icon} {format_source}",
+            "format-muted": "<span foreground='#cc241d'></span> {format_source}",
+            "format-source": "<span foreground='#d79921'></span> {volume}%",
+            "format-source-muted": "<span foreground='#cc241d'></span>",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+        },
+
+        "tray": {
+            "icon-size": 18,
+            "spacing": 10
+        },
+
+        "hyprland/language": {
+            "format": "{short}"
+        },
+
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "none": "",
+                "notification": "<span foreground='#d79921'></span>",
+                "dnd-none": "<span foreground='#cc241d'></span>",
+                "dnd-notification": "<span foreground='#fb4934'></span>",
+                "inhibited-none": "<span foreground='#d65d0e'></span>",
+                "inhibited-notification": "<span foreground='#fe8019'></span>",
+                "dnd-inhibited-none": "<span foreground='#98971a'></span>",
+                "dnd-inhibited-notification": "<span foreground='#b8bb26'></span>"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true
+        }
+    },
+
+    {
+        "output": "HDMI-A-1",
+        "position": "top",
+
+        "height": 35,
+
+        "modules-left": [
+            "clock",
+            "disk",
+            "memory"
+        ],
+
+        "modules-center": [
+            "hyprland/workspaces"
+        ],
+        
+        "modules-right": [
+            "network",
+            "pulseaudio",
+            "tray",
+            "hyprland/language",
+            "custom/notification"
+        ],
+
+        "clock": {
+            "interval": 1,
+            "format": "<span foreground='#d79921'></span> {:%T}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "year",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "months": "<span color='#fbf1c7'><b>{}</b></span>",
+                    "days": "<span color='#a89984'><b>{}</b></span>",
+                    "weeks": "<span color='#fbf1c7'><b>W{}</b></span>",
+                    "weekdays": "<span color='#fbf1c7'><b>{}</b></span>",
+                    "today": "<span color='#d79921'><b><u>{}</u></b></span>"
+                }
+            }
+        },
+
+        "disk": {
+            "interval": 600,
+            "format": "<span foreground='#d79921'></span> {used}/{total}",
+            "unit": "GB",
+            "tooltip-format": "Free: {free}"
+        },
+
+        "memory": {
+            "interval": 30,
+            "format": "<span foreground='#d79921'></span> {used}/{total} GB",
+            "tooltip": true,
+            "tooltip-format": "Available: {avail} GB"
+        },
+
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "on-click": "activate",
+            "all-outputs": true,
+            "format-icons": {
+                "1": "I",
+                "2": "II",
+                "3": "III",
+                "4": "IV",
+                "5": "V",
+                "6": "VI",
+                "7": "VII",
+                "8": "VIII",
+                "9": "IX",
+                "10": "X"
+            },
+            "sort-by-number": true
+        },
+
+        "network": {
+            "format-wifi": "",
+            "format-ethernet": "",
+            "format-disconnected": "Disconnected ",
+            "tooltip-format": "{essid}"
+        },
+
+        "pulseaudio": {
+            "format": "<span foreground='#d79921'></span> {volume}% {format_source}",
+            "format-bluetooth": "{volume}% {icon} {format_source}",
+            "format-bluetooth-muted": " {icon} {format_source}",
+            "format-muted": "<span foreground='#cc241d'></span> {format_source}",
+            "format-source": "<span foreground='#d79921'></span> {volume}%",
+            "format-source-muted": "<span foreground='#cc241d'></span>",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+        },
+
+        "tray": {
+            "icon-size": 18,
+            "spacing": 10
+        },
+
+        "hyprland/language": {
+            "format": "{short}"
+        },
+
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "none": "",
+                "notification": "<span foreground='#d79921'></span>",
+                "dnd-none": "<span foreground='#cc241d'></span>",
+                "dnd-notification": "<span foreground='#fb4934'></span>",
+                "inhibited-none": "<span foreground='#d65d0e'></span>",
+                "inhibited-notification": "<span foreground='#fe8019'></span>",
+                "dnd-inhibited-none": "<span foreground='#98971a'></span>",
+                "dnd-inhibited-notification": "<span foreground='#b8bb26'></span>"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "swaync-client -t -sw",
+            "on-click-right": "swaync-client -d -sw",
+            "escape": true
+        }
+    }
+]

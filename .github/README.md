@@ -10,6 +10,7 @@
 - [Cliphist](https://github.com/sentriz/cliphist)  
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome)  
 - [Foot](https://codeberg.org/dnkl/foot)
+- [Gruvbox GTK Theme](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme)
 - [GTK Catppuccin](https://github.com/catppuccin/gtk)
 - [Hyprland](https://github.com/hyprwm/Hyprland)  
 - [Hyprlock](https://github.com/hyprwm/hyprlock)  
@@ -48,13 +49,13 @@ sudo pacman -S --needed chafa cliphist ttf-font-awesome otf-font-awesome foot hy
 > 📌 You can use either yay or paru depending on which AUR helper you have installed.
 
 ```bash
-yay -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vesktop-bin
+yay -S --needed catppuccin-gtk-theme-mocha gruvbox-gtk-theme-git hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vesktop-bin
 ```
 
 _or_
 
 ```bash
-paru -S --needed catppuccin-gtk-theme-mocha hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vesktop-bin
+paru -S --needed catppuccin-gtk-theme-mocha gruvbox-gtk-theme-git hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vesktop-bin
 ```
 
 ---
@@ -100,6 +101,19 @@ hyprctl monitors
     <tr>
         <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png" alt="example-3"></td>
         <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png" alt="example-4"></td>
+    </tr>
+</table>
+
+### Gruvbox Dark
+
+<table>
+    <tr>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark.png" alt="example-1"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-2.png" alt="example-2"></td>
+    </tr>
+    <tr>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-3.png" alt="example-3"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-4.png" alt="example-4"></td>
     </tr>
 </table>
 

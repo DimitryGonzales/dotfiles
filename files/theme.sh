@@ -102,6 +102,16 @@ restart_app() {
     fi
 }
 
+set_gtk_theme() {
+    local THEME="$1"
+
+    if gsettings set org.gnome.desktop.interface gtk-theme "$THEME"; then
+        printf "✅ Set GTK theme to: %s\n" "$THEME"
+    else
+        printf "❌ Failed to set GTK theme to: %s\n" "$THEME"
+    fi
+}
+
 start_app() {
     local APP="$1"
 
@@ -153,18 +163,33 @@ fi
 # Ask user what theme to apply
 while true; do
     printf "Choose a theme:\n\n"
-    printf "1 - Catppuccin Mocha\n\n"
+    printf "1 - Catppuccin Mocha\n"
+    printf "2 - Gruvbox Dark\n\n"
 
     read -n 1 -r choice
     [ -z "$choice" ] && clear && continue
 
     case "$choice" in
         1|one)
+            # GTK theme name
+            GTK_THEME="catppuccin-mocha-lavender-standard+default"
+
             # Theme name
             THEME="catppuccin-mocha-lavender"
 
             # VSCode theme name
             VSCODE_THEME="Catppuccin Mocha"
+            break
+            ;;
+        2|two)
+            # GTK theme name
+            GTK_THEME="Gruvbox-Yellow-Dark"
+
+            # Theme name
+            THEME="gruvbox-dark"
+
+            # VSCode theme name
+            VSCODE_THEME="Gruvbox Dark Hard"
             break
             ;;
         *)
@@ -247,6 +272,7 @@ printf "• GTK\n"
 
 check_directory "$GTK_DIR"
 copy "$GTK_SETTINGS" "$GTK_DIR"
+set_gtk_theme "$GTK_THEME"
 echo
 
 # hyprland and hyprapps
@@ -286,6 +312,7 @@ printf "• SwayNC\n"
 
 check_directory "$SWAYNC_DIR"
 copy "$SWAYNC_STYLE" "$SWAYNC_DIR"
+restart_app "swaync"
 echo
 
 # Vesktop
