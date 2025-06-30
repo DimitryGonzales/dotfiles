@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+clear
+
 # Functions 
 apply_wallpaper() {
     local WALLPAPER="$1"
@@ -24,6 +26,36 @@ check_directory() {
         else
             printf "❌ Failed to create directory: '%s', check errors above\n" "$DIRECTORY"
         fi
+    fi
+}
+
+check_zsh() {
+    if [ "$SHELL" != "$(command -v zsh)" ]; then
+        while true; do
+            printf "Current shell: '%s'\n" "$SHELL"
+            printf "Do you want to set ZSH as your default shell? (Y/n)\n\n"
+
+            read -r choice
+            choice=${choice:-y}
+            choice=${choice,,}
+
+            clear
+            case "$choice" in
+                y|yes)
+                    sudo chsh -s "$(command -v zsh)" "$USER"
+                    clear
+                    printf "✅ ZSH default shell setup executed successfully(reboot computer to apply changes)\n\n"
+                    break
+                    ;;
+                n|no)
+                    printf "❌ Skipped ZSH default shell setup.\n\n"
+                    break
+                    ;;
+                *)
+                    printf "⚠️ Invalid input! Please enter (y)es or (n)o.\n\n"
+                    ;;
+            esac
+        done
     fi
 }
 
@@ -150,37 +182,6 @@ start_app() {
         fi
     fi
 }
-
-clear
-
-# Ask if user wants to set ZSH as default shell
-if [ "$SHELL" != "$(command -v zsh)" ]; then
-    while true; do
-        printf "Current shell: '%s'\n" "$SHELL"
-        printf "Do you want to set ZSH as your default shell? (Y/n)\n\n"
-
-        read -r choice
-        choice=${choice:-y}
-        choice=${choice,,}
-
-        clear
-        case "$choice" in
-            y|yes)
-                sudo chsh -s "$(command -v zsh)" "$USER"
-                clear
-                printf "✅ ZSH default shell setup executed successfully(reboot computer to apply changes)\n\n"
-                break
-                ;;
-            n|no)
-                printf "❌ Skipped ZSH default shell setup.\n\n"
-                break
-                ;;
-            *)
-                printf "⚠️ Invalid input! Please enter (y)es or (n)o.\n\n"
-                ;;
-        esac
-    done
-fi
 
 # Ask user what theme to apply
 while true; do
