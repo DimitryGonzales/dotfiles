@@ -1,114 +1,45 @@
 # 🎨 Dotfiles
 
-> ℹ️ **The following instructions assume that the user is using an Arch Linux system.**
+My personal dotfiles for an Arch Linux installation.
 
 ---
 
 # 🛠️ Instructions
 
-## Required Dependencies (for full functionality)
+⚠️ **Currently working on a script to install all necessary packages. For now, check the folder names and manually install the packages using your distro’s package manager.**
 
-- [Chafa](https://github.com/hpjansson/chafa)
-- [Cliphist](https://github.com/sentriz/cliphist)
-- [Discord](https://github.com/discord)
-- [Font Awesome](https://github.com/FortAwesome/Font-Awesome)
-- [Foot](https://codeberg.org/dnkl/foot)
-- [Gnome Themes Extra](https://gitlab.gnome.org/GNOME/gnome-themes-extra)
-- [GTK Catppuccin Theme](https://github.com/catppuccin/gtk)
-- [GTK Gruvbox Theme](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme)
-- [Hyprland](https://github.com/hyprwm/Hyprland)
-- [Hyprlock](https://github.com/hyprwm/hyprlock)
-- [Hyprpicker](https://github.com/hyprwm/hyprpicker)
-- [Hyprshot](https://github.com/Gustash/Hyprshot)
-- [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)
-- [Kitty](https://github.com/kovidgoyal/kitty)
-- [Mission Center](https://github.com/Slimbook-Team/mission-center)
-- [Neofetch](https://github.com/dylanaraps/neofetch)
-- [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
-- [NWG Look](https://github.com/nwg-piotr/nwg-look)
-- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [Rofi](https://github.com/davatorium/rofi)
-- [Rofi-Emoji](https://github.com/Mange/rofi-emoji)
-- [Rofi Power Menu](https://github.com/jluttine/rofi-power-menu)
-- [Spicetify](https://github.com/spicetify/cli)
-- [Spicetify Marketplace](https://github.com/spicetify/marketplace)
-- [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
-- [Thunar](https://docs.xfce.org/xfce/thunar/start)
-- [Vencord Hook](https://aur.archlinux.org/packages/vencord-hook)
-- [Vesktop](https://github.com/Vencord/Vesktop)
-- [Waybar](https://github.com/Alexays/Waybar)
-- [zsh](https://github.com/zsh-users/zsh)
+📌 **Clone this repository or download and copy its contents to your `home` directory:**
 
-### Install all packages from both repositories:
-
-#### Official Repositories (using `pacman`):
-
-```bash
-sudo pacman -S --needed chafa cliphist discord ttf-font-awesome otf-font-awesome foot gnome-themes-extra hyprland hyprlock hyprpicker ttf-jetbrains-mono kitty mission-center neofetch nerd-fonts nwg-look rofi rofi-emoji swaync thunar waybar zsh
-```
-
-#### AUR (using `yay` or `paru`):
-
-> ℹ️ **You can use either yay or paru depending on which AUR helper you have installed.**
-
-```bash
-yay -S --needed catppuccin-gtk-theme-mocha gruvbox-gtk-theme-git hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vencord-hook vesktop-bin
-```
-
-_or_
-
-```bash
-paru -S --needed catppuccin-gtk-theme-mocha gruvbox-gtk-theme-git hyprshot oh-my-zsh-git rofi-power-menu spicetify-cli spicetify-marketplace-bin vencord-hook vesktop-bin
-```
-
----
-
-## After Installing Dependencies
-
-> 📌 **Copy everything inside this repository to your `home` folder or `git clone` it:**
-
-1. Download this repo.
-
-2. Copy the files to your `home` folder:
-
-```bash
-cp path-to-files ~/
-```
-
-_or_
-
-1. Git clone it:
+**Option 1: Clone the repository**
 
 ```bash
 cd ~
-git clone https://github.com/DimitryGonzales/dotfiles.git
+git clone "https://github.com/DimitryGonzales/dotfiles.git"
 ```
 
-> 📌 **Apply/Change the themes with `theme.sh` script.**
+**Option 2: Download and copy manually**
 
-### Discord with Vencord
+1. Download the repository.
 
-If **Discord** is not pacthed, reinstall it. `vencord-hook` will patch it automatically:
+2. Copy the files to your `home` directory:
 
 ```bash
-sudo pacman -S discord
+cp -r path-to-files ~/
 ```
 
-### VSCode
+📌 **Run the `theme.sh` script to apply or switch between themes.**
 
-Install the corresponding colors extension for your theme:
+## Discord
+
+Patch Discord using [Vencord](https://github.com/Vencord/Vencord).
+
+## VSCode
+
+Install the matching color theme extension for your selected theme from the marketplace:
 
 - [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc)
 - [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 - [MacOS Modern Theme](https://marketplace.visualstudio.com/items?itemName=davidbwaters.macos-modern-theme)
-
-### Waybar
-
-Inside `~/.config/waybar/config.jsonc`, locate both Waybar configurations (one for each monitor) and change the **output** field in each section to match your respective monitors. If you only have one monitor, update the **output** value in the section corresponding to that monitor. This determines which monitor each Waybar appears on. If you are on hyprland, check monitors names with:
-
-```bash
-hyprctl monitors
-```
 
 ---
 

@@ -29,6 +29,9 @@
     // Minimap
     "editor.minimap.showSlider": "always",
 
+    // Smooth
+    "editor.smoothScrolling": true,
+
     // Sticky Scroll
     "editor.stickyScroll.enabled": false,
 

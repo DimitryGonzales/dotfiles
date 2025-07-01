@@ -29,41 +29,11 @@ check_directory() {
     fi
 }
 
-check_zsh() {
-    if [ "$SHELL" != "$(command -v zsh)" ]; then
-        while true; do
-            printf "Current shell: '%s'\n" "$SHELL"
-            printf "Do you want to set ZSH as your default shell? (Y/n)\n\n"
-
-            read -r choice
-            choice=${choice:-y}
-            choice=${choice,,}
-
-            clear
-            case "$choice" in
-                y|yes)
-                    sudo chsh -s "$(command -v zsh)" "$USER"
-                    clear
-                    printf "✅ ZSH default shell setup executed successfully(reboot computer to apply changes)\n\n"
-                    break
-                    ;;
-                n|no)
-                    printf "❌ Skipped ZSH default shell setup.\n\n"
-                    break
-                    ;;
-                *)
-                    printf "⚠️ Invalid input! Please enter (y)es or (n)o.\n\n"
-                    ;;
-            esac
-        done
-    fi
-}
-
 copy() {
     local FILE="$1"
     local DIRECTORY="$2"
 
-    if cp "$FILE" "$DIRECTORY"; then
+    if cp -r "$FILE" "$DIRECTORY"; then
         printf "✅ Copied: '%s' to '%s'\n" "$FILE" "$DIRECTORY"
     else
         printf "❌ Failed to copy: '%s' to '%s', check errors above\n" "$FILE" "$DIRECTORY"
@@ -264,10 +234,8 @@ SOURCES_NEOFETCH_DIR="$SOURCES_DIR/neofetch"
 SOURCES_ROFI_DIR="$SOURCES_DIR/rofi"
 SOURCES_SWAYNC_DIR="$SOURCES_DIR/swaync"
 SOURCES_VENCORD_DIR="$SOURCES_DIR/vencord"
-SOURCES_VESKTOP_DIR="$SOURCES_DIR/vesktop"
 SOURCES_WALLPAPER_DIR="$SOURCES_DIR/wallpaper"
 SOURCES_WAYBAR_DIR="$SOURCES_DIR/waybar"
-SOURCES_ZSH_DIR="$SOURCES_DIR/zsh"
 
 # Files directories
 BASHRC="$SOURCES_BASH_DIR/$THEME/.bashrc"
@@ -283,13 +251,11 @@ ROFI_CONFIG="$SOURCES_ROFI_DIR/$THEME/config.rasi"
 ROFI_THEME="$SOURCES_ROFI_DIR/$THEME/theme.rasi"
 SWAYNC_STYLE="$SOURCES_SWAYNC_DIR/$THEME/style.css"
 VENCORD_THEME="$SOURCES_VENCORD_DIR/$THEME/themes/theme.css"
-VESKTOP_THEME="$SOURCES_VESKTOP_DIR/$THEME/themes/theme.css"
 VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
 WALLPAPER="$SOURCES_WALLPAPER_DIR/$THEME.png"
 WAYBAR_CONFIG="$SOURCES_WAYBAR_DIR/$THEME/config.jsonc"
 WAYBAR_PALETTE="$SOURCES_WAYBAR_DIR/$THEME/palette.css"
 WAYBAR_STYLE="$SOURCES_WAYBAR_DIR/$THEME/style.css"
-ZSHRC="$SOURCES_ZSH_DIR/$THEME/.zshrc"
 
 # Apps directories
 FOOT_DIR="$HOME/.config/foot"
@@ -300,7 +266,6 @@ NEOFETCH_DIR="$HOME/.config/neofetch"
 ROFI_DIR="$HOME/.config/rofi"
 SWAYNC_DIR="$HOME/.config/swaync"
 VENCORD_DIR="$HOME/.config/Vencord"
-VESKTOP_DIR="$HOME/.config/vesktop"
 WAYBAR_DIR="$HOME/.config/waybar"
 
 clear
@@ -379,13 +344,7 @@ echo
 # Vencord
 printf "• Vencord\n"
 check_directory "$VENCORD_DIR/themes"
-copy "$VESKTOP_THEME" "$VENCORD_DIR/themes"
-echo
-
-# Vesktop
-printf "• Vesktop\n"
-check_directory "$VESKTOP_DIR/themes"
-copy "$VESKTOP_THEME" "$VESKTOP_DIR/themes"
+copy "$VENCORD_THEME" "$VENCORD_DIR/themes"
 echo
 
 #VSCode
@@ -410,10 +369,4 @@ copy "$WAYBAR_CONFIG" "$WAYBAR_DIR"
 copy "$WAYBAR_PALETTE" "$WAYBAR_DIR"
 copy "$WAYBAR_STYLE" "$WAYBAR_DIR"
 restart_app "waybar"
-echo
-
-# ZSH
-printf "• ZSH\n"
-
-copy "$ZSHRC" "$HOME"
 echo

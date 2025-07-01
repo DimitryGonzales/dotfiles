@@ -76,16 +76,6 @@
 !.config/Vencord/themes/
 !.config/Vencord/themes/theme.css
 
-# Vesktop
-!.config/vesktop/
-
-!.config/vesktop/settings/
-!.config/vesktop/settings/quickCss.css
-!.config/vesktop/settings/settings.json
-
-!.config/vesktop/themes/
-!.config/vesktop/themes/theme.css
-
 # VLC
 !.config/vlc/
 !.config/vlc/vlcrc
@@ -257,21 +247,6 @@
 !sources/vencord/minimalistic/themes/
 !sources/vencord/minimalistic/themes/theme.css
 
-# Vesktop
-!sources/vesktop/
-
-!sources/vesktop/catppuccin-mocha-lavender/
-!sources/vesktop/catppuccin-mocha-lavender/themes/
-!sources/vesktop/catppuccin-mocha-lavender/themes/theme.css
-
-!sources/vesktop/gruvbox-dark/
-!sources/vesktop/gruvbox-dark/themes/
-!sources/vesktop/gruvbox-dark/themes/theme.css
-
-!sources/vesktop/minimalistic/
-!sources/vesktop/minimalistic/themes/
-!sources/vesktop/minimalistic/themes/theme.css
-
 # Wallpaper
 !sources/wallpaper/
 !sources/wallpaper/catppuccin-mocha-lavender.png
@@ -296,23 +271,8 @@
 !sources/waybar/minimalistic/palette.css
 !sources/waybar/minimalistic/style.css
 
-# ZSH
-!sources/zsh/
-
-!sources/zsh/catppuccin-mocha-lavender/
-!sources/zsh/catppuccin-mocha-lavender/.zshrc
-
-!sources/zsh/gruvbox-dark/
-!sources/zsh/gruvbox-dark/.zshrc
-
-!sources/zsh/minimalistic/
-!sources/zsh/minimalistic/.zshrc
-
 ## bashrc ##
 !.bashrc
-
-## zshrc ##
-!.zshrc
 
 ## Theme script ##
 !theme.sh
