@@ -44,9 +44,9 @@ Install the matching color theme extension for your selected theme from the mark
 
 - [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc)
 
-- [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
+- [Github Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
 
-- [MacOS Modern Theme](https://marketplace.visualstudio.com/items?itemName=davidbwaters.macos-modern-theme)
+- [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 
 ## 🖼️ Examples
 
