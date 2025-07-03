@@ -2,52 +2,57 @@
 
 My personal dotfiles for an Arch Linux installation.
 
----
+## 📦 Required dependencies
 
-# 🛠️ Instructions
+- `git`
+- `sudo`
 
-⚠️ **Currently working on a script to install all necessary packages. For now, check the folder names and manually install the packages using your distro’s package manager.**
+```
+sudo pacman -S git sudo
+```
+
+## 🛠️ Instructions
 
 📌 **Clone this repository or download and copy its contents to your `home` directory:**
 
-**Option 1: Clone the repository**
+- **Option 1: Clone the repository**
 
-```bash
+```
 cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
 ```
 
-**Option 2: Download and copy manually**
+- **Option 2: Download and copy manually**
 
 1. Download the repository.
 
 2. Copy the files to your `home` directory:
 
 ```bash
-cp -r path-to-files ~/
+cp -r path/to/files ~/
 ```
 
+📌 **Execute the `setup.sh` script to do an automated installation of my Linux1 setup.**
+
+> ⚠️ Currently working on a separate version for the ones who just want the necessary packages.
+
 📌 **Run the `theme.sh` script to apply or switch between themes.**
-
-## Discord
-
-Patch Discord using [Vencord](https://github.com/Vencord/Vencord).
 
 ## VSCode
 
 Install the matching color theme extension for your selected theme from the marketplace:
 
 - [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc)
+
 - [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
+
 - [MacOS Modern Theme](https://marketplace.visualstudio.com/items?itemName=davidbwaters.macos-modern-theme)
 
----
-
-# 🖼️ Examples
+## 🖼️ Examples
 
 > ⚠️ *These images do not showcase all features/configurations.*
 
-## Catppuccin Mocha Lavender
+- Catppuccin Mocha Lavender
 
 <table>
     <tr>
@@ -60,7 +65,7 @@ Install the matching color theme extension for your selected theme from the mark
     </tr>
 </table>
 
-## Gruvbox Dark
+- Gruvbox Dark
 
 <table>
     <tr>
@@ -73,7 +78,7 @@ Install the matching color theme extension for your selected theme from the mark
     </tr>
 </table>
 
-## Minimalistic
+- Minimalistic
 
 <table>
     <tr>
@@ -85,5 +90,3 @@ Install the matching color theme extension for your selected theme from the mark
         <td><img src="./examples/minimalistic/minimalistic-4.png" alt="example-4"></td>
     </tr>
 </table>
-
----
