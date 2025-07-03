@@ -32,7 +32,7 @@ git clone "https://github.com/DimitryGonzales/dotfiles.git"
 cp -r path/to/files ~/
 ```
 
-📌 **Execute the `setup.sh` script to do an automated installation of my Linux1 setup.**
+📌 **Execute the `setup.sh` script to do an automated installation of my Linux setup.**
 
 > ⚠️ Currently working on a separate version for the ones who just want the necessary packages.
 
