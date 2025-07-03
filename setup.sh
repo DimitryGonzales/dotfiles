@@ -459,7 +459,7 @@ echo
 
 # Discord (triggers Vencord Hook)
 log "[${CYAN}Discord${RESET}]"
-sudo pacman -S --noconfirm discord
+sudo pacman -S discord
 echo
 
 # Services
