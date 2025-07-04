@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
 set -e
+
+log() {
+    printf "[${MAGENTA}Script${RESET}] %b\n" "$*"
+}
+
 trap 'log "[FAIL] Script execution failed. Exiting..."' ERR
 
-#############
+
 # Variables #
-#############
 
 BLACK="\033[0;30m"
 RED="\033[0;31m"
@@ -17,13 +21,8 @@ CYAN="\033[0;36m"
 WHITE="\033[0;37m"
 RESET="\033[0m"
 
-#############
-# Functions #
-#############
 
-log() {
-    printf "[${MAGENTA}Script${RESET}] %b\n" "$*"
-}
+# Functions #
 
 add_user_to_group() {
     local USERNAME="${SUDO_USER:-$USER}"
@@ -215,213 +214,388 @@ system_start() {
     fi
 }
 
-############
+
 # Packages #
-############
+
+aur_packages=(
+    # Apps #
+
+    ## Heroic Games Launcher {bin} (game launcher)
+    heroic-games-launcher-bin
+
+    ## JDownloader 2 (download manager)
+    jdownloader2
+
+    ## ProtonUP QT (proton manager)
+    protonup-qt
+
+    ## qimgv (media viewer)
+    qimgv
+
+    ### [Rofi] Rofi Power Menu (power menu)
+    rofi-power-menu
+
+    ## Visual Studio Code {bin} (IDE)
+    visual-studio-code-bin
+
+    ## WOEUsb NG (USB stick Windows installer creation tool)
+    woeusb-ng
+
+    ## Zen Browser {bin} (Firefox Fork Browser)
+    zen-browser-bin
+
+
+    # GTK #
+
+    ## Catppucin GTK Theme Mocha (Catppuccin Mocha Themes)
+    catppuccin-gtk-theme-mocha
+
+    ## Gruvbox GTK Theme {git} (Gruvbox Themes)
+    gruvbox-gtk-theme-git
+
+
+    # Razer #
+
+    ## Polychromatic (open source Razer configuration app)
+    polychromatic
+
+
+    # Tablet #
+    
+    ## OpenTabletDriver (open source tablet driver)
+    opentabletdriver
+
+
+    # Tools #
+
+    ## Gallery DL (bulk download tool)
+    gallery-dl
+
+    ## OH MY BASH {git} (BASH customization and scripts)
+    oh-my-bash-git
+
+    ## Spicetify (Spicetify patcher for Spotify)
+    spicetify-cli
+
+    ### [Spicetify] Spicetify Marketplace {bin} (marketplace for spiceitfy)
+    spicetify-marketplace-bin
+
+    ## Vencord Hook (automatic Vencord patcher for Discord)
+    vencord-hook
+)
 
 pacman_packages=(
-    # Pacman {
+    # AMDGPU #
 
-    # Utilities
-    pacman-contrib
+    ## Mesa (open source AMD driver)
+    mesa 
 
-    # }
-
-    # Drivers {
-
-    # AMDGPU 
-    mesa
+    ### [Mesa] lib32 Mesa (32bit support for Mesa)
     lib32-mesa
+
+    ### [Mesa] DDX Driver (provides 2D acceleration)
     xf86-video-amdgpu
+
+    ### [Mesa] Vulkan (vulkan support)
     vulkan-radeon
+
+    ### [Mesa] lib32 Vulkan (32bit support for Vulkan)
     lib32-vulkan-radeon
 
-    # Pipewire
+
+    # Apps #
+    
+    ## Discord (voice and text chat application)
+    discord
+
+    ## Firefox (browser)
+    firefox
+
+    ## Foot (not GPU accelerated terminal emulator)
+    foot
+
+    ### [Foot] Chafa (image to text converter)
+    chafa
+
+    ### [Foot] Fastfetch (system information fetch tool)
+    fastfetch
+
+    ### [Foot] NCDU (disk usage analyzer)
+    ncdu
+
+    ### [Foot] Speedtest (internet speed tester tool)
+    speedtest-cli
+
+    ### [Foot] Vim (terminal text editor)
+    vim
+
+    ### [Foot] [Vim] NeoVim (newer vim version)
+    neovim
+
+    ### [Foot] W3M (terminal website viewer)
+    w3m
+
+    ## GParted (partition manager)
+    gparted
+
+    ## GSmartControl (disk info viewer)
+    gsmartcontrol
+
+    ## Kitty (GPU accelerated terminal emulator)
+    kitty
+
+    ## LibreOffice (document editor)
+    libreoffice-fresh
+
+    ## Lutris (game launcher)
+    lutris
+
+    ## Mangohud (system statistics viewer)
+    mangohud
+
+    ### [Mangohud] Goverlay (Mangohud customization tool)
+    goverlay
+
+    ## Mission Center (process manager)
+    mission-center
+
+    ## OBS Studio (screen recorder)
+    obs-studio
+
+    ## QBittorrent (torrent client)
+    qbittorrent
+
+    ## Rofi (launcher)
+    rofi
+
+    ### [Rofi] Rofi Emoji (emoji selector)
+    rofi-emoji
+
+    ## Speedcrunch (calculator)
+    speedcrunch
+
+    ## Spotify (music app)
+    spotify-launcher
+
+    ## Steam (game launcher/store)
+    steam
+
+    ## SwayNC (notification center)
+    swaync
+
+    ## Thunar (file manager)
+    thunar
+
+    ### [Thunar] Catfish (file searcher)
+    catfish
+
+    ### [Thunar] File Roller (file archiver)
+    file-roller
+
+    ### [Thunar] GVFS (trash support, mounting with udisk and remote filesystems)
+    gvfs
+
+    ### [Thunar] [GVFS] GVFS MTP (allows you to manage phone files)
+    gvfs-mtp
+
+    ### [Thunar] Thunar Archive Plugin (archive creation and extraction)
+    thunar-archive-plugin
+
+    ### [Thunar] Thunar Media Tags Plugin (view/edit ID3/OGG tags)
+    thunar-media-tags-plugin
+
+    ### [Thunar] Thunar Volman (removable device management)
+    thunar-volman
+
+    ### [Thunar] Tumbler (thumbnail previews)
+    tumbler
+
+    ## VLC (media player)
+    vlc
+
+    ## Waybar (tool bar)
+    waybar
+
+    ## ZED (IDE)
+    zed
+
+
+    # Audio #
+
+    ## Pipewire (low-level multimedia framework)
     pipewire
+
+    ### [Pipewire] lib32 Pipewire (32bit support for Pipewire)
     lib32-pipewire
+
+    ### [Pipewire] Pipewire Audio (use Pipewire as an audio server)
     pipewire-audio
+
+    ### [Pipewire] Pipewire Alsa (route ALSA to Pipewire)
     pipewire-alsa
+
+    ### [Pipewire] Pipewire Pulse (route PulseAudio to Pipewire)
     pipewire-pulse
+
+    ### [Pipewire] Pipewire JACK (route JACK to Pipewire)
     pipewire-jack
+
+    ### [Pipewire] lib32 Pipewire JACK (32bit support to route JACK to Pipewire)
     lib32-pipewire-jack
+
+    ### [Pipewire] Wireplumber (session manager)
     wireplumber
 
-    # }
+    ### [Pipewire] Pavucontrol (audio input/output controller)
+    pavucontrol
 
-    # Fonts {
+    ### [Pipewire] Helvum (audio sources controller)
+    helvum
 
-    # Noto Fonts
+    
+    # Fonts #
+
+    ## Noto Fonts (basic)
     noto-fonts
+
+    ### [Noto Fonts] Noto Fonts CJK (chinese, japanese and korean)
     noto-fonts-cjk
+
+    ### [Noto Fonts] Noto Fonts Emoji (emojis)
     noto-fonts-emoji
+
+    ### [Noto Fonts] Noto Fonts Extra (additional variants)
     noto-fonts-extra
 
-    # Font Awesome
+    ## Font Awesome (icon library)
     ttf-font-awesome
     otf-font-awesome
 
-    # Liberation
+    ## Liberation (Arial, Times New Roman, and Courier New)
     ttf-liberation
 
-    # JetBrains Mono
+    ## JetBrains Mono (cool font)
     ttf-jetbrains-mono
     ttf-jetbrains-mono-nerd
 
-    # }
 
-    # GTK {
+    # Greeter #
 
-    # Base
+    ## Greetd (greeter)
+    greetd
+
+    ### [Greetd] Tuigreet (theme for Greetd)
+    greetd-tuigreet
+
+
+    # GTK #
+
+    ## Libraries
     gtk2
     gtk3
     gtk4
 
-    #Themes
+    ## Gnome Extra Themes (Adwaita)
     gnome-themes-extra
 
-    # }
+    ## NWG Look (GTK style manager)
+    nwg-look
 
-    # QT {
 
-    # Base
+    # Linux #
+
+    ## Linux Headers (needed by some packages e.g. Openrazer)
+    linux-headers
+
+    
+    # Pacman #
+
+    ## Contrib (clean cache)
+    pacman-contrib
+
+    ## Reflector (generate mirror list)
+    reflector
+
+
+    # QT #
+
+    ## Libraries
     qt5ct
     qt5-wayland
     qt6ct
     qt6-wayland
 
-    # }
 
-    # Window Manager {
+    # Razer #
 
-    # Greeter
-    greetd
-    greetd-tuigreet
-    
-    # Hyprland
-    hyprland
-
-    # Hypr apps
-    hyprpaper
-    hyprpicker
-    hyprlock
-    hyprshot
-    hyprpolkitagent
-
-    # Hypr Utilities
-    hyprcursor
-    hyprutils
-    hyprgraphics
-    hyprland-qtutils
-
-    # XDG Desktop Portal
-    xdg-desktop-portal
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
-
-    # }
-
-    # Apps/Tools {
-
-    # System
-    btrfs-progs
-    catfish
-    chafa
-    cliphist
-    file-roller
-    gamemode
-    lib32-gamemode
-    gvfs
-    gvfs-mtp
-    inetutils
-    ntfs-3g
-    reflector
-    thunar-archive-plugin
-    thunar-media-tags-plugin
-    thunar-volman
-    tumbler
-    ufw
-
-    # CLI
-    fastfetch
-    ncdu
-    neovim
-    speedtest-cli
-    vim
-
-    # General
-    discord
-    firefox
-    foot
-    goverlay
-    gparted
-    gsmartcontrol
-    helvum
-    kitty
-    libreoffice-fresh
-    lutris
-    mangohud
-    mission-center
-    nwg-look
-    obs-studio
-    pavucontrol
-    qbittorrent
-    rofi
-    rofi-emoji
-    speedcrunch
-    spotify-launcher
-    steam
-    swaync
-    thunar
-    vlc
-    w3m
-    waybar
-    zed
-
-    # }
-)
-
-aur_packages=(
-    # GTK {
-
-    # Themes
-    catppuccin-gtk-theme-mocha
-    gruvbox-gtk-theme-git
-
-    # }
-
-    # Apps/Tools {
-
-    # System
+    ## Openrazer (open source Razer driver)
     openrazer-daemon
 
-    # CLI
-    gallery-dl
-    oh-my-bash-git
-    rofi-power-menu
-    spicetify-cli
-    spicetify-marketplace-bin
-    vencord-hook
-
-    # General
-    heroic-games-launcher-bin
-    jdownloader2
-    opentabletdriver
+    ### [Openrazer] Polychromatic (open source Razer customization app)
     polychromatic
-    protonup-qt
-    qimgv
-    rofi-power-menu
-    visual-studio-code-bin
-    woeusb-ng
-    zen-browser-bin
 
-    # }
+
+    # System #
+    
+    ## Hyprland (window manager)
+    hyprland
+
+    ### [Hyprland] Hyprpaper (wallpaper utility)
+    hyprpaper
+
+    ### [Hyprland] Hyprpicker (color picker)
+    hyprpicker
+
+    ### [Hyprland] Hyprlock (lockscreen utility)
+    hyprlock
+
+    ### [Hyprland] Hyprshot (screenshot utility)
+    hyprshot
+
+    ### [Hyprland] Hyprpolkitagent (polkit authentication daemon)
+    hyprpolkitagent
+
+    ### [Hyprland] Hyprcursor (cursor utility)
+    hyprcursor
+
+    ## XDG Desktop Portal (framework for securely accessing resources from outside an application sandbox)
+    xdg-desktop-portal
+
+    ### [XDG Desktop Portal] XDG Desktop Portal Hyprland (handles most of operations)
+    xdg-desktop-portal-hyprland
+
+    ### [XDG Desktop Portal] XDG Desktop Portal GTK (handles the operations Hyprland portal can't)
+    xdg-desktop-portal-gtk
+
+
+    # Tools #
+
+    ## BTRFS progs (BTRFS utilities)
+    btrfs-progs
+
+    ## Cliphist (clipboard)
+    cliphist
+
+    ## Gamemode (daemon that optimizes OS for gaming)
+    gamemode
+
+    ### [Gamemode] lib32 Gamemode (32bit support for Gamemode)
+    lib32-gamemode
+
+    ## Inetutils (net utilities)
+    inetutils
+
+    ## NTFS (ntfs utilities)
+    ntfs-3g
+
+    ## UFW (firewall)
+    ufw
 )
 
-#############
-# Execution #
-#############
 
-# Authentication
+# Execution #
+
+## Authentication
 log "[Authentication]\n"
 if authenticate; then
     clear
@@ -430,10 +604,11 @@ else
     exit 1
 fi
 
+## Go to home directory
 change_directory "$HOME"
 echo
 
-# Paru
+## Install Paru
 log "[${CYAN}Paru${RESET}]"
 
 if ! check_package "paru"; then
@@ -446,51 +621,54 @@ fi
 
 echo
 
-# Install packages
-# Pacman
+## Install packages
+### Pacman
 log "[${CYAN}Pacman Packages${RESET}]"
 pacman_install "${pacman_packages[@]}"
 echo
 
-# AUR
+### AUR
 log "[${CYAN}AUR Packages${RESET}]"
 paru_install "${aur_packages[@]}"
 echo
 
-# Discord (triggers Vencord Hook)
+### Discord (triggers Vencord Hook)
 log "[${CYAN}Discord${RESET}]"
 sudo pacman -S --noconfirm discord
 echo
 
-# Services
-# Paccache
-log "[${CYAN}Paccache${RESET}]"
-system_enable "paccache.timer"
-system_start "paccache.timer"
-echo
-
-# UFW
-log "[${CYAN}UFW${RESET}]"
-system_enable "ufw"
-system_start "ufw"
-echo
-
-# Greetd
+## Services
+### Greetd
 log "[${CYAN}Greetd${RESET}]"
 edit_greetd_command "tuigreet --cmd hyprland"
 system_enable "greetd"
 echo
 
-# Groups
+### Groups
 log "[${CYAN}Groups${RESET}]"
-add_user_to_group "input" "gamemode"
+add_user_to_group "input" "gamemode" "plugdev"
 echo
 
+### Paccache
+log "[${CYAN}Paccache${RESET}]"
+system_enable "paccache.timer"
+system_start "paccache.timer"
+echo
+
+### UFW
+log "[${CYAN}UFW${RESET}]"
+system_enable "ufw"
+system_start "ufw"
+echo
+
+
 # End
+
+## Success Message
 log "[${GREEN}SUCCESS${RESET}] Script executed with success."
 echo
 
-# Reboot
+## Reboot
 while true; do
     read -rp "[REBOOT] Do you want to reboot? [Y/n]: " RESPONSE
     RESPONSE=${RESPONSE,,}
