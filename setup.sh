@@ -3,7 +3,7 @@
 set -e
 
 log() {
-    printf "[${MAGENTA}Script${RESET}] %b\n" "$*"
+    printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
 }
 
 trap 'log "[FAIL] Script execution failed. Exiting..."' ERR
@@ -632,9 +632,30 @@ log "[${CYAN}AUR Packages${RESET}]"
 paru_install "${aur_packages[@]}"
 echo
 
-### Discord (triggers Vencord Hook)
-log "[${CYAN}Discord${RESET}]"
-sudo pacman -S --noconfirm discord
+### Vencord (triggers Vencord Hook)
+log "[${CYAN}Vencord${RESET}]"
+
+while true; do
+    read -rp "[VENCORD] Do you want to install/reinstall Discord? (Vencord Hook will automatically patch it with Vencord) [Y/n] " RESPONSE
+    RESPONSE=${RESPONSE,,}
+
+    case "$RESPONSE" in
+        n|no)
+            log "[${BLUE}OK${RESET}] Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord."
+            break
+            ;;
+        y|yes|"")
+            log "[${BLUE}OK${RESET}] Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end."
+            echo
+            sudo pacman -S --noconfirm discord
+            echo
+            ;;
+        *)
+            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
+            ;;
+    esac
+done
+
 echo
 
 ## Services
@@ -670,21 +691,21 @@ echo
 
 ## Reboot
 while true; do
-    read -rp "[REBOOT] Do you want to reboot? [Y/n]: " RESPONSE
+    read -rp "[REBOOT] Do you want to reboot? [Y/n] " RESPONSE
     RESPONSE=${RESPONSE,,}
 
     case "$RESPONSE" in
         n|no)
-            log "It is recommended to reboot! Exiting..."
+            log "[${BLUE}OK${RESET}] It is recommended to reboot! Exiting..."
             exit 0
             ;;
         y|yes|"")
-            log "Rebooting..."
+            log "[${BLUE}OK${RESET}] Rebooting..."
             sleep 3
             reboot
             ;;
         *)
-            log "Invalid choice, try again:"
+            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
             ;;
     esac
 done
