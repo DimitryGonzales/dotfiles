@@ -531,9 +531,6 @@ pacman_packages=(
     ## Openrazer (open source Razer driver)
     openrazer-daemon
 
-    ### [Openrazer] Polychromatic (open source Razer customization app)
-    polychromatic
-
 
     # System #
     
@@ -674,6 +671,12 @@ echo
 log "[${CYAN}Paccache${RESET}]"
 system_enable "paccache.timer"
 system_start "paccache.timer"
+echo
+
+### Systemd OOMD
+log "[${CYAN}Systemd OOMD${RESET}]"
+system_enable "systemd-oomd"
+system_start "systemd-oomd"
 echo
 
 ### UFW
