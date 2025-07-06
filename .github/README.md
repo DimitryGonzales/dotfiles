@@ -13,6 +13,8 @@ sudo pacman -S git sudo
 
 ## 🛠️ Instructions
 
+### Cloning repository
+
 📌 **Clone this repository and move its contents to your `home` directory:**
 
 ```
@@ -20,9 +22,25 @@ git clone "https://github.com/DimitryGonzales/dotfiles.git"
 mv dotfiles/.* dotfiles/* ~
 ```
 
+### Installing
+
 📌 **Run the `setup.sh` script to do an automated installation of my Linux setup.**
 
-> ⚠️ Currently working on a separate version for the ones who just want the necessary packages.
+```
+cd ~
+./setup.sh
+```
+
+ℹ️ **Run the `setup.sh` script with the `--essencial` flag to do a minimal installation.**
+
+```
+cd ~
+./setup.sh --essencial
+```
+
+> It will only install essencial drivers and packages(the ones necessary for a fully functional system/automatically used by the system or with binds, e.g, spotify and spicetify are used in the theme.sh script, thunar is necessary for the bind SUPER+E to work).
+
+### Changing themes
 
 📌 **Run the `theme.sh` script to apply or switch between themes.**
 
@@ -36,9 +54,11 @@ Install the matching color theme extension for your selected theme from the mark
 
 - [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 
+> ⚠️ Working in a way to install these automatically.
+
 ## 🖼️ Examples
 
-> ⚠️ *These images do not showcase all features/configurations.*
+**⚠️ These images do not showcase all features/configurations.**
 
 - Catppuccin Mocha Lavender
 

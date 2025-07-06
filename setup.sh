@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
 
+# Abort at any error
 set -e
 
-log() {
-    printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
-}
+# Flags
+ESSENCIAL=false
 
-trap 'log "[FAIL] Script execution failed. Exiting..."' ERR
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        --essencial) ESSENCIAL=true ;;
+        *) log "[${YELLOW}ALERT${RESET}] Unknown option: $1" ;;
+    esac
+    shift
+done
+
+# Log
+if ! $ESSENCIAL; then
+    log() {
+        printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
+    }
+else
+    log() {
+        printf "[${MAGENTA}SCRIPT${RESET}] [${YELLOW}ESSENCIAL${RESET}] %b\n" "$*"
+    }
+fi
+
+# Fail
+trap "log '[${RED}FAIL${RESET}] Script execution failed. Exiting...'" ERR
 
 
 # Variables #
@@ -41,6 +61,37 @@ add_user_to_group() {
     done
 
     return 0
+}
+
+ask_user() {
+    local num_options="$1"
+    shift
+
+    if (( $# != num_options * 2 )); then
+        log "[${RED}ERROR${RESET}] Invalid arguments: expected $((num_options * 2)) option/command pairs, got $#."
+        return 1
+    fi
+
+    log "Please choose an option:"
+    for ((i=1; i<=num_options; i++)); do
+        local idx=$(( (i - 1) * 2 + 1 ))
+        local option_label="${!idx}"
+        printf "  %d) %s\n" "$i" "$option_label"
+    done
+
+    while true; do
+        read -rp "Enter choice [1-$num_options]: " choice
+
+        if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= 1 && choice <= num_options )); then
+            local cmd_index=$(( (choice - 1) * 2 + 2 ))
+            local cmd="${!cmd_index}"
+
+            eval "$cmd"
+            return 0
+        else
+            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
+        fi
+    done
 }
 
 authenticate() {
@@ -90,6 +141,30 @@ copy() {
     else
         log "[${RED}ERROR${RESET}] Failed to copy: '$SOURCE' to '$DESTINATION'"
         return 1
+    fi
+}
+
+choose_nvidia_family() {
+    log "Detected GPUs in your computer:"
+
+    lspci -k -d ::03xx
+
+    log "Choose GPU Family (you can check https://nouveau.freedesktop.org/CodeNames.html for code name)":
+
+    ask_user 2 \
+        "Turing (NV160/TUXXX) and newer" "NVIDIA_FAMILY='1'" \
+        "Maxwell (NV110/GMXXX) through Ada Lovelace (NV190/ADXXX)" "NVIDIA_FAMILY='2'"
+
+    if NIVIDIA_FAMILY="1"; then
+        nvidia_gpu_drivers=(
+            ## Turing (NV160/TUXXX) and newer
+            nvidia-open
+        )
+    elif NVIDIA_FAMILY="2"; then
+        nvidia_gpu_drivers=(
+            ## Maxwell (NV110/GMXXX) through Ada Lovelace (NV190/ADXXX)
+            nvidia
+        )
     fi
 }
 
@@ -215,78 +290,9 @@ system_start() {
 }
 
 
-# Packages #
+# GPU Drivers #
 
-aur_packages=(
-    # Apps #
-
-    ## Heroic Games Launcher {bin} (game launcher)
-    heroic-games-launcher-bin
-
-    ## JDownloader 2 (download manager)
-    jdownloader2
-
-    ## ProtonUP QT (proton manager)
-    protonup-qt
-
-    ## qimgv (media viewer)
-    qimgv
-
-    ### [Rofi] Rofi Power Menu (power menu)
-    rofi-power-menu
-
-    ## Visual Studio Code {bin} (IDE)
-    visual-studio-code-bin
-
-    ## WOEUsb NG (USB stick Windows installer creation tool)
-    woeusb-ng
-
-    ## Zen Browser {bin} (Firefox Fork Browser)
-    zen-browser-bin
-
-
-    # GTK #
-
-    ## Catppucin GTK Theme Mocha (Catppuccin Mocha Themes)
-    catppuccin-gtk-theme-mocha
-
-    ## Gruvbox GTK Theme {git} (Gruvbox Themes)
-    gruvbox-gtk-theme-git
-
-
-    # Razer #
-
-    ## Polychromatic (open source Razer configuration app)
-    polychromatic
-
-
-    # Tablet #
-    
-    ## OpenTabletDriver (open source tablet driver)
-    opentabletdriver
-
-
-    # Tools #
-
-    ## Gallery DL (bulk download tool)
-    gallery-dl
-
-    ## OH MY BASH {git} (BASH customization and scripts)
-    oh-my-bash-git
-
-    ## Spicetify (Spicetify patcher for Spotify)
-    spicetify-cli
-
-    ### [Spicetify] Spicetify Marketplace {bin} (marketplace for spiceitfy)
-    spicetify-marketplace-bin
-
-    ## Vencord Hook (automatic Vencord patcher for Discord)
-    vencord-hook
-)
-
-pacman_packages=(
-    # AMDGPU #
-
+amd_gpu_drivers=(
     ## Mesa (open source AMD driver)
     mesa 
 
@@ -301,301 +307,628 @@ pacman_packages=(
 
     ### [Mesa] lib32 Vulkan (32bit support for Vulkan)
     lib32-vulkan-radeon
-
-
-    # Apps #
-    
-    ## Discord (voice and text chat application)
-    discord
-
-    ## Firefox (browser)
-    firefox
-
-    ## Foot (not GPU accelerated terminal emulator)
-    foot
-
-    ### [Foot] Chafa (image to text converter)
-    chafa
-
-    ### [Foot] Fastfetch (system information fetch tool)
-    fastfetch
-
-    ### [Foot] NCDU (disk usage analyzer)
-    ncdu
-
-    ### [Foot] Speedtest (internet speed tester tool)
-    speedtest-cli
-
-    ### [Foot] Vim (terminal text editor)
-    vim
-
-    ### [Foot] [Vim] NeoVim (newer vim version)
-    neovim
-
-    ### [Foot] W3M (terminal website viewer)
-    w3m
-
-    ## GParted (partition manager)
-    gparted
-
-    ## GSmartControl (disk info viewer)
-    gsmartcontrol
-
-    ## Kitty (GPU accelerated terminal emulator)
-    kitty
-
-    ## LibreOffice (document editor)
-    libreoffice-fresh
-
-    ## Lutris (game launcher)
-    lutris
-
-    ## Mangohud (system statistics viewer)
-    mangohud
-
-    ### [Mangohud] Goverlay (Mangohud customization tool)
-    goverlay
-
-    ## Mission Center (process manager)
-    mission-center
-
-    ## OBS Studio (screen recorder)
-    obs-studio
-
-    ## QBittorrent (torrent client)
-    qbittorrent
-
-    ## Rofi (launcher)
-    rofi
-
-    ### [Rofi] Rofi Emoji (emoji selector)
-    rofi-emoji
-
-    ## Speedcrunch (calculator)
-    speedcrunch
-
-    ## Spotify (music app)
-    spotify-launcher
-
-    ## Steam (game launcher/store)
-    steam
-
-    ## SwayNC (notification center)
-    swaync
-
-    ## Thunar (file manager)
-    thunar
-
-    ### [Thunar] Catfish (file searcher)
-    catfish
-
-    ### [Thunar] File Roller (file archiver)
-    file-roller
-
-    ### [Thunar] GVFS (trash support, mounting with udisk and remote filesystems)
-    gvfs
-
-    ### [Thunar] [GVFS] GVFS MTP (allows you to manage phone files)
-    gvfs-mtp
-
-    ### [Thunar] Thunar Archive Plugin (archive creation and extraction)
-    thunar-archive-plugin
-
-    ### [Thunar] Thunar Media Tags Plugin (view/edit ID3/OGG tags)
-    thunar-media-tags-plugin
-
-    ### [Thunar] Thunar Volman (removable device management)
-    thunar-volman
-
-    ### [Thunar] Tumbler (thumbnail previews)
-    tumbler
-
-    ## VLC (media player)
-    vlc
-
-    ## Waybar (tool bar)
-    waybar
-
-    ## ZED (IDE)
-    zed
-
-
-    # Audio #
-
-    ## Pipewire (low-level multimedia framework)
-    pipewire
-
-    ### [Pipewire] lib32 Pipewire (32bit support for Pipewire)
-    lib32-pipewire
-
-    ### [Pipewire] Pipewire Audio (use Pipewire as an audio server)
-    pipewire-audio
-
-    ### [Pipewire] Pipewire Alsa (route ALSA to Pipewire)
-    pipewire-alsa
-
-    ### [Pipewire] Pipewire Pulse (route PulseAudio to Pipewire)
-    pipewire-pulse
-
-    ### [Pipewire] Pipewire JACK (route JACK to Pipewire)
-    pipewire-jack
-
-    ### [Pipewire] lib32 Pipewire JACK (32bit support to route JACK to Pipewire)
-    lib32-pipewire-jack
-
-    ### [Pipewire] Wireplumber (session manager)
-    wireplumber
-
-    ### [Pipewire] Pavucontrol (audio input/output controller)
-    pavucontrol
-
-    ### [Pipewire] Helvum (audio sources controller)
-    helvum
-
-    
-    # Fonts #
-
-    ## Noto Fonts (basic)
-    noto-fonts
-
-    ### [Noto Fonts] Noto Fonts CJK (chinese, japanese and korean)
-    noto-fonts-cjk
-
-    ### [Noto Fonts] Noto Fonts Emoji (emojis)
-    noto-fonts-emoji
-
-    ### [Noto Fonts] Noto Fonts Extra (additional variants)
-    noto-fonts-extra
-
-    ## Font Awesome (icon library)
-    ttf-font-awesome
-    otf-font-awesome
-
-    ## Liberation (Arial, Times New Roman, and Courier New)
-    ttf-liberation
-
-    ## JetBrains Mono (cool font)
-    ttf-jetbrains-mono
-    ttf-jetbrains-mono-nerd
-
-
-    # Greeter #
-
-    ## Greetd (greeter)
-    greetd
-
-    ### [Greetd] Tuigreet (theme for Greetd)
-    greetd-tuigreet
-
-
-    # GTK #
-
-    ## Libraries
-    gtk2
-    gtk3
-    gtk4
-
-    ## Gnome Extra Themes (Adwaita)
-    gnome-themes-extra
-
-    ## NWG Look (GTK style manager)
-    nwg-look
-
-
-    # Linux #
-
-    ## Linux Headers (needed by some packages e.g. Openrazer)
-    linux-headers
-
-    
-    # Pacman #
-
-    ## Contrib (clean cache)
-    pacman-contrib
-
-    ## Reflector (generate mirror list)
-    reflector
-
-
-    # QT #
-
-    ## Libraries
-    qt5ct
-    qt5-wayland
-    qt6ct
-    qt6-wayland
-
-
-    # Razer #
-
-    ## Openrazer (open source Razer driver)
-    openrazer-daemon
-
-
-    # System #
-    
-    ## Hyprland (window manager)
-    hyprland
-
-    ### [Hyprland] Hyprpaper (wallpaper utility)
-    hyprpaper
-
-    ### [Hyprland] Hyprpicker (color picker)
-    hyprpicker
-
-    ### [Hyprland] Hyprlock (lockscreen utility)
-    hyprlock
-
-    ### [Hyprland] Hyprshot (screenshot utility)
-    hyprshot
-
-    ### [Hyprland] Hyprpolkitagent (polkit authentication daemon)
-    hyprpolkitagent
-
-    ### [Hyprland] Hyprcursor (cursor utility)
-    hyprcursor
-
-    ## XDG Desktop Portal (framework for securely accessing resources from outside an application sandbox)
-    xdg-desktop-portal
-
-    ### [XDG Desktop Portal] XDG Desktop Portal Hyprland (handles most of operations)
-    xdg-desktop-portal-hyprland
-
-    ### [XDG Desktop Portal] XDG Desktop Portal GTK (handles the operations Hyprland portal can't)
-    xdg-desktop-portal-gtk
-
-
-    # Tools #
-
-    ## BTRFS progs (BTRFS utilities)
-    btrfs-progs
-
-    ## Cliphist (clipboard)
-    cliphist
-
-    ## Gamemode (daemon that optimizes OS for gaming)
-    gamemode
-
-    ### [Gamemode] lib32 Gamemode (32bit support for Gamemode)
-    lib32-gamemode
-
-    ## Inetutils (net utilities)
-    inetutils
-
-    ## NTFS (ntfs utilities)
-    ntfs-3g
-
-    ## UFW (firewall)
-    ufw
 )
+
+# NVIDIA Drivers are set on the choose_nvidia_family function
+
+
+# Packages #
+
+## AUR
+if ! $ESSENCIAL; then
+    aur_packages=(
+        # Apps #
+
+        ## Heroic Games Launcher {bin} (game launcher)
+        heroic-games-launcher-bin
+
+        ## JDownloader 2 (download manager)
+        jdownloader2
+
+        ## ProtonUP QT (proton manager)
+        protonup-qt
+
+        ## qimgv (media viewer)
+        qimgv
+
+        ### [Rofi] Rofi Power Menu (power menu)
+        rofi-power-menu
+
+        ## Visual Studio Code {bin} (IDE)
+        visual-studio-code-bin
+
+        ## WOEUsb NG (USB stick Windows installer creation tool)
+        woeusb-ng
+
+        ## Zen Browser {bin} (Firefox Fork Browser)
+        zen-browser-bin
+
+
+        # GTK #
+
+        ## Catppucin GTK Theme Mocha (Catppuccin Mocha Themes)
+        catppuccin-gtk-theme-mocha
+
+        ## Gruvbox GTK Theme {git} (Gruvbox Themes)
+        gruvbox-gtk-theme-git
+
+
+        # Razer #
+
+        ## Polychromatic (open source Razer configuration app)
+        polychromatic
+
+
+        # Tablet #
+        
+        ## OpenTabletDriver (open source tablet driver)
+        opentabletdriver
+
+
+        # Tools #
+
+        ## Gallery DL (bulk download tool)
+        gallery-dl
+
+        ## OH MY BASH {git} (BASH customization and scripts)
+        oh-my-bash-git
+
+        ## Spicetify (Spicetify patcher for Spotify)
+        spicetify-cli
+
+        ### [Spicetify] Spicetify Marketplace {bin} (marketplace for spiceitfy)
+        spicetify-marketplace-bin
+
+        ## Vencord Hook (automatic Vencord patcher for Discord)
+        vencord-hook
+    )
+else
+    aur_packages=(
+        ### [Rofi] Rofi Power Menu (power menu)
+        rofi-power-menu
+
+        ## Visual Studio Code {bin} (IDE)
+        visual-studio-code-bin
+
+
+        # GTK #
+
+        ## Catppucin GTK Theme Mocha (Catppuccin Mocha Themes)
+        catppuccin-gtk-theme-mocha
+
+        ## Gruvbox GTK Theme {git} (Gruvbox Themes)
+        gruvbox-gtk-theme-git
+
+
+        # Tools #
+
+        ## OH MY BASH {git} (BASH customization and scripts)
+        oh-my-bash-git
+
+        ## Spicetify (Spicetify patcher for Spotify)
+        spicetify-cli
+
+        ### [Spicetify] Spicetify Marketplace {bin} (marketplace for spiceitfy)
+        spicetify-marketplace-bin
+
+        ## Vencord Hook (automatic Vencord patcher for Discord)
+        vencord-hook
+    )
+fi
+
+## Pacman
+if ! $ESSENCIAL; then
+    pacman_packages=(
+        # Apps #
+        
+        ## Discord (voice and text chat application)
+        discord
+
+        ## Firefox (browser)
+        firefox
+
+        ## Foot (not GPU accelerated terminal emulator)
+        foot
+
+        ### [Foot] Chafa (image to text converter)
+        chafa
+
+        ### [Foot] Fastfetch (system information fetch tool)
+        fastfetch
+
+        ### [Foot] NCDU (disk usage analyzer)
+        ncdu
+
+        ### [Foot] Speedtest (internet speed tester tool)
+        speedtest-cli
+
+        ### [Foot] Vim (terminal text editor)
+        vim
+
+        ### [Foot] [Vim] NeoVim (newer vim version)
+        neovim
+
+        ### [Foot] W3M (terminal website viewer)
+        w3m
+
+        ## GParted (partition manager)
+        gparted
+
+        ## GSmartControl (disk info viewer)
+        gsmartcontrol
+
+        ## Kitty (GPU accelerated terminal emulator)
+        kitty
+
+        ## LibreOffice (document editor)
+        libreoffice-fresh
+
+        ## Lutris (game launcher)
+        lutris
+
+        ## Mangohud (system statistics viewer)
+        mangohud
+
+        ### [Mangohud] Goverlay (Mangohud customization tool)
+        goverlay
+
+        ## Mission Center (process manager)
+        mission-center
+
+        ## OBS Studio (screen recorder)
+        obs-studio
+
+        ## QBittorrent (torrent client)
+        qbittorrent
+
+        ## Rofi (launcher)
+        rofi
+
+        ### [Rofi] Rofi Emoji (emoji selector)
+        rofi-emoji
+
+        ## Speedcrunch (calculator)
+        speedcrunch
+
+        ## Spotify (music app)
+        spotify-launcher
+
+        ## Steam (game launcher/store)
+        steam
+
+        ## SwayNC (notification center)
+        swaync
+
+        ## Thunar (file manager)
+        thunar
+
+        ### [Thunar] Catfish (file searcher)
+        catfish
+
+        ### [Thunar] File Roller (file archiver)
+        file-roller
+
+        ### [Thunar] GVFS (trash support, mounting with udisk and remote filesystems)
+        gvfs
+
+        ### [Thunar] [GVFS] GVFS MTP (allows you to manage phone files)
+        gvfs-mtp
+
+        ### [Thunar] Thunar Archive Plugin (archive creation and extraction)
+        thunar-archive-plugin
+
+        ### [Thunar] Thunar Media Tags Plugin (view/edit ID3/OGG tags)
+        thunar-media-tags-plugin
+
+        ### [Thunar] Thunar Volman (removable device management)
+        thunar-volman
+
+        ### [Thunar] Tumbler (thumbnail previews)
+        tumbler
+
+        ## VLC (media player)
+        vlc
+
+        ## Waybar (tool bar)
+        waybar
+
+        ## ZED (IDE)
+        zed
+
+
+        # Audio #
+
+        ## Pipewire (low-level multimedia framework)
+        pipewire
+
+        ### [Pipewire] lib32 Pipewire (32bit support for Pipewire)
+        lib32-pipewire
+
+        ### [Pipewire] Pipewire Audio (use Pipewire as an audio server)
+        pipewire-audio
+
+        ### [Pipewire] Pipewire Alsa (route ALSA to Pipewire)
+        pipewire-alsa
+
+        ### [Pipewire] Pipewire Pulse (route PulseAudio to Pipewire)
+        pipewire-pulse
+
+        ### [Pipewire] Pipewire JACK (route JACK to Pipewire)
+        pipewire-jack
+
+        ### [Pipewire] lib32 Pipewire JACK (32bit support to route JACK to Pipewire)
+        lib32-pipewire-jack
+
+        ### [Pipewire] Wireplumber (session manager)
+        wireplumber
+
+        ### [Pipewire] Pavucontrol (audio input/output controller)
+        pavucontrol
+
+        ### [Pipewire] Helvum (audio sources controller)
+        helvum
+
+        
+        # Fonts #
+
+        ## Noto Fonts (basic)
+        noto-fonts
+
+        ### [Noto Fonts] Noto Fonts CJK (chinese, japanese and korean)
+        noto-fonts-cjk
+
+        ### [Noto Fonts] Noto Fonts Emoji (emojis)
+        noto-fonts-emoji
+
+        ### [Noto Fonts] Noto Fonts Extra (additional variants)
+        noto-fonts-extra
+
+        ## Font Awesome (icon library)
+        ttf-font-awesome
+        otf-font-awesome
+
+        ## Liberation (Arial, Times New Roman, and Courier New)
+        ttf-liberation
+
+        ## JetBrains Mono (cool font)
+        ttf-jetbrains-mono
+        ttf-jetbrains-mono-nerd
+
+
+        # Greeter #
+
+        ## Greetd (greeter)
+        greetd
+
+        ### [Greetd] Tuigreet (theme for Greetd)
+        greetd-tuigreet
+
+
+        # GTK #
+
+        ## Libraries
+        gtk2
+        gtk3
+        gtk4
+
+        ## Gnome Extra Themes (Adwaita)
+        gnome-themes-extra
+
+        ## NWG Look (GTK style manager)
+        nwg-look
+
+
+        # Linux #
+
+        ## Linux Headers (needed by some packages e.g. Openrazer)
+        linux-headers
+
+        
+        # Pacman #
+
+        ## Contrib (clean cache)
+        pacman-contrib
+
+        ## Reflector (generate mirror list)
+        reflector
+
+
+        # QT #
+
+        ## Libraries
+        qt5ct
+        qt5-wayland
+        qt6ct
+        qt6-wayland
+
+
+        # Razer #
+
+        ## Openrazer (open source Razer driver)
+        openrazer-daemon
+
+
+        # System #
+        
+        ## Hyprland (window manager)
+        hyprland
+
+        ### [Hyprland] Hyprpaper (wallpaper utility)
+        hyprpaper
+
+        ### [Hyprland] Hyprpicker (color picker)
+        hyprpicker
+
+        ### [Hyprland] Hyprlock (lockscreen utility)
+        hyprlock
+
+        ### [Hyprland] Hyprshot (screenshot utility)
+        hyprshot
+
+        ### [Hyprland] Hyprpolkitagent (polkit authentication daemon)
+        hyprpolkitagent
+
+        ### [Hyprland] Hyprcursor (cursor utility)
+        hyprcursor
+
+        ## XDG Desktop Portal (framework for securely accessing resources from outside an application sandbox)
+        xdg-desktop-portal
+
+        ### [XDG Desktop Portal] XDG Desktop Portal Hyprland (handles most of operations)
+        xdg-desktop-portal-hyprland
+
+        ### [XDG Desktop Portal] XDG Desktop Portal GTK (handles the operations Hyprland portal can't)
+        xdg-desktop-portal-gtk
+
+
+        # Tools #
+
+        ## BTRFS progs (BTRFS utilities)
+        btrfs-progs
+
+        ## Cliphist (clipboard)
+        cliphist
+
+        ## Gamemode (daemon that optimizes OS for gaming)
+        gamemode
+
+        ### [Gamemode] lib32 Gamemode (32bit support for Gamemode)
+        lib32-gamemode
+
+        ## Inetutils (net utilities)
+        inetutils
+
+        ## NTFS (ntfs utilities)
+        ntfs-3g
+
+        ## UFW (firewall)
+        ufw
+    )
+else
+    pacman_packages=(
+        # Apps #
+        
+        ## Discord (voice and text chat application)
+        discord
+
+        ## Foot (not GPU accelerated terminal emulator)
+        foot
+
+        ### [Foot] Chafa (image to text converter)
+        chafa
+
+        ### [Foot] Fastfetch (system information fetch tool)
+        fastfetch
+
+        ## Kitty (GPU accelerated terminal emulator)
+        kitty
+
+        ## Mission Center (process manager)
+        mission-center
+
+        ## Rofi (launcher)
+        rofi
+
+        ### [Rofi] Rofi Emoji (emoji selector)
+        rofi-emoji
+
+        ## Spotify (music app)
+        spotify-launcher
+
+        ## SwayNC (notification center)
+        swaync
+
+        ## Thunar (file manager)
+        thunar
+
+        ### [Thunar] Catfish (file searcher)
+        catfish
+
+        ### [Thunar] File Roller (file archiver)
+        file-roller
+
+        ### [Thunar] GVFS (trash support, mounting with udisk and remote filesystems)
+        gvfs
+
+        ### [Thunar] [GVFS] GVFS MTP (allows you to manage phone files)
+        gvfs-mtp
+
+        ### [Thunar] Thunar Archive Plugin (archive creation and extraction)
+        thunar-archive-plugin
+
+        ### [Thunar] Thunar Media Tags Plugin (view/edit ID3/OGG tags)
+        thunar-media-tags-plugin
+
+        ### [Thunar] Thunar Volman (removable device management)
+        thunar-volman
+
+        ### [Thunar] Tumbler (thumbnail previews)
+        tumbler
+
+        ## Waybar (tool bar)
+        waybar
+
+
+        # Audio #
+
+        ## Pipewire (low-level multimedia framework)
+        pipewire
+
+        ### [Pipewire] lib32 Pipewire (32bit support for Pipewire)
+        lib32-pipewire
+
+        ### [Pipewire] Pipewire Audio (use Pipewire as an audio server)
+        pipewire-audio
+
+        ### [Pipewire] Pipewire Alsa (route ALSA to Pipewire)
+        pipewire-alsa
+
+        ### [Pipewire] Pipewire Pulse (route PulseAudio to Pipewire)
+        pipewire-pulse
+
+        ### [Pipewire] Pipewire JACK (route JACK to Pipewire)
+        pipewire-jack
+
+        ### [Pipewire] lib32 Pipewire JACK (32bit support to route JACK to Pipewire)
+        lib32-pipewire-jack
+
+        ### [Pipewire] Wireplumber (session manager)
+        wireplumber
+
+        ### [Pipewire] Pavucontrol (audio input/output controller)
+        pavucontrol
+
+        
+        # Fonts #
+
+        ## Noto Fonts (basic)
+        noto-fonts
+
+        ### [Noto Fonts] Noto Fonts CJK (chinese, japanese and korean)
+        noto-fonts-cjk
+
+        ### [Noto Fonts] Noto Fonts Emoji (emojis)
+        noto-fonts-emoji
+
+        ### [Noto Fonts] Noto Fonts Extra (additional variants)
+        noto-fonts-extra
+
+        ## Font Awesome (icon library)
+        ttf-font-awesome
+        otf-font-awesome
+
+        ## Liberation (Arial, Times New Roman, and Courier New)
+        ttf-liberation
+
+        ## JetBrains Mono (cool font)
+        ttf-jetbrains-mono
+        ttf-jetbrains-mono-nerd
+
+
+        # Greeter #
+
+        ## Greetd (greeter)
+        greetd
+
+        ### [Greetd] Tuigreet (theme for Greetd)
+        greetd-tuigreet
+
+
+        # GTK #
+
+        ## Libraries
+        gtk2
+        gtk3
+        gtk4
+
+        ## Gnome Extra Themes (Adwaita)
+        gnome-themes-extra
+
+        ## NWG Look (GTK style manager)
+        nwg-look
+
+
+        # Linux #
+
+        ## Linux Headers (needed by some packages e.g. Openrazer)
+        linux-headers
+
+        
+        # Pacman #
+
+        ## Contrib (clean cache)
+        pacman-contrib
+
+        ## Reflector (generate mirror list)
+        reflector
+
+
+        # QT #
+
+        ## Libraries
+        qt5ct
+        qt5-wayland
+        qt6ct
+        qt6-wayland
+
+
+        # System #
+        
+        ## Hyprland (window manager)
+        hyprland
+
+        ### [Hyprland] Hyprpaper (wallpaper utility)
+        hyprpaper
+
+        ### [Hyprland] Hyprpicker (color picker)
+        hyprpicker
+
+        ### [Hyprland] Hyprlock (lockscreen utility)
+        hyprlock
+
+        ### [Hyprland] Hyprshot (screenshot utility)
+        hyprshot
+
+        ### [Hyprland] Hyprpolkitagent (polkit authentication daemon)
+        hyprpolkitagent
+
+        ## XDG Desktop Portal (framework for securely accessing resources from outside an application sandbox)
+        xdg-desktop-portal
+
+        ### [XDG Desktop Portal] XDG Desktop Portal Hyprland (handles most of operations)
+        xdg-desktop-portal-hyprland
+
+        ### [XDG Desktop Portal] XDG Desktop Portal GTK (handles the operations Hyprland portal can't)
+        xdg-desktop-portal-gtk
+
+
+        # Tools #
+
+        ## Cliphist (clipboard)
+        cliphist
+
+        ## Inetutils (net utilities)
+        inetutils
+
+        ## UFW (firewall)
+        ufw
+    )
+fi
 
 
 # Execution #
+if $ESSENCIAL; then
+    log "[${YELLOW}ALERT${RESET}] The script will run with the 'ESSENCIAL' flag activated. It will only install essencial drivers and packages(the ones necessary for a fully functional system/automatically used by the system or with binds, e.g, spotify and spicetify are used in the theme.sh script, thunar is necessary for the bind SUPER+E to work)."
+    echo
+fi
 
 ## Authentication
 log "[Authentication]\n"
 if authenticate; then
     clear
+    (sudo -v; while true; do sleep 60; sudo -n true; done) &
+    SUDO_REFRESH_PID=$!
+    trap 'kill $SUDO_REFRESH_PID 2>/dev/null' EXIT
 else
     echo
     exit 1
@@ -615,7 +948,16 @@ if ! check_package "paru"; then
     make_package
     change_directory "$HOME"
 fi
+echo
 
+## Install GPU Drivers
+log "[${CYAN}GPU Drivers${RESET}]"
+
+log "Which drivers do you want?"
+    
+ask_user 2 \
+    "AMD" "pacman_install \${amd_gpu_drivers[*]}" \
+    "NVIDIA" "choose_nvidia_family && pacman_install \${nvidia_gpu_drivers[*]}"
 echo
 
 ## Install packages
@@ -632,27 +974,11 @@ echo
 ### Vencord (triggers Vencord Hook)
 log "[${CYAN}Vencord${RESET}]"
 
-while true; do
-    read -rp "[VENCORD] Do you want to install/reinstall Discord? (Vencord Hook will automatically patch it with Vencord) [Y/n] " RESPONSE
-    RESPONSE=${RESPONSE,,}
+log "Do you want to install/reinstall Discord? (Vencord Hook will automatically patch it with Vencord)"
 
-    case "$RESPONSE" in
-        n|no)
-            log "[${BLUE}OK${RESET}] Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord."
-            break
-            ;;
-        y|yes|"")
-            log "[${BLUE}OK${RESET}] Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end."
-            echo
-            sudo pacman -S --noconfirm discord
-            echo
-            ;;
-        *)
-            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
-            ;;
-    esac
-done
-
+ask_user 2 \
+    "Yes" "log '[${BLUE}OK${RESET}] Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end.' && echo && sudo pacman -S --noconfirm discord && echo" \
+    "No" "log '[${BLUE}OK${RESET}] Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord.'"
 echo
 
 ## Services
@@ -686,29 +1012,17 @@ system_start "ufw"
 echo
 
 
-# End
+# End #
 
 ## Success Message
 log "[${GREEN}SUCCESS${RESET}] Script executed with success."
 echo
 
 ## Reboot
-while true; do
-    read -rp "[REBOOT] Do you want to reboot? [Y/n] " RESPONSE
-    RESPONSE=${RESPONSE,,}
+log "[${CYAN}Reboot${RESET}]"
 
-    case "$RESPONSE" in
-        n|no)
-            log "[${BLUE}OK${RESET}] It is recommended to reboot! Exiting..."
-            exit 0
-            ;;
-        y|yes|"")
-            log "[${BLUE}OK${RESET}] Rebooting..."
-            sleep 3
-            reboot
-            ;;
-        *)
-            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
-            ;;
-    esac
-done
+log "Do you want to reboot?"
+
+ask_user 2 \
+    "Yes" "log '[${BLUE}OK${RESET}] Rebooting...' && sleep 3 && reboot" \
+    "No" "log '[${BLUE}OK${RESET}] It is recommended to reboot! Exiting...' && exit 0"
