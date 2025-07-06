@@ -13,23 +13,11 @@ sudo pacman -S git sudo
 
 ## 🛠️ Instructions
 
-📌 **Clone this repository or download and copy its contents to your `home` directory:**
-
-- **Option 1: Clone the repository**
+📌 **Clone this repository and move its contents to your `home` directory:**
 
 ```
-cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
-```
-
-- **Option 2: Download and copy manually**
-
-1. Download the repository.
-
-2. Copy the files to your `home` directory:
-
-```bash
-cp -r path/to/files ~/
+mv dotfiles/.* dotfiles/* ~
 ```
 
 📌 **Run the `setup.sh` script to do an automated installation of my Linux setup.**
