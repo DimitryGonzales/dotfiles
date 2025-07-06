@@ -31,6 +31,8 @@ cd ~
 ./setup.sh
 ```
 
+*or*
+
 ℹ️ **Run the `setup.sh` script with the `--essencial` flag to do a minimal installation.**
 
 ```
@@ -42,7 +44,12 @@ cd ~
 
 ### Changing themes
 
-📌 **Run the `theme.sh` script to apply or switch between themes.**
+📌 **Run the `theme.sh` script to change the system theme.**
+
+```
+cd ~
+./theme.sh
+```
 
 ## VSCode
 
@@ -58,7 +65,7 @@ Install the matching color theme extension for your selected theme from the mark
 
 ## 🖼️ Examples
 
-**⚠️ These images do not showcase all features/configurations.**
+**ℹ️ These images do not showcase all features/configurations.**
 
 - Catppuccin Mocha Lavender
 
