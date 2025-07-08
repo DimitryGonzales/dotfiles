@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 
-# Abort at any error
+
+# Setup #
+
+## Abort at any error
 set -e
 
-# Flags
+## Flags
 ESSENCIAL=false
 
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
-        --essencial) ESSENCIAL=true ;;
-        *) log "[${YELLOW}ALERT${RESET}] Unknown option: $1" ;;
+        --essencial) 
+            ESSENCIAL=true
+            ;;
+        *)
+            log "[${YELLOW}ALERT${RESET}] Unknown option: $1"
+            ;;
     esac
     shift
 done
 
-# Log
+## Log function
 if ! $ESSENCIAL; then
     log() {
         printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
@@ -25,12 +32,13 @@ else
     }
 fi
 
-# Fail
+## Fail message
 trap "log '[${RED}FAIL${RESET}] Script execution failed. Exiting...'" ERR
 
 
 # Variables #
 
+## Colors
 BLACK="\033[0;30m"
 RED="\033[0;31m"
 GREEN="\033[0;32m"
@@ -44,6 +52,7 @@ RESET="\033[0m"
 
 # Functions #
 
+## Add user to system groups
 add_user_to_group() {
     local USERNAME="${SUDO_USER:-$USER}"
 
@@ -63,6 +72,7 @@ add_user_to_group() {
     return 0
 }
 
+## Ask user to select an option
 ask_user() {
     local num_options="$1"
     shift
@@ -85,7 +95,6 @@ ask_user() {
         if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= 1 && choice <= num_options )); then
             local cmd_index=$(( (choice - 1) * 2 + 2 ))
             local cmd="${!cmd_index}"
-
             eval "$cmd"
             return 0
         else
@@ -94,6 +103,7 @@ ask_user() {
     done
 }
 
+## Authenticate with sudo
 authenticate() {
     if sudo -v; then
         log "[${GREEN}SUCCESS${RESET}] Successfully authenticated."
@@ -104,10 +114,11 @@ authenticate() {
     fi
 }
 
+## Change directory
 change_directory() {
     local DIRECTORY="$1"
 
-    if cd "$DIRECTORY" > /dev/null; then
+    if cd "$DIRECTORY"; then
         log "[${GREEN}SUCCESS${RESET}] Changed directory to: '$DIRECTORY'" 
         return 0
     else
@@ -116,6 +127,7 @@ change_directory() {
     fi
 }
 
+## Check package existence
 check_package() {
     local RESULT=0
 
@@ -131,6 +143,7 @@ check_package() {
     return $RESULT
 }
 
+## Copy directories/files
 copy() {
     local SOURCE="$1"
     local DESTINATION="$2"
@@ -144,6 +157,7 @@ copy() {
     fi
 }
 
+## Choose nvidia GPU family
 choose_nvidia_family() {
     log "Detected GPUs in your computer:"
 
@@ -168,6 +182,7 @@ choose_nvidia_family() {
     fi
 }
 
+## Edit command executed by greetd
 edit_greetd_command() {
     local COMMAND="$1"
 
@@ -182,10 +197,11 @@ edit_greetd_command() {
     fi
 }
 
+## Git clone repository
 git_clone() {
     local URL="$1"
 
-    if git clone "$URL" > /dev/null; then
+    if git clone "$URL"; then
         log "[${GREEN}SUCCESS${RESET}] Git cloned repository: '$URL'"
         return 0
     else
@@ -194,10 +210,14 @@ git_clone() {
     fi
 }
 
+## Make directory
 make_directory() {
     local DIRECTORY="$1"
 
-    if [ ! -d "$DIRECTORY" ]; then
+    if [ -d "$DIRECTORY" ]; then
+        log "[${BLUE}OK${RESET}] Directory already exists: '$DIRECTORY'"
+        return 0
+    else
         if sudo mkdir -p "$DIRECTORY"; then
             log "[${GREEN}SUCCESS${RESET}] Created directory: '$DIRECTORY'"
             return 0
@@ -205,14 +225,14 @@ make_directory() {
             log "[${RED}ERROR${RESET}] Failed to create directory: '$DIRECTORY'"
             return 1
         fi
-    else
-        log "[${BLUE}OK${RESET}] Directory already exists: '$DIRECTORY'"
-        return 0
     fi
 }
 
+## Make package
 make_package() {
-    if makepkg -si > /dev/null; then
+    log "Making package..."
+
+    if makepkg -si; then
         log "[${GREEN}SUCCESS${RESET}] Successfully make package."
         return 0
     else
@@ -221,8 +241,12 @@ make_package() {
     fi
 }
 
+## Install package with pacman
 pacman_install() {
-    if ! check_package "$@"; then
+    if check_package "$@"; then
+        log "[${BLUE}OK${RESET}] All packages are already installed."
+        return 0
+    else
         log "Installing missing packages..."
 
         if sudo pacman -S --needed "$@"; then
@@ -232,14 +256,15 @@ pacman_install() {
             log "[${RED}ERROR${RESET}] Failed to install all packages."
             return 1
         fi
-    else
-        log "[${BLUE}OK${RESET}] All packages are already installed."
-        return 0
     fi
 }
 
+## Install package with paru
 paru_install() {
-    if ! check_package "$@"; then
+    if check_package "$@"; then
+        log "[${BLUE}OK${RESET}] All packages are already installed."
+        return 0
+    else
         log "Installing missing packages..."
 
         if paru -S --needed "$@"; then
@@ -249,12 +274,10 @@ paru_install() {
             log "[${RED}ERROR${RESET}] Failed to install all packages."
             return 1
         fi
-    else
-        log "[${BLUE}OK${RESET}] All packages are already installed."
-        return 0
     fi
 }
 
+## Enable service
 system_enable() {
     local SERVICE="$1"
 
@@ -272,6 +295,7 @@ system_enable() {
     fi
 }
 
+## Start service
 system_start() {
     local SERVICE="$1"
 
@@ -292,6 +316,7 @@ system_start() {
 
 # GPU Drivers #
 
+## AMD GPU drivers
 amd_gpu_drivers=(
     ## Mesa (open source AMD driver)
     mesa 
@@ -309,13 +334,13 @@ amd_gpu_drivers=(
     lib32-vulkan-radeon
 )
 
-# NVIDIA Drivers are set on the choose_nvidia_family function
+# NVIDIA GPU drivers are set on the choose_nvidia_family function
 
 
 # Packages #
 
-## AUR
 if ! $ESSENCIAL; then
+## All from AUR
     aur_packages=(
         # Apps #
 
@@ -383,6 +408,7 @@ if ! $ESSENCIAL; then
         vencord-hook
     )
 else
+## Essencials from AUR
     aur_packages=(
         ### [Rofi] Rofi Power Menu (power menu)
         rofi-power-menu
@@ -416,8 +442,8 @@ else
     )
 fi
 
-## Pacman
 if ! $ESSENCIAL; then
+## All from official repositories
     pacman_packages=(
         # Apps #
         
@@ -705,6 +731,7 @@ if ! $ESSENCIAL; then
         ufw
     )
 else
+## Essencials from official repositories
     pacman_packages=(
         # Apps #
         
@@ -917,12 +944,14 @@ fi
 
 
 # Execution #
+
+## Essencial flag message
 if $ESSENCIAL; then
     log "[${YELLOW}ALERT${RESET}] The script will run with the 'ESSENCIAL' flag activated. It will only install essencial drivers and packages(the ones necessary for a fully functional system/automatically used by the system or with binds, e.g, spotify and spicetify are used in the theme.sh script, thunar is necessary for the bind SUPER+E to work)."
     echo
 fi
 
-## Authentication
+## Authenticate user
 log "[Authentication]\n"
 if authenticate; then
     clear
@@ -938,7 +967,7 @@ fi
 change_directory "$HOME"
 echo
 
-## Install Paru
+## Install paru
 log "[${CYAN}Paru${RESET}]"
 
 if ! check_package "paru"; then
@@ -950,7 +979,7 @@ if ! check_package "paru"; then
 fi
 echo
 
-## Install GPU Drivers
+## Install GPU drivers
 log "[${CYAN}GPU Drivers${RESET}]"
 
 log "Which drivers do you want?"
@@ -961,7 +990,7 @@ ask_user 2 \
 echo
 
 ## Install packages
-### Pacman
+### Official repositories
 log "[${CYAN}Pacman Packages${RESET}]"
 pacman_install "${pacman_packages[@]}"
 echo
@@ -971,7 +1000,7 @@ log "[${CYAN}AUR Packages${RESET}]"
 paru_install "${aur_packages[@]}"
 echo
 
-### Vencord (triggers Vencord Hook)
+### Install/Reinstall discord (triggers Vencord Hook)
 log "[${CYAN}Vencord${RESET}]"
 
 log "Do you want to install/reinstall Discord? (Vencord Hook will automatically patch it with Vencord)"
@@ -982,30 +1011,30 @@ ask_user 2 \
 echo
 
 ## Services
-### Greetd
+### Enable greetd
 log "[${CYAN}Greetd${RESET}]"
 edit_greetd_command "tuigreet --cmd hyprland"
 system_enable "greetd"
 echo
 
-### Groups
+### Add user to groups
 log "[${CYAN}Groups${RESET}]"
 add_user_to_group "input" "gamemode" "plugdev"
 echo
 
-### Paccache
+### Enable and start paccache
 log "[${CYAN}Paccache${RESET}]"
 system_enable "paccache.timer"
 system_start "paccache.timer"
 echo
 
-### Systemd OOMD
+### Enable and start systemd-oomd
 log "[${CYAN}Systemd OOMD${RESET}]"
 system_enable "systemd-oomd"
 system_start "systemd-oomd"
 echo
 
-### UFW
+### Enable and start ufw
 log "[${CYAN}UFW${RESET}]"
 system_enable "ufw"
 system_start "ufw"
@@ -1018,7 +1047,7 @@ echo
 log "[${GREEN}SUCCESS${RESET}] Script executed with success."
 echo
 
-## Reboot
+## Ask user if he wants to reboot
 log "[${CYAN}Reboot${RESET}]"
 
 log "Do you want to reboot?"
