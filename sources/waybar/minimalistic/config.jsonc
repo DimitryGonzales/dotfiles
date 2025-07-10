@@ -68,16 +68,16 @@
     },
 
     "pulseaudio": {
-        "format": " {volume}% | {format_source}",
-        "format-muted": " | {format_source}",
+        "format":                 " {volume}% | {format_source}",
+        "format-muted":           " | {format_source}",
 
-        "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source":          " {volume}%",
+        "format-source-muted":    "",
 
-        "format-bluetooth": "{volume}% | {format_source}",
+        "format-bluetooth":       "{volume}% | {format_source}",
         "format-bluetooth-muted": " | {format_source}",
 
-        "on-click": "pavucontrol"
+        "on-click":               "pavucontrol"
     },
 
     "tray": {
