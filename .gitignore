@@ -50,6 +50,14 @@
 !.config/neofetch/
 !.config/neofetch/config.conf
 
+# QT5
+!.config/qt5ct
+!.config/qt5ct/qt5ct.conf
+
+# QT6
+!.config/qt6ct
+!.config/qt6ct/qt6ct.conf
+
 # Rofi
 !.config/rofi/
 !.config/rofi/config.rasi
@@ -198,6 +206,21 @@
 !sources/neofetch/minimalistic/
 !sources/neofetch/minimalistic/neofetch.png
 !sources/neofetch/minimalistic/config.conf
+
+# QT
+!sources/qt/
+
+!sources/qt/catppuccin-mocha-lavender/
+!sources/qt/catppuccin-mocha-lavender/qt5ct.conf
+!sources/qt/catppuccin-mocha-lavender/qt6ct.conf
+
+!sources/qt/gruvbox-dark/
+!sources/qt/gruvbox-dark/qt5ct.conf
+!sources/qt/gruvbox-dark/qt6ct.conf
+
+!sources/qt/minimalistic/
+!sources/qt/minimalistic/qt5ct.conf
+!sources/qt/minimalistic/qt6ct.conf
 
 # Rofi
 !sources/rofi/

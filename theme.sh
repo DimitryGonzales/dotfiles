@@ -231,6 +231,7 @@ SOURCES_GTK_DIR="$SOURCES_DIR/gtk"
 SOURCES_HYPRLAND_DIR="$SOURCES_DIR/hyprland"
 SOURCES_KITTY_DIR="$SOURCES_DIR/kitty"
 SOURCES_NEOFETCH_DIR="$SOURCES_DIR/neofetch"
+SOURCES_QT_DIR="$SOURCES_DIR/qt"
 SOURCES_ROFI_DIR="$SOURCES_DIR/rofi"
 SOURCES_SWAYNC_DIR="$SOURCES_DIR/swaync"
 SOURCES_VENCORD_DIR="$SOURCES_DIR/vencord"
@@ -247,6 +248,8 @@ HYPRPAPER_CONFIG="$SOURCES_HYPRLAND_DIR/$THEME/hyprpaper.conf"
 KITTY_CONFIG="$SOURCES_KITTY_DIR/$THEME/kitty.conf"
 KITTY_PALETTE="$SOURCES_KITTY_DIR/$THEME/palette.conf"
 NEOFETCH_CONFIG="$SOURCES_NEOFETCH_DIR/$THEME/config.conf"
+QT5_CONFIG="$SOURCES_QT_DIR/$THEME/qt5ct.conf"
+QT6_CONFIG="$SOURCES_QT_DIR/$THEME/qt6ct.conf"
 ROFI_CONFIG="$SOURCES_ROFI_DIR/$THEME/config.rasi"
 ROFI_THEME="$SOURCES_ROFI_DIR/$THEME/theme.rasi"
 SWAYNC_STYLE="$SOURCES_SWAYNC_DIR/$THEME/style.css"
@@ -263,6 +266,8 @@ GTK_DIR="$HOME/.config/gtk-3.0"
 HYPR_DIR="$HOME/.config/hypr"
 KITTY_DIR="$HOME/.config/kitty"
 NEOFETCH_DIR="$HOME/.config/neofetch"
+QT5_DIR="$HOME/.config/qt5ct"
+QT6_DIR="$HOME/.config/qt6ct"
 ROFI_DIR="$HOME/.config/rofi"
 SWAYNC_DIR="$HOME/.config/swaync"
 VENCORD_DIR="$HOME/.config/Vencord"
@@ -318,6 +323,15 @@ printf "• Neofetch\n"
 
 check_directory "$NEOFETCH_DIR"
 copy "$NEOFETCH_CONFIG" "$NEOFETCH_DIR"
+echo
+
+# QT
+printf "• QT\n"
+
+check_directory "$QT5_DIR"
+copy "$QT5_CONFIG" "$QT5_DIR"
+check_directory "$QT6_DIR"
+copy "$QT6_CONFIG" "$QT6_DIR"
 echo
 
 # Rofi
