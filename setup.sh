@@ -555,6 +555,9 @@ if ! $ESSENCIAL; then
         ## VLC (media player)
         vlc
 
+        ### [VLC] VLC Plugins All (all vlc plugins)
+        vlc-plugins-all
+
         ## Waybar (tool bar)
         waybar
 
@@ -729,6 +732,9 @@ if ! $ESSENCIAL; then
 
         ## UFW (firewall)
         ufw
+
+        ## YT-DLP (video downloader)
+        yt-dlp
     )
 else
 ## Essencials from official repositories
