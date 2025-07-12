@@ -18,8 +18,9 @@ sudo pacman -S git sudo
 📌 **Clone this repository and move its contents to your `home` directory:**
 
 ```
+cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
-mv dotfiles/.* dotfiles/* ~
+mv dotfiles/.config ~ && mv dotfiles/sources ~ && mv dotfiles/.bashrc ~
 ```
 
 ### Installing
@@ -27,7 +28,7 @@ mv dotfiles/.* dotfiles/* ~
 📌 **Run the `setup.sh` script to do an automated installation of my Linux setup.**
 
 ```
-cd ~
+cd ~/dotfiles
 ./setup.sh
 ```
 
@@ -36,7 +37,7 @@ cd ~
 ℹ️ **Run the `setup.sh` script with the `--essencial` flag to do a minimal installation.**
 
 ```
-cd ~
+cd ~/dotfiles
 ./setup.sh --essencial
 ```
 
@@ -47,7 +48,7 @@ cd ~
 📌 **Run the `theme.sh` script to change the system theme.**
 
 ```
-cd ~
+cd ~/dotfiles
 ./theme.sh
 ```
 

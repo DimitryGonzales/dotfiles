@@ -712,6 +712,9 @@ if ! $ESSENCIAL; then
 
         # Tools #
 
+        ## Ani CLI (anime browser)
+        ani-cli
+
         ## BTRFS progs (BTRFS utilities)
         btrfs-progs
 

@@ -13,6 +13,18 @@ apply_wallpaper() {
     fi
 }
 
+change_directory() {
+    local DIRECTORY="$1"
+
+    if cd "$DIRECTORY"; then
+        log "✅ Changed directory to: '$DIRECTORY'" 
+        return 0
+    else
+        log "❌ Failed to change directory to: '$DIRECTORY'"
+        return 1
+    fi
+}
+
 check_directory() {
     local DIRECTORY="$1"
 
@@ -279,6 +291,10 @@ clear
 
 # Print theme name
 printf "🎨 Theme: %s\n\n" "$THEME"
+
+# Change directory to home
+change_directory "$HOME"
+echo
 
 # BASH
 printf "• BASH\n"
