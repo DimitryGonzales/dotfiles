@@ -20,7 +20,7 @@ sudo pacman -S git sudo
 ```
 cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
-mv dotfiles/.config ~ && mv dotfiles/sources ~ && mv dotfiles/.bashrc ~
+cp -r dotfiles/.config ~ && cp -r dotfiles/sources ~ && cp -r dotfiles/.bashrc ~
 ```
 
 ### Installing
