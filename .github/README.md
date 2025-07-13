@@ -1,60 +1,64 @@
-# 🎨 Dotfiles
+# Dotfiles
 
-My personal dotfiles for an Arch Linux installation.
+My personal dotfiles for an Arch Linux installation, including configurations for Hyprland, themes, and keybindings.
 
 ## 📦 Required dependencies
 
 - `git`
 - `sudo`
 
-```
+```bash
 sudo pacman -S git sudo
 ```
 
-## 🛠️ Instructions
+## 📜 Instructions
 
-### Cloning repository
+### 📂 Cloning repository
 
-📌 **Clone this repository and move its contents to your `home` directory:**
+📌 **Clone this repository and copy the necessary files to your `home` folder:**
 
-```
+```bash
 cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
 cp -r dotfiles/.config ~ && cp -r dotfiles/sources ~ && cp -r dotfiles/.bashrc ~
 ```
 
-### Installing
+> ℹ️ Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).
 
-📌 **Run the `setup.sh` script to do an automated installation of my Linux setup.**
+> 🚨 After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
 
-```
+### ⚙️ Installing
+
+📌 **Run the `setup.sh` script to do an automated installation of my Linux setup:**
+
+```bash
 cd ~/dotfiles
 ./setup.sh
 ```
 
 *or*
 
-ℹ️ **Run the `setup.sh` script with the `--essencial` flag to do a minimal installation.**
+📌 **Run the `setup.sh` script with the `--essential` flag to do a minimal installation:**
 
-```
+```bash
 cd ~/dotfiles
-./setup.sh --essencial
+./setup.sh --essential
 ```
 
-> It will only install essencial drivers and packages(the ones necessary for a fully functional system/automatically used by the system or with binds, e.g, spotify and spicetify are used in the theme.sh script, thunar is necessary for the bind SUPER+E to work).
+> ℹ️ This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind).
 
-### Changing themes
+### 🎨 Changing themes
 
 📌 **Run the `theme.sh` script to change the system theme.**
 
-```
+```bash
 cd ~/dotfiles
 ./theme.sh
 ```
 
-## VSCode
+## 💻 VSCode
 
-Install the matching color theme extension for your selected theme from the marketplace:
+📌 **Install the matching color theme extension for your selected theme:**
 
 - [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc)
 
@@ -62,13 +66,13 @@ Install the matching color theme extension for your selected theme from the mark
 
 - [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 
-> ⚠️ Working in a way to install these automatically.
+> 🛠️ I'm working on automating the installation of these extensions.
 
 ## 🖼️ Examples
 
-**ℹ️ These images do not showcase all features/configurations.**
+> ℹ️ These screenshots do not showcase all features or configurations.
 
-- Catppuccin Mocha Lavender
+### 🌙 Catppuccin Mocha Lavender
 
 <table>
     <tr>
@@ -81,7 +85,7 @@ Install the matching color theme extension for your selected theme from the mark
     </tr>
 </table>
 
-- Gruvbox Dark
+### 🟤 Gruvbox Dark
 
 <table>
     <tr>
@@ -94,7 +98,7 @@ Install the matching color theme extension for your selected theme from the mark
     </tr>
 </table>
 
-- Minimalistic
+### 🧼 Minimalistic
 
 <table>
     <tr>

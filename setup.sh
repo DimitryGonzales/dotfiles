@@ -7,12 +7,12 @@
 set -e
 
 ## Flags
-ESSENCIAL=false
+ESSENTIAL=false
 
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
-        --essencial) 
-            ESSENCIAL=true
+        --essential) 
+            ESSENTIAL=true
             ;;
         *)
             log "[${YELLOW}ALERT${RESET}] Unknown option: $1"
@@ -22,13 +22,13 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 ## Log function
-if ! $ESSENCIAL; then
+if ! $ESSENTIAL; then
     log() {
         printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
     }
 else
     log() {
-        printf "[${MAGENTA}SCRIPT${RESET}] [${YELLOW}ESSENCIAL${RESET}] %b\n" "$*"
+        printf "[${MAGENTA}SCRIPT${RESET}] [${YELLOW}ESSENTIAL${RESET}] %b\n" "$*"
     }
 fi
 
@@ -339,7 +339,7 @@ amd_gpu_drivers=(
 
 # Packages #
 
-if ! $ESSENCIAL; then
+if ! $ESSENTIAL; then
 ## All from AUR
     aur_packages=(
         # Apps #
@@ -408,7 +408,7 @@ if ! $ESSENCIAL; then
         vencord-hook
     )
 else
-## Essencials from AUR
+## Essential packages from AUR
     aur_packages=(
         ### [Rofi] Rofi Power Menu (power menu)
         rofi-power-menu
@@ -442,7 +442,7 @@ else
     )
 fi
 
-if ! $ESSENCIAL; then
+if ! $ESSENTIAL; then
 ## All from official repositories
     pacman_packages=(
         # Apps #
@@ -740,7 +740,7 @@ if ! $ESSENCIAL; then
         yt-dlp
     )
 else
-## Essencials from official repositories
+## Essential packages from official repositories
     pacman_packages=(
         # Apps #
         
@@ -954,9 +954,9 @@ fi
 
 # Execution #
 
-## Essencial flag message
-if $ESSENCIAL; then
-    log "[${YELLOW}ALERT${RESET}] The script will run with the 'ESSENCIAL' flag activated. It will only install essencial drivers and packages(the ones necessary for a fully functional system/automatically used by the system or with binds, e.g, spotify and spicetify are used in the theme.sh script, thunar is necessary for the bind SUPER+E to work)."
+## Essential flag message
+if $ESSENTIAL; then
+    log "[${YELLOW}ALERT${RESET}] The script will run with the 'ESSENTIAL' flag activated. This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind)."
     echo
 fi
 
