@@ -392,6 +392,9 @@ if ! $ESSENTIAL; then
 
         # Tools #
 
+        ## Ani CLI (anime browser)
+        ani-cli
+
         ## Gallery DL (bulk download tool)
         gallery-dl
 
@@ -711,9 +714,6 @@ if ! $ESSENTIAL; then
 
 
         # Tools #
-
-        ## Ani CLI (anime browser)
-        ani-cli
 
         ## BTRFS progs (BTRFS utilities)
         btrfs-progs
