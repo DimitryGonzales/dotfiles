@@ -1,402 +1,327 @@
 #!/usr/bin/env bash
 
-clear
+# Theme Switcher #
 
-# Functions 
+
+# Variables #
+
+## Colors
+BLACK="\033[0;30m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+MAGENTA="\033[0;35m"
+CYAN="\033[0;36m"
+WHITE="\033[0;37m"
+RESET="\033[0m"
+
+## Messages
+ALERT="[${YELLOW}ALERT${RESET}]"
+ERROR="[${RED}ERROR${RESET}]"
+OK="[${BLUE}OK${RESET}]"
+SCRIPT="[${MAGENTA}SCRIPT${RESET}]"
+SUCCESS="[${GREEN}SUCCESS${RESET}]"
+
+
+# Functions #
+
+## Display message
+log() {
+    printf "$SCRIPT %b\n" "$*"
+}
+
+## Apply wallpaper with hyprpaper
 apply_wallpaper() {
     local WALLPAPER="$1"
 
-    if hyprctl hyprpaper wallpaper ,"$WALLPAPER" > /dev/null; then
-        printf "✅ Applied wallpaper: '%s'\n" "$WALLPAPER"
-    else
-        printf "❌ Failed to apply wallpaper(must be a png): '%s', check errors above\n" "$WALLPAPER"
-    fi
-}
-
-change_directory() {
-    local DIRECTORY="$1"
-
-    if cd "$DIRECTORY"; then
-        log "✅ Changed directory to: '$DIRECTORY'" 
+    if hyprctl hyprpaper reload ,"$WALLPAPER" > /dev/null; then
+        log "$SUCCESS Applied wallpaper: '$WALLPAPER'"
         return 0
     else
-        log "❌ Failed to change directory to: '$DIRECTORY'"
+        log "$ERROR Failed to apply wallpaper(must be a png): '$WALLPAPER', check errors above"
         return 1
     fi
 }
 
+## Ask user to select an option
+ask_user() {
+    local num_options="$1"
+    shift
+
+    if (( $# != num_options * 2 )); then
+        log "$ERROR Invalid arguments: expected $((num_options * 2)) option/command pairs, got $#."
+        return 1
+    fi
+
+    log "Please choose an option:"
+    for ((i=1; i<=num_options; i++)); do
+        local idx=$(( (i - 1) * 2 + 1 ))
+        local option_label="${!idx}"
+        log "$i) $option_label"
+    done
+
+    while true; do
+        log "Enter choice [1-$num_options]: "
+        read -r choice
+
+        if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= 1 && choice <= num_options )); then
+            local cmd_index=$(( (choice - 1) * 2 + 2 ))
+            local cmd="${!cmd_index}"
+            eval "$cmd"
+            return 0
+        else
+            log "$ALERT Invalid choice, try again."
+        fi
+    done
+}
+
+## Check directory existence
 check_directory() {
     local DIRECTORY="$1"
 
     if [ -d "$DIRECTORY" ]; then
-        printf "📁 Directory already exists: '%s'\n" "$DIRECTORY"
+        log "$OK Directory already exists: '$DIRECTORY'"
+        return 0
     else
-        printf "⚠️ Directory doesn't exists (creating...): '%s'\n" "$DIRECTORY"
+        log "$ALERT Directory doesn't exists (creating...): '$DIRECTORY'"
 
         if mkdir -p "$DIRECTORY"; then
-            printf "🛠️ Created directory: '%s'\n" "$DIRECTORY"
+            log "$SUCCESS Created directory: '%s'\n" "$DIRECTORY"
+            return 0
         else
-            printf "❌ Failed to create directory: '%s', check errors above\n" "$DIRECTORY"
+            log "$ERROR Failed to create directory: '$DIRECTORY', check errors above"
+            return 1
         fi
     fi
 }
 
+## Check json file existence
+check_json() {
+    local FILE="$1"
+
+    if [ -f "$FILE" ]; then
+        log "$OK JSON file already exists: $FILE"
+        return 0
+    else
+        if echo {} > "$FILE"; then
+            log "$SUCCESS Created empty JSON file: '$FILE'"
+            return 0
+        else
+            log "$ERROR Failed to create empty JSON file: '$FILE', check errors above"
+            return 1
+        fi
+    fi
+}
+
+## Copy something to a directory
 copy() {
     local FILE="$1"
     local DIRECTORY="$2"
 
+    check_directory "$DIRECTORY"
+
     if cp -r "$FILE" "$DIRECTORY"; then
-        printf "✅ Copied: '%s' to '%s'\n" "$FILE" "$DIRECTORY"
+        log "$SUCCESS Copied: '$FILE' to '$DIRECTORY'"
+        return 0
     else
-        printf "❌ Failed to copy: '%s' to '%s', check errors above\n" "$FILE" "$DIRECTORY"
+        log "$ERROR Failed to copy: '$FILE' to '$DIRECTORY', check errors above"
+        return 1
     fi
 }
 
-create_empty_json() {
-    local FILE="$1"
-
-    if [ -f "$FILE" ]; then
-        printf "📄 JSON file already exists: %s\n" "$FILE"
-    else
-        if echo {} > "$FILE"; then
-            printf "🛠️ Created empty JSON file: '%s'\n" "$FILE"
-        else
-            printf "❌ Failed to create empty JSON file: '%s', check errors above\n" "$FILE"
-        fi
-    fi
-}
-
+## Edit an option inside a json file
 edit_option_in_json() {
     local FILE="$1"
     local OPTION="$2"
     local VALUE="$3"
+
+    check_json "$FILE"
 
     if grep -q "\"$OPTION\"" "$FILE"; then
         local CURRENT_VALUE
         CURRENT_VALUE=$(grep "\"$OPTION\"" "$FILE" | sed -E 's/.*"'$OPTION'":[[:space:]]*"(.*)".*/\1/')
 
         if [[ "$CURRENT_VALUE" == "$VALUE" ]]; then
-            printf "ℹ️ '%s' is already set to: '%s'\n" "$OPTION" "$VALUE"
+            log "$OK '$OPTION' is already set to: '$VALUE'"
+            return 0
         else
             if sed -i 's/\("'"$OPTION"'"[[:space:]]*:[[:space:]]*"\)[^"]*\("\)/\1'"$VALUE"'\2/' "$FILE"; then
-                printf "✅ Updated '%s' to: '%s'\n" "$OPTION" "$VALUE"
+                log "$SUCCESS Updated '$OPTION' to: '$VALUE'"
+                return 0
             else
-                printf "❌ Failed to update '%s' to: '%s'\n" "$OPTION" "$VALUE"
+                log "$ERROR Failed to update '$OPTION' to: '$VALUE'"
+                return 1
             fi
         fi
     else
         if sed -i '$i\  "'"$OPTION"'": "'"$VALUE"'",' "$FILE"; then
-            printf "✅ Inserted: '%s: %s'\n" "$OPTION" "$VALUE"
+            log "$SUCCESS Inserted: '$OPTION: $VALUE'"
+            return 0
         else
-            printf "❌ Failed to insert '%s: %s'\n" "$OPTION" "$VALUE"
+            log "$ERROR Failed to insert '$OPTION: $VALUE'"
+            return 1
         fi
     fi
 }
 
+## Restart an app
 restart_app() {
     local APP="$1"
 
     if pgrep -x "$APP" > /dev/null; then
-        printf "🚦 App is already running (needs restart): '%s'\n" "$APP"
+        log "$OK App is already running (needs restart): '$APP'"
 
         if pkill "$APP" && hyprctl dispatch exec "$APP" > /dev/null; then
-            printf "🔄 Restarted app: '%s'\n" "$APP"
+            sleep 1
+            log "$SUCCESS Restarted app: '$APP'"
+            return 0
         else
-            printf "❌ Failed to restart app: '%s', check errors above\n" "$APP"
+            log "$ERROR Failed to restart app: '$APP', check errors above"
+            return 1
         fi
     else
-        printf "⚠️ App is not running (starting...): '%s'\n" "$APP"
+        log "$ALERT App is not running (starting...): '$APP'"
 
         if hyprctl dispatch exec "$APP" > /dev/null; then
             sleep 1
-            printf "🚀 Started app: '%s'\n" "$APP"
+            log "$SUCESS Started app: '$APP'"
+            return 0
         else
-            printf "❌ Failed to start app: '%s', check errors above\n" "$APP"
+            log "$ERROR Failed to start app: '$APP', check errors above"
+            return 1
         fi
     fi
 }
 
-set_gtk_theme() {
-    local THEME="$1"
+## Display section name
+section() {
+    local TITLE="$1"
 
-    if gsettings set org.gnome.desktop.interface icon-theme "$GTK_ICON_THEME"; then
-        printf "✅ Set GTK icon theme to: %s\n" "$GTK_ICON_THEME"
+    log "[${CYAN}$TITLE${RESET}]"
+}
+
+## Set the theme used by GTK apps
+set_gtk_theme() {
+    local ICON_THEME="$1"
+    local THEME="$2"
+
+    if gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME"; then
+        log "$SUCCESS Set GTK icon theme to: '$ICON_THEME'"
     else
-        printf "❌ Failed to set GTK icon theme to: %s\n" "$GTK_ICON_THEME"
+        log "$ERROR Failed to set GTK icon theme to: '$ICON_THEME'"
     fi
     
-    if gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"; then
-        printf "✅ Set GTK theme to: %s\n" "$GTK_THEME"
+    if gsettings set org.gnome.desktop.interface gtk-theme "$THEME"; then
+        log "$SUCCESS Set GTK theme to: '$THEME'"
+        return 0
     else
-        printf "❌ Failed to set GTK theme to: %s\n" "$GTK_THEME"
+        log "$ERROR Failed to set GTK theme to: '$THEME'"
+        return 1
     fi
 }
 
+## Set the theme used by spicetify
 set_spicetify_theme() {
     local SPICETIFY_THEME="$1"
 
     if spicetify config current_theme "$SPICETIFY_THEME" > /dev/null; then
-        printf "✅ Set Spicetify theme to: %s\n" "$SPICETIFY_THEME"
+        log "$SUCCESS Set Spicetify theme to: '$SPICETIFY_THEME'"
     else
-        printf "❌ Failed to set Spicetify theme to: %s\n" "$SPICETIFY_THEME"
+        log "$ERROR Failed to set Spicetify theme to: '$SPICETIFY_THEME'"
     fi
 
     if spicetify apply > /dev/null; then
-        printf "✅ Applied Spicetify theme: %s\n" "$SPICETIFY_THEME"
+        log "$SUCCESS Applied Spicetify theme: '$SPICETIFY_THEME'"
+        return 0
     else
-        printf "❌ Failed to apply Spicetify theme: %s\n" "$SPICETIFY_THEME"
+        log "$ERROR Failed to apply Spicetify theme: '$SPICETIFY_THEME'"
+        return 1
     fi
 }
 
+## Start an app
 start_app() {
     local APP="$1"
 
     if pgrep -x "$APP" > /dev/null; then
-        printf "🚦 App is already running: '%s'\n" "$APP"
+        log "$OK App is already running: '$APP'"
+        return 0
     else
-        printf "⚠️ App is not running (starting...): '%s'\n" "$APP"
+        log "$ALERT App is not running (starting...): '$APP'"
         
         if hyprctl dispatch exec "$APP" > /dev/null; then
             sleep 1
-            printf "🚀 Started app: '%s'\n" "$APP"
+            log "$SUCESS Started app: '$APP'"
+            return 0
         else
-            printf "❌ Failed to start app: '%s', check errors above\n" "$APP"
+            log "$ERROR Failed to start app: '$APP', check errors above"
+            return 1
         fi
     fi
 }
 
-# Ask user what theme to apply
-while true; do
-    printf "Choose a theme:\n\n"
-    printf "1 - Catppuccin Mocha\n"
-    printf "2 - Gruvbox Dark\n"
-    printf "3 - Minimalistic\n"
-    echo
 
-    read -n 1 -r choice
-    [ -z "$choice" ] && clear && continue
-
-    case "$choice" in
-        1|one)
-            # GTK icon theme
-            GTK_ICON_THEME="Adwaita"
-
-            # GTK theme
-            GTK_THEME="catppuccin-mocha-lavender-standard+default"
-
-            #Spicetify theme
-            SPICETIFY_THEME="marketplace"
-
-            # Theme name
-            THEME="catppuccin-mocha-lavender"
-
-            # VSCode theme name
-            VSCODE_THEME="Catppuccin Mocha"
-            break
-            ;;
-        2|two)
-            # GTK icon theme
-            GTK_ICON_THEME="Adwaita"
-
-            # GTK theme name
-            GTK_THEME="Gruvbox-Yellow-Dark"
-
-            #Spicetify theme
-            SPICETIFY_THEME="marketplace"
-
-            # Theme name
-            THEME="gruvbox-dark"
-
-            # VSCode theme name
-            VSCODE_THEME="Gruvbox Dark Hard"
-            break
-            ;;
-        3|three)
-            # GTK icon theme
-            GTK_ICON_THEME="Adwaita"
-
-            # GTK theme name
-            GTK_THEME="Adwaita"
-
-            #Spicetify theme
-            SPICETIFY_THEME=" "
-
-            # Theme name
-            THEME="minimalistic"
-
-            # VSCode theme name
-            VSCODE_THEME="GitHub Dark"
-            break
-            ;;
-        *)
-            clear
-            printf "❌ Invalid choice, try again:\n\n"
-            ;;
-    esac
-done
-
-# Sources
-SOURCES_DIR="$HOME/sources"
-SOURCES_BASH_DIR="$SOURCES_DIR/bash"
-SOURCES_FOOT_DIR="$SOURCES_DIR/foot"
-SOURCES_GTK_DIR="$SOURCES_DIR/gtk"
-SOURCES_HYPRLAND_DIR="$SOURCES_DIR/hyprland"
-SOURCES_KITTY_DIR="$SOURCES_DIR/kitty"
-SOURCES_NEOFETCH_DIR="$SOURCES_DIR/neofetch"
-SOURCES_QT_DIR="$SOURCES_DIR/qt"
-SOURCES_ROFI_DIR="$SOURCES_DIR/rofi"
-SOURCES_SWAYNC_DIR="$SOURCES_DIR/swaync"
-SOURCES_VENCORD_DIR="$SOURCES_DIR/vencord"
-SOURCES_WALLPAPER_DIR="$SOURCES_DIR/wallpaper"
-SOURCES_WAYBAR_DIR="$SOURCES_DIR/waybar"
-
-# Files directories
-BASHRC="$SOURCES_BASH_DIR/$THEME/.bashrc"
-FOOT_CONFIG="$SOURCES_FOOT_DIR/$THEME/foot.ini"
-GTK_SETTINGS="$SOURCES_GTK_DIR/$THEME/settings.ini"
-HYPRLAND_STYLE="$SOURCES_HYPRLAND_DIR/$THEME/style.conf"
-HYPRLOCK_CONFIG="$SOURCES_HYPRLAND_DIR/$THEME/hyprlock.conf"
-HYPRPAPER_CONFIG="$SOURCES_HYPRLAND_DIR/$THEME/hyprpaper.conf"
-KITTY_CONFIG="$SOURCES_KITTY_DIR/$THEME/kitty.conf"
-KITTY_PALETTE="$SOURCES_KITTY_DIR/$THEME/palette.conf"
-NEOFETCH_CONFIG="$SOURCES_NEOFETCH_DIR/$THEME/config.conf"
-QT5_CONFIG="$SOURCES_QT_DIR/$THEME/qt5ct.conf"
-QT6_CONFIG="$SOURCES_QT_DIR/$THEME/qt6ct.conf"
-ROFI_CONFIG="$SOURCES_ROFI_DIR/$THEME/config.rasi"
-ROFI_THEME="$SOURCES_ROFI_DIR/$THEME/theme.rasi"
-SWAYNC_STYLE="$SOURCES_SWAYNC_DIR/$THEME/style.css"
-VENCORD_THEME="$SOURCES_VENCORD_DIR/$THEME/themes/theme.css"
-VSCODE_SETTINGS="$HOME/.config/Code/User/settings.json"
-WALLPAPER="$SOURCES_WALLPAPER_DIR/$THEME.png"
-WAYBAR_CONFIG="$SOURCES_WAYBAR_DIR/$THEME/config.jsonc"
-WAYBAR_PALETTE="$SOURCES_WAYBAR_DIR/$THEME/palette.css"
-WAYBAR_STYLE="$SOURCES_WAYBAR_DIR/$THEME/style.css"
-
-# Apps directories
-FOOT_DIR="$HOME/.config/foot"
-GTK_DIR="$HOME/.config/gtk-3.0"
-HYPR_DIR="$HOME/.config/hypr"
-KITTY_DIR="$HOME/.config/kitty"
-NEOFETCH_DIR="$HOME/.config/neofetch"
-QT5_DIR="$HOME/.config/qt5ct"
-QT6_DIR="$HOME/.config/qt6ct"
-ROFI_DIR="$HOME/.config/rofi"
-SWAYNC_DIR="$HOME/.config/swaync"
-VENCORD_DIR="$HOME/.config/Vencord"
-WAYBAR_DIR="$HOME/.config/waybar"
+# Execution #
 
 clear
 
-# Execution
+## Select theme and set its variables
+section "Select theme"
 
-# Print theme name
-printf "🎨 Theme: %s\n\n" "$THEME"
+ask_user 3 \
+    "Catppuccin Mocha Lavender" "THEME=catppuccin-mocha-lavender" \
+    "Gruvbox Dark" "THEME=gruvbox-dark" \
+    "Minimalistic" "THEME=minimalistic"
 
-# Change directory to home
-change_directory "$HOME"
+if [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
+    GTK_THEME="catppuccin-mocha-lavender-standard+default"
+    GTK_ICON_THEME="default"
+    SPICETIFY_THEME="marketplace"
+    VSCODE_THEME="Catppuccin Mocha"
+    WALLPAPER="catppuccin-mocha-lavender.png"
+elif [[ "$THEME" == "gruvbox-dark" ]]; then
+    GTK_THEME="Gruvbox-Yellow-Dark"
+    GTK_ICON_THEME="default"
+    SPICETIFY_THEME="marketplace"
+    VSCODE_THEME="Gruvbox Dark Hard"
+    WALLPAPER="gruvbox-dark.png"
+elif [[ "$THEME" == "minimalistic" ]]; then
+    GTK_THEME="Adwaita-dark"
+    GTK_ICON_THEME="default"
+    SPICETIFY_THEME=" "
+    VSCODE_THEME="GitHub Dark"
+    WALLPAPER="minimalistic.png"
+fi
+
+## Copy generic files to directories
+section "Copy generic files"
+copy "$HOME/dotfiles/themes/generic/." "$HOME"
 echo
 
-# BASH
-printf "• BASH\n"
-
-copy "$BASHRC" "$HOME"
+## Copy .config to home
+section "Copy .config Folder"
+copy "$HOME/dotfiles/themes/$THEME/.config" "$HOME"
 echo
 
-# Foot
-printf "• Foot\n"
-
-check_directory "$FOOT_DIR"
-copy "$FOOT_CONFIG" "$FOOT_DIR"
+## Set GTK theme and cursor
+section "Set GTK theme"
+set_gtk_theme "$GTK_ICON_THEME" "$GTK_THEME"
 echo
 
-# GTK
-printf "• GTK\n"
-
-check_directory "$GTK_DIR"
-copy "$GTK_SETTINGS" "$GTK_DIR"
-set_gtk_theme "$GTK_THEME"
+## Set VSCode theme
+section "Set VSCode theme"
+edit_option_in_json "$HOME/.config/Code/User/settings.json" "workbench.colorTheme" "$VSCODE_THEME"
 echo
 
-# hyprland and hyprapps
-printf "• hyprland and hyprapps\n"
-
-check_directory "$HYPR_DIR/source"
-copy "$HYPRLAND_STYLE" "$HYPR_DIR/source"
-copy "$HYPRLOCK_CONFIG" "$HYPR_DIR"
-copy "$HYPRPAPER_CONFIG" "$HYPR_DIR"
-echo
-
-# Kitty
-printf "• Kitty\n"
-
-check_directory "$KITTY_DIR"
-copy "$KITTY_CONFIG" "$KITTY_DIR"
-copy "$KITTY_PALETTE" "$KITTY_DIR"
-echo
-
-# Neofetch
-printf "• Neofetch\n"
-
-check_directory "$NEOFETCH_DIR"
-copy "$NEOFETCH_CONFIG" "$NEOFETCH_DIR"
-echo
-
-# QT
-printf "• QT\n"
-
-check_directory "$QT5_DIR"
-copy "$QT5_CONFIG" "$QT5_DIR"
-check_directory "$QT6_DIR"
-copy "$QT6_CONFIG" "$QT6_DIR"
-echo
-
-# Rofi
-printf "• Rofi\n"
-
-check_directory "$ROFI_DIR"
-copy "$ROFI_CONFIG" "$ROFI_DIR"
-copy "$ROFI_THEME" "$ROFI_DIR"
-echo
-
-# Spicetify
-printf "• Spicetify\n"
-set_spicetify_theme "$SPICETIFY_THEME"
-echo
-
-# SwayNC
-printf "• SwayNC\n"
-
-check_directory "$SWAYNC_DIR"
-copy "$SWAYNC_STYLE" "$SWAYNC_DIR"
-restart_app "swaync"
-echo
-
-# Vencord
-printf "• Vencord\n"
-check_directory "$VENCORD_DIR/themes"
-copy "$VENCORD_THEME" "$VENCORD_DIR/themes"
-echo
-
-#VSCode
-printf "• VSCode\n"
-
-create_empty_json "$VSCODE_SETTINGS"
-edit_option_in_json "$VSCODE_SETTINGS" "workbench.colorTheme" "$VSCODE_THEME"
-echo
-
-# Wallpaper
-printf "• Wallpaper\n"
-
+## Set wallpaper
+section "Apply wallpaper"
 start_app "hyprpaper"
-apply_wallpaper "$WALLPAPER"
+apply_wallpaper "$HOME/dotfiles/themes/wallpapers/$WALLPAPER"
 echo
 
-# Waybar
-printf "• Waybar\n"
-
-check_directory "$WAYBAR_DIR"
-copy "$WAYBAR_CONFIG" "$WAYBAR_DIR"
-copy "$WAYBAR_PALETTE" "$WAYBAR_DIR"
-copy "$WAYBAR_STYLE" "$WAYBAR_DIR"
+## Restart apps
+section "Restart apps"
+restart_app "swaync"
 restart_app "waybar"
 echo

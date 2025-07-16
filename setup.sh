@@ -15,25 +15,14 @@ while [[ "$#" -gt 0 ]]; do
             ESSENTIAL=true
             ;;
         *)
-            log "[${YELLOW}ALERT${RESET}] Unknown option: $1"
+            log "$ALERT Unknown option: $1"
             ;;
     esac
     shift
 done
 
-## Log function
-if ! $ESSENTIAL; then
-    log() {
-        printf "[${MAGENTA}SCRIPT${RESET}] %b\n" "$*"
-    }
-else
-    log() {
-        printf "[${MAGENTA}SCRIPT${RESET}] [${YELLOW}ESSENTIAL${RESET}] %b\n" "$*"
-    }
-fi
-
 ## Fail message
-trap "log '[${RED}FAIL${RESET}] Script execution failed. Exiting...'" ERR
+trap "log '$ERROR Script execution failed. Exiting...'" ERR
 
 
 # Variables #
@@ -49,8 +38,26 @@ CYAN="\033[0;36m"
 WHITE="\033[0;37m"
 RESET="\033[0m"
 
+## Messages
+ALERT="[${YELLOW}ALERT${RESET}]"
+ERROR="[${RED}ERROR${RESET}]"
+OK="[${BLUE}OK${RESET}]"
+SCRIPT="[${MAGENTA}SCRIPT${RESET}]"
+SUCCESS="[${GREEN}SUCCESS${RESET}]"
+
 
 # Functions #
+
+## Display message
+if ! $ESSENTIAL; then
+    log() {
+        printf "$SCRIPT %b\n" "$*"
+    }
+else
+    log() {
+        printf "$SCRIPT [${YELLOW}ESSENTIAL${RESET}] %b\n" "$*"
+    }
+fi
 
 ## Add user to system groups
 add_user_to_group() {
@@ -58,12 +65,12 @@ add_user_to_group() {
 
     for GROUP in "$@"; do
         if id -nG "$USERNAME" | grep -qw "$GROUP"; then
-            log "[${BLUE}OK${RESET}] '$USERNAME' is already in group: '$GROUP'."
+            log "$OK '$USERNAME' is already in group: '$GROUP'."
         else
             if sudo gpasswd -a "$USERNAME" "$GROUP"; then
-                log "[${GREEN}SUCCESS${RESET}] Added '$USERNAME' to group: '$GROUP'."
+                log "$SUCCESS Added '$USERNAME' to group: '$GROUP'."
             else
-                log "[${RED}ERROR${RESET}] Failed to add '$USERNAME' to group: '$GROUP'"
+                log "$ERROR Failed to add '$USERNAME' to group: '$GROUP'"
                 return 1
             fi
         fi
@@ -78,7 +85,7 @@ ask_user() {
     shift
 
     if (( $# != num_options * 2 )); then
-        log "[${RED}ERROR${RESET}] Invalid arguments: expected $((num_options * 2)) option/command pairs, got $#."
+        log "$ERROR Invalid arguments: expected $((num_options * 2)) option/command pairs, got $#."
         return 1
     fi
 
@@ -86,11 +93,12 @@ ask_user() {
     for ((i=1; i<=num_options; i++)); do
         local idx=$(( (i - 1) * 2 + 1 ))
         local option_label="${!idx}"
-        printf "  %d) %s\n" "$i" "$option_label"
+        log "$i) $option_label"
     done
 
     while true; do
-        read -rp "Enter choice [1-$num_options]: " choice
+        log "Enter choice [1-$num_options]: "
+        read -r choice
 
         if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= 1 && choice <= num_options )); then
             local cmd_index=$(( (choice - 1) * 2 + 2 ))
@@ -98,7 +106,7 @@ ask_user() {
             eval "$cmd"
             return 0
         else
-            log "[${YELLOW}ALERT${RESET}] Invalid choice, try again."
+            log "$ALERT Invalid choice, try again."
         fi
     done
 }
@@ -106,10 +114,10 @@ ask_user() {
 ## Authenticate with sudo
 authenticate() {
     if sudo -v; then
-        log "[${GREEN}SUCCESS${RESET}] Successfully authenticated."
+        log "$SUCCESS Successfully authenticated."
         return 0
     else
-        log "[${RED}ERROR${RESET}] Failed to authenticate."
+        log "$ERROR Failed to authenticate."
         return 1
     fi
 }
@@ -119,10 +127,10 @@ change_directory() {
     local DIRECTORY="$1"
 
     if cd "$DIRECTORY"; then
-        log "[${GREEN}SUCCESS${RESET}] Changed directory to: '$DIRECTORY'" 
+        log "$SUCCESS Changed directory to: '$DIRECTORY'" 
         return 0
     else
-        log "[${RED}ERROR${RESET}] Couldn't change directory to: '$DIRECTORY'"
+        log "$ERROR Couldn't change directory to: '$DIRECTORY'"
         return 1
     fi
 }
@@ -133,9 +141,9 @@ check_package() {
 
     for PACKAGE in "$@"; do
         if sudo pacman -Q "$PACKAGE" &> /dev/null; then
-            log "[${BLUE}OK${RESET}] Package is up to date: '$PACKAGE'"
+            log "$OK Package is up to date: '$PACKAGE'"
         else
-            log "[${YELLOW}ALERT${RESET}] Package is not installed/up to date: '$PACKAGE'"
+            log "$ALERT Package is not installed/up to date: '$PACKAGE'"
             RESULT=1
         fi
     done
@@ -149,10 +157,10 @@ copy() {
     local DESTINATION="$2"
 
     if sudo cp -r "$SOURCE" "$DESTINATION"; then
-        log "[${GREEN}SUCCESS${RESET}] Copied: '$SOURCE' to '$DESTINATION'"
+        log "$SUCCESS Copied: '$SOURCE' to '$DESTINATION'"
         return 0
     else
-        log "[${RED}ERROR${RESET}] Failed to copy: '$SOURCE' to '$DESTINATION'"
+        log "$ERROR Failed to copy: '$SOURCE' to '$DESTINATION'"
         return 1
     fi
 }
@@ -189,10 +197,10 @@ edit_greetd_command() {
     copy "/etc/greetd/config.toml" "/etc/greetd/config.toml.bak"
 
     if sudo sed -i "s|^.*command *=.*|command = \"$COMMAND\"|" /etc/greetd/config.toml; then
-        log "[${GREEN}SUCCESS${RESET}] Edited greetd command to: '$COMMAND'"
+        log "$SUCCESS Edited greetd command to: '$COMMAND'"
         return 0
     else
-        log "[${RED}ERROR${RESET}] Failed to edit greetd command to: '$COMMAND'"
+        log "$ERROR Failed to edit greetd command to: '$COMMAND'"
         return 1   
     fi
 }
@@ -202,10 +210,10 @@ git_clone() {
     local URL="$1"
 
     if git clone "$URL"; then
-        log "[${GREEN}SUCCESS${RESET}] Git cloned repository: '$URL'"
+        log "$SUCCESS Git cloned repository: '$URL'"
         return 0
     else
-        log "[${RED}ERROR${RESET}] Failed to git clone repository: '$URL'"
+        log "$ERROR Failed to git clone repository: '$URL'"
         return 1
     fi
 }
@@ -215,14 +223,14 @@ make_directory() {
     local DIRECTORY="$1"
 
     if [ -d "$DIRECTORY" ]; then
-        log "[${BLUE}OK${RESET}] Directory already exists: '$DIRECTORY'"
+        log "$OK Directory already exists: '$DIRECTORY'"
         return 0
     else
         if sudo mkdir -p "$DIRECTORY"; then
-            log "[${GREEN}SUCCESS${RESET}] Created directory: '$DIRECTORY'"
+            log "$SUCCESS Created directory: '$DIRECTORY'"
             return 0
         else
-            log "[${RED}ERROR${RESET}] Failed to create directory: '$DIRECTORY'"
+            log "$ERROR Failed to create directory: '$DIRECTORY'"
             return 1
         fi
     fi
@@ -233,10 +241,10 @@ make_package() {
     log "Making package..."
 
     if makepkg -si; then
-        log "[${GREEN}SUCCESS${RESET}] Successfully make package."
+        log "$SUCCESS Successfully make package."
         return 0
     else
-        log "[${RED}ERROR${RESET}] Failed to make package."
+        log "$ERROR Failed to make package."
         return 1
     fi
 }
@@ -244,16 +252,16 @@ make_package() {
 ## Install package with pacman
 pacman_install() {
     if check_package "$@"; then
-        log "[${BLUE}OK${RESET}] All packages are already installed."
+        log "$OK All packages are already installed."
         return 0
     else
         log "Installing missing packages..."
 
         if sudo pacman -S --needed "$@"; then
-            log "[${GREEN}SUCCESS${RESET}] Successfully installed all packages."
+            log "$SUCCESS Successfully installed all packages."
             return 0
         else
-            log "[${RED}ERROR${RESET}] Failed to install all packages."
+            log "$ERROR Failed to install all packages."
             return 1
         fi
     fi
@@ -262,19 +270,26 @@ pacman_install() {
 ## Install package with paru
 paru_install() {
     if check_package "$@"; then
-        log "[${BLUE}OK${RESET}] All packages are already installed."
+        log "$OK All packages are already installed."
         return 0
     else
         log "Installing missing packages..."
 
         if paru -S --needed "$@"; then
-            log "[${GREEN}SUCCESS${RESET}] Successfully installed all packages."
+            log "$SUCCESS Successfully installed all packages."
             return 0
         else
-            log "[${RED}ERROR${RESET}] Failed to install all packages."
+            log "$ERROR Failed to install all packages."
             return 1
         fi
     fi
+}
+
+## Display section name
+section() {
+    local TITLE="$1"
+
+    log "[${CYAN}$TITLE${RESET}]"
 }
 
 ## Enable service
@@ -282,14 +297,14 @@ system_enable() {
     local SERVICE="$1"
 
     if systemctl is-enabled --quiet "$SERVICE"; then
-        log "[${BLUE}OK${RESET}] Service is already enabled: '$SERVICE'"
+        log "$OK Service is already enabled: '$SERVICE'"
         return 0
     else
         if systemctl enable "$SERVICE"; then
-            log "[${GREEN}SUCCESS${RESET}] Successfully enabled service: '$SERVICE'"
+            log "$SUCCESS Successfully enabled service: '$SERVICE'"
             return 0
         else
-            log "[${RED}ERROR${RESET}] Failed to enable service: '$SERVICE'"
+            log "$ERROR Failed to enable service: '$SERVICE'"
             return 1
         fi
     fi
@@ -300,14 +315,14 @@ system_start() {
     local SERVICE="$1"
 
     if systemctl is-active --quiet "$SERVICE"; then
-        log "[${BLUE}OK${RESET}] Service is already started: '$SERVICE'"
+        log "$OK Service is already started: '$SERVICE'"
         return 0
     else
         if systemctl start "$SERVICE"; then
-            log "[${GREEN}SUCCESS${RESET}] Successfully started service: '$SERVICE'"
+            log "$SUCCESS Successfully started service: '$SERVICE'"
             return 0
         else
-            log "[${RED}ERROR${RESET}] Failed to start service: '$SERVICE'"
+            log "$ERROR Failed to start service: '$SERVICE'"
             return 1
         fi
     fi
@@ -619,12 +634,15 @@ if ! $ESSENTIAL; then
         ttf-font-awesome
         otf-font-awesome
 
-        ## Liberation (Arial, Times New Roman, and Courier New)
-        ttf-liberation
-
         ## JetBrains Mono (cool font)
         ttf-jetbrains-mono
         ttf-jetbrains-mono-nerd
+
+        ## Inter (system UI font)
+        inter-font
+
+        ## Liberation (Arial, Times New Roman, and Courier New)
+        ttf-liberation
 
 
         # Greeter #
@@ -853,12 +871,15 @@ else
         ttf-font-awesome
         otf-font-awesome
 
-        ## Liberation (Arial, Times New Roman, and Courier New)
-        ttf-liberation
-
         ## JetBrains Mono (cool font)
         ttf-jetbrains-mono
         ttf-jetbrains-mono-nerd
+
+        ## Inter (system UI font)
+        inter-font
+
+        ## Liberation (Arial, Times New Roman, and Courier New)
+        ttf-liberation
 
 
         # Greeter #
@@ -956,12 +977,12 @@ fi
 
 ## Essential flag message
 if $ESSENTIAL; then
-    log "[${YELLOW}ALERT${RESET}] The script will run with the 'ESSENTIAL' flag activated. This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind)."
+    log "$ALERT The script will run with the 'ESSENTIAL' flag activated. This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind)."
     echo
 fi
 
 ## Authenticate user
-log "[Authentication]\n"
+section "Authentication"
 if authenticate; then
     clear
     (sudo -v; while true; do sleep 60; sudo -n true; done) &
@@ -977,7 +998,7 @@ change_directory "$HOME"
 echo
 
 ## Install paru
-log "[${CYAN}Paru${RESET}]"
+section "Paru"
 
 if ! check_package "paru"; then
     pacman_install "base-devel"
@@ -989,7 +1010,7 @@ fi
 echo
 
 ## Install GPU drivers
-log "[${CYAN}GPU Drivers${RESET}]"
+section "GPU Drivers"
 
 log "Which drivers do you want?"
     
@@ -1000,51 +1021,51 @@ echo
 
 ## Install packages
 ### Official repositories
-log "[${CYAN}Pacman Packages${RESET}]"
+section "Pacman Packages"
 pacman_install "${pacman_packages[@]}"
 echo
 
 ### AUR
-log "[${CYAN}AUR Packages${RESET}]"
+section "AUR Packages"
 paru_install "${aur_packages[@]}"
 echo
 
 ### Install/Reinstall discord (triggers Vencord Hook)
-log "[${CYAN}Vencord${RESET}]"
+section "Vencord"
 
 log "Do you want to install/reinstall Discord? (Vencord Hook will automatically patch it with Vencord)"
 
 ask_user 2 \
-    "Yes" "log '[${BLUE}OK${RESET}] Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end.' && echo && sudo pacman -S --noconfirm discord && echo" \
-    "No" "log '[${BLUE}OK${RESET}] Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord.'"
+    "Yes" "log '$OK Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end.' && echo && sudo pacman -S --noconfirm discord && echo" \
+    "No" "log '$OK Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord.'"
 echo
 
 ## Services
 ### Enable greetd
-log "[${CYAN}Greetd${RESET}]"
+section "Greetd"
 edit_greetd_command "tuigreet --cmd hyprland"
 system_enable "greetd"
 echo
 
 ### Add user to groups
-log "[${CYAN}Groups${RESET}]"
+section "Groups"
 add_user_to_group "input" "gamemode" "plugdev"
 echo
 
 ### Enable and start paccache
-log "[${CYAN}Paccache${RESET}]"
+section "Paccache"
 system_enable "paccache.timer"
 system_start "paccache.timer"
 echo
 
 ### Enable and start systemd-oomd
-log "[${CYAN}Systemd OOMD${RESET}]"
+section "Systemd OOMD"
 system_enable "systemd-oomd"
 system_start "systemd-oomd"
 echo
 
 ### Enable and start ufw
-log "[${CYAN}UFW${RESET}]"
+section "UFW"
 system_enable "ufw"
 system_start "ufw"
 echo
@@ -1053,14 +1074,14 @@ echo
 # End #
 
 ## Success Message
-log "[${GREEN}SUCCESS${RESET}] Script executed with success."
+log "$SUCCESS Script executed with success."
 echo
 
 ## Ask user if he wants to reboot
-log "[${CYAN}Reboot${RESET}]"
+section "Reboot"
 
 log "Do you want to reboot?"
 
 ask_user 2 \
-    "Yes" "log '[${BLUE}OK${RESET}] Rebooting...' && sleep 3 && reboot" \
-    "No" "log '[${BLUE}OK${RESET}] It is recommended to reboot! Exiting...' && exit 0"
+    "Yes" "log '$OK Rebooting...' && sleep 3 && reboot" \
+    "No" "log '$OK It is recommended to reboot! Exiting...' && exit 0"
