@@ -165,7 +165,8 @@ source "$OSH"/oh-my-bash.sh
 # Personal Config
 
 # Neofetch
-neofetch --chafa ~/sources/neofetch/minimalistic/neofetch.png --size 400px
+neofetch --chafa ~/.config/neofetch/neofetch.png --size 400px
 
 # Aliases
+alias delete-paru-cache="paru -Sccd"
 alias refresh-mirrors="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
