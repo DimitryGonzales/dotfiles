@@ -6,12 +6,8 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 
 ### setup.sh
 
+- Automatically install Spicetify themes.
 - Automatically install VSCode themes.
-- Automatically set QT themes.
-
-### theme.sh
-
-- Automatically apply spicetify themes.
 
 ## 📦 Required dependencies
 
