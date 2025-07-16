@@ -2,6 +2,17 @@
 
 My personal dotfiles for an Arch Linux installation, including configurations for Hyprland, themes, and keybindings.
 
+## 📝 TODO
+
+### setup.sh
+
+- Automatically install VSCode themes.
+- Automatically set QT themes.
+
+### theme.sh
+
+- Automatically apply spicetify themes.
+
 ## 📦 Required dependencies
 
 - `git`
