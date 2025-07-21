@@ -30,6 +30,7 @@ tooltip label {
 
 /* Modules (bar order) */
 #memory,
+#cpu,
 #network,
 #workspaces,
 #pulseaudio,
@@ -52,6 +53,7 @@ tooltip label {
 }
 
 #memory:hover,
+#cpu:hover,
 #network:hover,
 #workspaces:hover,
 #pulseaudio:hover,
