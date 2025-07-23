@@ -7,6 +7,7 @@
 
     "modules-left": [
         "memory",
+        "cpu",
         "network"
     ],
 
@@ -29,6 +30,14 @@
 
         "tooltip":        true,
         "tooltip-format": "Available: {avail} GB"
+    },
+
+    "cpu": {
+        "interval":       1,
+        "format":         " {usage}%",
+        "max-length":     10,
+
+        "tooltip":        false
     },
 
     "network": {
