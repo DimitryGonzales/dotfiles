@@ -2,8 +2,6 @@
 
 My personal dotfiles for an Arch Linux installation, including configurations for Hyprland, themes, and keybindings.
 
----
-
 <br>
 
 ## 📄 Resources
@@ -11,8 +9,6 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 > ⚠️ Currently working on a complete list of all resources used in the project, for those who prefer manual installation.
 
 > ℹ️ In the meantime, you can run the `setup.sh` script or explore the configuration files directly to see what’s included.
-
----
 
 <br>
 
@@ -25,13 +21,11 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 sudo pacman -S git sudo
 ```
 
----
-
 <br>
 
 ## 📂 Cloning repository
 
-📌 **Clone this repository and copy the necessary files to your `home` folder:**
+**Clone this repository and copy the necessary files to your `home` folder:**
 
 ```bash
 cd ~
@@ -43,13 +37,11 @@ cp -r dotfiles/.config ~ && cp -r dotfiles/sources ~ && cp -r dotfiles/.bashrc ~
 
 > 🚨 After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
 
----
-
 <br>
 
 ## ⚙️ Installing
 
-📌 **Run the `setup.sh` script to do an automated installation of my Linux setup:**
+**Run the `setup.sh` script to do an automated installation of my Linux setup:**
 
 ```bash
 cd ~/dotfiles
@@ -58,7 +50,7 @@ cd ~/dotfiles
 
 *or*
 
-📌 **Run the `setup.sh` script with the `--essential` flag to do a minimal installation:**
+**Run the `setup.sh` script with the `--essential` flag to do a minimal installation:**
 
 ```bash
 cd ~/dotfiles
@@ -67,20 +59,16 @@ cd ~/dotfiles
 
 > ℹ️ This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind).
 
----
-
 <br>
 
 ## 🎨 Changing themes
 
-📌 **Run the `theme.sh` script to change the system theme.**
+**Run the `theme.sh` script to change the system theme.**
 
 ```bash
 cd ~/dotfiles
 ./theme.sh
 ```
-
----
 
 <br>
 
@@ -126,5 +114,3 @@ cd ~/dotfiles
         <td><img src="./examples/minimalistic/minimalistic-4.png" alt="example-4"></td>
     </tr>
 </table>
-
----
