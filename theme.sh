@@ -223,19 +223,28 @@ set_gtk_theme() {
 
 ## Set the theme used by spicetify
 set_spicetify_theme() {
-    local SPICETIFY_THEME="$1"
+    local THEME="$1"
+    local SCHEME="$2"
 
-    if spicetify config current_theme "$SPICETIFY_THEME" > /dev/null; then
-        log "$SUCCESS Set Spicetify theme to: '$SPICETIFY_THEME'"
+    if spicetify config current_theme "$THEME" > /dev/null; then
+        log "$SUCCESS Set Spicetify theme to: '$THEME'"
     else
-        log "$ERROR Failed to set Spicetify theme to: '$SPICETIFY_THEME'"
+        log "$ERROR Failed to set Spicetify theme to: '$THEME'"
+    fi
+
+    if spicetify config color_scheme "$SCHEME" > /dev/null; then
+        log "$SUCCESS Set Spicetify color scheme to: '$SCHEME'"
+    else
+        log "$ERROR Failed to set Spicetify color scheme to: '$SCHEME'"
     fi
 
     if spicetify apply > /dev/null; then
-        log "$SUCCESS Applied Spicetify theme: '$SPICETIFY_THEME'"
+        log "$SUCCESS Applied Spicetify theme: '$THEME'"
+        log "$SUCCESS Applied Spicetify color scheme: '$SCHEME'"
         return 0
     else
-        log "$ERROR Failed to apply Spicetify theme: '$SPICETIFY_THEME'"
+        log "$ERROR Failed to apply Spicetify theme: '$THEME'"
+        log "$ERROR Failed to apply Spicetify color scheme: '$SCHEME'"
         return 1
     fi
 }
@@ -277,20 +286,32 @@ ask_user 3 \
 if [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
     GTK_THEME="catppuccin-mocha-lavender-standard+default"
     GTK_ICON_THEME="Adwaita"
-    SPICETIFY_THEME="marketplace"
+
+    SPICETIFY_THEME="catppuccin"
+    SPICETIFY_SCHEME="mocha"
+
     VSCODE_THEME="Catppuccin Mocha"
+
     WALLPAPER="catppuccin-mocha-lavender.png"
 elif [[ "$THEME" == "gruvbox-dark" ]]; then
     GTK_THEME="Gruvbox-Yellow-Dark"
     GTK_ICON_THEME="Adwaita"
+
     SPICETIFY_THEME="marketplace"
+    SPICETIFY_SCHEME=" "
+
     VSCODE_THEME="Gruvbox Dark Hard"
+
     WALLPAPER="gruvbox-dark.png"
 elif [[ "$THEME" == "minimalistic" ]]; then
     GTK_THEME="Adwaita-dark"
     GTK_ICON_THEME="Adwaita"
+
     SPICETIFY_THEME=" "
+    SPICETIFY_SCHEME=" "
+
     VSCODE_THEME="GitHub Dark"
+
     WALLPAPER="minimalistic.png"
 fi
 
@@ -316,7 +337,7 @@ echo
 
 ## Set Spicetify theme
 section "Set Spicetify theme"
-set_spicetify_theme "$SPICETIFY_THEME"
+set_spicetify_theme "$SPICETIFY_THEME" "$SPICETIFY_SCHEME"
 echo
 
 ## Set wallpaper
