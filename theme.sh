@@ -276,19 +276,19 @@ ask_user 3 \
 
 if [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
     GTK_THEME="catppuccin-mocha-lavender-standard+default"
-    GTK_ICON_THEME="default"
+    GTK_ICON_THEME="Adwaita"
     SPICETIFY_THEME="marketplace"
     VSCODE_THEME="Catppuccin Mocha"
     WALLPAPER="catppuccin-mocha-lavender.png"
 elif [[ "$THEME" == "gruvbox-dark" ]]; then
     GTK_THEME="Gruvbox-Yellow-Dark"
-    GTK_ICON_THEME="default"
+    GTK_ICON_THEME="Adwaita"
     SPICETIFY_THEME="marketplace"
     VSCODE_THEME="Gruvbox Dark Hard"
     WALLPAPER="gruvbox-dark.png"
 elif [[ "$THEME" == "minimalistic" ]]; then
     GTK_THEME="Adwaita-dark"
-    GTK_ICON_THEME="default"
+    GTK_ICON_THEME="Adwaita"
     SPICETIFY_THEME=" "
     VSCODE_THEME="GitHub Dark"
     WALLPAPER="minimalistic.png"
@@ -312,6 +312,11 @@ echo
 ## Set VSCode theme
 section "Set VSCode theme"
 edit_option_in_json "$HOME/.config/Code/User/settings.json" "workbench.colorTheme" "$VSCODE_THEME"
+echo
+
+## Set Spicetify theme
+section "Set Spicetify theme"
+set_spicetify_theme "$SPICETIFY_THEME"
 echo
 
 ## Set wallpaper
