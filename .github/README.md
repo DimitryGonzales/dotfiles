@@ -2,11 +2,19 @@
 
 My personal dotfiles for an Arch Linux installation, including configurations for Hyprland, themes, and keybindings.
 
+---
+
+<br>
+
 ## 📄 Resources
 
 > ⚠️ Currently working on a complete list of all resources used in the project, for those who prefer manual installation.
 
 > ℹ️ In the meantime, you can run the `setup.sh` script or explore the configuration files directly to see what’s included.
+
+---
+
+<br>
 
 ## 📦 Required dependencies
 
@@ -17,9 +25,11 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 sudo pacman -S git sudo
 ```
 
-## 📜 Instructions
+---
 
-### 📂 Cloning repository
+<br>
+
+## 📂 Cloning repository
 
 📌 **Clone this repository and copy the necessary files to your `home` folder:**
 
@@ -33,7 +43,11 @@ cp -r dotfiles/.config ~ && cp -r dotfiles/sources ~ && cp -r dotfiles/.bashrc ~
 
 > 🚨 After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
 
-### ⚙️ Installing
+---
+
+<br>
+
+## ⚙️ Installing
 
 📌 **Run the `setup.sh` script to do an automated installation of my Linux setup:**
 
@@ -53,7 +67,11 @@ cd ~/dotfiles
 
 > ℹ️ This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind).
 
-### 🎨 Changing themes
+---
+
+<br>
+
+## 🎨 Changing themes
 
 📌 **Run the `theme.sh` script to change the system theme.**
 
@@ -61,6 +79,10 @@ cd ~/dotfiles
 cd ~/dotfiles
 ./theme.sh
 ```
+
+---
+
+<br>
 
 ## 🖼️ Examples
 
@@ -104,3 +126,5 @@ cd ~/dotfiles
         <td><img src="./examples/minimalistic/minimalistic-4.png" alt="example-4"></td>
     </tr>
 </table>
+
+---
