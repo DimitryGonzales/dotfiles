@@ -135,7 +135,23 @@ change_directory() {
     fi
 }
 
-## Check package existence
+## Check code extension existece
+check_extension() {
+    local RESULT=0
+
+    for EXTENSION in "$@"; do
+        if code --list-extensions | grep -q "^${EXTENSION}$"; then
+            log "$OK Extension is already installed: '$EXTENSION'"
+        else
+            log "$ALERT Extension is not installed: '$EXTENSION'"
+            RESULT=1
+        fi
+    done
+
+    return $RESULT
+}
+
+## Check pacman package existence
 check_package() {
     local RESULT=0
 
@@ -149,6 +165,32 @@ check_package() {
     done
     
     return $RESULT
+}
+
+## Install code extension
+code_install() {
+    if check_extension "$@"; then
+        log "$OK All extensions are already installed."
+        return 0
+    else
+        local RESULT=0
+
+        log "Installing missing extensions..."
+
+        for EXTENSION in "$@"; do
+            if ! code --install-extension "$EXTENSION"; then
+                RESULT=1
+            fi
+        done
+
+        if [[ $RESULT == 0 ]]; then
+            log "$SUCCESS Successfully installed all extensions."
+            return 0
+        else
+            log "$ERROR Failed to install all extensions."
+            return 1
+        fi
+    fi
 }
 
 ## Copy directories/files
@@ -973,6 +1015,23 @@ else
 fi
 
 
+# Code Extensions #
+
+## All code extensions
+code_extensions=(
+    # Themes #
+
+    ## Catppuccin
+    catppuccin.catppuccin-vsc
+
+    ## Github
+    github.github-vscode-theme
+
+    ## Gruvbox
+    jdinhlife.gruvbox
+)
+
+
 # Execution #
 
 ## Essential flag message
@@ -1038,6 +1097,12 @@ log "Do you want to install/reinstall Discord? (Vencord Hook will automatically 
 ask_user 2 \
     "Yes" "log '$OK Installing/Reinstalling Discord... Vencord Hook will patch it with Vencord at the end.' && echo && sudo pacman -S --noconfirm discord && echo" \
     "No" "log '$OK Skipping Discord installation/reinstallation... You can install/reinstall it at any time and Vencord Hook will automatically patch it with Vencord.'"
+echo
+
+## Code extensions
+### Install code extensions
+section "Code Extensions"
+code_install "${code_extensions[@]}"
 echo
 
 ## Services

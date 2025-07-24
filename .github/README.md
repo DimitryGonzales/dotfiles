@@ -2,12 +2,11 @@
 
 My personal dotfiles for an Arch Linux installation, including configurations for Hyprland, themes, and keybindings.
 
-## 📝 TODO
+## 📄 Resources
 
-### setup.sh
+> ⚠️ Currently working on a complete list of all resources used in the project, for those who prefer manual installation.
 
-- Automatically install Spicetify themes.
-- Automatically install VSCode themes.
+> ℹ️ In the meantime, you can run the `setup.sh` script or explore the configuration files directly to see what’s included.
 
 ## 📦 Required dependencies
 
@@ -62,18 +61,6 @@ cd ~/dotfiles
 cd ~/dotfiles
 ./theme.sh
 ```
-
-## 💻 VSCode
-
-📌 **Install the matching color theme extension for your selected theme:**
-
-- [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc)
-
-- [Github Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
-
-- [Gruvbox](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
-
-> 🛠️ I'm working on automating the installation of these extensions.
 
 ## 🖼️ Examples
 
