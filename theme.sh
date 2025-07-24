@@ -297,7 +297,7 @@ elif [[ "$THEME" == "gruvbox-dark" ]]; then
     GTK_THEME="Gruvbox-Yellow-Dark"
     GTK_ICON_THEME="Adwaita"
 
-    SPICETIFY_THEME="marketplace"
+    SPICETIFY_THEME="gruvify"
     SPICETIFY_SCHEME=" "
 
     VSCODE_THEME="Gruvbox Dark Hard"
