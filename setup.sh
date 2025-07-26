@@ -673,7 +673,7 @@ if ! $ESSENTIAL; then
         noto-fonts-extra
 
         ## Font Awesome (icon library)
-        ttf-font-awesome
+        woff2-font-awesome
         otf-font-awesome
 
         ## JetBrains Mono (cool font)
@@ -910,7 +910,7 @@ else
         noto-fonts-extra
 
         ## Font Awesome (icon library)
-        ttf-font-awesome
+        woff2-font-awesome
         otf-font-awesome
 
         ## JetBrains Mono (cool font)

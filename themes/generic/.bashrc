@@ -165,7 +165,7 @@ source "$OSH"/oh-my-bash.sh
 # Personal Config
 
 # Neofetch
-neofetch --chafa ~/.config/neofetch/neofetch.png --size 400px
+#neofetch --chafa ~/.config/neofetch/neofetch.png --size 400px
 
 # Aliases
 alias delete-paru-cache="paru -Sccd"

@@ -278,12 +278,23 @@ clear
 ## Select theme and set its variables
 section "Select theme"
 
-ask_user 3 \
+ask_user 4 \
+    "Blur" "THEME=blur" \
     "Catppuccin Mocha Lavender" "THEME=catppuccin-mocha-lavender" \
-    "Gruvbox Dark" "THEME=gruvbox-dark" \
-    "Minimalistic" "THEME=minimalistic"
+    "Dark" "THEME=dark" \
+    "Gruvbox Dark" "THEME=gruvbox-dark"
 
-if [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
+if [[ "$THEME" == "blur" ]]; then
+    GTK_THEME="Adwaita-dark"
+    GTK_ICON_THEME="Adwaita"
+
+    SPICETIFY_THEME=" "
+    SPICETIFY_SCHEME=" "
+
+    VSCODE_THEME="GitHub Dark"
+
+    WALLPAPER="blur.png"
+elif [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
     GTK_THEME="catppuccin-mocha-lavender-standard+default"
     GTK_ICON_THEME="Adwaita"
 
@@ -293,6 +304,16 @@ if [[ "$THEME" == "catppuccin-mocha-lavender" ]]; then
     VSCODE_THEME="Catppuccin Mocha"
 
     WALLPAPER="catppuccin-mocha-lavender.png"
+elif [[ "$THEME" == "dark" ]]; then
+    GTK_THEME="Adwaita-dark"
+    GTK_ICON_THEME="Adwaita"
+
+    SPICETIFY_THEME=" "
+    SPICETIFY_SCHEME=" "
+
+    VSCODE_THEME="GitHub Dark"
+
+    WALLPAPER="dark.png"
 elif [[ "$THEME" == "gruvbox-dark" ]]; then
     GTK_THEME="Gruvbox-Yellow-Dark"
     GTK_ICON_THEME="Adwaita"
@@ -303,16 +324,6 @@ elif [[ "$THEME" == "gruvbox-dark" ]]; then
     VSCODE_THEME="Gruvbox Dark Hard"
 
     WALLPAPER="gruvbox-dark.png"
-elif [[ "$THEME" == "minimalistic" ]]; then
-    GTK_THEME="Adwaita-dark"
-    GTK_ICON_THEME="Adwaita"
-
-    SPICETIFY_THEME=" "
-    SPICETIFY_SCHEME=" "
-
-    VSCODE_THEME="GitHub Dark"
-
-    WALLPAPER="minimalistic.png"
 fi
 
 ## Copy generic files to directories
