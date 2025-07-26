@@ -64,7 +64,7 @@ COMPLETION_WAITING_DOTS="true"
 # * '[dd.mm.yyyy]'   # [dd.mm.yyyy] + [time] with colors
 # * '[yyyy-mm-dd]'   # [yyyy-mm-dd] + [time] with colors
 # If not set, the default value is 'yyyy-mm-dd'.
-HIST_STAMPS=[dd.mm.yyyy] + [time] with colors
+HIST_STAMPS='[dd.mm.yyyy] + [time] with colors'
 
 # Uncomment the following line if you do not want OMB to overwrite the existing
 # aliases by the default OMB aliases defined in lib/*.sh
