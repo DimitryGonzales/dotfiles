@@ -80,12 +80,25 @@ cd ~/dotfiles
 
 <table>
     <tr>
-        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png" alt="example-1"></td>
-        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png" alt="example-2"></td>
+        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-1.png" alt="catppuccin-mocha-lavender-1"></td>
+        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-2.png" alt="catppuccin-mocha-lavender-2"></td>
     </tr>
     <tr>
-        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png" alt="example-3"></td>
-        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png" alt="example-4"></td>
+        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-3.png" alt="catppuccin-mocha-lavender-3"></td>
+        <td><img src="./examples/catppuccin-mocha-lavender/catppuccin-mocha-lavender-4.png" alt="catppuccin-mocha-lavender-4"></td>
+    </tr>
+</table>
+
+### 🏔️ Dark
+
+<table>
+    <tr>
+        <td><img src="./examples/dark/dark-1.png" alt="dark-1"></td>
+        <td><img src="./examples/dark/dark-2.png" alt="dark-2"></td>
+    </tr>
+    <tr>
+        <td><img src="./examples/dark/dark-3.png" alt="dark-3"></td>
+        <td><img src="./examples/dark/dark-4.png" alt="dark-4"></td>
     </tr>
 </table>
 
@@ -93,12 +106,12 @@ cd ~/dotfiles
 
 <table>
     <tr>
-        <td><img src="./examples/gruvbox-dark/gruvbox-dark-1.png" alt="example-1"></td>
-        <td><img src="./examples/gruvbox-dark/gruvbox-dark-2.png" alt="example-2"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-1.png" alt="gruvbox-dark-1"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-2.png" alt="gruvbox-dark-2"></td>
     </tr>
     <tr>
-        <td><img src="./examples/gruvbox-dark/gruvbox-dark-3.png" alt="example-3"></td>
-        <td><img src="./examples/gruvbox-dark/gruvbox-dark-4.png" alt="example-4"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-3.png" alt="gruvbox-dark-3"></td>
+        <td><img src="./examples/gruvbox-dark/gruvbox-dark-4.png" alt="gruvbox-dark-4"></td>
     </tr>
 </table>
 
@@ -106,11 +119,11 @@ cd ~/dotfiles
 
 <table>
     <tr>
-        <td><img src="./examples/minimalistic/minimalistic-1.png" alt="example-1"></td>
-        <td><img src="./examples/minimalistic/minimalistic-2.png" alt="example-2"></td>
+        <td><img src="./examples/minimalistic/minimalistic-1.png" alt="minimalistic-1"></td>
+        <td><img src="./examples/minimalistic/minimalistic-2.png" alt="minimalistic-2"></td>
     </tr>
     <tr>
-        <td><img src="./examples/minimalistic/minimalistic-3.png" alt="example-3"></td>
-        <td><img src="./examples/minimalistic/minimalistic-4.png" alt="example-4"></td>
+        <td><img src="./examples/minimalistic/minimalistic-3.png" alt="minimalistic-3"></td>
+        <td><img src="./examples/minimalistic/minimalistic-4.png" alt="minimalistic-4"></td>
     </tr>
 </table>
