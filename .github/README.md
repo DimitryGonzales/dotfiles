@@ -76,6 +76,19 @@ cd ~/dotfiles
 
 > ℹ️ These screenshots do not showcase all features or configurations.
 
+### 🧼 Blur
+
+<table>
+    <tr>
+        <td><img src="./examples/minimalistic/minimalistic-1.png" alt="minimalistic-1"></td>
+        <td><img src="./examples/minimalistic/minimalistic-2.png" alt="minimalistic-2"></td>
+    </tr>
+    <tr>
+        <td><img src="./examples/minimalistic/minimalistic-3.png" alt="minimalistic-3"></td>
+        <td><img src="./examples/minimalistic/minimalistic-4.png" alt="minimalistic-4"></td>
+    </tr>
+</table>
+
 ### 🌙 Catppuccin Mocha Lavender
 
 <table>
@@ -112,18 +125,5 @@ cd ~/dotfiles
     <tr>
         <td><img src="./examples/gruvbox-dark/gruvbox-dark-3.png" alt="gruvbox-dark-3"></td>
         <td><img src="./examples/gruvbox-dark/gruvbox-dark-4.png" alt="gruvbox-dark-4"></td>
-    </tr>
-</table>
-
-### 🧼 Minimalistic
-
-<table>
-    <tr>
-        <td><img src="./examples/minimalistic/minimalistic-1.png" alt="minimalistic-1"></td>
-        <td><img src="./examples/minimalistic/minimalistic-2.png" alt="minimalistic-2"></td>
-    </tr>
-    <tr>
-        <td><img src="./examples/minimalistic/minimalistic-3.png" alt="minimalistic-3"></td>
-        <td><img src="./examples/minimalistic/minimalistic-4.png" alt="minimalistic-4"></td>
     </tr>
 </table>
