@@ -7,6 +7,7 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 ## 📝 TODO
 
 - [ ] Make `install.sh` automatically copy the files to their respective directories.
+- [ ] Update `theme.sh` structure.
 
 <br>
 
