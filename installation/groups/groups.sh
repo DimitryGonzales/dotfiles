@@ -1,0 +1,5 @@
+groups=(
+    gamemode
+    input
+    plugdev
+)

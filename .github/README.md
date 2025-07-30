@@ -4,60 +4,69 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 
 <br>
 
-## 📄 Resources
+## 📝 TODO
 
-> ⚠️ Currently working on a complete list of all resources used in the project, for those who prefer manual installation.
-
-> ℹ️ In the meantime, you can run the `setup.sh` script or explore the configuration files directly to see what’s included.
-
-<br>
-
-## 📦 Required dependencies
-
-- `git`
-- `sudo`
-
-```bash
-sudo pacman -S git sudo
-```
+- [ ] Add root files.
+- [ ] Make `install.sh` automatically copy the files to their respective directories.
 
 <br>
 
 ## 📂 Cloning repository
 
-**Clone this repository and copy the necessary files to your `home` folder:**
+**Clone this repository to your `home` folder:**
 
 ```bash
 cd ~
 git clone "https://github.com/DimitryGonzales/dotfiles.git"
-cp -r dotfiles/.config ~ && cp -r dotfiles/sources ~ && cp -r dotfiles/.bashrc ~
 ```
+
+<br>
+
+## 🤖 Automatic Installation
+
+**Required dependencies:**
+
+- `base-devel`
+- `git`
+- `sudo`
+
+```bash
+sudo pacman -S base-devel git sudo
+```
+
+**Run the `install.sh` script to do an automated installation of my Arch Linux setup:**
+
+> ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
+
+```bash
+cd ~
+./dotfiles/installation/install.sh
+```
+
+<br>
+
+## ⚙️ Manual Installation
+
+**Resources:**
+
+> ⚠️ Currently working on a complete list of all resources used in the project.
+
+> ℹ️ In the meantime, you can do the [🤖 Automated Installation](#-automatic-installation) or explore the configuration files directly to see what’s included.
+
+**Copy the necessary files to their respective directories**
+
+> ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
+
+```bash
+cd ~
+cp -r dotfiles/.config ~ && cp -r dotfiles/.bashrc ~
+```
+
+<br>
 
 > ℹ️ Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).
 
 > 🚨 After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
-
-<br>
-
-## ⚙️ Installing
-
-**Run the `setup.sh` script to do an automated installation of my Linux setup:**
-
-```bash
-cd ~/dotfiles
-./setup.sh
-```
-
-*or*
-
-**Run the `setup.sh` script with the `--essential` flag to do a minimal installation:**
-
-```bash
-cd ~/dotfiles
-./setup.sh --essential
-```
-
-> ℹ️ This will install only essential drivers and packages, those required for a functional system and tools automatically used by scripts or keybindings (e.g., Spotify and Spicetify are used in theme.sh; Thunar is required for the SUPER+E bind).
 
 <br>
 
