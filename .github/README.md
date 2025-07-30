@@ -16,8 +16,7 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 **Clone this repository to your `home` folder:**
 
 ```bash
-cd ~
-git clone "https://github.com/DimitryGonzales/dotfiles.git"
+cd ~ && git clone "https://github.com/DimitryGonzales/dotfiles.git"
 ```
 
 <br>
@@ -39,8 +38,7 @@ sudo pacman -S base-devel git sudo
 > ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
 
 ```bash
-cd ~
-./dotfiles/installation/install.sh
+~/dotfiles/installation/install.sh
 ```
 
 <br>
@@ -58,8 +56,7 @@ cd ~
 > ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
 
 ```bash
-cd ~
-cp -r dotfiles/.config ~ && cp -r dotfiles/.bashrc ~
+cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
 ```
 
 <br>
@@ -77,8 +74,7 @@ cp -r dotfiles/.config ~ && cp -r dotfiles/.bashrc ~
 **Run the `theme.sh` script inside `themes` folder to change the system theme.**
 
 ```bash
-cd ~/dotfiles
-./theme.sh
+~/dotfiles/themes/theme.sh
 ```
 
 <br>

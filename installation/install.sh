@@ -16,6 +16,10 @@ clear
 authenticate
 echo
 
+## Go to home directory
+change_directory "$HOME"
+echo
+
 ## Paru
 source "$SCRIPT_DIR/paru/install_paru.sh"
 
