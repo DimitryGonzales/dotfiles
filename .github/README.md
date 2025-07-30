@@ -64,9 +64,11 @@ cp -r dotfiles/.config ~ && cp -r dotfiles/.bashrc ~
 
 <br>
 
-> ℹ️ Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).
+## 🔔 Reminders
 
-> 🚨 After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
+ℹ️ **Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).**
+
+🚨 **After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.**
 
 <br>
 
