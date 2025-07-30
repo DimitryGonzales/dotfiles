@@ -1,0 +1,143 @@
+{
+    "spacing": 5,
+
+    "modules-left": [
+        "memory",
+        "cpu",
+        "network"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "tray",
+        "clock",
+        "hyprland/language",
+        "custom/notification"
+    ],
+
+    "memory": {
+        "interval":       1,
+
+        "format":         " {used}/{total} GB",
+
+        "tooltip":        true,
+        "tooltip-format": "Available: {avail} GB"
+    },
+
+    "cpu": {
+        "interval":       1,
+        "format":         " {usage}%",
+        "max-length":     10,
+
+        "tooltip":        false
+    },
+
+    "network": {
+        "interval":                    1,
+
+        "format":                      "{ifname}",
+
+        "format-wifi":                 "  {bandwidthDownBytes} |  {bandwidthUpBytes}",
+        "tooltip-format-wifi":         "Wi-Fi\n\nSSID: {essid}\nFrequency: {frequency}\nStrength: {signalStrength}\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}",
+
+        "format-ethernet":             "  {bandwidthDownBytes} |  {bandwidthUpBytes}",
+        "tooltip-format-ethernet":     "Ethernet\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}",
+
+        "format-disconnected":         "",
+        "tooltip-format-disconnected": "Disconnected",
+
+        "max-length":                  1000
+    },
+
+    "hyprland/workspaces": {
+        "format":         "{name}",
+        
+        "on-click":       "activate",
+
+        "on-scroll-up":   "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+
+        "all-outputs":    true,
+        
+        "sort-by-number": true
+    },
+
+    "pulseaudio": {
+        "format":                 " {volume}% | {format_source}",
+        "format-muted":           " | {format_source}",
+
+        "format-source":          " {volume}%",
+        "format-source-muted":    "",
+
+        "format-bluetooth":       " {volume}% | {format_source}",
+        "format-bluetooth-muted": " | {format_source}",
+
+        "on-click":               "pavucontrol"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing":   10
+    },
+
+    "clock": {
+        "interval":         1,
+
+        "format":           " {:%H:%M:%S}",
+
+        "tooltip-format":   "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode":         "year",
+            "mode-mon-col": 4,
+
+            "weeks-pos":    "right",
+
+            "on-scroll":    1,
+
+            "format": {
+                "months":   "<span color='#ffffff'><b>{}</b></span>",
+                "days":     "<span color='#aaaaaa'><b>{}</b></span>",
+                "weeks":    "<span color='#ffffff'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffffff'><b>{}</b></span>",
+                "today":    "<span color='#0091ff'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
+    },
+
+    "custom/notification": {
+        "tooltip":                        false,
+
+        "format":                         "{icon}",
+        "format-icons": {
+            "notification":               "<span foreground='#0091ff'></span>",
+            "none":                       "",
+
+            "dnd-notification":           "<span foreground='#ff4245'></span>",
+            "dnd-none":                   "",
+
+            "inhibited-notification":     "<span foreground='#ffd600'></span>",
+            "inhibited-none":             "",
+
+            "dnd-inhibited-notification": "<span foreground='#ff9230'></span>",
+            "dnd-inhibited-none":         ""
+        },
+
+        "return-type":                    "json",
+
+        "exec-if":                        "which swaync-client",
+        "exec":                           "swaync-client -swb",
+
+        "on-click":                       "swaync-client -t -sw",
+        "on-click-right":                 "swaync-client -d -sw",
+
+        "escape":                         true
+    }
+}

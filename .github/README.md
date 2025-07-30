@@ -6,7 +6,6 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 
 ## 📝 TODO
 
-- [ ] Add root files.
 - [ ] Make `install.sh` automatically copy the files to their respective directories.
 
 <br>
@@ -34,7 +33,7 @@ git clone "https://github.com/DimitryGonzales/dotfiles.git"
 sudo pacman -S base-devel git sudo
 ```
 
-**Run the `install.sh` script to do an automated installation of my Arch Linux setup:**
+**Run the `install.sh` script inside `installation` folder to do an automated installation of my Arch Linux setup:**
 
 > ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
 
@@ -74,7 +73,7 @@ cp -r dotfiles/.config ~ && cp -r dotfiles/.bashrc ~
 
 ## 🎨 Changing themes
 
-**Run the `theme.sh` script to change the system theme.**
+**Run the `theme.sh` script inside `themes` folder to change the system theme.**
 
 ```bash
 cd ~/dotfiles

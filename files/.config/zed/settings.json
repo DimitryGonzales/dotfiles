@@ -1,0 +1,73 @@
+{
+    // AI
+    "show_edit_predictions": false,
+
+    // Auto Install Extensions
+    "auto_install_extensions": {
+        "discord-presence": true,
+        "html": true,
+        "material-icon-theme": true,
+        "one-dark-pro": true
+    },
+
+    // Autosave
+    "autosave": "on_focus_change",
+
+    // Base Keymap
+    "base_keymap": "VSCode",
+
+    // Calls
+    "calls": {
+        "mute_on_join": true
+    },
+
+    // Diagnostics
+    "diagnostics": {
+        "inline": {
+            "enabled": true
+        }
+    },
+
+    // Editor Tabs
+    "tabs": {
+        "file_icons": true,
+        "git_status": true,
+        "show_diagnostics": "all"
+    },
+
+    // Font
+    "buffer_font_family": "JetBrains Mono",
+    "buffer_font_size": 16,
+    "buffer_line_height": "comfortable",
+
+    "ui_font_size": 16,
+
+    // Formatting
+    "format_on_save": "off",
+
+    // Minimap
+    "minimap": {
+        "show": "auto"
+    },
+
+    // Soft Wrap
+    "soft_wrap": "editor_width",
+
+    // Tab Size
+    "tab_size": 4,
+
+    // Telemetry
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+
+    // Theme
+    "icon_theme": "Material Icon Theme",
+
+    "theme": {
+        "mode": "system",
+        "light": "One Light",
+        "dark": "One Dark Pro"
+    }
+}
