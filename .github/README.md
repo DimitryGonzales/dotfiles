@@ -89,12 +89,12 @@ cd ~/dotfiles
 
 <table>
     <tr>
-        <td><img src="./examples/minimalistic/minimalistic-1.png" alt="minimalistic-1"></td>
-        <td><img src="./examples/minimalistic/minimalistic-2.png" alt="minimalistic-2"></td>
+        <td><img src="./examples/blur/blur-1.png" alt="blur-1"></td>
+        <td><img src="./examples/blur/blur-2.png" alt="blur-2"></td>
     </tr>
     <tr>
-        <td><img src="./examples/minimalistic/minimalistic-3.png" alt="minimalistic-3"></td>
-        <td><img src="./examples/minimalistic/minimalistic-4.png" alt="minimalistic-4"></td>
+        <td><img src="./examples/blur/blur-3.png" alt="blur-3"></td>
+        <td><img src="./examples/blur/blur-4.png" alt="blur-4"></td>
     </tr>
 </table>
 
