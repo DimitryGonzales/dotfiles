@@ -35,7 +35,8 @@ sudo pacman -S base-devel git sudo
 
 **Run the `install.sh` script inside `installation` folder to do an automated installation of my Arch Linux setup:**
 
-> ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
+> [!WARNING]
+> Backup your files. This will replace any files that have the same name inside the directories.
 
 ```bash
 ~/dotfiles/installation/install.sh
@@ -47,13 +48,16 @@ sudo pacman -S base-devel git sudo
 
 **Resources:**
 
-> ⚠️ Currently working on a complete list of all resources used in the project.
+> [!NOTE]
+> I'm currently working on a complete list of all resources used in the project.
 
-> ℹ️ In the meantime, you can do the [🤖 Automated Installation](#-automatic-installation) or explore the configuration files directly to see what’s included.
+> [!TIP]
+> In the meantime, you can do the [🤖 Automated Installation](#-automatic-installation) or explore the configuration files directly to see what’s included.
 
 **Copy the necessary files to their respective directories**
 
-> ⚠️ **CAUTION!** Backup your files. This will replace any files that have the same name inside the directories.
+> [!WARNING]
+> Backup your files. This will replace any files that have the same name inside the directories.
 
 ```bash
 cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
@@ -65,7 +69,8 @@ cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
 
 ℹ️ **Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).**
 
-🚨 **After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.**
+> [!TIP]
+> After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
 
 <br>
 
@@ -81,7 +86,8 @@ cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
 
 ## 🖼️ Examples
 
-> ℹ️ These screenshots do not showcase all features or configurations.
+> [!NOTE]
+> These screenshots do not showcase all features or configurations.
 
 ### 🧼 Blur
 
