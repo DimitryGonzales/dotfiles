@@ -13,7 +13,7 @@ My personal dotfiles for an Arch Linux installation, including configurations fo
 
 ## 📂 Cloning repository
 
-**Clone this repository to your `home` folder:**
+Clone this repository to your `home` folder:
 
 ```bash
 cd ~ && git clone "https://github.com/DimitryGonzales/dotfiles.git"
@@ -23,7 +23,7 @@ cd ~ && git clone "https://github.com/DimitryGonzales/dotfiles.git"
 
 ## 🤖 Automatic Installation
 
-**Required dependencies:**
+Required dependencies:
 
 - `base-devel`
 - `git`
@@ -33,7 +33,7 @@ cd ~ && git clone "https://github.com/DimitryGonzales/dotfiles.git"
 sudo pacman -S base-devel git sudo
 ```
 
-**Run the `install.sh` script inside `installation` folder to do an automated installation of my Arch Linux setup:**
+Run the `installation/install.sh` script to do an automated installation of my Arch Linux setup:
 
 > [!WARNING]
 > Backup your files. This will replace any files that have the same name inside the directories.
@@ -46,7 +46,7 @@ sudo pacman -S base-devel git sudo
 
 ## ⚙️ Manual Installation
 
-**Resources:**
+Resources:
 
 > [!NOTE]
 > I'm currently working on a complete list of all resources used in the project.
@@ -54,7 +54,7 @@ sudo pacman -S base-devel git sudo
 > [!TIP]
 > In the meantime, you can do the [🤖 Automated Installation](#-automatic-installation) or explore the configuration files directly to see what’s included.
 
-**Copy the necessary files to their respective directories**
+Copy the necessary files to their respective directories:
 
 > [!WARNING]
 > Backup your files. This will replace any files that have the same name inside the directories.
@@ -67,7 +67,7 @@ cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
 
 ## 🔔 Reminders
 
-ℹ️ **Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).**
+ℹ️ Customize the files to suit your personal preferences (e.g., editing the Hyprland config file to adjust monitor settings).
 
 > [!TIP]
 > After running git pull in the repository, remember to manually copy any new or updated files to avoid overwriting your custom changes.
@@ -76,7 +76,7 @@ cp -r ~/dotfiles/files/.config ~ && cp -r ~/dotfiles/files/.bashrc ~
 
 ## 🎨 Changing themes
 
-**Run the `theme.sh` script inside `themes` folder to change the system theme.**
+Run the `/themes/theme.sh` script to change the system theme:
 
 ```bash
 ~/dotfiles/themes/theme.sh
