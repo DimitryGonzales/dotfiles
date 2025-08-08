@@ -1,0 +1,14 @@
+# GTK 3
+.config/gtk-3.0/bookmarks
+
+# QT5CT
+.config/qt5ct/qss/
+
+# QT6CT
+.config/qt6ct/qss/
+
+# Vencord
+.config/Vencord/dist/
+
+# VLC
+.config/vlc/vlc-qt-interface.config
