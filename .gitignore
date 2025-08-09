@@ -11,4 +11,4 @@
 .config/Vencord/dist/
 
 # VLC
-.config/vlc/vlc-qt-interface.config
+.config/vlc/vlc-qt-interface.conf
