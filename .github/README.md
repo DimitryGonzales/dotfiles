@@ -103,7 +103,7 @@ yadm clone "https://github.com/DimitryGonzales/dotfiles.git"
 Run the `install.sh` script to install the required software:
 
 ```bash
-~/Documents/scripts/install.sh
+~/Documents/scripts/installation/install.sh
 ```
 
 #### Option 2: Full setup
@@ -111,5 +111,5 @@ Run the `install.sh` script to install the required software:
 Run the `setup.sh` script for a complete system setup including **display manager**, **window manager**, **apps**, **tools**, and more:
 
 ```bash
-~/Documents/scripts/setup.sh
+~/Documents/scripts/setup/setup.sh
 ```
