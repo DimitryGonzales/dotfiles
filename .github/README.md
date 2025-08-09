@@ -76,7 +76,7 @@ https://github.com/user-attachments/assets/7cd3b1b5-f198-4e73-9874-f730d4a72208
 - `yadm`
 
 ```bash
-pacman -S base-devel git yadm
+pacman -S --needed base-devel git yadm
 ```
 
 <br>
@@ -99,6 +99,9 @@ yadm clone "https://github.com/DimitryGonzales/dotfiles.git"
 ### Choose one of the following options:
 
 #### Option 1: Dotfiles only
+
+> [!NOTE]
+> This script is still in development and is not included yet.
 
 Run the `install.sh` script to install the required software:
 
