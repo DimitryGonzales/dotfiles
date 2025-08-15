@@ -53,25 +53,19 @@ official_packages=(
 
     # Tools
     btrfs-progs
-    chafa
     cliphist
     gamemode lib32-gamemode
     inetutils
     ncdu
-    neovim
     ntfs-3g
     swww
     ufw
-    w3m
     yt-dlp
 
     # Apps
     discord
     firefox
     foot
-    gparted
-    gsmartcontrol
-    kitty
     lutris
     mangohud goverlay
     mission-center
@@ -86,5 +80,4 @@ official_packages=(
     thunar catfish file-roller gvfs gvfs-mtp thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler
     vlc vlc-plugins-all
     waybar
-    zed
 )

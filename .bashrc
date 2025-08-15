@@ -40,6 +40,9 @@ fi
 source "$OSH"/oh-my-bash.sh
 
 # Aliases
+alias cp="cp -r"
+alias mkdir="mkdir -p"
+
 alias ls="ls -lh --color=auto"
 alias lsa="ls -lah --color=auto"
 

@@ -769,6 +769,11 @@ qt-privacy-ask=0
 # Scaling mode (integer)
 #swscale-mode=2
 
+[svg] # svg
+
+# SVG template file (string)
+#svg-template-file=
+
 [freetype] # Freetype2 font renderer
 
 # Font (string)
@@ -824,11 +829,6 @@ freetype-font=Noto Sans
 
 # Text direction (integer)
 #freetype-text-direction=0
-
-[svg] # svg
-
-# SVG template file (string)
-#svg-template-file=
 
 [stream_out_chromecast] # Chromecast stream output
 
@@ -1527,6 +1527,14 @@ freetype-font=Noto Sans
 # Bitrate override (integer)
 #sout-asf-bitrate-override=0
 
+[mux_ogg] # Ogg/OGM muxer
+
+# Index interval (integer)
+#sout-ogg-indexintvl=1000
+
+# Index size ratio (float)
+#sout-ogg-indexratio=1.000000
+
 [file] # Secrets are stored on a file without any encryption
 
 # ? (string)
@@ -1584,6 +1592,23 @@ freetype-font=Noto Sans
 # Preload clusters (boolean)
 #mkv-preload-clusters=0
 
+[avformat] # Avformat demuxer
+
+# Format name (string)
+#avformat-format=
+
+# Advanced options (string)
+#avformat-options=
+
+# Avformat mux (string)
+#sout-avformat-mux=
+
+# Advanced options (string)
+#sout-avformat-options=
+
+# Reset timestamps (boolean)
+#sout-avformat-reset-ts=1
+
 [ts] # MPEG Transport Stream demuxer
 
 # Digital TV Standard (string)
@@ -1624,23 +1649,6 @@ freetype-font=Noto Sans
 
 # Try to fix too early PCR (or late DTS) (boolean)
 #ts-pcr-offsetfix=1
-
-[avformat] # Avformat demuxer
-
-# Format name (string)
-#avformat-format=
-
-# Advanced options (string)
-#avformat-options=
-
-# Avformat mux (string)
-#sout-avformat-mux=
-
-# Advanced options (string)
-#sout-avformat-options=
-
-# Reset timestamps (boolean)
-#sout-avformat-reset-ts=1
 
 [vc1] # VC1 video demuxer
 
@@ -2549,6 +2557,17 @@ freetype-font=Noto Sans
 #  SRT Stream ID (string)
 #streamid=
 
+[smb] # SMB input
+
+# Username (string)
+#smb-user=
+
+# Password (string)
+#smb-pwd=
+
+# SMB domain (string)
+#smb-domain=
+
 [sftp] # SFTP input
 
 # SFTP port (integer)
@@ -2596,6 +2615,22 @@ freetype-font=Noto Sans
 
 # RTSP frame buffer size (integer)
 #rtsp-frame-buffer-size=250000
+
+[access_jack] # JACK audio input
+
+# Pace (boolean)
+#jack-input-use-vlc-pace=0
+
+# Auto connection (boolean)
+#jack-input-auto-connect=0
+
+[avio] # libavformat AVIO access
+
+# Advanced options (string)
+#avio-options=
+
+# Advanced options (string)
+#sout-avio-options=
 
 [dvdread] # DVDRead Input (no menu support)
 
@@ -2645,33 +2680,6 @@ freetype-font=Noto Sans
 
 # Region code (string)
 #bluray-region=B
-
-[smb] # SMB input
-
-# Username (string)
-#smb-user=
-
-# Password (string)
-#smb-pwd=
-
-# SMB domain (string)
-#smb-domain=
-
-[access_jack] # JACK audio input
-
-# Pace (boolean)
-#jack-input-use-vlc-pace=0
-
-# Auto connection (boolean)
-#jack-input-auto-connect=0
-
-[avio] # libavformat AVIO access
-
-# Advanced options (string)
-#avio-options=
-
-# Advanced options (string)
-#sout-avio-options=
 
 [vdr] # VDR recordings
 
@@ -2994,424 +3002,6 @@ freetype-font=Noto Sans
 
 # Presentation Level (integer)
 #vbi-level=3
-
-[qsv] # Intel QuickSync Video encoder for MPEG4-Part10/MPEG2 (aka H.264/H.262)
-
-# Enable software mode (boolean)
-#sout-qsv-software=0
-
-# Codec Profile (string)
-#sout-qsv-h264-profile=unspecified
-
-# Codec Level (string)
-#sout-qsv-h264-level=unspecified
-
-# Codec Profile (string)
-#sout-qsv-mpeg2-profile=unspecified
-
-# Codec Level (string)
-#sout-qsv-mpeg2-level=unspecified
-
-# Group of Picture size (integer)
-#sout-qsv-gop-size=32
-
-# Group of Picture Reference Distance (integer)
-#sout-qsv-gop-refdist=4
-
-# IDR interval (integer)
-#sout-qsv-idr-interval=0
-
-# Target Usage (string)
-#sout-qsv-target-usage=quality
-
-# Rate Control Method (string)
-#sout-qsv-rc-method=vbr
-
-# Quantization parameter (integer)
-#sout-qsv-qp=0
-
-# Quantization parameter for I-frames (integer)
-#sout-qsv-qpi=0
-
-# Quantization parameter for P-frames (integer)
-#sout-qsv-qpp=0
-
-# Quantization parameter for B-frames (integer)
-#sout-qsv-qpb=0
-
-# Maximum Bitrate (integer)
-#sout-qsv-bitrate-max=0
-
-# Accuracy of RateControl (integer)
-#sout-qsv-accuracy=0
-
-# Convergence time of 'avbr' RateControl (integer)
-#sout-qsv-convergence=0
-
-# Number of slices per frame (integer)
-#sout-qsv-num-slice=0
-
-# Number of reference frames (integer)
-#sout-qsv-num-ref-frame=0
-
-# Number of parallel operations (integer)
-#sout-qsv-async-depth=4
-
-[kate] # Kate overlay decoder
-
-# Formatted Subtitles (boolean)
-#kate-formatted=1
-
-# Use Tiger for rendering (boolean)
-#kate-use-tiger=1
-
-# Rendering quality (float)
-#kate-tiger-quality=1.000000
-
-# Default font description (string)
-#kate-tiger-default-font-desc=
-
-# Default font effect (integer)
-#kate-tiger-default-font-effect=0
-
-# Default font effect strength (float)
-#kate-tiger-default-font-effect-strength=0.500000
-
-# Default font color (integer)
-#kate-tiger-default-font-color=16777215
-
-# Default font alpha (integer)
-#kate-tiger-default-font-alpha=255
-
-# Default background color (integer)
-#kate-tiger-default-background-color=16777215
-
-# Default background alpha (integer)
-#kate-tiger-default-background-alpha=0
-
-[dca] # DTS Coherent Acoustics audio decoder
-
-# DTS dynamic range compression (boolean)
-#dts-dynrng=1
-
-[libass] # Subtitle renderers using libass
-
-# Additional fonts directory (string)
-#ssa-fontsdir=
-
-[aribsub] # ARIB subtitles decoder
-
-# Ignore ruby (furigana) (boolean)
-#aribsub-ignore-ruby=0
-
-# Use Core Text renderer (boolean)
-#aribsub-use-coretext=0
-
-[svgdec] # SVG video decoder
-
-# Image width (integer)
-#svg-width=-1
-
-# Image height (integer)
-#svg-height=-1
-
-# Scale factor (float)
-#svg-scale=-1.000000
-
-[fluidsynth] # FluidSynth MIDI synthesizer
-
-# SoundFont file (string)
-#soundfont=
-
-# Chorus (boolean)
-#synth-chorus=1
-
-# Synthesis gain (float)
-#synth-gain=0.500000
-
-# Polyphony (integer)
-#synth-polyphony=256
-
-# Reverb (boolean)
-#synth-reverb=1
-
-# Sample rate (integer)
-#synth-sample-rate=44100
-
-[avcodec] # FFmpeg audio/video decoder
-
-# Direct rendering (boolean)
-#avcodec-dr=1
-
-# Show corrupted frames (boolean)
-#avcodec-corrupted=1
-
-# Error resilience (integer)
-#avcodec-error-resilience=1
-
-# Workaround bugs (integer)
-#avcodec-workaround-bugs=1
-
-# Hurry up (boolean)
-#avcodec-hurry-up=1
-
-# Skip frame (default=0) (integer)
-#avcodec-skip-frame=0
-
-# Skip idct (default=0) (integer)
-#avcodec-skip-idct=0
-
-# Allow speed tricks (boolean)
-#avcodec-fast=0
-
-# Skip the loop filter for H.264 decoding (integer)
-#avcodec-skiploopfilter=0
-
-# Debug mask (integer)
-#avcodec-debug=0
-
-# Codec name (string)
-#avcodec-codec=
-
-# Hardware decoding (string)
-#avcodec-hw=any
-
-# Threads (integer)
-#avcodec-threads=0
-
-# Advanced options (string)
-#avcodec-options=
-
-# Codec name (string)
-#sout-avcodec-codec=
-
-# Quality level (string)
-#sout-avcodec-hq=rd
-
-# Ratio of key frames (integer)
-#sout-avcodec-keyint=0
-
-# Ratio of B frames (integer)
-#sout-avcodec-bframes=0
-
-# Hurry up (boolean)
-#sout-avcodec-hurry-up=0
-
-# Interlaced encoding (boolean)
-#sout-avcodec-interlace=0
-
-# Interlaced motion estimation (boolean)
-#sout-avcodec-interlace-me=1
-
-# Video bitrate tolerance (integer)
-#sout-avcodec-vt=0
-
-# Pre-motion estimation (boolean)
-#sout-avcodec-pre-me=0
-
-# Rate control buffer size (integer)
-#sout-avcodec-rc-buffer-size=0
-
-# Rate control buffer aggressiveness (float)
-#sout-avcodec-rc-buffer-aggressivity=1.000000
-
-# I quantization factor (float)
-#sout-avcodec-i-quant-factor=0.000000
-
-# Noise reduction (integer)
-#sout-avcodec-noise-reduction=0
-
-# MPEG4 quantization matrix (boolean)
-#sout-avcodec-mpeg4-matrix=0
-
-# Minimum video quantizer scale (integer)
-#sout-avcodec-qmin=0
-
-# Maximum video quantizer scale (integer)
-#sout-avcodec-qmax=0
-
-# Trellis quantization (boolean)
-#sout-avcodec-trellis=0
-
-# Fixed quantizer scale (float)
-#sout-avcodec-qscale=3.000000
-
-# Strict standard compliance (integer)
-#sout-avcodec-strict=0
-
-# Luminance masking (float)
-#sout-avcodec-lumi-masking=0.000000
-
-# Darkness masking (float)
-#sout-avcodec-dark-masking=0.000000
-
-# Motion masking (float)
-#sout-avcodec-p-masking=0.000000
-
-# Border masking (float)
-#sout-avcodec-border-masking=0.000000
-
-# Luminance elimination (integer)
-#sout-avcodec-luma-elim-threshold=0
-
-# Chrominance elimination (integer)
-#sout-avcodec-chroma-elim-threshold=0
-
-# Specify AAC audio profile to use (string)
-#sout-avcodec-aac-profile=low
-
-# Advanced options (string)
-#sout-avcodec-options=
-
-[gstdecode] # GStreamer Based Decoder
-
-# Use DecodeBin (boolean)
-#use-decodebin=1
-
-[ttml] # TTML subtitles decoder
-
-# Subtitle justification (integer)
-#ttml-align=0
-
-[telx] # Teletext subtitles decoder
-
-# Override page (integer)
-#telx-override-page=-1
-
-# Ignore subtitle flag (boolean)
-#telx-ignore-subtitle-flag=0
-
-# Workaround for France (boolean)
-#telx-french-workaround=0
-
-[svcdsub] # Philips OGT (SVCD subtitle) decoder
-
-[subsusf] # USF subtitles decoder
-
-# Formatted Subtitles (boolean)
-#subsdec-formatted=1
-
-[subsdec] # Text subtitle decoder
-
-# Subtitle justification (integer)
-#subsdec-align=-1
-
-# Subtitle text encoding (string)
-#subsdec-encoding=
-
-# UTF-8 subtitle autodetection (boolean)
-#subsdec-autodetect-utf8=1
-
-[spudec] # DVD subtitles decoder
-
-# Disable DVD subtitle transparency (boolean)
-#dvdsub-transparency=0
-
-[dvbsub] # DVB subtitles decoder
-
-# Subpicture position (integer)
-#dvbsub-position=8
-
-# Decoding X coordinate (integer)
-#dvbsub-x=-1
-
-# Decoding Y coordinate (integer)
-#dvbsub-y=-1
-
-# Encoding X coordinate (integer)
-#sout-dvbsub-x=-1
-
-# Encoding Y coordinate (integer)
-#sout-dvbsub-y=-1
-
-[ddummy] # Dummy decoder
-
-# Save raw codec data (boolean)
-#dummy-save-es=0
-
-[cc] # Closed Captions decoder
-
-# Opacity (boolean)
-#cc-opaque=1
-
-[vpx] # WebM video decoder
-
-# Quality mode (integer)
-#sout-vpx-quality-mode=1000000
-
-[vorbis] # Vorbis audio decoder
-
-# Encoding quality (integer)
-#sout-vorbis-quality=0
-
-# Maximum encoding bitrate (integer)
-#sout-vorbis-max-bitrate=0
-
-# Minimum encoding bitrate (integer)
-#sout-vorbis-min-bitrate=0
-
-# CBR encoding (boolean)
-#sout-vorbis-cbr=0
-
-[twolame] # Libtwolame audio encoder
-
-# Encoding quality (float)
-#sout-twolame-quality=0.000000
-
-# Stereo mode (integer)
-#sout-twolame-mode=0
-
-# VBR mode (boolean)
-#sout-twolame-vbr=0
-
-# Psycho-acoustic model (integer)
-#sout-twolame-psy=3
-
-[theora] # Theora video decoder
-
-# Post processing quality (integer)
-#theora-postproc=-1
-
-# Encoding quality (integer)
-#sout-theora-quality=2
-
-[speex] # Speex audio decoder
-
-# Mode (integer)
-#sout-speex-mode=0
-
-# Encoding complexity (integer)
-#sout-speex-complexity=3
-
-# CBR encoding (boolean)
-#sout-speex-cbr=0
-
-# Encoding quality (float)
-#sout-speex-quality=8.000000
-
-# Maximal bitrate (integer)
-#sout-speex-max-bitrate=0
-
-# Voice activity detection (boolean)
-#sout-speex-vad=1
-
-# Discontinuous Transmission (boolean)
-#sout-speex-dtx=0
-
-[jpeg] # JPEG image decoder
-
-# Quality level (integer)
-#sout-jpeg-quality=95
-
-[dav1d] # Dav1d video decoder
-
-# Frames Threads (integer)
-#dav1d-thread-frames=0
-
-[a52] # ATSC A/52 (AC-3) audio decoder
-
-# A/52 dynamic range compression (boolean)
-#a52-dynrng=1
 
 [x264] # H.264/MPEG-4 Part 10/AVC encoder (x264)
 
@@ -3872,6 +3462,424 @@ sout-x264-tune=film
 
 # x264 advanced options (string)
 #sout-x26410b-options=
+
+[svgdec] # SVG video decoder
+
+# Image width (integer)
+#svg-width=-1
+
+# Image height (integer)
+#svg-height=-1
+
+# Scale factor (float)
+#svg-scale=-1.000000
+
+[qsv] # Intel QuickSync Video encoder for MPEG4-Part10/MPEG2 (aka H.264/H.262)
+
+# Enable software mode (boolean)
+#sout-qsv-software=0
+
+# Codec Profile (string)
+#sout-qsv-h264-profile=unspecified
+
+# Codec Level (string)
+#sout-qsv-h264-level=unspecified
+
+# Codec Profile (string)
+#sout-qsv-mpeg2-profile=unspecified
+
+# Codec Level (string)
+#sout-qsv-mpeg2-level=unspecified
+
+# Group of Picture size (integer)
+#sout-qsv-gop-size=32
+
+# Group of Picture Reference Distance (integer)
+#sout-qsv-gop-refdist=4
+
+# IDR interval (integer)
+#sout-qsv-idr-interval=0
+
+# Target Usage (string)
+#sout-qsv-target-usage=quality
+
+# Rate Control Method (string)
+#sout-qsv-rc-method=vbr
+
+# Quantization parameter (integer)
+#sout-qsv-qp=0
+
+# Quantization parameter for I-frames (integer)
+#sout-qsv-qpi=0
+
+# Quantization parameter for P-frames (integer)
+#sout-qsv-qpp=0
+
+# Quantization parameter for B-frames (integer)
+#sout-qsv-qpb=0
+
+# Maximum Bitrate (integer)
+#sout-qsv-bitrate-max=0
+
+# Accuracy of RateControl (integer)
+#sout-qsv-accuracy=0
+
+# Convergence time of 'avbr' RateControl (integer)
+#sout-qsv-convergence=0
+
+# Number of slices per frame (integer)
+#sout-qsv-num-slice=0
+
+# Number of reference frames (integer)
+#sout-qsv-num-ref-frame=0
+
+# Number of parallel operations (integer)
+#sout-qsv-async-depth=4
+
+[kate] # Kate overlay decoder
+
+# Formatted Subtitles (boolean)
+#kate-formatted=1
+
+# Use Tiger for rendering (boolean)
+#kate-use-tiger=1
+
+# Rendering quality (float)
+#kate-tiger-quality=1.000000
+
+# Default font description (string)
+#kate-tiger-default-font-desc=
+
+# Default font effect (integer)
+#kate-tiger-default-font-effect=0
+
+# Default font effect strength (float)
+#kate-tiger-default-font-effect-strength=0.500000
+
+# Default font color (integer)
+#kate-tiger-default-font-color=16777215
+
+# Default font alpha (integer)
+#kate-tiger-default-font-alpha=255
+
+# Default background color (integer)
+#kate-tiger-default-background-color=16777215
+
+# Default background alpha (integer)
+#kate-tiger-default-background-alpha=0
+
+[gstdecode] # GStreamer Based Decoder
+
+# Use DecodeBin (boolean)
+#use-decodebin=1
+
+[fluidsynth] # FluidSynth MIDI synthesizer
+
+# SoundFont file (string)
+#soundfont=
+
+# Chorus (boolean)
+#synth-chorus=1
+
+# Synthesis gain (float)
+#synth-gain=0.500000
+
+# Polyphony (integer)
+#synth-polyphony=256
+
+# Reverb (boolean)
+#synth-reverb=1
+
+# Sample rate (integer)
+#synth-sample-rate=44100
+
+[avcodec] # FFmpeg audio/video decoder
+
+# Direct rendering (boolean)
+#avcodec-dr=1
+
+# Show corrupted frames (boolean)
+#avcodec-corrupted=1
+
+# Error resilience (integer)
+#avcodec-error-resilience=1
+
+# Workaround bugs (integer)
+#avcodec-workaround-bugs=1
+
+# Hurry up (boolean)
+#avcodec-hurry-up=1
+
+# Skip frame (default=0) (integer)
+#avcodec-skip-frame=0
+
+# Skip idct (default=0) (integer)
+#avcodec-skip-idct=0
+
+# Allow speed tricks (boolean)
+#avcodec-fast=0
+
+# Skip the loop filter for H.264 decoding (integer)
+#avcodec-skiploopfilter=0
+
+# Debug mask (integer)
+#avcodec-debug=0
+
+# Codec name (string)
+#avcodec-codec=
+
+# Hardware decoding (string)
+#avcodec-hw=any
+
+# Threads (integer)
+#avcodec-threads=0
+
+# Advanced options (string)
+#avcodec-options=
+
+# Codec name (string)
+#sout-avcodec-codec=
+
+# Quality level (string)
+#sout-avcodec-hq=rd
+
+# Ratio of key frames (integer)
+#sout-avcodec-keyint=0
+
+# Ratio of B frames (integer)
+#sout-avcodec-bframes=0
+
+# Hurry up (boolean)
+#sout-avcodec-hurry-up=0
+
+# Interlaced encoding (boolean)
+#sout-avcodec-interlace=0
+
+# Interlaced motion estimation (boolean)
+#sout-avcodec-interlace-me=1
+
+# Video bitrate tolerance (integer)
+#sout-avcodec-vt=0
+
+# Pre-motion estimation (boolean)
+#sout-avcodec-pre-me=0
+
+# Rate control buffer size (integer)
+#sout-avcodec-rc-buffer-size=0
+
+# Rate control buffer aggressiveness (float)
+#sout-avcodec-rc-buffer-aggressivity=1.000000
+
+# I quantization factor (float)
+#sout-avcodec-i-quant-factor=0.000000
+
+# Noise reduction (integer)
+#sout-avcodec-noise-reduction=0
+
+# MPEG4 quantization matrix (boolean)
+#sout-avcodec-mpeg4-matrix=0
+
+# Minimum video quantizer scale (integer)
+#sout-avcodec-qmin=0
+
+# Maximum video quantizer scale (integer)
+#sout-avcodec-qmax=0
+
+# Trellis quantization (boolean)
+#sout-avcodec-trellis=0
+
+# Fixed quantizer scale (float)
+#sout-avcodec-qscale=3.000000
+
+# Strict standard compliance (integer)
+#sout-avcodec-strict=0
+
+# Luminance masking (float)
+#sout-avcodec-lumi-masking=0.000000
+
+# Darkness masking (float)
+#sout-avcodec-dark-masking=0.000000
+
+# Motion masking (float)
+#sout-avcodec-p-masking=0.000000
+
+# Border masking (float)
+#sout-avcodec-border-masking=0.000000
+
+# Luminance elimination (integer)
+#sout-avcodec-luma-elim-threshold=0
+
+# Chrominance elimination (integer)
+#sout-avcodec-chroma-elim-threshold=0
+
+# Specify AAC audio profile to use (string)
+#sout-avcodec-aac-profile=low
+
+# Advanced options (string)
+#sout-avcodec-options=
+
+[dca] # DTS Coherent Acoustics audio decoder
+
+# DTS dynamic range compression (boolean)
+#dts-dynrng=1
+
+[libass] # Subtitle renderers using libass
+
+# Additional fonts directory (string)
+#ssa-fontsdir=
+
+[aribsub] # ARIB subtitles decoder
+
+# Ignore ruby (furigana) (boolean)
+#aribsub-ignore-ruby=0
+
+# Use Core Text renderer (boolean)
+#aribsub-use-coretext=0
+
+[ttml] # TTML subtitles decoder
+
+# Subtitle justification (integer)
+#ttml-align=0
+
+[telx] # Teletext subtitles decoder
+
+# Override page (integer)
+#telx-override-page=-1
+
+# Ignore subtitle flag (boolean)
+#telx-ignore-subtitle-flag=0
+
+# Workaround for France (boolean)
+#telx-french-workaround=0
+
+[svcdsub] # Philips OGT (SVCD subtitle) decoder
+
+[subsusf] # USF subtitles decoder
+
+# Formatted Subtitles (boolean)
+#subsdec-formatted=1
+
+[subsdec] # Text subtitle decoder
+
+# Subtitle justification (integer)
+#subsdec-align=-1
+
+# Subtitle text encoding (string)
+#subsdec-encoding=
+
+# UTF-8 subtitle autodetection (boolean)
+#subsdec-autodetect-utf8=1
+
+[spudec] # DVD subtitles decoder
+
+# Disable DVD subtitle transparency (boolean)
+#dvdsub-transparency=0
+
+[dvbsub] # DVB subtitles decoder
+
+# Subpicture position (integer)
+#dvbsub-position=8
+
+# Decoding X coordinate (integer)
+#dvbsub-x=-1
+
+# Decoding Y coordinate (integer)
+#dvbsub-y=-1
+
+# Encoding X coordinate (integer)
+#sout-dvbsub-x=-1
+
+# Encoding Y coordinate (integer)
+#sout-dvbsub-y=-1
+
+[ddummy] # Dummy decoder
+
+# Save raw codec data (boolean)
+#dummy-save-es=0
+
+[cc] # Closed Captions decoder
+
+# Opacity (boolean)
+#cc-opaque=1
+
+[vpx] # WebM video decoder
+
+# Quality mode (integer)
+#sout-vpx-quality-mode=1000000
+
+[vorbis] # Vorbis audio decoder
+
+# Encoding quality (integer)
+#sout-vorbis-quality=0
+
+# Maximum encoding bitrate (integer)
+#sout-vorbis-max-bitrate=0
+
+# Minimum encoding bitrate (integer)
+#sout-vorbis-min-bitrate=0
+
+# CBR encoding (boolean)
+#sout-vorbis-cbr=0
+
+[twolame] # Libtwolame audio encoder
+
+# Encoding quality (float)
+#sout-twolame-quality=0.000000
+
+# Stereo mode (integer)
+#sout-twolame-mode=0
+
+# VBR mode (boolean)
+#sout-twolame-vbr=0
+
+# Psycho-acoustic model (integer)
+#sout-twolame-psy=3
+
+[theora] # Theora video decoder
+
+# Post processing quality (integer)
+#theora-postproc=-1
+
+# Encoding quality (integer)
+#sout-theora-quality=2
+
+[speex] # Speex audio decoder
+
+# Mode (integer)
+#sout-speex-mode=0
+
+# Encoding complexity (integer)
+#sout-speex-complexity=3
+
+# CBR encoding (boolean)
+#sout-speex-cbr=0
+
+# Encoding quality (float)
+#sout-speex-quality=8.000000
+
+# Maximal bitrate (integer)
+#sout-speex-max-bitrate=0
+
+# Voice activity detection (boolean)
+#sout-speex-vad=1
+
+# Discontinuous Transmission (boolean)
+#sout-speex-dtx=0
+
+[jpeg] # JPEG image decoder
+
+# Quality level (integer)
+#sout-jpeg-quality=95
+
+[dav1d] # Dav1d video decoder
+
+# Frames Threads (integer)
+#dav1d-thread-frames=0
+
+[a52] # ATSC A/52 (AC-3) audio decoder
+
+# A/52 dynamic range compression (boolean)
+#a52-dynrng=1
 
 [core] # core program
 

@@ -38,6 +38,10 @@ source "$SCRIPT_DIR/assets/services/enable_and_start_services.sh"
 ## Desktop Manager
 source "$SCRIPT_DIR/assets/desktop_manager/setup_desktop_manager.sh"
 
+## Success
+log "$SUCCESS Script executed without errors."
+echo
+
 ## Reboot
 section "Reboot"
 
@@ -46,6 +50,3 @@ log "Do you want to reboot?"
 ask_user 2 \
     "Yes" "reboot" \
     "No" "log '$ALERT A reboot is recommended to apply all settings.'"
-
-## Success
-log "$SUCCESS Script executed without errors."
