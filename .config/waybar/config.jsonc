@@ -1,0 +1,192 @@
+{
+    "reload_style_on_change": true,
+    
+    "height": 40,
+
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    /* Modules Order */
+    "modules-left": [
+        "custom/clock-icon",
+        "clock",
+        "custom/memory-icon",
+        "memory",
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "custom/notification"
+    ],
+
+    "modules-right": [
+        "custom/pulseaudio-output-icon",
+        "pulseaudio",
+        "custom/pulseaudio-input-icon",
+        "custom/tray-icon",
+        "tray",
+        "custom/language-icon",
+        "hyprland/language",
+        "network",
+        "custom/theme",
+        "custom/power"
+    ],
+
+    /* Modules Settings */
+    "custom/clock-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "clock": {
+        "interval":         1,
+
+        "format":           "{:%H:%M:%S}",
+
+        "tooltip-format":   "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode":         "year",
+            "mode-mon-col": 4,
+
+            "weeks-pos":    "right",
+
+            "on-scroll":    1,
+
+            "format": {
+                "months":   "<span color='#ffffff'><b>{}</b></span>",
+                "days":     "<span color='#aaaaaa'><b>{}</b></span>",
+                "weeks":    "<span color='#ffffff'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffffff'><b>{}</b></span>",
+                "today":    "<span color='#0091ff'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "custom/memory-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "memory": {
+        "interval":       1,
+
+        "format":         "{used}/{total} GB",
+
+        "tooltip":        true,
+        "tooltip-format": "Available: {avail} GB"
+    },
+
+    "hyprland/workspaces": {
+        "format":         "{name}",
+        
+        "on-click":       "activate",
+
+        "on-scroll-up":   "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+
+        "all-outputs":    true,
+        
+        "sort-by-number": true
+    },
+
+    "custom/notification": {
+        "tooltip":                        false,
+
+        "format":                         "{icon}",
+        "format-icons": {
+            "notification":               "",
+            "none":                       "",
+
+            "dnd-notification":           "",
+            "dnd-none":                   "",
+
+            "inhibited-notification":     "",
+            "inhibited-none":             "",
+
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none":         ""
+        },
+
+        "return-type":                    "json",
+
+        "exec-if":                        "which swaync-client",
+        "exec":                           "swaync-client -swb",
+
+        "on-click":                       "swaync-client -t -sw",
+        "on-click-right":                 "swaync-client -d -sw",
+
+        "escape":                         true
+    },
+
+    "custom/pulseaudio-output-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format":                 "{volume}% | {format_source}",
+        "format-muted":           " | {format_source}",
+
+        "format-source":          "{volume}%",
+        "format-source-muted":    "",
+
+        "format-bluetooth":       " {volume}% | {format_source}",
+        "format-bluetooth-muted": " | {format_source}",
+
+        "on-click":               "pavucontrol"
+    },
+
+    "custom/pulseaudio-input-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "custom/tray-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing":   10
+    },
+
+    "custom/language-icon": {
+        "format":  "",
+        "tooltip": false
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
+    },
+
+    "network": {
+        "interval":                    1,
+
+        "format":                      "{ifname}",
+
+        "format-wifi":                 "",
+        "tooltip-format-wifi":         "Wi-Fi\n\nSSID: {essid}\nFrequency: {frequency}\nStrength: {signalStrength}\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}\n\n {bandwidthDownBytes} |  {bandwidthUpBytes}",
+
+        "format-ethernet":             "",
+        "tooltip-format-ethernet":     "Ethernet\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}\n\n {bandwidthDownBytes} |  {bandwidthUpBytes}",
+
+        "format-disconnected":         "",
+        "tooltip-format-disconnected": "Disconnected",
+
+        "max-length":                  1000
+    },
+
+    "custom/theme": {
+        "format":  "",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exec waypaper"
+    },
+
+    "custom/power": {
+        "format":   "",
+        "tooltip":  false,
+        "on-click": "pgrep rofi > /dev/null 2>&1 && killall rofi || rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
+    }
+}
