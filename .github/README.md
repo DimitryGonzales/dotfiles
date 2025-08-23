@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
+Personal NixOS dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
 
 
 <br>
