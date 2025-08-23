@@ -6,7 +6,7 @@ set = true
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/matugen-gtk.css'
 output_path = '~/.config/gtk-3.0/matugen-colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3 && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"'
 
 [templates.gtk4]
 input_path = '~/.config/matugen/templates/matugen-gtk.css'
