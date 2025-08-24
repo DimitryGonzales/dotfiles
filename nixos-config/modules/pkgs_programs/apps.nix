@@ -1,15 +1,13 @@
 { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
         brave
-        (discord.override {
-            withVencord = true;
-        })
         kitty
         mission-center
         qimgv
         rofi rofimoji rofi-power-menu
         spotify
         telegram-desktop
+        vesktop
         vlc
         waypaper
     ];
