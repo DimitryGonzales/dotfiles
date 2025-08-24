@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal [NixOS](https://nixos.org/) dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
+Personal [NixOS](https://nixos.org/) dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations to the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
 
 <br>
 
@@ -132,7 +132,7 @@ yadm clone "https://github.com/DimitryGonzales/dotfiles.git" && yadm checkout --
 > [!CAUTION]
 > Backup your NixOS configuration before proceeding. This will overwrite existing files.
 
-Copy `hardware-configuration.nix`, delete `/etc/nixos`, and symlink `~/nixos-config` in its place.
+Copy `hardware-configuration.nix`, delete `/etc/nixos`, and symlink `~/nixos-config`.
 
 ```
 sudo cp -r /etc/nixos/hardware-configuration.nix ~/nixos-config

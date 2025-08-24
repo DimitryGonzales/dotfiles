@@ -30,6 +30,8 @@
                 ncg = "sudo nix-collect-garbage -d";
 
                 sw = "matugen -v image";
+
+                osu = "hyprctl dispatch exec 'gamemoderun osu!'";
             };
         };
 
