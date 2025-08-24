@@ -187,6 +187,6 @@
     "custom/power": {
         "format":   "",
         "tooltip":  false,
-        "on-click": "pgrep rofi > /dev/null 2>&1 && killall rofi || rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
+        "on-click": "pgrep rofi > /dev/null 2>&1 && pkill rofi || rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
     }
 }
