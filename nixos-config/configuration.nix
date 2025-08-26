@@ -2,7 +2,7 @@
     imports = [ 
         ./hardware-configuration.nix # Results of the hardware scan.
 
-        # Pkgs & Programs {
+        # Software {
             ./modules/software/apps.nix
             ./modules/software/hyprland.nix
             ./modules/software/tools.nix
