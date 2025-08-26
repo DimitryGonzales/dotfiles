@@ -3,8 +3,9 @@
         ./hardware-configuration.nix # Results of the hardware scan.
 
         # Pkgs & Programs {
-            ./modules/pkgs_programs/apps.nix
-            ./modules/pkgs_programs/tools.nix
+            ./modules/software/apps.nix
+            ./modules/software/hyprland.nix
+            ./modules/software/tools.nix
         # }
 
         # Style {
@@ -17,7 +18,6 @@
             ./modules/system/boot.nix
             ./modules/system/gaming.nix
             ./modules/system/greeter.nix
-            ./modules/system/hyprland.nix
             ./modules/system/input.nix
             ./modules/system/locale.nix
             ./modules/system/networking.nix

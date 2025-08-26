@@ -31,7 +31,7 @@
         # VSCode
         vscode = {
             enable = true;
-            
+                
             extensions = with pkgs.vscode-extensions; [
                 bbenoist.nix
                 github.github-vscode-theme

@@ -2,7 +2,8 @@
     "discordBranch": "stable",
     "minimizeToTray": true,
     "arRPC": true,
-    "splashColor": "rgb(239, 239, 240)",
+    "splashColor": "rgb(199, 197, 208)",
     "hardwareVideoAcceleration": true,
-    "clickTrayToShowHide": true
+    "clickTrayToShowHide": true,
+    "splashBackground": "rgb(19, 19, 24)"
 }
