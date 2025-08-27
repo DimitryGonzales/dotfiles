@@ -21,9 +21,9 @@
             enable = true;
 
             plugins = with pkgs.xfce; [
-                thunar-archive-plugin # Provide file context menus for archives
-                thunar-media-tags-plugin # Provide tagging and renaming features for media files
-                thunar-vcs-plugin # Provide support for Subversion and Git
+                thunar-archive-plugin # File context menus for archives
+                thunar-media-tags-plugin # Tagging and renaming features for media files
+                thunar-vcs-plugin # Support for Subversion and Git
                 thunar-volman # Automatic management of removable drives and media
             ];
         };

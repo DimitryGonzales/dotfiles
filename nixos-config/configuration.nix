@@ -4,6 +4,7 @@
 
         # Software {
             ./modules/software/apps.nix
+            ./modules/software/gaming.nix
             ./modules/software/hyprland.nix
             ./modules/software/tools.nix
         # }
@@ -16,7 +17,6 @@
         # System {
             ./modules/system/amdgpu.nix
             ./modules/system/boot.nix
-            ./modules/system/gaming.nix
             ./modules/system/greeter.nix
             ./modules/system/input.nix
             ./modules/system/locale.nix

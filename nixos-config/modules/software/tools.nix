@@ -35,7 +35,7 @@
             };
         };
 
-        # File-Roller (archive manager, needed by thunar-archive-plugin)
+        # File-Roller (archive manager)
         file-roller.enable = true;
 
         # Git
@@ -47,7 +47,7 @@
         # Waybar
         waybar.enable = true;
 
-        # Xfconf (needed to save xfce apps configs)
+        # Xfconf (save xfce apps configs)
         xfconf.enable = true;
     };
 
@@ -55,7 +55,7 @@
         # GVFS (mount, trash, and other functionalities)
         gvfs.enable = true;
 
-        # Tumbler (needed for thumbnail support for images)
+        # Tumbler (thumbnail support for images)
         tumbler.enable = true;
     };
 }
