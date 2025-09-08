@@ -10,7 +10,6 @@ Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspi
 - [ ] Add optional software to [📦 Required Packages](#-required-packages) section.
 - [ ] Fix SwayNC styling.
 - [ ] Update repository thumbnail.
-- [ ] Update [🖼️ Showcase](#️-showcase) photos and videos.
 
 <br>
 
@@ -22,9 +21,9 @@ Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspi
 > [!TIP]
 > You can add any wallpaper to the **waypaper** menu by moving it to `~/wallpapers/`.
 
+https://github.com/user-attachments/assets/32dd9f4b-1a7a-4e00-bd11-b54fc12c2438
 
-
-
+https://github.com/user-attachments/assets/9a65c683-aac7-4363-bdd7-8f0c78a14f43
 
 <br>
 
