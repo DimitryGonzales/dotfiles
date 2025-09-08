@@ -1,0 +1,215 @@
+/* Color Palette */
+@import "matugen-colors.css";
+
+/* General */
+* {
+    all: unset;
+
+    font-size: 16px;
+    font-family: "Inter", "Font Awesome 7 Free";
+    font-weight: bold;
+
+    transition: all 0s;
+}
+
+/* Waybar */
+window#waybar {
+    background-color: transparent;
+}
+
+/* Icon Modules */
+#custom-clock-icon,
+#custom-memory-icon,
+#custom-pulseaudio-output-icon,
+#custom-pulseaudio-input-icon,
+#custom-tray-icon,
+#custom-language-icon {
+    background-color: @primary;
+    border-radius: 20px 0 0 20px;
+
+    color: @on_primary;
+
+    padding: 0;
+
+    min-height: 40px;
+    min-width: 40px;
+}
+
+/* Icon Modules Specific Configs */
+/* flip pulseaudio input icon and add margin right */
+#custom-pulseaudio-input-icon {
+    border-radius: 0 20px 20px 0;
+    
+    margin-right: 10px;
+}
+
+/* Modules */
+#clock,
+#memory,
+#workspaces,
+#custom-notification,
+#pulseaudio,
+#tray,
+#language,
+#network,
+#custom-theme,
+#custom-power {
+    background-color: @surface;
+    border-radius: 0 20px 20px 0;
+
+    color: @on_surface;
+
+    margin-right: 10px;
+    padding: 0 10px;
+
+    min-height: 40px;
+    min-width: 40px;
+}
+
+/* Modules Hover */
+#clock:hover,
+#memory:hover,
+#workspaces:hover,
+#custom-notification:hover,
+#pulseaudio:hover,
+#tray:hover,
+#language:hover,
+#network:hover,
+#custom-theme:hover,
+#custom-power:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+/* No content modules */
+#custom-notification,
+#network,
+#custom-theme,
+#custom-power {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    padding: 0;
+}
+
+/* Modules Specific Configs */
+/* workspaces */
+#workspaces {
+    background-color: transparent;
+    border-radius: 20px;
+
+    padding: 0;
+}
+
+#workspaces:hover {
+    background-color: transparent;
+}
+
+#workspaces button {
+    background-color: @surface_container;
+    border-radius: 20px;
+
+    color: @on_surface_variant;
+
+    margin-right: 5px;
+
+    min-height:40px;
+    min-width: 40px;
+}
+
+#workspaces button:hover {
+    background-color: @inverse_primary;
+
+    color: @on_primary_container;
+}
+
+#workspaces button.visible {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+#workspaces button.active {
+    background-color: @primary;
+
+    color: @on_primary;
+}
+
+/* remove pulseaudio border radius and margin */
+#pulseaudio {
+    border-radius: 0;
+
+    margin: 0;
+}
+
+/* remove tray background color change when hovering */
+#tray:hover {
+    background-color: @surface;
+}
+
+/* remove language padding */
+#language {
+    padding: 0;
+}
+
+/* Fix Right Modules Margins */
+/* remove margin right */
+#custom-pulseaudio-input-icon,
+#tray,
+#language,
+#network,
+#custom-theme,
+#custom-power {
+    margin-right: 0;
+}
+
+/* add margin left */
+#custom-pulseaudio-output-icon,
+#custom-tray-icon,
+#custom-language-icon,
+#network,
+#custom-theme,
+#custom-power {
+    margin-left: 10px;
+}
+
+/* Tooltips */
+tooltip {
+    background-color: @surface;
+    border-radius: 20px;
+}
+
+tooltip label {
+    color: @on_surface;
+
+    padding: 0 10px;
+}
+
+/* Tray Menu */
+#tray menu {
+    background-color: @surface;
+    border-radius: 20px;
+
+    padding: 10px;
+}
+
+#tray menu menuitem {
+    background-color: @surface_container;
+    border-radius: 20px;
+
+    color: @on_surface_variant;
+
+    margin: 2.5px 0;
+    padding: 0 10px;
+
+    min-height: 40px;
+}
+
+#tray menu menuitem:hover {
+    background-color: @surface_container_high;
+
+    color: @on_surface_variant;
+}

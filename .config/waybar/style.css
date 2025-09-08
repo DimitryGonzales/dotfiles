@@ -1,7 +1,6 @@
 /* Color Palette */
 @import "matugen-colors.css";
 
-/* General */
 * {
     all: unset;
 
@@ -12,122 +11,115 @@
     transition: all 0s;
 }
 
-/* Waybar */
 window#waybar {
     background-color: transparent;
 }
 
-/* Icon Modules */
-#custom-clock-icon,
-#custom-memory-icon,
-#custom-pulseaudio-output-icon,
-#custom-pulseaudio-input-icon,
-#custom-tray-icon,
-#custom-language-icon {
+tooltip {
+    background-color: @surface_container;
+    border-radius: 15px;
+}
+
+tooltip label {
+    color: @on_surface;
+
+    padding: 0 15px;
+}
+
+.modules-left {
+    background-color: @surface;
+    border-radius: 15px;
+    
+    padding: 10px;
+}
+
+#custom-clock-icon {
     background-color: @primary;
-    border-radius: 20px 0 0 20px;
+    border-radius: 10px 0 0 10px;
 
     color: @on_primary;
 
-    padding: 0;
-
-    min-height: 40px;
     min-width: 40px;
 }
 
-/* Icon Modules Specific Configs */
-/* flip pulseaudio input icon and add margin right */
-#custom-pulseaudio-input-icon {
-    border-radius: 0 20px 20px 0;
-    
-    margin-right: 10px;
-}
-
-/* Modules */
-#clock,
-#memory,
-#workspaces,
-#custom-notification,
-#pulseaudio,
-#tray,
-#language,
-#network,
-#custom-theme,
-#custom-power {
-    background-color: @surface;
-    border-radius: 0 20px 20px 0;
+#clock {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
 
     color: @on_surface;
 
-    margin-right: 10px;
-    padding: 0 10px;
+    margin-right: 5px;
+    padding: 0 15px;
 
-    min-height: 40px;
-    min-width: 40px;
+    transition:
+        background 200ms ease,
+        color 200ms ease;
 }
 
-/* Modules Hover */
-#clock:hover,
-#memory:hover,
-#workspaces:hover,
-#custom-notification:hover,
-#pulseaudio:hover,
-#tray:hover,
-#language:hover,
-#network:hover,
-#custom-theme:hover,
-#custom-power:hover {
+#clock:hover {
     background-color: @primary_container;
 
     color: @on_primary_container;
 }
 
-/* No content modules */
-#custom-notification,
-#network,
-#custom-theme,
-#custom-power {
+#custom-memory-icon {
     background-color: @primary;
-    border-radius: 100%;
+    border-radius: 10px 0 0 10px;
 
     color: @on_primary;
 
-    padding: 0;
+    min-width: 40px;
 }
 
-/* Modules Specific Configs */
-/* workspaces */
-#workspaces {
-    background-color: transparent;
-    border-radius: 20px;
+#memory {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
 
-    padding: 0;
+    color: @on_surface;
+
+    padding: 0 15px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
 }
 
-#workspaces:hover {
-    background-color: transparent;
+#memory:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+.modules-center {
+    background-color: @surface;
+    border-radius: 15px;
+    
+    padding: 10px;
 }
 
 #workspaces button {
     background-color: @surface_container;
-    border-radius: 20px;
+    border-radius: 10px;
 
-    color: @on_surface_variant;
+    color: @on_surface;
 
     margin-right: 5px;
 
-    min-height:40px;
     min-width: 40px;
 }
 
+#workspaces button:last-child {
+    margin-right: 0px;
+}
+
 #workspaces button:hover {
-    background-color: @inverse_primary;
+    background-color: @primary_container;
 
     color: @on_primary_container;
 }
 
 #workspaces button.visible {
-    background-color: @primary_container;
+    background-color: @inverse_primary;
 
     color: @on_primary_container;
 }
@@ -138,78 +130,242 @@ window#waybar {
     color: @on_primary;
 }
 
-/* remove pulseaudio border radius and margin */
-#pulseaudio {
-    border-radius: 0;
-
-    margin: 0;
-}
-
-/* remove tray background color change when hovering */
-#tray:hover {
-    background-color: @surface;
-}
-
-/* remove language padding */
-#language {
-    padding: 0;
-}
-
-/* Fix Right Modules Margins */
-/* remove margin right */
-#custom-pulseaudio-input-icon,
-#tray,
-#language,
-#network,
-#custom-theme,
-#custom-power {
-    margin-right: 0;
-}
-
-/* add margin left */
-#custom-pulseaudio-output-icon,
-#custom-tray-icon,
-#custom-language-icon,
-#network,
-#custom-theme,
-#custom-power {
+.modules-right > * > * {
     margin-left: 10px;
 }
 
-/* Tooltips */
-tooltip {
+#tools {
     background-color: @surface;
-    border-radius: 20px;
+    border-radius: 15px;
+    
+    padding: 10px;
 }
 
-tooltip label {
+#custom-pulseaudio-output-icon {
+    background-color: @primary;
+    border-radius: 10px 0 0 10px;
+
+    color: @on_primary;
+
+    min-width: 40px;
+}
+
+#pulseaudio.output {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
+
     color: @on_surface;
 
-    padding: 0 10px;
+    margin-right: 5px;
+    padding: 0 15px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
 }
 
-/* Tray Menu */
+#pulseaudio.output:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+#custom-pulseaudio-input-icon {
+    background-color: @primary;
+    border-radius: 10px 0 0 10px;
+
+    color: @on_primary;
+
+    min-width: 40px;
+}
+
+#pulseaudio.input {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
+
+    color: @on_surface;
+
+    margin-right: 5px;
+    padding: 0 15px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#pulseaudio.input:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+#custom-tray-icon {
+    background-color: @primary;
+    border-radius: 10px 0 0 10px;
+
+    color: @on_primary;
+
+    min-width: 40px;
+}
+
+#tray {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
+
+    color: @on_surface;
+
+    margin-right: 5px;
+    padding: 0 15px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#tray:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
 #tray menu {
-    background-color: @surface;
-    border-radius: 20px;
+    background-color: @surface_container;
+    border-radius: 15px;
 
     padding: 10px;
 }
 
 #tray menu menuitem {
-    background-color: @surface_container;
-    border-radius: 20px;
+    background-color: @surface_container_high;
+    border-radius: 10px;
 
-    color: @on_surface_variant;
+    color: @on_surface;
 
-    margin: 2.5px 0;
-    padding: 0 10px;
+    margin-bottom: 5px;
+    padding: 0 15px;
 
     min-height: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#tray menu menuitem:last-child {
+    margin-bottom: 0px;
 }
 
 #tray menu menuitem:hover {
-    background-color: @surface_container_high;
+    background-color: @primary;
 
-    color: @on_surface_variant;
+    color: @on_primary;
+}
+
+#custom-language-icon {
+    background-color: @primary;
+    border-radius: 10px 0 0 10px;
+
+    color: @on_primary;
+
+    min-width: 40px;
+}
+
+#language {
+    background-color: @surface_container;
+    border-radius: 0 10px 10px 0;
+
+    color: @on_surface;
+
+    min-width: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#language:hover {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+#actions {
+    background-color: @surface;
+    border-radius: 15px;
+    
+    padding: 10px;
+}
+
+#network {
+    background-color: @surface_container;
+    border-radius: 10px;
+
+    margin-right: 5px;
+
+    min-width: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#network:hover {
+    background-color: @primary;
+
+    color: @on_primary;
+}
+
+#custom-notification {
+    background-color: @surface_container;
+    border-radius: 10px;
+
+    margin-right: 5px;
+
+    min-width: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#custom-notification:hover {
+    background-color: @primary;
+
+    color: @on_primary;
+}
+
+#custom-theme {
+    background-color: @surface_container;
+    border-radius: 10px;
+
+    margin-right: 5px;
+
+    min-width: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#custom-theme:hover {
+    background-color: @primary;
+
+    color: @on_primary;
+}
+
+#custom-power {
+    background-color: @surface_container;
+    border-radius: 10px;
+
+    min-width: 40px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#custom-power:hover {
+    background-color: @primary;
+
+    color: @on_primary;
 }
