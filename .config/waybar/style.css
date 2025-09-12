@@ -1,6 +1,7 @@
 /* Color Palette */
 @import "matugen-colors.css";
 
+/* All */
 * {
     all: unset;
 
@@ -11,10 +12,12 @@
     transition: all 0s;
 }
 
+/* Bar */
 window#waybar {
     background-color: transparent;
 }
 
+/* Tooltip */
 tooltip {
     background-color: @surface_container;
     border-radius: 15px;
@@ -26,6 +29,7 @@ tooltip label {
     padding: 0 15px;
 }
 
+/* Left */
 .modules-left {
     background-color: @surface;
     border-radius: 15px;
@@ -33,7 +37,10 @@ tooltip label {
     padding: 10px;
 }
 
-#custom-clock-icon {
+/* Left Icons */
+#custom-clock-icon,
+#custom-memory-icon,
+#custom-language-icon {
     background-color: @primary;
     border-radius: 10px 0 0 10px;
 
@@ -42,7 +49,10 @@ tooltip label {
     min-width: 40px;
 }
 
-#clock {
+/* Left Modules */
+#clock,
+#memory,
+#language {
     background-color: @surface_container;
     border-radius: 0 10px 10px 0;
 
@@ -56,40 +66,20 @@ tooltip label {
         color 200ms ease;
 }
 
-#clock:hover {
-    background-color: @primary_container;
-
-    color: @on_primary_container;
-}
-
-#custom-memory-icon {
-    background-color: @primary;
-    border-radius: 10px 0 0 10px;
-
-    color: @on_primary;
-
-    min-width: 40px;
-}
-
-#memory {
-    background-color: @surface_container;
-    border-radius: 0 10px 10px 0;
-
-    color: @on_surface;
-
-    padding: 0 15px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
+/* Left Modules Hover */
+#clock:hover,
 #memory:hover {
     background-color: @primary_container;
 
     color: @on_primary_container;
 }
 
+/* Left Extra */
+#language {
+    margin-right: 0;
+}
+
+/* Center */
 .modules-center {
     background-color: @surface;
     border-radius: 15px;
@@ -97,6 +87,7 @@ tooltip label {
     padding: 10px;
 }
 
+/* Center Extra */
 #workspaces button {
     background-color: @surface_container;
     border-radius: 10px;
@@ -130,10 +121,14 @@ tooltip label {
     color: @on_primary;
 }
 
+/* Right */
 .modules-right > * > * {
     margin-left: 10px;
 }
 
+/* Right Groups */
+#misc,
+#info,
 #tools {
     background-color: @surface;
     border-radius: 15px;
@@ -141,64 +136,9 @@ tooltip label {
     padding: 10px;
 }
 
-#custom-pulseaudio-output-icon {
-    background-color: @primary;
-    border-radius: 10px 0 0 10px;
-
-    color: @on_primary;
-
-    min-width: 40px;
-}
-
-#pulseaudio.output {
-    background-color: @surface_container;
-    border-radius: 0 10px 10px 0;
-
-    color: @on_surface;
-
-    margin-right: 5px;
-    padding: 0 15px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#pulseaudio.output:hover {
-    background-color: @primary_container;
-
-    color: @on_primary_container;
-}
-
-#custom-pulseaudio-input-icon {
-    background-color: @primary;
-    border-radius: 10px 0 0 10px;
-
-    color: @on_primary;
-
-    min-width: 40px;
-}
-
-#pulseaudio.input {
-    background-color: @surface_container;
-    border-radius: 0 10px 10px 0;
-
-    color: @on_surface;
-
-    margin-right: 5px;
-    padding: 0 15px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#pulseaudio.input:hover {
-    background-color: @primary_container;
-
-    color: @on_primary_container;
-}
-
+/* Right Misc Icons */
+#custom-pulseaudio-output-icon,
+#custom-pulseaudio-input-icon,
 #custom-tray-icon {
     background-color: @primary;
     border-radius: 10px 0 0 10px;
@@ -208,6 +148,9 @@ tooltip label {
     min-width: 40px;
 }
 
+/* Right Misc Modules */
+#pulseaudio.output,
+#pulseaudio.input,
 #tray {
     background-color: @surface_container;
     border-radius: 0 10px 10px 0;
@@ -222,10 +165,18 @@ tooltip label {
         color 200ms ease;
 }
 
+/* Right Misc Modules Hover */
+#pulseaudio.output:hover,
+#pulseaudio.input:hover,
 #tray:hover {
     background-color: @primary_container;
 
     color: @on_primary_container;
+}
+
+/* Right Misc Extra */
+#tray {
+    margin-right: 0;
 }
 
 #tray menu {
@@ -261,44 +212,13 @@ tooltip label {
     color: @on_primary;
 }
 
-#custom-language-icon {
-    background-color: @primary;
-    border-radius: 10px 0 0 10px;
-
-    color: @on_primary;
-
-    min-width: 40px;
-}
-
-#language {
-    background-color: @surface_container;
-    border-radius: 0 10px 10px 0;
-
-    color: @on_surface;
-
-    min-width: 40px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#language:hover {
-    background-color: @primary_container;
-
-    color: @on_primary_container;
-}
-
-#actions {
-    background-color: @surface;
-    border-radius: 15px;
-    
-    padding: 10px;
-}
-
+/* Right Info Modules */
+#privacy-item,
 #network {
-    background-color: @surface_container;
+    background-color: @primary;
     border-radius: 10px;
+
+    color: @on_primary;
 
     margin-right: 5px;
 
@@ -309,54 +229,25 @@ tooltip label {
         color 200ms ease;
 }
 
-#network:hover {
-    background-color: @primary;
-
-    color: @on_primary;
+/* Right Info Extra */
+#network {
+    margin-right: 0;
 }
 
-#custom-notification {
-    background-color: @surface_container;
-    border-radius: 10px;
-
-    margin-right: 5px;
-
-    min-width: 40px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
+#network.disconnected {
+    background-color: @error;
+    color: @on_error;
 }
 
-#custom-notification:hover {
-    background-color: @primary;
-
-    color: @on_primary;
-}
-
-#custom-theme {
-    background-color: @surface_container;
-    border-radius: 10px;
-
-    margin-right: 5px;
-
-    min-width: 40px;
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#custom-theme:hover {
-    background-color: @primary;
-
-    color: @on_primary;
-}
-
+/* Right Tools Modules */
+#custom-notification,
+#custom-theme,
 #custom-power {
     background-color: @surface_container;
     border-radius: 10px;
 
+    margin-right: 5px;
+
     min-width: 40px;
 
     transition:
@@ -364,8 +255,16 @@ tooltip label {
         color 200ms ease;
 }
 
+/* Right Tools Modules Hover */
+#custom-notification:hover,
+#custom-theme:hover,
 #custom-power:hover {
     background-color: @primary;
 
     color: @on_primary;
+}
+
+/* Right Tools Extra */
+#custom-power {
+    margin-right: 0;
 }
