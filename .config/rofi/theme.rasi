@@ -1,24 +1,24 @@
 @import "matugen-colors.rasi"
 
 * {
-    font:   "Inter 16";
+    font: "Inter 16";
 
     background-color: transparent;
 
     text-color: @on-surface;
 
-    margin:     0px;
-    padding:    0px;
-    spacing:    0px;
+    margin: 0px;
+    padding: 0px;
+    spacing: 0px;
 }
 
 window {
     background-color: @surface;
-    border-radius: 20;
+    border-radius: 15px;
 
     location: center;
 
-    width: 750;
+    width: 500px;
 }
 
 mainbox {
@@ -31,12 +31,12 @@ mainbox {
 inputbar {
     background-color: @surface-container;
 
-    border-radius: 20px;
+    border-radius: 10px;
 
     padding: 10px;
     spacing: 10px;
 
-    children:   [ prompt, entry ];
+    children: [ prompt, entry ];
 }
 
 prompt {
@@ -44,13 +44,13 @@ prompt {
 }
 
 entry {
-    placeholder:        "Search";
+    placeholder: "Search";
     placeholder-color:  @on-surface;
 }
 
 message {
     background-color: @surface-container;
-    border-radius: 20px;
+    border-radius: 10px;
 
     text-color: @on-surface;
     padding: 10px;
@@ -58,7 +58,6 @@ message {
 
 listview {
     background-color: transparent;
-    border-radius: 20px;
 
     spacing: 5px;
 
@@ -66,21 +65,19 @@ listview {
     lines: 8;
     columns: 1;
 
-    fixed-height: true;
+    fixed-height: false;
 }
 
 element {
     background-color: @surface-container;
-    border-radius: 20px;
-
-    text-color: @on-surface;
+    border-radius: 10px;
 
     padding: 10px;
     spacing: 10px;
 }
 
 element.selected.normal {
-    background-color: @surface-container-high;
+    background-color: @primary;
 }
 
 element-icon, element-text {
@@ -92,5 +89,5 @@ element-icon, element-text {
 }
 
 element-text.selected {
-    text-color: @primary;
+    text-color: @on-primary;
 }
