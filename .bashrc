@@ -16,18 +16,15 @@ DISABLE_AUTO_UPDATE="true"
 # Command execution time stamp shown in the history command output
 HIST_STAMPS='[dd.mm.yyyy] + [time] with colors'
 
-# Aliases
 aliases=(
     general
 )
 
-# Plugins
 plugins=(
     colored-man-pages
     sudo
 )
 
-# OSH theme
 OSH_THEME="sexy"
 
 # Bash cache directory
@@ -39,18 +36,19 @@ fi
 # OSH
 source "$OSH"/oh-my-bash.sh
 
-# Aliases
-alias cp="cp --verbose -r"
-alias mkdir="mkdir -p"
+# Aliases {
+    alias cp="cp --verbose -r"
+    alias mkdir="mkdir -p"
 
-alias cat="bat"
+    alias cat="bat"
 
-alias ls="eza -lh"
-alias lsa="eza -lha"
+    alias ls="eza -lh"
+    alias lsa="eza -lha"
 
-alias p="sudo pacman"
-alias pu="sudo pacman -Syu && paru"
+    alias p="sudo pacman"
+    alias pu="sudo pacman -Syu && paru"
 
-alias pcc="paru -Sccd"
-alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
-alias sw="matugen -v image"
+    alias pcc="paru -Sccd"
+    alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
+    alias sw="matugen -v image"
+# }
