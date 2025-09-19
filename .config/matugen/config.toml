@@ -3,41 +3,40 @@ command = "swww"
 arguments = ["img", "--transition-fps", "60", "--transition-type", "center"]
 set = true
 
+[templates.foot]
+input_path = "~/.config/matugen/templates/foot.ini"
+output_path = "~/.config/foot/matugen-colors.ini"
+
 [templates.gtk3]
-input_path = '~/.config/matugen/templates/matugen-gtk.css'
+input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-3.0/matugen-colors.css'
 post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3 && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"'
 
 [templates.gtk4]
-input_path = '~/.config/matugen/templates/matugen-gtk.css'
+input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-4.0/matugen-colors.css'
 
 [templates.hyprland]
-input_path = '~/.config/matugen/templates/matugen-hyprland.conf'
+input_path = '~/.config/matugen/templates/hyprland.conf'
 output_path = '~/.config/hypr/source/matugen-colors.conf'
 post_hook = 'hyprctl reload'
 
-[templates.kitty]
-input_path = '~/.config/matugen/templates/abhra00-kitty.conf'
-output_path = '~/.config/kitty/matugen-colors.conf'
-post_hook = 'pkill -SIGUSR1 kitty'
-
 [templates.qt5ct]
-input_path = '~/.config/matugen/templates/matugen-qtct.conf'
+input_path = '~/.config/matugen/templates/qtct.conf'
 output_path = '~/.config/qt5ct/colors/matugen-colors.conf'
 
 [templates.qt6ct]
-input_path = '~/.config/matugen/templates/matugen-qtct.conf'
+input_path = '~/.config/matugen/templates/qtct.conf'
 output_path = '~/.config/qt6ct/colors/matugen-colors.conf'
 
 [templates.rofi]
-input_path = '~/.config/matugen/templates/matugen-rofi.rasi'
+input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.config/rofi/matugen-colors.rasi'
 
 [templates.vencord]
-input_path = '~/.config/matugen/templates/matugen-midnight-discord.css'
+input_path = '~/.config/matugen/templates/midnight-discord.css'
 output_path = '~/.config/Vencord/themes/matugen-colors.css'
 
 [templates.waybar]
-input_path = '~/.config/matugen/templates/matugen-colors.css'
+input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/matugen-colors.css'
