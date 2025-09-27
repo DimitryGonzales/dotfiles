@@ -84,6 +84,25 @@ tooltip label {
     color: @primary;
 }
 
+#disk {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
+
+    padding: 0 10px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#disk:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
+}
+
 /* Center */
 #workspaces {
     background-color: @surface_container;

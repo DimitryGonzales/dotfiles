@@ -12,7 +12,8 @@
     "modules-left": [
         "clock",
         "hyprland/language",
-        "memory"
+        "memory",
+        "disk"
     ],
 
     "modules-center": [
@@ -61,12 +62,25 @@
     "memory": {
         "interval":       1,
 
-        "format":         "{used}/{total} GB",
+        "format":         " {used} / {total} GB",
 
         "tooltip":        true,
         "tooltip-format": "Available: {avail} GB",
 
         "on-click":       "missioncenter"
+    },
+
+    "disk": {
+        "interval":       300,
+
+        "path":           "/",
+
+        "format":         " {used} / {total}",
+        
+        "tooltip":        true,
+        "tooltip-format": "Free: {free}",
+
+        "on-click":       "nautilus"
     },
 
     "hyprland/workspaces": {
@@ -84,6 +98,8 @@
         "format":       " {volume}%",
         "format-muted": "",
 
+        "tooltip":      false,
+
         "on-click":     "pavucontrol"
     },
 
@@ -91,6 +107,8 @@
         "format":              "{format_source}",
         "format-source":       " {volume}%",
         "format-source-muted": "",
+
+        "tooltip":             false,
 
         "on-click":            "pavucontrol"
     },
