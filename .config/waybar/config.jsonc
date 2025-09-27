@@ -20,6 +20,8 @@
     ],
 
     "modules-right": [
+        "pulseaudio#output",
+        "pulseaudio#input",
         "tray",
         "privacy",
         "network",
@@ -76,6 +78,21 @@
         "all-outputs":    true,
         
         "sort-by-number": true
+    },
+
+    "pulseaudio#output": {
+        "format":       " {volume}%",
+        "format-muted": "",
+
+        "on-click":     "pavucontrol"
+    },
+
+    "pulseaudio#input": {
+        "format":              "{format_source}",
+        "format-source":       " {volume}%",
+        "format-source-muted": "",
+
+        "on-click":            "pavucontrol"
     },
 
     "tray": {

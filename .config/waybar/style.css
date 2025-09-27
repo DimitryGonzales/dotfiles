@@ -123,6 +123,26 @@ tooltip label {
 }
 
 /* Right */
+#pulseaudio {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 0 10px;
+
+    transition: background 200ms ease;
+}
+
+#pulseaudio:hover {
+    background-color: @surface_bright;
+}
+
+#pulseaudio.output.muted,
+#pulseaudio.input.source-muted{
+    padding: 0;
+
+    min-width: calc(60px - (10px * 2));
+}
+
 #tray {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
