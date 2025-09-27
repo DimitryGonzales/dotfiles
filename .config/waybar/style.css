@@ -88,7 +88,7 @@ tooltip label {
 
 #workspaces button {
     background-color: @surface_container_high;
-    border-radius: 100%;
+    border-radius: calc((60px - ((10px * 2) + (5px * 2))) / 2);
 
     margin-right: 5px;
 
@@ -96,7 +96,6 @@ tooltip label {
 
     transition:
         background 200ms ease,
-        border-radius 200ms ease,
         color 200ms ease,
         min-width 200ms ease;
 }
@@ -117,7 +116,6 @@ tooltip label {
 
 #workspaces button.active {
     background-color: @primary;
-    border-radius: calc(((60px - (10px * 2)) - (5px * 2)) / 2);
 
     color: @on_primary;
 
@@ -166,7 +164,7 @@ tooltip label {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
-    padding: 5px 10px;
+    padding: 5px;
 }
 
 #privacy-item {
