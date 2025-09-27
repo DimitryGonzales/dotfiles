@@ -1,12 +1,12 @@
 configuration {
     show-icons: true;
 
-    display-ssh:         "ssh:";
-    display-run:         "run:";
-    display-drun:        "drun:";
-    display-window:      "window:";
-    display-combi:       "combi:";
-    display-filebrowser: "filebrowser:";
+    display-drun:        "drun";
+    display-combi:       "combi";
+    display-filebrowser: "filebrowser";
+    display-run:         "run";
+    display-ssh:         "ssh";
+    display-window:      "window";
 }
 
 @theme "~/.config/rofi/theme.rasi"

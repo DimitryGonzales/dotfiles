@@ -3,17 +3,16 @@
     
     "height":                 60,
 
-    "margin-top":             10,
-    "margin-left":            10,
-    "margin-right":           10,
+    "margin-top":             5,
+    "margin-left":            5,
+    "margin-right":           5,
+
+    "spacing": 10,
 
     "modules-left": [
-        "custom/clock-icon",
         "clock",
-        "custom/memory-icon",
-        "memory",
-        "custom/language-icon",
-        "hyprland/language"
+        "hyprland/language",
+        "memory"
     ],
 
     "modules-center": [
@@ -21,16 +20,12 @@
     ],
 
     "modules-right": [
-        "group/misc",
-        "group/info",
-        "group/tools"
+        "tray",
+        "privacy",
+        "network",
+        "custom/theme",
+        "group/group-power"
     ],
-
-    "custom/clock-icon": {
-        "format":  "",
-
-        "tooltip": false
-    },
 
     "clock": {
         "interval":       1,
@@ -56,10 +51,8 @@
         }
     },
 
-    "custom/memory-icon": {
-        "format":  "",
-
-        "tooltip": false
+    "hyprland/language": {
+        "format": "{short}"
     },
 
     "memory": {
@@ -73,16 +66,6 @@
         "tooltip-format": "Available: {avail} GB"
     },
 
-    "custom/language-icon": {
-        "format":  "",
-
-        "tooltip": false
-    },
-
-    "hyprland/language": {
-        "format": "{short}"
-    },
-
     "hyprland/workspaces": {
         "on-click":       "activate",
 
@@ -94,88 +77,33 @@
         "sort-by-number": true
     },
 
-    "group/misc": {
-		"orientation": "horizontal",
-
-		"modules": [
-            "custom/pulseaudio-output-icon",
-            "pulseaudio#output",
-            "custom/pulseaudio-input-icon",
-            "pulseaudio#input",
-            "custom/tray-icon",
-            "tray"
-		]
-	},
-
-    "custom/pulseaudio-output-icon": {
-        "format":  "",
-
-        "tooltip": false
-    },
-
-    "pulseaudio#output": {
-        "format":       "{volume}%",
-        "format-muted": "",
-
-        "on-click":     "pavucontrol"
-    },
-
-    "custom/pulseaudio-input-icon": {
-        "format":  "",
-
-        "tooltip": false
-    },
-
-    "pulseaudio#input": {
-        "format":              "{format_source}",
-        "format-source":       "{volume}%",
-        "format-source-muted": "",
-
-        "on-click":            "pavucontrol"
-    },
-
-    "custom/tray-icon": {
-        "format":  "",
-
-        "tooltip": false
-    },
-
     "tray": {
         "icon-size": 18,
 
         "spacing":   10
     },
 
-    "group/info": {
-		"orientation": "horizontal",
-
-		"modules": [
-            "privacy",
-            "network"
-		]
-	},
-
     "privacy": {
-        "icon-size":    18,
-        "icon-spacing": 0,
+        "icon-size":    16,
+        "icon-spacing": 5,
         
         "modules": [
             {
                 "type":              "screenshare",
                 "tooltip":           true,
-                "tooltip-icon-size": 18
+                "tooltip-icon-size": 16
             },
 
             {
                 "type":              "audio-out",
                 "tooltip":           true,
-                "tooltip-icon-size": 18
+                "tooltip-icon-size": 16
             },
 
             {
                 "type":              "audio-in",
                 "tooltip":           true,
-                "tooltip-icon-size": 18
+                "tooltip-icon-size": 16
             }
         ]
     },
@@ -194,45 +122,6 @@
 
         "max-length":                  1000
     },
-   
-    "group/tools": {
-		"orientation": "horizontal",
-
-		"modules": [
-            "custom/notification",
-			"custom/theme",
-            "custom/power"
-		]
-	},
-
-    "custom/notification": {
-        "format": "{icon}",
-        "format-icons": {
-            "notification":               "",
-            "none":                       "",
-
-            "dnd-notification":           "",
-            "dnd-none":                   "",
-
-            "inhibited-notification":     "",
-            "inhibited-none":             "",
-
-            "dnd-inhibited-notification": "",
-            "dnd-inhibited-none":         ""
-        },
-
-        "return-type":    "json",
-
-        "exec-if":        "which swaync-client",
-        "exec":           "swaync-client -swb",
-
-        "on-click":       "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-
-        "escape":         true,
-
-        "tooltip":        false
-    },
 
     "custom/theme": {
         "format":   "",
@@ -242,11 +131,44 @@
         "tooltip":  false
     },
 
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 200,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/quit",
+            "custom/lock"
+        ]
+    },
+
     "custom/power": {
         "format":   "",
 
-        "on-click": "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'",
+        "tooltip":  true,
+        "tooltip-format": "Power Menu",
 
-        "tooltip":  false
+        "on-click": "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
+    },
+
+    "custom/quit": {
+        "format": "",
+
+        "tooltip": true,
+        "tooltip-format": "Quit",
+
+        "on-click": "hyprctl dispatch exit"
+    },
+
+    "custom/lock": {
+        "format": "",
+
+        "tooltip": true,
+        "tooltip-format": "Lock",
+
+        "on-click": "hyprlock"
     }
 }

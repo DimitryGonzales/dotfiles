@@ -5,8 +5,6 @@
 
     background-color: transparent;
 
-    text-color: @on-surface;
-
     margin: 0px;
     padding: 0px;
     spacing: 0px;
@@ -14,11 +12,13 @@
 
 window {
     background-color: @surface;
-    border-radius: 15px;
+    border: 2px;
+    border-color: @inverse-primary;
+    border-radius: 20px;
+
+    width: 600px;
 
     location: center;
-
-    width: 500px;
 }
 
 mainbox {
@@ -29,36 +29,41 @@ mainbox {
 }
 
 inputbar {
-    background-color: @surface-container;
+    spacing: 5px;
 
-    border-radius: 10px;
-
-    padding: 10px;
-    spacing: 10px;
-
-    children: [ prompt, entry ];
+    children: [prompt, entry];
 }
 
 prompt {
+    background-color: @surface-container;
+    border-radius: 36px;
+
     text-color: @primary;
+
+    padding: 10px;
 }
 
 entry {
+    background-color: @surface-container;
+    border-radius: 36px;
+    
+    text-color: @on-surface;
+
+    padding: 10px;
+
     placeholder: "Search";
     placeholder-color:  @on-surface;
 }
 
 message {
     background-color: @surface-container;
-    border-radius: 10px;
 
     text-color: @on-surface;
+
     padding: 10px;
 }
 
 listview {
-    background-color: transparent;
-
     spacing: 5px;
 
     dynamic: true;
@@ -70,24 +75,22 @@ listview {
 
 element {
     background-color: @surface-container;
-    border-radius: 10px;
-
+    border-radius: 36px;
+    
     padding: 10px;
-    spacing: 10px;
+    spacing: 5px;
 }
 
 element.selected.normal {
-    background-color: @primary;
+    background-color: @surface-bright;
 }
 
-element-icon, element-text {
-    background-color: transparent;
-    
-    text-color: @on-surface;
-
+element-icon {
     size: 30;
 }
 
-element-text.selected {
-    text-color: @on-primary;
+element-text {
+    text-color: @on-surface;
+
+    size: 30;
 }
