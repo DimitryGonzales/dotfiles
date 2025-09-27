@@ -78,7 +78,7 @@ element {
     border-radius: 36px;
     
     padding: 10px;
-    spacing: 5px;
+    spacing: 10px;
 }
 
 element.selected.normal {
@@ -86,11 +86,9 @@ element.selected.normal {
 }
 
 element-icon {
-    size: 30;
+    size: 25;
 }
 
 element-text {
     text-color: @on-surface;
-
-    size: 30;
 }
