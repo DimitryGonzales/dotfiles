@@ -21,9 +21,9 @@ Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspi
 > [!TIP]
 > You can add any wallpaper to the **waypaper** menu by moving it to `~/wallpapers/`.
 
-https://github.com/user-attachments/assets/32dd9f4b-1a7a-4e00-bd11-b54fc12c2438
+https://github.com/user-attachments/assets/453cbe87-498d-4cb1-b110-05aa9e019106
 
-https://github.com/user-attachments/assets/9a65c683-aac7-4363-bdd7-8f0c78a14f43
+https://github.com/user-attachments/assets/51a40948-2aed-4b6b-8537-9982f4a0013f
 
 <br>
 
