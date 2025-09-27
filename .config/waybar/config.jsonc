@@ -181,29 +181,29 @@
     },
 
     "custom/power": {
-        "format":   "",
+        "format":         "",
 
-        "tooltip":  true,
+        "tooltip":        true,
         "tooltip-format": "Power Menu",
 
-        "on-click": "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
+        "on-click":       "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
     },
 
     "custom/quit": {
-        "format": "",
+        "format":         "",
 
-        "tooltip": true,
+        "tooltip":        true,
         "tooltip-format": "Quit",
 
-        "on-click": "hyprctl dispatch exit"
+        "on-click":       "hyprctl dispatch exit"
     },
 
     "custom/lock": {
-        "format": "",
+        "format":         "",
 
-        "tooltip": true,
+        "tooltip":        true,
         "tooltip-format": "Lock",
 
-        "on-click": "hyprlock"
+        "on-click":       "hyprlock"
     }
 }
