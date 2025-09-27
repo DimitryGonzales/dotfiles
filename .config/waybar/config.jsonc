@@ -24,6 +24,7 @@
         "privacy",
         "network",
         "custom/theme",
+        "custom/notification",
         "group/group-power"
     ],
 
@@ -60,10 +61,10 @@
 
         "format":         "{used}/{total} GB",
 
-        "on-click":       "missioncenter",
-
         "tooltip":        true,
-        "tooltip-format": "Available: {avail} GB"
+        "tooltip-format": "Available: {avail} GB",
+
+        "on-click":       "missioncenter"
     },
 
     "hyprland/workspaces": {
@@ -90,18 +91,21 @@
         "modules": [
             {
                 "type":              "screenshare",
+
                 "tooltip":           true,
                 "tooltip-icon-size": 16
             },
 
             {
                 "type":              "audio-out",
+
                 "tooltip":           true,
                 "tooltip-icon-size": 16
             },
 
             {
                 "type":              "audio-in",
+
                 "tooltip":           true,
                 "tooltip-icon-size": 16
             }
@@ -126,18 +130,49 @@
     "custom/theme": {
         "format":   "",
 
-        "on-click": "waypaper",
+        "tooltip":  false,
 
-        "tooltip":  false
+        "on-click": "waypaper"
+    },
+
+    "custom/notification": {
+        "format": "{icon}",
+        "format-icons": {
+            "notification":               "",
+            "none":                       "",
+
+            "dnd-notification":           "",
+            "dnd-none":                   "",
+
+            "inhibited-notification":     "",
+            "inhibited-none":             "",
+
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none":         ""
+        },
+
+        "tooltip":        false,
+
+        "return-type":    "json",
+
+        "exec-if":        "which swaync-client",
+        "exec":           "swaync-client -swb",
+
+        "on-click":       "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+
+        "escape":         true
     },
 
     "group/group-power": {
         "orientation": "inherit",
+
         "drawer": {
-            "transition-duration": 200,
-            "children-class": "not-power",
+            "transition-duration":      200,
+            "children-class":           "not-power",
             "transition-left-to-right": false
         },
+        
         "modules": [
             "custom/power",
             "custom/quit",
