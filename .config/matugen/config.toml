@@ -21,6 +21,11 @@ input_path = '~/.config/matugen/templates/hyprland.conf'
 output_path = '~/.config/hypr/source/matugen-colors.conf'
 post_hook = 'hyprctl reload'
 
+[templates.pywalfox]
+input_path = '~/.config/matugen/templates/pywalfox.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
 [templates.qt5ct]
 input_path = '~/.config/matugen/templates/qtct.conf'
 output_path = '~/.config/qt5ct/colors/matugen-colors.conf'
