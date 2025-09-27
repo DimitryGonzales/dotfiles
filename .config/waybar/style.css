@@ -41,6 +41,8 @@ tooltip label {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
+    color: @on_surface;
+
     padding: 0 10px;
 
     transition:
@@ -58,12 +60,16 @@ tooltip label {
     background-color: @surface_container;
     border-radius: 100%;
 
+    color: @on_surface;
+
     min-width:  calc(60px - (10px * 2));
 }
 
 #memory {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
 
     padding: 0 10px;
 
@@ -89,6 +95,8 @@ tooltip label {
 #workspaces button {
     background-color: @surface_container_high;
     border-radius: calc((60px - ((10px * 2) + (5px * 2))) / 2);
+
+    color: @on_surface;
 
     margin-right: 5px;
 
@@ -126,6 +134,8 @@ tooltip label {
 #pulseaudio {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
 
     padding: 0 10px;
 
