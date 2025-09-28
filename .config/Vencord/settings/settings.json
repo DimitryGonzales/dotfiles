@@ -300,7 +300,8 @@
         "MemberCount": {
             "enabled": true,
             "toolTip": true,
-            "memberList": true
+            "memberList": true,
+            "voiceActivity": true
         },
         "MentionAvatars": {
             "enabled": true,
@@ -622,7 +623,8 @@
             "enabled": true,
             "mode": "user-nick",
             "displayNames": false,
-            "inReplies": false
+            "inReplies": false,
+            "friendNicknames": "dms"
         },
         "ShowTimeoutDuration": {
             "enabled": true,
@@ -803,6 +805,12 @@
         },
         "ExpressionCloner": {
             "enabled": true
+        },
+        "CopyStickerLinks": {
+            "enabled": false
+        },
+        "ImageFilename": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -815,7 +823,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1754283840529
+        "settingsSyncVersion": 1759074928921
     },
     "eagerPatches": false
 }
