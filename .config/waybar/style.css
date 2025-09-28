@@ -283,31 +283,49 @@ tooltip label {
 #group-power {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
+
+    transition: padding 200ms ease;
 }
 
-#group-power:hover #custom-power {
-    background-color: @surface_container_high;
+#group-power:hover {
+    padding: 5px;
 }
 
-#group-power .not-power > * {
-    background-color: @surface_container_high;
-    margin-right: 5px;
-}
-
-#custom-power,
-#custom-quit,
-#custom-lock {
+#custom-power {
     border-radius: 100%;
 
     color: @on_surface;
 
     min-width: calc(60px - (10px * 2));
 
+    transition: 
+        background 200ms ease,
+        min-width 200ms ease;
+}
+
+#group-power:hover #custom-power {
+    background-color: @surface_container_high;
+
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
+}
+
+#group-power:hover #custom-power:hover {
+    background-color: @surface_bright;
+}
+
+#group-power .not-power > * {
+    background-color: @surface_container_high;
+    border-radius: 100%;
+
+    color: @on_surface;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
+
     transition: background 200ms ease;
 }
 
-#group-power:hover #custom-power:hover,
-#custom-quit:hover,
-#custom-lock:hover {
+#group-power .not-power > *:hover {
     background-color: @surface_bright;
 }
