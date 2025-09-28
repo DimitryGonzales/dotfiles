@@ -1,13 +1,12 @@
 # Dotfiles
 
-Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations to the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
+Personal dotfiles for [Hyprland](https://hypr.land/) with **Material Design**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations to the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
 
 <br>
 
 ## 📝 TODO
 
-- [ ] Add links to [📦 Required Packages](#-required-packages) section.
-- [ ] Add optional software to [📦 Required Packages](#-required-packages) section.
+- [ ] Add **📦 Required Packages** section.
 - [ ] Fix SwayNC styling.
 - [ ] Update repository thumbnail.
 
@@ -24,43 +23,6 @@ Personal dotfiles for [Hyprland](https://hypr.land/) with **Material You**-inspi
 https://github.com/user-attachments/assets/453cbe87-498d-4cb1-b110-05aa9e019106
 
 https://github.com/user-attachments/assets/51a40948-2aed-4b6b-8537-9982f4a0013f
-
-<br>
-
-## 📦 Required packages
-
-> [!NOTE]
-> These packages are required for core functionality. Optional apps (e.g., Firefox, Kitty) are not listed here.
-
-- Adw-GTK3
-- Adwaita Icon Theme
-- Bibata Cursor Theme
-- Cliphist
-- Font Awesome Icon Library
-- Git
-- GTK 2
-- GTK 3
-- GTK 4
-- Hyprland
-- Hyprlock
-- Hyprpicker
-- Hyprshot
-- Inter Font
-- JetBrains Mono Font
-- Matugen
-- Mission Center
-- Nerd Fonts
-- Pavucontrol
-- Qt5ct
-- Qt6ct
-- Rofi
-    - RofiMoji
-    - Rofi-Power-Menu
-- SwayNC
-- swww
-- Waybar
-- Waypaper
-- yadm
 
 <br>
 
