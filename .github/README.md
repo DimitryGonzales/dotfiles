@@ -7,6 +7,7 @@ Personal dotfiles with **Material Design**-inspired dynamic theming using [Matug
 ## 📝 TODO
 
 - [ ] Add **📦 Required Packages** section.
+- [ ] Update **🖼️ Showcase** videos.
 
 <br>
 
