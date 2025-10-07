@@ -86,34 +86,34 @@ body {
     --colors: on; /* off: discord default colors, on: midnight custom colors */
 
     /* text colors */
-    --text-0: #541d31; /* text on colored elements */
-    --text-1: #efdfe1; /* other normally white text */
-    --text-2: #efdfe1; /* headings and important text */
-    --text-3: #efdfe1; /* normal text */
-    --text-4: #d5c2c5; /* icon buttons and channels */
-    --text-5: #d5c2c5; /* muted channels/chats and timestamps */
+    --text-0: {{colors.on_primary.default.hex}}; /* text on colored elements */
+    --text-1: {{colors.on_surface.default.hex}}; /* other normally white text */
+    --text-2: {{colors.on_surface.default.hex}}; /* headings and important text */
+    --text-3: {{colors.on_surface.default.hex}}; /* normal text */
+    --text-4: {{colors.on_surface_variant.default.hex}}; /* icon buttons and channels */
+    --text-5: {{colors.on_surface_variant.default.hex}}; /* muted channels/chats and timestamps */
 
     /* background and dark colors */
-    --bg-1: #31282a; /* dark buttons when clicked */
-    --bg-2: #261d1f; /* dark buttons */
-    --bg-3: #261d1f; /* spacing, secondary elements */
-    --bg-4: #191113; /* main background color */
-    --hover: #413739; /* channels and buttons when hovered */
-    --active: #261d1f; /* channels and buttons when clicked or selected */
-    --active-2: #31282a; /* extra state for transparent buttons */
-    --message-hover: #413739; /* messages when hovered */
+    --bg-1: {{colors.surface_container_high.default.hex}}; /* dark buttons when clicked */
+    --bg-2: {{colors.surface_container.default.hex}}; /* dark buttons */
+    --bg-3: {{colors.surface_container.default.hex}}; /* spacing, secondary elements */
+    --bg-4: {{colors.surface.default.hex}}; /* main background color */
+    --hover: {{colors.surface_bright.default.hex}}; /* channels and buttons when hovered */
+    --active: {{colors.surface_container.default.hex}}; /* channels and buttons when clicked or selected */
+    --active-2: {{colors.surface_container_high.default.hex}}; /* extra state for transparent buttons */
+    --message-hover: {{colors.surface_bright.default.hex}}; /* messages when hovered */
 
     /* accent colors */
-    --accent-1: #ffb1c7; /* links and other accent text */
-    --accent-2: #ffb1c7; /* small accent elements */
-    --accent-3: #ffb1c7; /* accent buttons */
-    --accent-4: #8c4a5f; /* accent buttons when hovered */
-    --accent-5: #703348; /* accent buttons when clicked */
-    --accent-new: #ffb4ab; /* stuff that's normally red like mute/deafen buttons */
-    --mention: #ffb1c7; /* background of messages that mention you */
-    --mention-hover: #8c4a5f; /* background of messages that mention you when hovered */
-    --reply: #ffb1c7; /* background of messages that reply to you */
-    --reply-hover: #8c4a5f; /* background of messages that reply to you when hovered */
+    --accent-1: {{colors.primary.default.hex}}; /* links and other accent text */
+    --accent-2: {{colors.primary.default.hex}}; /* small accent elements */
+    --accent-3: {{colors.primary.default.hex}}; /* accent buttons */
+    --accent-4: {{colors.inverse_primary.default.hex}}; /* accent buttons when hovered */
+    --accent-5: {{colors.primary_container.default.hex}}; /* accent buttons when clicked */
+    --accent-new: {{colors.error.default.hex}}; /* stuff that's normally red like mute/deafen buttons */
+    --mention: {{colors.primary.default.hex}}; /* background of messages that mention you */
+    --mention-hover: {{colors.inverse_primary.default.hex}}; /* background of messages that mention you when hovered */
+    --reply: {{colors.primary.default.hex}}; /* background of messages that reply to you */
+    --reply-hover: {{colors.inverse_primary.default.hex}}; /* background of messages that reply to you when hovered */
 
     /* status indicator colors */
     --online: var(--green-2); /* change to #40a258 for default */
@@ -123,10 +123,10 @@ body {
     --offline: var(--text-4); /* change to #82838b for default offline color */
 
     /* border colors */
-    --border-light: #413739; /* general light border color */
-    --border: #3c3234; /* general normal border color */
-    --border-hover: #ffb1c7; /* border color of panels when hovered */
-    --button-border: #9e8c90; /* neutral border color of buttons */
+    --border-light: {{colors.surface_bright.default.hex}}; /* general light border color */
+    --border: {{colors.surface_container_highest.default.hex}}; /* general normal border color */
+    --border-hover: {{colors.primary.default.hex}}; /* border color of panels when hovered */
+    --button-border: {{colors.outline.default.hex}}; /* neutral border color of buttons */
 
     /* base colors */
     --red-1: oklch(75% 0.13 0);

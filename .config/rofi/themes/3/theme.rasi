@@ -1,7 +1,7 @@
 @import "matugen-colors.rasi"
 
 * {
-    font: "JetBrainsMono Nerd Font 14";
+    font: "Inter 16";
 
     background-color: transparent;
 
@@ -14,8 +14,9 @@ window {
     background-color: @surface;
     border: 2px;
     border-color: @inverse-primary;
+    border-radius: 20px;
 
-    width: 400px;
+    width: 600px;
 
     location: center;
 }
@@ -35,6 +36,7 @@ inputbar {
 
 prompt {
     background-color: @surface-container;
+    border-radius: 36px;
 
     text-color: @primary;
 
@@ -43,6 +45,7 @@ prompt {
 
 entry {
     background-color: @surface-container;
+    border-radius: 36px;
     
     text-color: @on-surface;
 
@@ -72,6 +75,7 @@ listview {
 
 element {
     background-color: @surface-container;
+    border-radius: 36px;
     
     padding: 10px;
     spacing: 10px;

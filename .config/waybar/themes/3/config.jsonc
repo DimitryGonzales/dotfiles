@@ -1,19 +1,19 @@
 {
     "reload_style_on_change": true,
-
-    "spacing":                10,
-
-    "position":               "bottom",
+    
+    "height":                 60,
 
     "margin-top":             5,
+    "margin-left":            5,
+    "margin-right":           5,
 
-    "height":                 55,
+    "spacing": 10,
 
     "modules-left": [
         "clock",
         "hyprland/language",
-        "pulseaudio#output",
-        "pulseaudio#input"
+        "memory",
+        "disk"
     ],
 
     "modules-center": [
@@ -21,9 +21,11 @@
     ],
 
     "modules-right": [
+        "pulseaudio#output",
+        "pulseaudio#input",
+        "tray",
         "privacy",
         "network",
-        "tray",
         "custom/theme",
         "custom/notification",
         "group/group-power"
@@ -57,6 +59,41 @@
         "format": "{short}"
     },
 
+    "memory": {
+        "interval":       1,
+
+        "format":         " {used} / {total} GB",
+
+        "tooltip":        true,
+        "tooltip-format": "Available: {avail} GB",
+
+        "on-click":       "missioncenter"
+    },
+
+    "disk": {
+        "interval":       300,
+
+        "path":           "/",
+
+        "format":         " {used} / {total}",
+        
+        "tooltip":        true,
+        "tooltip-format": "Free: {free}",
+
+        "on-click":       "nautilus"
+    },
+
+    "hyprland/workspaces": {
+        "on-click":       "activate",
+
+        "on-scroll-up":   "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+
+        "all-outputs":    true,
+        
+        "sort-by-number": true
+    },
+
     "pulseaudio#output": {
         "format":       " {volume}%",
         "format-muted": "",
@@ -76,15 +113,10 @@
         "on-click":            "pavucontrol"
     },
 
-    "hyprland/workspaces": {
-        "on-click":       "activate",
+    "tray": {
+        "icon-size": 18,
 
-        "on-scroll-up":   "hyprctl dispatch workspace e-1",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
-
-        "all-outputs":    true,
-        
-        "sort-by-number": true
+        "spacing":   10
     },
 
     "privacy": {
@@ -128,12 +160,6 @@
         "tooltip-format-disconnected": "Disconnected",
 
         "max-length":                  1000
-    },
-
-    "tray": {
-        "icon-size": 18,
-
-        "spacing":   10
     },
 
     "custom/theme": {

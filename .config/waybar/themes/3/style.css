@@ -6,7 +6,7 @@
     all: unset;
 
     font-size: 16px;
-    font-family: "JetBrains Mono", "Font Awesome 7 Free";
+    font-family: "Inter", "Font Awesome 7 Free";
     font-weight: bold;
 
     transition: all 0s;
@@ -16,6 +16,7 @@
 window#waybar {
     background-color: @surface;
     border: 2px solid @inverse_primary;
+    border-radius: calc(60px / 2);
 }
 
 window#waybar > box {
@@ -26,6 +27,7 @@ window#waybar > box {
 tooltip {
     background-color: @surface_container;
     border: 2px solid @inverse_primary;
+    border-radius: 20px;
 }
 
 tooltip label {
@@ -36,9 +38,10 @@ tooltip label {
 
 /* Left */
 #clock {
-    background-color: @primary;
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
-    color: @on_primary;
+    color: @on_surface;
 
     padding: 0 10px;
 
@@ -55,48 +58,68 @@ tooltip label {
 
 #language {
     background-color: @surface_container;
+    border-radius: 100%;
 
     color: @on_surface;
 
-    min-width:  calc(55px - (10px * 2));
+    min-width:  calc(60px - (10px * 2));
 }
 
-#pulseaudio {
+#memory {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
     color: @on_surface;
 
     padding: 0 10px;
 
-    transition: background 200ms ease;
+    transition:
+        background 200ms ease,
+        color 200ms ease;
 }
 
-#pulseaudio:hover {
-    background-color: @surface_bright;
+#memory:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
 }
 
-#pulseaudio.output.muted,
-#pulseaudio.input.source-muted{
-    padding: 0;
+#disk {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
-    min-width: calc(55px - (10px * 2));
+    color: @on_surface;
+
+    padding: 0 10px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#disk:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
 }
 
 /* Center */
 #workspaces {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
 #workspaces button {
     background-color: @surface_container_high;
+    border-radius: calc((60px - ((10px * 2) + (5px * 2))) / 2);
 
     color: @on_surface;
 
     margin-right: 5px;
 
-    min-width: calc(55px - (10px * 2) - (5px * 2));
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
 
     transition:
         background 200ms ease,
@@ -123,56 +146,35 @@ tooltip label {
 
     color: @on_primary;
 
-    min-width: calc((55px - (10px * 2) - (5px * 2)) * 2);
+    min-width: calc((60px - ((10px * 2) + (5px * 2))) * 2);
 }
 
 /* Right */
-#privacy {
+#pulseaudio {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
-    padding: 5px;
+    color: @on_surface;
+
+    padding: 0 10px;
+
+    transition: background 200ms ease;
 }
 
-#privacy-item {
-    background-color: @primary_container;
-
-    color: @on_primary_container;
-
-    min-width: calc(55px - (10px * 2) - (5px * 2));
+#pulseaudio:hover {
+    background-color: @surface_bright;
 }
 
-#network {
-    background-color: @primary_container;
+#pulseaudio.output.muted,
+#pulseaudio.input.source-muted{
+    padding: 0;
 
-    color: @on_primary_container;
-
-    min-width: calc(55px - (10px * 2));
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#network:hover {
-    background-color: @inverse_primary;
-
-    color: @primary;
-}
-
-#network.disconnected {
-    background-color: @error;
-
-    color: @on_error;
-}
-
-#network.disconnected:hover {
-    background-color: @error_container;
-
-    color: @on_error_container;
+    min-width: calc(60px - (10px * 2));
 }
 
 #tray {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 0 10px;
 }
@@ -180,12 +182,14 @@ tooltip label {
 #tray menu {
     background-color: @surface_container;
     border: 2px solid @inverse_primary;
+    border-radius: 20px;
 
     padding: 10px;
 }
 
 #tray menu menuitem {
     background-color: @surface_container_high;
+    border-radius: 20px;
 
     color: @on_surface;
 
@@ -205,12 +209,54 @@ tooltip label {
     background-color: @surface_bright;
 }
 
+#privacy {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#privacy-item {
+    background-color: @primary_container;
+    border-radius: 100%;
+
+    color: @on_primary_container;
+
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
+}
+
+#network {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    min-width: calc(60px - (10px * 2));
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#network:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
+}
+
+#network.disconnected {
+    background-color: @error;
+
+    color: @on_error;
+}
+
 #custom-theme {
     background-color: @surface_container;
+    border-radius: 100%;
 
     color: @on_surface;
 
-    min-width: calc(55px - (10px * 2));
+    min-width: calc(60px - (10px * 2));
 
     transition: background 200ms ease;
 }
@@ -221,10 +267,11 @@ tooltip label {
 
 #custom-notification {
     background-color: @surface_container;
+    border-radius: 100%;
 
     color: @on_surface;
 
-    min-width: calc(55px - (10px * 2));
+    min-width: calc(60px - (10px * 2));
 
     transition: background 200ms ease;
 }
@@ -235,6 +282,7 @@ tooltip label {
 
 #group-power {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
     transition: padding 200ms ease;
 }
@@ -244,9 +292,11 @@ tooltip label {
 }
 
 #custom-power {
+    border-radius: 100%;
+
     color: @on_surface;
 
-    min-width: calc(55px - (10px * 2));
+    min-width: calc(60px - (10px * 2));
 
     transition: 
         background 200ms ease,
@@ -256,7 +306,7 @@ tooltip label {
 #group-power:hover #custom-power {
     background-color: @surface_container_high;
 
-    min-width: calc(55px - (10px * 2) - (5px * 2));
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
 }
 
 #group-power:hover #custom-power:hover {
@@ -265,12 +315,13 @@ tooltip label {
 
 #group-power .not-power > * {
     background-color: @surface_container_high;
+    border-radius: 100%;
 
     color: @on_surface;
 
     margin-right: 5px;
 
-    min-width: calc(55px - (10px * 2) - (5px * 2));
+    min-width: calc(60px - ((10px * 2) + (5px * 2)));
 
     transition: background 200ms ease;
 }
