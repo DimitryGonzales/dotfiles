@@ -17,7 +17,7 @@
   --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
   --notification-group-icon-size: 32px;
   --border: 2px solid var(--noti-border-color);
-  --border-radius: 20px;
+  --border-radius: 0px;
   --notification-shadow: transparent;
   --font-size-body: 16px;
   --font-size-summary: 16px;
@@ -54,7 +54,7 @@ notificationwindow, blankwindow, blankwindow {
   color: var(--text-color);
   text-shadow: none;
   padding: 0;
-  border-radius: 100%;
+  border-radius: var(--border-radius);
   margin-top: 10px;
   margin-right: 10px;
   box-shadow: none;
@@ -270,6 +270,7 @@ notificationwindow, blankwindow, blankwindow {
 }
 
 .notification-group .notification-group-close-button .close-button {
+  border-radius: var(--border-radius);
   margin: 10px;
 }
 
@@ -296,6 +297,11 @@ notificationwindow, blankwindow, blankwindow {
 .notification-group .notification-group-buttons {
   /* Notification Group Buttons */
   margin-right: 10px;
+}
+
+.notification-group .notification-group-buttons button{
+  /* Notification Group Buttons */
+  border-radius: var(--border-radius);
 }
 
 .notification-group.collapsed {
@@ -422,7 +428,7 @@ notificationwindow, blankwindow, blankwindow {
   --mpris-album-art-overlay: rgba(0, 0, 0, 0.75);
   --mpris-button-hover: @surface_container;
   --mpris-album-art-icon-size: 96px;
-  --mpris-album-art-icon-border-radius: 100%;
+  --mpris-album-art-icon-border-radius: 0px;
   --mpris-album-art-shadow: transparent;
 }
 
@@ -444,6 +450,11 @@ notificationwindow, blankwindow, blankwindow {
 .widget-mpris .widget-mpris-player .mpris-overlay {
   padding: 10px;
   background-color: var(--mpris-album-art-overlay);
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay button {
+  /* The media player buttons (play, pause, next, etc...) */
+  border-radius: var(--mpris-album-art-icon-border-radius);
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay button:hover {
