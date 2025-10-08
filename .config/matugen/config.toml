@@ -10,7 +10,7 @@ output_path = "~/.config/foot/matugen-colors.ini"
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-3.0/matugen-colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" && gsettings set org.gnome.desktop.interface font-name "Inter 12" && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" && gsettings set org.gnome.desktop.interface icon-theme "Adwaita" && gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic"'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" && gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font 12" && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" && gsettings set org.gnome.desktop.interface icon-theme "Adwaita" && gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic"'
 
 [templates.gtk4]
 input_path = '~/.config/matugen/templates/gtk.css'
