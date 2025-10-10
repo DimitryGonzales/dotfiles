@@ -390,7 +390,7 @@ notificationwindow, blankwindow, blankwindow {
 
 .widget-title > label {
   margin-right: 10px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -406,7 +406,7 @@ notificationwindow, blankwindow, blankwindow {
 .widget-dnd label {
   color: var(--text-color);
   margin-right: 10px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
