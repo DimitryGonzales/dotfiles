@@ -20,6 +20,10 @@ Personal dotfiles with **Material Design**-inspired dynamic theming using [Matug
 > [!TIP]
 > You can add any wallpaper to the **waypaper** menu by moving it to `~/wallpapers/`.
 
+https://github.com/user-attachments/assets/d9432f55-d390-4650-920f-db9f29ff8627
+
+https://github.com/user-attachments/assets/9c8090e5-581d-4fcb-97a7-ea8d069eaa20
+
 https://github.com/user-attachments/assets/453cbe87-498d-4cb1-b110-05aa9e019106
 
 https://github.com/user-attachments/assets/51a40948-2aed-4b6b-8537-9982f4a0013f
