@@ -10,7 +10,7 @@ output_path = "~/.config/foot/matugen-colors.ini"
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-3.0/matugen-colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" && gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font 12" && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" && gsettings set org.gnome.desktop.interface icon-theme "Adwaita" && gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic"'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" && gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font 12" && gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" && gsettings set org.gnome.desktop.interface icon-theme "Adwaita" && gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" && pkill nautilus'
 
 [templates.gtk4]
 input_path = '~/.config/matugen/templates/gtk.css'
@@ -55,3 +55,7 @@ output_path = '~/.config/Vencord/themes/matugen-colors.css'
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/matugen-colors.css'
+
+[templates.root]
+input_path = '~/.config/matugen/templates/root.css'
+output_path = '~/Downloads/matugen-colors.css'

@@ -110,10 +110,10 @@ body {
     --accent-4: {{colors.inverse_primary.default.hex}}; /* accent buttons when hovered */
     --accent-5: {{colors.primary_container.default.hex}}; /* accent buttons when clicked */
     --accent-new: {{colors.error.default.hex}}; /* stuff that's normally red like mute/deafen buttons */
-    --mention: {{colors.primary.default.hex}}; /* background of messages that mention you */
-    --mention-hover: {{colors.inverse_primary.default.hex}}; /* background of messages that mention you when hovered */
-    --reply: {{colors.primary.default.hex}}; /* background of messages that reply to you */
-    --reply-hover: {{colors.inverse_primary.default.hex}}; /* background of messages that reply to you when hovered */
+    --mention: {{colors.surface_container.default.hex}}; /* background of messages that mention you */
+    --mention-hover: {{colors.surface_bright.default.hex}}; /* background of messages that mention you when hovered */
+    --reply: {{colors.surface_container.default.hex}}; /* background of messages that reply to you */
+    --reply-hover: {{colors.surface_bright.default.hex}}; /* background of messages that reply to you when hovered */
 
     /* status indicator colors */
     --online: var(--green-2); /* change to #40a258 for default */

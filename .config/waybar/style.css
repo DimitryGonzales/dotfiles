@@ -53,14 +53,6 @@ tooltip label {
     color: @primary;
 }
 
-#language {
-    background-color: @surface_container;
-
-    color: @on_surface;
-
-    min-width:  calc(55px - (10px * 2));
-}
-
 #pulseaudio {
     background-color: @surface_container;
 
@@ -80,6 +72,20 @@ tooltip label {
     padding: 0;
 
     min-width: calc(55px - (10px * 2));
+}
+
+#memory {
+    background-color: @surface_container;
+
+    color: @on_surface;
+
+    padding: 0 10px;
+
+    transition: background 200ms ease;
+}
+
+#memory:hover {
+    background-color: @surface_bright;
 }
 
 /* Center */
@@ -118,7 +124,21 @@ tooltip label {
     color: @on_primary_container;
 }
 
+#workspaces button.visible:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
+}
+
 #workspaces button.active {
+    background-color: @primary;
+
+    color: @on_primary;
+
+    min-width: calc((55px - (10px * 2) - (5px * 2)) * 2);
+}
+
+#workspaces button.active:hover {
     background-color: @primary;
 
     color: @on_primary;
@@ -203,6 +223,14 @@ tooltip label {
 
 #tray menu menuitem:hover {
     background-color: @surface_bright;
+}
+
+#language {
+    background-color: @surface_container;
+
+    color: @on_surface;
+
+    min-width:  calc(55px - (10px * 2));
 }
 
 #custom-theme {

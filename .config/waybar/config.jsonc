@@ -9,9 +9,9 @@
 
     "modules-left": [
         "clock",
-        "hyprland/language",
         "pulseaudio#output",
-        "pulseaudio#input"
+        "pulseaudio#input",
+        "memory"
     ],
 
     "modules-center": [
@@ -22,6 +22,7 @@
         "privacy",
         "network",
         "tray",
+        "hyprland/language",
         "custom/theme",
         "custom/notification",
         "group/group-power"
@@ -51,10 +52,6 @@
         }
     },
 
-    "hyprland/language": {
-        "format": "{short}"
-    },
-
     "pulseaudio#output": {
         "format":       " {volume}%",
         "format-muted": "",
@@ -72,6 +69,17 @@
         "tooltip":             false,
 
         "on-click":            "pavucontrol"
+    },
+
+    "memory": {
+        "interval":       1,
+
+        "format":         " {used} GB",
+
+        "tooltip":        true,
+        "tooltip-format": "Available: {avail} GB\nTotal: {total} GB",
+
+        "on-click":       "missioncenter"
     },
 
     "hyprland/workspaces": {
@@ -132,6 +140,10 @@
         "icon-size": 18,
 
         "spacing":   10
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
     },
 
     "custom/theme": {
