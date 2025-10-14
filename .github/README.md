@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles with **Material Design**-inspired dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations to the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
+Personal dotfiles with **Material You**-inspired colors and dynamic theming using [Matugen](https://github.com/InioX/matugen). It includes configurations to the desktop environment, GTK/Qt apps, Rofi, Waybar, and more, all designed to adapt to your wallpaper automatically.
 
 <br>
 
