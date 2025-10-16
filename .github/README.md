@@ -7,7 +7,6 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 ## 📝 TODO
 
 - [ ] Add **📦 Required Packages** section.
-- [ ] Create script to change themes.
 
 <br>
 
