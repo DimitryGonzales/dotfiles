@@ -60,9 +60,10 @@ clear
 printf "Copying files from '%s' to '%s'...\n" "$THEME" "$HOME"
 
 if cp -rv "${THEME_FILES[@]}" "$HOME"; then
-    printf "\nFiles copied successfully!\n"
-    exit 0
+    printf "\nFiles copied successfully!\n\n"
 else
-    printf "\nFailed to copy all files, check errors above. Some changes may have been done.\n"
-    exit 1
+    printf "\nFailed to copy all files, check errors above. Some changes may have been done.\n\n"
 fi
+
+# Select wallpaper and execute post-hooks
+waypaper

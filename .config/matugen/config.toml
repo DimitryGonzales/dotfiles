@@ -55,6 +55,7 @@ output_path = '~/.config/Vencord/themes/matugen-colors.css'
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/matugen-colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
 
 [templates.root]
 input_path = '~/.config/matugen/templates/root.css'

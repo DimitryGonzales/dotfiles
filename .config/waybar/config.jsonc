@@ -194,7 +194,6 @@
         
         "modules": [
             "custom/power",
-            "custom/quit",
             "custom/lock"
         ]
     },
@@ -206,15 +205,6 @@
         "tooltip-format": "Power Menu",
 
         "on-click":       "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
-    },
-
-    "custom/quit": {
-        "format":         "",
-
-        "tooltip":        true,
-        "tooltip-format": "Quit",
-
-        "on-click":       "hyprctl dispatch exit"
     },
 
     "custom/lock": {
