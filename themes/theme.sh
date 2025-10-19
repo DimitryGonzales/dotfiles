@@ -10,7 +10,7 @@ THEMES_DIRECTORY=~/themes
 
 printf "Current themes directory: '%s'\n\n" "$THEMES_DIRECTORY"
 
-read -r -p "Do you want to change it? (y/N) " BUFFER
+read -r -p "Do you want to change it? [y/N]: " BUFFER
 BUFFER=${BUFFER,,}
 BUFFER=${BUFFER:-"n"}
 
@@ -43,7 +43,7 @@ while true; do
 
             eza -Ta "$THEME"; echo
 
-            read -r -p "Do you want to apply it? (Y/n) " BUFFER
+            read -r -p "Do you want to apply it? [Y/n]: " BUFFER
             BUFFER=${BUFFER,,}
             BUFFER=${BUFFER:-"y"}
 
