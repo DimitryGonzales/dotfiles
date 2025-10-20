@@ -1,7 +1,7 @@
 @import "matugen-colors.rasi"
 
 * {
-    font: "JetBrainsMono Nerd Font 14";
+    font: "Inter 16";
 
     background-color: transparent;
 
@@ -12,12 +12,11 @@
 
 window {
     background-color: @surface;
-    border: 2px;
-    border-color: @inverse-primary;
+    border-radius: 0 0 20px 20px;
 
-    width: 400px;
+    width: 500px;
 
-    location: center;
+    location: north;
 }
 
 mainbox {
@@ -35,6 +34,7 @@ inputbar {
 
 prompt {
     background-color: @surface-container;
+    border-radius: 20px;
 
     text-color: @primary;
 
@@ -43,17 +43,19 @@ prompt {
 
 entry {
     background-color: @surface-container;
+    border-radius: 20px;
     
     text-color: @on-surface;
 
     padding: 10px;
 
     placeholder: "Search";
-    placeholder-color:  @on-surface;
+    placeholder-color:  @on-surface-variant;
 }
 
 message {
     background-color: @surface-container;
+    border-radius: 20px;
 
     text-color: @on-surface;
 
@@ -61,17 +63,20 @@ message {
 }
 
 listview {
+    background-color: @surface-container;
+    border-radius: 20px;
+
     spacing: 5px;
 
     dynamic: true;
     lines: 8;
     columns: 1;
-
     fixed-height: false;
 }
 
 element {
-    background-color: @surface-container;
+    background-color: transparent;
+    border-radius: 20px;
     
     padding: 10px;
     spacing: 10px;

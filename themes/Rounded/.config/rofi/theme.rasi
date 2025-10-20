@@ -12,11 +12,11 @@
 
 window {
     background-color: @surface;
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
 
-    width: 400px;
+    width: 500px;
 
-    location: center;
+    location: north;
 }
 
 mainbox {
@@ -50,7 +50,7 @@ entry {
     padding: 10px;
 
     placeholder: "Search";
-    placeholder-color:  @on-surface;
+    placeholder-color:  @on-surface-variant;
 }
 
 message {
@@ -63,17 +63,19 @@ message {
 }
 
 listview {
+    background-color: @surface-container;
+    border-radius: 20px;
+
     spacing: 5px;
 
     dynamic: true;
     lines: 8;
     columns: 1;
-
     fixed-height: false;
 }
 
 element {
-    background-color: @surface-container;
+    background-color: transparent;
     border-radius: 20px;
     
     padding: 10px;

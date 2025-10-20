@@ -16,8 +16,8 @@
   --notification-icon-size: 64px;
   --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
   --notification-group-icon-size: 32px;
-  --border: 2px solid var(--noti-border-color);
-  --border-radius: 0px;
+  --border: 0px solid var(--noti-border-color);
+  --border-radius: 20px;
   --notification-shadow: transparent;
   --font-size-body: 16px;
   --font-size-summary: 16px;
@@ -138,7 +138,7 @@ notificationwindow, blankwindow, blankwindow {
   /* Notification Primary Image */
   -gtk-icon-filter: none;
   -gtk-icon-size: var(--notification-icon-size);
-  border-radius: 100px;
+  border-radius: 100%;
   /* Size in px */
   margin-right: 10px;
 }
@@ -428,7 +428,7 @@ notificationwindow, blankwindow, blankwindow {
   --mpris-album-art-overlay: rgba(0, 0, 0, 0.75);
   --mpris-button-hover: @surface_container;
   --mpris-album-art-icon-size: 96px;
-  --mpris-album-art-icon-border-radius: 0px;
+  --mpris-album-art-icon-border-radius: 100%;
   --mpris-album-art-shadow: transparent;
 }
 

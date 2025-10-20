@@ -1,11 +1,9 @@
 {
     "reload_style_on_change": true,
 
-    "spacing":                10,
+    "spacing":                5,
 
-    "margin-bottom":          5,
-
-    "height":                 55,
+    "height":                 60,
 
     "modules-left": [
         "clock",
@@ -19,13 +17,10 @@
     ],
 
     "modules-right": [
-        "privacy",
-        "network",
-        "tray",
         "hyprland/language",
-        "custom/theme",
-        "custom/notification",
-        "group/group-power"
+        "privacy",
+        "tray",
+        "custom/theme"
     ],
 
     "clock": {
@@ -49,7 +44,10 @@
                 "weekdays": "<span color='#ffffff'><b>{}</b></span>",
                 "today":    "<span color='#0091ff'><b><u>{}</u></b></span>"
             }
-        }
+        },
+
+        "on-click":       "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw"
     },
 
     "pulseaudio#output": {
@@ -85,12 +83,13 @@
     "hyprland/workspaces": {
         "on-click":       "activate",
 
-        "on-scroll-up":   "hyprctl dispatch workspace e-1",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
-
         "all-outputs":    true,
         
         "sort-by-number": true
+    },
+
+    "hyprland/language": {
+        "format": "{short}"
     },
 
     "privacy": {
@@ -121,29 +120,10 @@
         ]
     },
 
-    "network": {
-        "interval":                    1,
-
-        "format-wifi":                 "",
-        "tooltip-format-wifi":         "Wi-Fi\n\nSSID: {essid}\nFrequency: {frequency}\nStrength: {signalStrength}\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}\n\n {bandwidthDownBytes} |  {bandwidthUpBytes}",
-
-        "format-ethernet":             "",
-        "tooltip-format-ethernet":     "Ethernet\n\nIP: {ipaddr}\nGateway: {gwaddr}\nSubnetmask: {netmask}\n\n {bandwidthDownBytes} |  {bandwidthUpBytes}",
-
-        "format-disconnected":         "",
-        "tooltip-format-disconnected": "Disconnected",
-
-        "max-length":                  1000
-    },
-
     "tray": {
         "icon-size": 18,
 
         "spacing":   10
-    },
-
-    "hyprland/language": {
-        "format": "{short}"
     },
 
     "custom/theme": {
@@ -152,67 +132,5 @@
         "tooltip":  false,
 
         "on-click": "waypaper"
-    },
-
-    "custom/notification": {
-        "format": "{icon}",
-        "format-icons": {
-            "notification":               "",
-            "none":                       "",
-
-            "dnd-notification":           "",
-            "dnd-none":                   "",
-
-            "inhibited-notification":     "",
-            "inhibited-none":             "",
-
-            "dnd-inhibited-notification": "",
-            "dnd-inhibited-none":         ""
-        },
-
-        "tooltip":        false,
-
-        "return-type":    "json",
-
-        "exec-if":        "which swaync-client",
-        "exec":           "swaync-client -swb",
-
-        "on-click":       "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-
-        "escape":         true
-    },
-
-    "group/group-power": {
-        "orientation": "inherit",
-
-        "drawer": {
-            "transition-duration":      200,
-            "children-class":           "not-power",
-            "transition-left-to-right": false
-        },
-        
-        "modules": [
-            "custom/power",
-            "custom/lock"
-        ]
-    },
-
-    "custom/power": {
-        "format":         "",
-
-        "tooltip":        true,
-        "tooltip-format": "Power Menu",
-
-        "on-click":       "rofi -show menu -modi 'menu:rofi-power-menu --choices=shutdown/reboot'"
-    },
-
-    "custom/lock": {
-        "format":         "",
-
-        "tooltip":        true,
-        "tooltip-format": "Lock",
-
-        "on-click":       "hyprlock"
     }
 }

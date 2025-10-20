@@ -1,35 +1,34 @@
 /**
- * @name system24
- * @description a tui-style discord theme.
+ * @name midnight
+ * @description a dark, customizable discord theme.
  * @author refact0r
- * @version 2.0.0
+ * @version 2.1.1
  * @invite nz87hXyvcy
- * @website https://github.com/refact0r/system24
- * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @website https://github.com/refact0r/midnight-discord
+ * @source https://github.com/refact0r/midnight-discord/blob/master/themes/midnight.theme.css
  * @authorId 508863359777505290
  * @authorLink https://www.refact0r.dev
 */
 
 /* import theme modules */
-@import url('https://refact0r.github.io/system24/build/system24.css');
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
 
 body {
-    /* font, change to '' for default discord font */
-    --font: 'JetBrains Mono'; /* change to '' for default discord font */
+    /* font options */
+    --font: 'Inter'; /* change to '' for default discord font */
     --code-font: 'JetBrains Mono'; /* change to '' for default discord font */
-    font-weight: 400; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
-    letter-spacing: 0; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
+    font-weight: 400; /* normal text font weight. DOES NOT AFFECT BOLD TEXT */
 
     /* sizes */
     --gap: 10px; /* spacing between panels */
-    --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
-    --border-thickness: 2px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
-    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
+    --divider-thickness: 2px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 0px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
 
     /* animation/transition options */
     --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
     --list-item-transition: 0.2s ease; /* transition for list items */
     --dms-icon-svg-transition: 0.2s ease; /* transition for the dms icon */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
 
     /* top bar options */
     --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
@@ -43,14 +42,14 @@ body {
 
     /* dms button options */
     --custom-dms-icon: off; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
-    --dms-icon-svg-url: url(''); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
     --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
-    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
-    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
+    --dms-icon-color-before: #dfe3e7; /* normal icon color */
+    --dms-icon-color-after: #003548; /* icon color when button is hovered/selected */
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
+    --dms-background-color: #8ecff2; /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -64,21 +63,13 @@ body {
     --blur-amount: 12px; /* amount of blur */
     --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
 
+    /* chatbar options */
+    --custom-chatbar: aligned; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+    --chatbar-height: 47px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+    --chatbar-padding: 10px; /* padding of the chatbar. only applies in aligned mode. */
+
     /* other options */
-    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
-
-    /* unrounding options */
-    --unrounding: on; /* off: default, on: remove rounded corners from panels */
-
-    /* styling options */
-    --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
-    --ascii-titles: on; /* off: default, on: use ascii font for titles at the start of a channel */
-    --ascii-loader: system24; /* off: default, system24: use system24 ascii loader, cats: use cats loader */
-
-    /* panel labels */
-    --panel-labels: on; /* off: default, on: add labels to panels */
-    --label-color: var(--text-muted); /* color of labels */
-    --label-font-weight: 500; /* font weight of labels */
+    --small-user-panel: off; /* off: default user panel, on: smaller user panel like in old discord */
 }
 
 /* color options */
@@ -86,34 +77,34 @@ body {
     --colors: on; /* off: discord default colors, on: midnight custom colors */
 
     /* text colors */
-    --text-0: #541d31; /* text on colored elements */
-    --text-1: #efdfe1; /* other normally white text */
-    --text-2: #efdfe1; /* headings and important text */
-    --text-3: #efdfe1; /* normal text */
-    --text-4: #d5c2c5; /* icon buttons and channels */
-    --text-5: #d5c2c5; /* muted channels/chats and timestamps */
+    --text-0: #003548; /* text on colored elements */
+    --text-1: #dfe3e7; /* other normally white text */
+    --text-2: #dfe3e7; /* headings and important text */
+    --text-3: #dfe3e7; /* normal text */
+    --text-4: #c0c7cd; /* icon buttons and channels */
+    --text-5: #c0c7cd; /* muted channels/chats and timestamps */
 
     /* background and dark colors */
-    --bg-1: #31282a; /* dark buttons when clicked */
-    --bg-2: #261d1f; /* dark buttons */
-    --bg-3: #261d1f; /* spacing, secondary elements */
-    --bg-4: #191113; /* main background color */
-    --hover: #413739; /* channels and buttons when hovered */
-    --active: #261d1f; /* channels and buttons when clicked or selected */
-    --active-2: #31282a; /* extra state for transparent buttons */
-    --message-hover: #413739; /* messages when hovered */
+    --bg-1: #262b2e; /* dark buttons when clicked */
+    --bg-2: #1b2023; /* dark buttons */
+    --bg-3: #1b2023; /* spacing, secondary elements */
+    --bg-4: #0f1417; /* main background color */
+    --hover: #353a3d; /* channels and buttons when hovered */
+    --active: #1b2023; /* channels and buttons when clicked or selected */
+    --active-2: #262b2e; /* extra state for transparent buttons */
+    --message-hover: #353a3d; /* messages when hovered */
 
     /* accent colors */
-    --accent-1: #ffb1c7; /* links and other accent text */
-    --accent-2: #ffb1c7; /* small accent elements */
-    --accent-3: #ffb1c7; /* accent buttons */
-    --accent-4: #8c4a5f; /* accent buttons when hovered */
-    --accent-5: #703348; /* accent buttons when clicked */
+    --accent-1: #8ecff2; /* links and other accent text */
+    --accent-2: #8ecff2; /* small accent elements */
+    --accent-3: #8ecff2; /* accent buttons */
+    --accent-4: #196585; /* accent buttons when hovered */
+    --accent-5: #004d67; /* accent buttons when clicked */
     --accent-new: #ffb4ab; /* stuff that's normally red like mute/deafen buttons */
-    --mention: #261d1f; /* background of messages that mention you */
-    --mention-hover: #413739; /* background of messages that mention you when hovered */
-    --reply: #261d1f; /* background of messages that reply to you */
-    --reply-hover: #413739; /* background of messages that reply to you when hovered */
+    --mention: #1b2023; /* background of messages that mention you */
+    --mention-hover: #353a3d; /* background of messages that mention you when hovered */
+    --reply: #1b2023; /* background of messages that reply to you */
+    --reply-hover: #353a3d; /* background of messages that reply to you when hovered */
 
     /* status indicator colors */
     --online: var(--green-2); /* change to #40a258 for default */
@@ -123,39 +114,39 @@ body {
     --offline: var(--text-4); /* change to #82838b for default offline color */
 
     /* border colors */
-    --border-light: #413739; /* general light border color */
-    --border: #3c3234; /* general normal border color */
-    --border-hover: #ffb1c7; /* border color of panels when hovered */
-    --button-border: #9e8c90; /* neutral border color of buttons */
+    --border-light: #353a3d; /* general light border color */
+    --border: #313539; /* general normal border color */
+    --border-hover: #8ecff2; /* border color of panels when hovered */
+    --button-border: #8a9297; /* neutral border color of buttons */
 
     /* base colors */
-    --red-1: oklch(75% 0.13 0);
-    --red-2: oklch(70% 0.13 0);
-    --red-3: oklch(65% 0.13 0);
-    --red-4: oklch(60% 0.13 0);
-    --red-5: oklch(55% 0.13 0);
+    --red-1: oklch(75% 0.12 0);
+    --red-2: oklch(70% 0.12 0);
+    --red-3: oklch(65% 0.12 0);
+    --red-4: oklch(60% 0.12 0);
+    --red-5: oklch(55% 0.12 0);
 
-    --green-1: oklch(75% 0.12 170);
-    --green-2: oklch(70% 0.12 170);
-    --green-3: oklch(65% 0.12 170);
-    --green-4: oklch(60% 0.12 170);
-    --green-5: oklch(55% 0.12 160);
+    --green-1: oklch(75% 0.11 170);
+    --green-2: oklch(70% 0.11 170);
+    --green-3: oklch(65% 0.11 170);
+    --green-4: oklch(60% 0.11 170);
+    --green-5: oklch(55% 0.11 160);
 
-    --blue-1: oklch(75% 0.11 215);
-    --blue-2: oklch(70% 0.11 215);
-    --blue-3: oklch(65% 0.11 215);
-    --blue-4: oklch(60% 0.11 215);
-    --blue-5: oklch(55% 0.11 215);
+    --blue-1: oklch(75% 0.1 215);
+    --blue-2: oklch(70% 0.1 215);
+    --blue-3: oklch(65% 0.1 215);
+    --blue-4: oklch(60% 0.1 215);
+    --blue-5: oklch(55% 0.1 215);
 
-    --yellow-1: oklch(80% 0.12 90);
-    --yellow-2: oklch(75% 0.12 90);
-    --yellow-3: oklch(70% 0.12 90);
-    --yellow-4: oklch(65% 0.12 90);
-    --yellow-5: oklch(60% 0.12 90);
+    --yellow-1: oklch(80% 0.11 90);
+    --yellow-2: oklch(75% 0.11 90);
+    --yellow-3: oklch(70% 0.11 90);
+    --yellow-4: oklch(65% 0.11 90);
+    --yellow-5: oklch(60% 0.11 90);
 
-    --purple-1: oklch(75% 0.12 310);
-    --purple-2: oklch(70% 0.12 310);
-    --purple-3: oklch(65% 0.12 310);
-    --purple-4: oklch(60% 0.12 310);
-    --purple-5: oklch(55% 0.12 310);
+    --purple-1: oklch(75% 0.11 310);
+    --purple-2: oklch(70% 0.11 310);
+    --purple-3: oklch(65% 0.11 310);
+    --purple-4: oklch(60% 0.11 310);
+    --purple-5: oklch(55% 0.11 310);
 }

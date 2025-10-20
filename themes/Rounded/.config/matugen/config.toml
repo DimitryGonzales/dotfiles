@@ -40,8 +40,8 @@ output_path = '~/.config/rofi/matugen-colors.rasi'
 
 [templates.spicetify]
 input_path = '~/.config/matugen/templates/spicetify.ini'
-output_path = '~/.config/spicetify/Themes/tui/color.ini'
-post_hook = 'spicetify config inject_css 1 replace_colors 1 && spicetify config current_theme tui color_scheme matugen-colors && spicetify apply'
+output_path = '~/.config/spicetify/Themes/default/color.ini'
+post_hook = 'spicetify config current_theme default color_scheme matugen-colors && spicetify config inject_theme_js 1 replace_colors 1 inject_css 1 overwrite_assets 1 && spicetify apply'
 
 [templates.swaync]
 input_path = '~/.config/matugen/templates/colors.css'
