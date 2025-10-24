@@ -1,0 +1,96 @@
+@import "matugen-colors.rasi"
+
+* {
+    font: "Inter 16";
+
+    background-color: transparent;
+
+    margin: 0px;
+    padding: 0px;
+    spacing: 0px;
+}
+
+window {
+    background-color: @surface;
+    border-radius: 0 0 20px 20px;
+
+    width: 500px;
+
+    location: north;
+}
+
+mainbox {
+    padding: 10px;
+    spacing: 10px;
+
+    children: [inputbar, message, listview];
+}
+
+inputbar {
+    spacing: 5px;
+
+    children: [prompt, entry];
+}
+
+prompt {
+    background-color: @surface-container;
+    border-radius: 20px;
+
+    text-color: @primary;
+
+    padding: 10px;
+}
+
+entry {
+    background-color: @surface-container;
+    border-radius: 20px;
+    
+    text-color: @on-surface;
+
+    padding: 10px;
+
+    placeholder: "Search";
+    placeholder-color:  @on-surface-variant;
+}
+
+message {
+    background-color: @surface-container;
+    border-radius: 20px;
+
+    text-color: @on-surface;
+
+    padding: 10px;
+}
+
+listview {
+    background-color: @surface-container;
+    border-radius: 20px;
+
+    padding: 10px;
+    spacing: 5px;
+
+    dynamic: true;
+    lines: 8;
+    columns: 1;
+    fixed-height: false;
+}
+
+element {
+    background-color: transparent;
+    border-radius: 20px;
+    
+    padding: 10px;
+    spacing: 10px;
+}
+
+element.selected.normal {
+    background-color: @surface-bright;
+}
+
+element-icon {
+    size: 25;
+}
+
+element-text {
+    text-color: @on-surface;
+}

@@ -1,0 +1,285 @@
+/* Color Palette */
+@import "matugen-colors.css";
+
+/* All */
+* {
+    all: unset;
+
+    font-size: 16px;
+    font-family: "Inter", "Font Awesome 7 Free";
+    font-weight: bold;
+
+    transition: all 0s;
+}
+
+/* Bar */
+window#waybar {
+    background-color: @surface;
+    border-radius: 0 0 20px 20px;
+}
+
+window#waybar > box {
+    padding: 10px;
+}
+
+/* Tooltip */
+tooltip {
+    background-color: @surface_container_high;
+    border-radius: 20px;
+}
+
+tooltip label {
+    color: @on_surface;
+
+    padding: 10px;
+}
+
+/* Modules Left */
+#group-clock {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#custom-icon-clock {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#clock {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_surface;
+
+    padding: 0 5px;
+
+    transition: background 200ms ease;
+}
+
+#clock:hover {
+    background-color: @surface_bright;
+}
+
+#group-pulseaudio-output {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#custom-icon-pulseaudio-output {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#group-pulseaudio-input {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#custom-icon-pulseaudio-input {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#pulseaudio {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_surface;
+
+    padding: 0 5px;
+
+    transition: background 200ms ease;
+}
+
+#pulseaudio:hover {
+    background-color: @surface_bright;
+}
+
+#group-memory {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#custom-icon-memory{
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#memory {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_surface;
+
+    padding: 0 5px;
+
+    transition: background 200ms ease;
+}
+
+#memory:hover {
+    background-color: @surface_bright;
+}
+
+/* Modules Center */
+#workspaces {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#workspaces button {
+    background-color: @surface_container_high;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_surface;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+
+    transition: 
+        background 200ms ease,
+        color 200ms ease,
+        min-width 200ms ease;
+}
+
+#workspaces button:last-child {
+    margin-right: 0;
+}
+
+#workspaces button:hover {
+    background-color: @surface_bright;
+}
+
+#workspaces button.visible {
+    background-color: @primary_container;
+
+    color: @on_primary_container;
+}
+
+#workspaces button.visible:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
+}
+
+#workspaces button.active {
+    background-color: @primary;
+
+    color: @on_primary;
+
+    min-width: calc((60px - (10px * 2) - (5px * 2)) * 2);
+}
+
+#workspaces button.active:hover {
+    background-color: @primary;
+
+    color: @on_primary;
+}
+
+/* Modules Right */
+#language {
+    background-color: @surface_container;
+    border-radius: 100%;
+
+    color: @on_surface;
+
+    min-width: calc(60px - (10px * 2));
+}
+
+#privacy {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#privacy-item {
+    background-color: @primary_container;
+    border-radius: 100%;
+
+    color: @on_primary_container;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#tray {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 0 10px;
+
+    min-width: calc(60px - (10px * 2));
+}
+
+#tray menu {
+    background-color: @surface_container_high;
+    border-radius: 20px;
+
+    padding: 10px;
+}
+
+#tray menu menuitem {
+    background-color: transparent;
+    border-radius: 20px;
+
+    color: @on_surface;
+
+    padding: 0 10px;
+
+    min-height: 40px;
+
+    transition: background 200ms ease;
+}
+
+#tray menu menuitem:hover {
+    background-color: @surface_bright;
+}
+
+#custom-theme {
+    background-color: @surface_container;
+    border-radius: 100%;
+
+    color: @on_surface;
+
+    min-width: calc(60px - (10px * 2));
+
+    transition: background 200ms ease;
+}
+
+#custom-theme:hover {
+    background-color: @surface_bright;
+}
