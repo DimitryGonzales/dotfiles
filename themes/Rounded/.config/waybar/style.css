@@ -35,13 +35,31 @@ tooltip label {
 }
 
 /* Modules Left */
-#clock {
+#group-clock {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
+    padding: 5px;
+}
+
+#custom-icon-clock {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#clock {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
     color: @on_surface;
 
-    padding: 0 10px;
+    padding: 0 5px;
 
     transition: background 200ms ease;
 }
@@ -50,13 +68,49 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#pulseaudio {
+#group-pulseaudio-output {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
+    padding: 5px;
+}
+
+#custom-icon-pulseaudio-output {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#group-pulseaudio-input {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#custom-icon-pulseaudio-input {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#pulseaudio {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
     color: @on_surface;
 
-    padding: 0 10px;
+    padding: 0 5px;
 
     transition: background 200ms ease;
 }
@@ -65,20 +119,31 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#pulseaudio.output.muted,
-#pulseaudio.input.source-muted{
-    padding: 0;
+#group-memory {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
-    min-width: calc(60px - (10px * 2));
+    padding: 5px;
+}
+
+#custom-icon-memory{
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
 }
 
 #memory {
     background-color: @surface_container;
-    border-radius: calc((60px - (10px * 2)) / 2);
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
 
     color: @on_surface;
 
-    padding: 0 10px;
+    padding: 0 5px;
 
     transition: background 200ms ease;
 }

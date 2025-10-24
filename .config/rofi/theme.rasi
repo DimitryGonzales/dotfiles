@@ -66,6 +66,7 @@ listview {
     background-color: @surface-container;
     border-radius: 20px;
 
+    padding: 10px;
     spacing: 5px;
 
     dynamic: true;

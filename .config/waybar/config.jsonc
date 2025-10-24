@@ -6,10 +6,10 @@
     "height":                 60,
 
     "modules-left": [
-        "clock",
-        "pulseaudio#output",
-        "pulseaudio#input",
-        "memory"
+        "group/group-clock",
+        "group/group-pulseaudio-output",
+        "group/group-pulseaudio-input",
+        "group/group-memory"
     ],
 
     "modules-center": [
@@ -22,6 +22,20 @@
         "tray",
         "custom/theme"
     ],
+
+    "group/group-clock": {
+		"orientation": "horizontal",
+		"modules": [
+            "custom/icon-clock",
+			"clock"
+		]
+	},
+
+    "custom/icon-clock": {
+        "format":  "",
+
+        "tooltip": false
+    },
 
     "clock": {
         "interval":       1,
@@ -50,29 +64,71 @@
         "on-click-right": "swaync-client -d -sw"
     },
 
+    "group/group-pulseaudio-output": {
+		"orientation": "horizontal",
+		"modules": [
+            "custom/icon-pulseaudio-output",
+			"pulseaudio#output"
+		]
+	},
+
+    "custom/icon-pulseaudio-output": {
+        "format":  "",
+
+        "tooltip": false
+    },
+
     "pulseaudio#output": {
-        "format":       " {volume}%",
-        "format-muted": "",
+        "format":       "{volume}%",
+        "format-muted": "Muted",
 
         "tooltip":      false,
 
         "on-click":     "pavucontrol"
     },
 
+    "group/group-pulseaudio-input": {
+		"orientation": "horizontal",
+		"modules": [
+            "custom/icon-pulseaudio-input",
+			"pulseaudio#input"
+		]
+	},
+
+    "custom/icon-pulseaudio-input": {
+        "format":  "",
+
+        "tooltip": false
+    },
+
     "pulseaudio#input": {
         "format":              "{format_source}",
-        "format-source":       " {volume}%",
-        "format-source-muted": "",
+        "format-source":       "{volume}%",
+        "format-source-muted": "Muted",
 
         "tooltip":             false,
 
         "on-click":            "pavucontrol"
     },
 
+    "group/group-memory": {
+		"orientation": "horizontal",
+		"modules": [
+            "custom/icon-memory",
+			"memory"
+		]
+	},
+
+    "custom/icon-memory": {
+        "format":  "",
+
+        "tooltip": false
+    },
+
     "memory": {
         "interval":       1,
 
-        "format":         " {used} GB",
+        "format":         "{used} GB",
 
         "tooltip":        true,
         "tooltip-format": "Available: {avail} GB\nTotal: {total} GB",
@@ -123,7 +179,7 @@
     "tray": {
         "icon-size": 18,
 
-        "spacing":   10
+        "spacing":   5
     },
 
     "custom/theme": {
