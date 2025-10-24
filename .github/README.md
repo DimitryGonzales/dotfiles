@@ -20,68 +20,68 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 
 <table align="center">
     <tr>
-        <th colspan="2" style="text-align:center;">Rounded(Top-Bar)</th>
+        <th colspan="3" style="text-align:center">Rounded(Top-Bar)</th>
     </tr>
     <tr>
         <td>
-            <img src="/.github/assets/Rounded(Top-Bar)-desktop">
+            <img src="/.github/assets/Rounded(Top-Bar)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Top-Bar)-launcher">
+            <img src="/.github/assets/Rounded(Top-Bar)-launcher.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Top-Bar)-apps">
-        </td>
-    </tr>
-</table>
-
-<table align="center">
-    <tr>
-        <th colspan="2" style="text-align:center;">Rounded(Bottom-Bar)</th>
-    </tr>
-    <tr>
-        <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-desktop">
-        </td>
-        <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-launcher">
-        </td>
-        <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-apps">
+            <img src="/.github/assets/Rounded(Top-Bar)-apps.png">
         </td>
     </tr>
 </table>
 
 <table align="center">
     <tr>
-        <th colspan="2" style="text-align:center;">TUI(With-Borders)</th>
+        <th colspan="3" style="text-align:center">Rounded(Bottom-Bar)</th>
     </tr>
     <tr>
         <td>
-            <img src="/.github/assets/TUI(With-Borders)-desktop">
+            <img src="/.github/assets/Rounded(Bottom-Bar)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(With-Borders)-launcher">
+            <img src="/.github/assets/Rounded(Bottom-Bar)-launcher.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(With-Borders)-apps">
+            <img src="/.github/assets/Rounded(Bottom-Bar)-apps.png">
         </td>
     </tr>
 </table>
 
 <table align="center">
     <tr>
-        <th colspan="2" style="text-align:center;">TUI(No-Borders)</th>
+        <th colspan="3" style="text-align:center">TUI(With-Borders)</th>
     </tr>
     <tr>
         <td>
-            <img src="/.github/assets/TUI(No-Borders)-desktop">
+            <img src="/.github/assets/TUI(With-Borders)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(No-Borders)-launcher">
+            <img src="/.github/assets/TUI(With-Borders)-launcher.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(No-Borders)-apps">
+            <img src="/.github/assets/TUI(With-Borders)-apps.png">
+        </td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <th colspan="3" style="text-align:center">TUI(No-Borders)</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="/.github/assets/TUI(No-Borders)-desktop.png">
+        </td>
+        <td>
+            <img src="/.github/assets/TUI(No-Borders)-launcher.png">
+        </td>
+        <td>
+            <img src="/.github/assets/TUI(No-Borders)-apps.png">
         </td>
     </tr>
 </table>
