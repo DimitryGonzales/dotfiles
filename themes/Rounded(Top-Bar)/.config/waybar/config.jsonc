@@ -17,6 +17,7 @@
     ],
 
     "modules-right": [
+        "network",
         "hyprland/language",
         "privacy",
         "tray",
@@ -142,6 +143,19 @@
         "all-outputs":    true,
         
         "sort-by-number": true
+    },
+
+    "network": {
+        "interval":                    1,
+
+        "format-wifi":                 "",
+
+        "format-ethernet":             "",
+
+        "format-disconnected":         "",
+        "tooltip-format-disconnected": "Disconnected",
+
+        "max-length":                  50
     },
 
     "hyprland/language": {

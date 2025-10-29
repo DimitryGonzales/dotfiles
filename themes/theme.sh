@@ -65,5 +65,6 @@ else
     printf "\nFailed to copy all files, check errors above. Some changes may have been done.\n\n"
 fi
 
-# Select wallpaper and execute post-hooks
+# Post-hooks
+pkill -SIGUSR2 waybar
 waypaper

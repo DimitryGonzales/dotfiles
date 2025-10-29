@@ -211,6 +211,25 @@ tooltip label {
 }
 
 /* Modules Right */
+#network {
+    background-color: @error;
+    border-radius: 100%;
+
+    color: @on_error;
+
+    min-width: calc(60px - (10px * 2));
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#network:hover {
+    background-color: @error_container;
+
+    color: @on_error_container;
+}
+
 #language {
     background-color: @surface_container;
     border-radius: 100%;

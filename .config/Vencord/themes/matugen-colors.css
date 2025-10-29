@@ -44,12 +44,12 @@ body {
     --custom-dms-icon: off; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
     --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
     --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
-    --dms-icon-color-before: #dfe3e7; /* normal icon color */
-    --dms-icon-color-after: #003548; /* icon color when button is hovered/selected */
+    --dms-icon-color-before: #e0e2e8; /* normal icon color */
+    --dms-icon-color-after: #003353; /* icon color when button is hovered/selected */
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: #8ecff2; /* fixed color/gradient (css background property) */
+    --dms-background-color: #9bcbfb; /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -77,34 +77,34 @@ body {
     --colors: on; /* off: discord default colors, on: midnight custom colors */
 
     /* text colors */
-    --text-0: #003548; /* text on colored elements */
-    --text-1: #dfe3e7; /* other normally white text */
-    --text-2: #dfe3e7; /* headings and important text */
-    --text-3: #dfe3e7; /* normal text */
-    --text-4: #c0c7cd; /* icon buttons and channels */
-    --text-5: #c0c7cd; /* muted channels/chats and timestamps */
+    --text-0: #003353; /* text on colored elements */
+    --text-1: #e0e2e8; /* other normally white text */
+    --text-2: #e0e2e8; /* headings and important text */
+    --text-3: #e0e2e8; /* normal text */
+    --text-4: #c2c7cf; /* icon buttons and channels */
+    --text-5: #c2c7cf; /* muted channels/chats and timestamps */
 
     /* background and dark colors */
-    --bg-1: #262b2e; /* dark buttons when clicked */
-    --bg-2: #1b2023; /* dark buttons */
-    --bg-3: #1b2023; /* spacing, secondary elements */
-    --bg-4: #0f1417; /* main background color */
-    --hover: #353a3d; /* channels and buttons when hovered */
-    --active: #1b2023; /* channels and buttons when clicked or selected */
-    --active-2: #262b2e; /* extra state for transparent buttons */
-    --message-hover: #353a3d; /* messages when hovered */
+    --bg-1: #272a2f; /* dark buttons when clicked */
+    --bg-2: #1c2024; /* dark buttons */
+    --bg-3: #1c2024; /* spacing, secondary elements */
+    --bg-4: #101418; /* main background color */
+    --hover: #36393e; /* channels and buttons when hovered */
+    --active: #1c2024; /* channels and buttons when clicked or selected */
+    --active-2: #272a2f; /* extra state for transparent buttons */
+    --message-hover: #36393e; /* messages when hovered */
 
     /* accent colors */
-    --accent-1: #8ecff2; /* links and other accent text */
-    --accent-2: #8ecff2; /* small accent elements */
-    --accent-3: #8ecff2; /* accent buttons */
-    --accent-4: #196585; /* accent buttons when hovered */
-    --accent-5: #004d67; /* accent buttons when clicked */
+    --accent-1: #9bcbfb; /* links and other accent text */
+    --accent-2: #9bcbfb; /* small accent elements */
+    --accent-3: #9bcbfb; /* accent buttons */
+    --accent-4: #2f628c; /* accent buttons when hovered */
+    --accent-5: #0e4a73; /* accent buttons when clicked */
     --accent-new: #ffb4ab; /* stuff that's normally red like mute/deafen buttons */
-    --mention: #1b2023; /* background of messages that mention you */
-    --mention-hover: #353a3d; /* background of messages that mention you when hovered */
-    --reply: #1b2023; /* background of messages that reply to you */
-    --reply-hover: #353a3d; /* background of messages that reply to you when hovered */
+    --mention: #1c2024; /* background of messages that mention you */
+    --mention-hover: #36393e; /* background of messages that mention you when hovered */
+    --reply: #1c2024; /* background of messages that reply to you */
+    --reply-hover: #36393e; /* background of messages that reply to you when hovered */
 
     /* status indicator colors */
     --online: var(--green-2); /* change to #40a258 for default */
@@ -114,10 +114,10 @@ body {
     --offline: var(--text-4); /* change to #82838b for default offline color */
 
     /* border colors */
-    --border-light: #353a3d; /* general light border color */
-    --border: #313539; /* general normal border color */
-    --border-hover: #8ecff2; /* border color of panels when hovered */
-    --button-border: #8a9297; /* neutral border color of buttons */
+    --border-light: #36393e; /* general light border color */
+    --border: #323539; /* general normal border color */
+    --border-hover: #9bcbfb; /* border color of panels when hovered */
+    --button-border: #8c9198; /* neutral border color of buttons */
 
     /* base colors */
     --red-1: oklch(75% 0.12 0);
