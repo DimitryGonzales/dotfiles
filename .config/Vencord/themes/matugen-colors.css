@@ -49,7 +49,7 @@ body {
     --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: #9bcbfb; /* fixed color/gradient (css background property) */
+    --dms-background-color: #9bcbfa; /* fixed color/gradient (css background property) */
 
     /* background image options */
     --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
@@ -95,11 +95,11 @@ body {
     --message-hover: #36393e; /* messages when hovered */
 
     /* accent colors */
-    --accent-1: #9bcbfb; /* links and other accent text */
-    --accent-2: #9bcbfb; /* small accent elements */
-    --accent-3: #9bcbfb; /* accent buttons */
+    --accent-1: #9bcbfa; /* links and other accent text */
+    --accent-2: #9bcbfa; /* small accent elements */
+    --accent-3: #9bcbfa; /* accent buttons */
     --accent-4: #2f628c; /* accent buttons when hovered */
-    --accent-5: #0e4a73; /* accent buttons when clicked */
+    --accent-5: #0d4a73; /* accent buttons when clicked */
     --accent-new: #ffb4ab; /* stuff that's normally red like mute/deafen buttons */
     --mention: #1c2024; /* background of messages that mention you */
     --mention-hover: #36393e; /* background of messages that mention you when hovered */
@@ -116,7 +116,7 @@ body {
     /* border colors */
     --border-light: #36393e; /* general light border color */
     --border: #323539; /* general normal border color */
-    --border-hover: #9bcbfb; /* border color of panels when hovered */
+    --border-hover: #9bcbfa; /* border color of panels when hovered */
     --button-border: #8c9198; /* neutral border color of buttons */
 
     /* base colors */

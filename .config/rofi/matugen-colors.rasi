@@ -1,11 +1,11 @@
 * {
-    primary: #9bcbfb;
+    primary: #9bcbfa;
     primary-fixed: #cee5ff;
-    primary-fixed-dim: #9bcbfb;
+    primary-fixed-dim: #9bcbfa;
     on-primary: #003353;
-    on-primary-fixed: #001d33;
-    on-primary-fixed-variant: #0e4a73;
-    primary-container: #0e4a73;
+    on-primary-fixed: #001d32;
+    on-primary-fixed-variant: #0d4a73;
+    primary-container: #0d4a73;
     on-primary-container: #cee5ff;
     secondary: #b9c8da;
     secondary-fixed: #d5e4f7;
@@ -20,8 +20,8 @@
     tertiary-fixed-dim: #d3bfe6;
     on-tertiary: #382a49;
     on-tertiary-fixed: #231533;
-    on-tertiary-fixed-variant: #504061;
-    tertiary-container: #504061;
+    on-tertiary-fixed-variant: #4f4061;
+    tertiary-container: #4f4061;
     on-tertiary-container: #eedbff;
     error: #ffb4ab;
     on-error: #690005;
