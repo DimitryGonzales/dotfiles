@@ -105,3 +105,9 @@ Chained commands:
 ```
 yadm clone "https://github.com/DimitryGonzales/dotfiles.git" && yadm checkout --force
 ```
+
+## 🎨 Choose a theme
+
+1. Execute `~/themes/theme.sh`.
+2. Apply a theme.
+3. Select a wallpaper.
