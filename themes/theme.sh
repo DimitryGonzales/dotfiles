@@ -35,10 +35,10 @@ while true; do
 
     THEME=$(find "$THEMES_DIRECTORY" -mindepth 1 -maxdepth 1 -type d | fzf --preview "eza -Ta {}")
 
-    if ! [[ -z "$THEME" ]]; then
+    if [[ -n "$THEME" && -d "$THEME" ]]; then
         THEME_FILES=("$THEME"/*)
 
-        if ! [[ "${#THEME_FILES[@]}" -eq 0 ]]; then
+        if [[ "${#THEME_FILES[@]}" -gt 0 ]]; then
             printf "Selected theme files:\n\n"
 
             eza -Ta "$THEME"; echo
@@ -59,12 +59,39 @@ clear
 
 printf "Copying files from '%s' to '%s'...\n" "$THEME" "$HOME"
 
-if cp -rv "${THEME_FILES[@]}" "$HOME"; then
-    printf "\nFiles copied successfully!\n\n"
+if rsync -av -hh --progress --exclude="post_hook.sh" "$THEME/" "$HOME"; then
+    printf "Files copied successfully!\n\n"
 else
-    printf "\nFailed to copy all files, check errors above. Some changes may have been done.\n\n"
+    printf "Failed to copy all files. Some changes may have been done.\n\n"
 fi
 
 # Post-hooks
-pkill -SIGUSR2 waybar
-waypaper
+if [[ -f "$THEME/post_hook.sh" ]]; then
+    if "$THEME/post_hook.sh"; then
+        printf "Post-hook '%s' executed successfully!\n\n" "$THEME/post_hook.sh"
+    else
+        printf "Failed to execute post-hook '%s'.\n\n" "$THEME/post_hook.sh"
+    fi
+else
+    printf "No post-hook file.\n\n"
+fi
+
+if command -v waybar > /dev/null; then
+    if pkill -SIGUSR2 waybar; then
+        printf "Waybar restarted successfully!\n\n"
+    else
+        printf "Failed to restart waybar.\n\n"
+    fi
+else
+    printf "Waybar is not installed.\n\n"
+fi
+
+if command -v waypaper > /dev/null; then
+    if waypaper > /dev/null; then
+        printf "Waypaper executed successfully!\n\n"
+    else
+        printf "Failed to execute waypaper.\n\n"
+    fi
+else
+    printf "Waypaper is not installed.\n\n"
+fi
