@@ -7,6 +7,11 @@ set = true
 input_path = "~/.config/matugen/templates/foot.ini"
 output_path = "~/.config/foot/matugen-colors.ini"
 
+[templates.ghostty]
+input_path = '~/.config/matugen/templates/ghostty'
+output_path = '~/.config/ghostty/themes/matugen-colors'
+post_hook = 'pkill -SIGUSR2 ghostty'
+
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.config/gtk-3.0/matugen-colors.css'

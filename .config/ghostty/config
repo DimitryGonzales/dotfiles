@@ -1,0 +1,14 @@
+font-family = JetBrainsMono Nerd Font
+font-style = Bold
+font-size = 12
+
+theme = matugen-colors
+
+cursor-style = block
+
+mouse-hide-while-typing = true
+
+window-padding-x = 10
+window-padding-y = 10
+
+focus-follows-mouse = true

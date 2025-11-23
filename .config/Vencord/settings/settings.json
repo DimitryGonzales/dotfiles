@@ -578,7 +578,7 @@
         },
         "ShowMeYourName": {
             "enabled": true,
-            "mode": "user-nick",
+            "mode": "nick-user",
             "friendNicknames": "dms",
             "displayNames": false,
             "inReplies": false
@@ -745,6 +745,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1759864961593
+        "settingsSyncVersion": 1763909986170
     }
 }
