@@ -1,10 +1,5 @@
 :root {
-    /* Light Colors */
 <* for name, value in colors *>
-    --{{name}}: {{value.light.hex}};
-<* endfor *>
-    /* Dark Colors */
-<* for name, value in colors *>
-    --{{name}}: {{value.dark.hex}};
+    --{{name}}: {{value.default.hex}};
 <* endfor *>
 }

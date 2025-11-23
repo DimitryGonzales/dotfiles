@@ -1,7 +1,7 @@
 configuration {
     show-icons: true;
 
-    display-drun:        "drun";
+    display-drun:        "Apps";
     display-combi:       "combi";
     display-filebrowser: "filebrowser";
     display-run:         "run";
