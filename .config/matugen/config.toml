@@ -3,10 +3,6 @@ command = "swww"
 arguments = ["img", "--transition-fps", "60", "--transition-type", "center"]
 set = true
 
-#[templates.foot]
-#input_path = "~/.config/matugen/templates/foot.ini"
-#output_path = "~/.config/foot/matugen-colors.ini"
-
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/matugen-colors'

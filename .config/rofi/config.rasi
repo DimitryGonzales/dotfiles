@@ -1,13 +1,17 @@
 configuration {
-    show-icons: true;
+    modi: "drun,clipboard:~/.config/rofi/scripts/cliphist-rofi-img,emoji,power-menu:rofi-power-menu --choices=shutdown/reboot,window";
 
     display-drun:        "Apps";
-    display-combi:       "Combi";
+    display-clipboard:   "Clipboard";
     display-emoji:       "Emoji";
+    display-window:      "Windows";
+
+    display-combi:       "Combi";
     display-filebrowser: "File Browser";
     display-run:         "Run";
     display-ssh:         "SSH";
-    display-window:      "Windows";
+
+    show-icons: true;
 }
 
 @theme "~/.config/rofi/theme.rasi"
