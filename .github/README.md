@@ -27,7 +27,7 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
             <img src="/.github/assets/Rounded(Top-Bar)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Top-Bar)-launcher.png">
+            <img src="/.github/assets/Rounded(Top-Bar)-menus.png">
         </td>
         <td>
             <img src="/.github/assets/Rounded(Top-Bar)-apps.png">
@@ -44,7 +44,7 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
             <img src="/.github/assets/Rounded(Bottom-Bar)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-launcher.png">
+            <img src="/.github/assets/Rounded(Bottom-Bar)-menus.png">
         </td>
         <td>
             <img src="/.github/assets/Rounded(Bottom-Bar)-apps.png">
@@ -61,7 +61,7 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
             <img src="/.github/assets/TUI(With-Borders)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(With-Borders)-launcher.png">
+            <img src="/.github/assets/TUI(With-Borders)-menus.png">
         </td>
         <td>
             <img src="/.github/assets/TUI(With-Borders)-apps.png">
@@ -78,7 +78,7 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
             <img src="/.github/assets/TUI(No-Borders)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/TUI(No-Borders)-launcher.png">
+            <img src="/.github/assets/TUI(No-Borders)-menus.png">
         </td>
         <td>
             <img src="/.github/assets/TUI(No-Borders)-apps.png">
