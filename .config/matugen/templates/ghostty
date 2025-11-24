@@ -4,38 +4,23 @@ foreground = {{colors.on_surface.default.hex}}
 selection-background = {{colors.primary.default.hex}}
 selection-foreground = {{colors.on_primary.default.hex}}
 
-# Black
-palette = 0 = 000000
-
-# Apple Default(dark) - Green
-palette = 2 = 30d158
-
-# Apple Default(dark) - Purple
-palette = 5 = db34f2
-
-# Apple Default(dark) -  Teal
-palette = 6 = 00d2e0
-
-# Silver
-palette = 7 = 999999
-
-# Grey
-palette = 8 = 444444
-
-# Apple Default(dark) - Red
-palette = 9 = ff4245
-
-# Apple Default(dark) - Yellow
-palette = 11 = ffd600
-
-# Apple Default(dark) - Blue
-palette = 12 = 0091ff
-
-# Apple Default(dark) - Cyan
-palette = 14 = 3cd3fe
-
-# White
-palette = 15 = ffffff
+# Palette from Apple System Colors Theme
+palette = 0=#1a1a1a
+palette = 1=#cc372e
+palette = 2=#26a439
+palette = 3=#cdac08
+palette = 4=#0869cb
+palette = 5=#9647bf
+palette = 6=#479ec2
+palette = 7=#98989d
+palette = 8=#464646
+palette = 9=#ff453a
+palette = 10=#32d74b
+palette = 11=#ffd60a
+palette = 12=#0a84ff
+palette = 13=#bf5af2
+palette = 14=#76d6ff
+palette = 15=#ffffff
 
 cursor-color = {{colors.primary.default.hex}}
 cursor-text = {{colors.on_primary.default.hex}}
