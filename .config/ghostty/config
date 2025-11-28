@@ -25,4 +25,6 @@ window-padding-y = 10
 
 focus-follows-mouse = true
 
+shell-integration-features = no-cursor
+
 gtk-tabs-location = bottom
