@@ -3,37 +3,35 @@
 shopt -s nullglob
 shopt -s dotglob
 
-clear
-
 # Define themes directory
 THEMES_DIRECTORY=~/themes
 
-printf "Current themes directory: '%s'\n\n" "$THEMES_DIRECTORY"
-
-read -r -p "Do you want to change it? [y/N]: " BUFFER
-BUFFER=${BUFFER,,}
-BUFFER=${BUFFER:-"n"}
-
-if [[ "$BUFFER" = "y" ]]; then
-    clear
-
-    while true; do
-        read -r -p "Enter new themes directory: " THEMES_DIRECTORY
-
-        if [[ -d "$THEMES_DIRECTORY" ]]; then
-            break
-        else
-            clear
-            printf "Invalid directory!\n\n"
-        fi
-    done
-fi
-
-# Select theme
+# Choose themes directory and select theme
 while true; do
     clear
 
-    THEME=$(find "$THEMES_DIRECTORY" -mindepth 1 -maxdepth 1 -type d | fzf --preview "eza -Ta {}")
+    printf "Current themes directory: '%s'\n\n" "$THEMES_DIRECTORY"
+
+    read -r -p "Do you want to change it? [y/N]: " BUFFER
+    BUFFER=${BUFFER,,}
+    BUFFER=${BUFFER:-"n"}
+
+    if [[ "$BUFFER" = "y" ]]; then
+        clear
+
+        while true; do
+            read -r -p "Enter new themes directory: " THEMES_DIRECTORY
+
+            if [[ -d "$THEMES_DIRECTORY" ]]; then
+                break
+            else
+                clear
+                printf "Invalid directory!\n\n"
+            fi
+        done
+    fi
+
+    THEME=$(find "$THEMES_DIRECTORY" -mindepth 1 -maxdepth 1 -type d | fzf --delimiter=/ --with-nth=-1 --preview "eza -Ta {}")
 
     if [[ -n "$THEME" && -d "$THEME" ]]; then
         THEME_FILES=("$THEME"/*)

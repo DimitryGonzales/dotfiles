@@ -7,6 +7,7 @@
 
     margin: 0px;
     padding: 0px;
+
     spacing: 0px;
 }
 
@@ -21,6 +22,7 @@ window {
 
 mainbox {
     padding: 10px;
+
     spacing: 10px;
 
     children: [inputbar, mode-switcher, message, listview];
@@ -56,6 +58,8 @@ button {
 
     text-color: @on-primary-container;
 
+    cursor: pointer;
+
     padding: 10px;
 }
 
@@ -82,15 +86,19 @@ listview {
     padding: 10px;
 
     dynamic: true;
+    fixed-height: false;
+
     lines: 8;
     columns: 1;
-    fixed-height: false;
 }
 
 element {
     border-radius: 20px;
 
+    cursor: pointer;
+
     padding: 10px;
+
     spacing: 10px;
 }
 
@@ -99,9 +107,13 @@ element.selected {
 }
 
 element-icon {
+    cursor: pointer;
+
     size: 20;
 }
 
 element-text {
     text-color: @on-surface;
+
+    cursor: pointer;
 }
