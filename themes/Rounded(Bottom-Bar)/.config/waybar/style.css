@@ -1,7 +1,5 @@
-/* Color Palette */
 @import "matugen-colors.css";
 
-/* All */
 * {
     all: unset;
 
@@ -12,17 +10,15 @@
     transition: all 0s;
 }
 
-/* Bar */
-window#waybar {
+#waybar {
     background-color: @surface;
-    border-radius: 20px 20px 0 0;
+    border-radius: calc(60px / 2) calc(60px / 2) 0 0;
 }
 
-window#waybar > box {
+#waybar > box {
     padding: 10px;
 }
 
-/* Tooltip */
 tooltip {
     background-color: @surface_container_high;
     border-radius: 20px;
@@ -34,15 +30,14 @@ tooltip label {
     padding: 10px;
 }
 
-/* Modules Left */
-#group-clock {
+#clockContainer {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-icon-clock {
+#custom-iconClock {
     background-color: @primary;
     border-radius: 100%;
 
@@ -54,8 +49,8 @@ tooltip label {
 }
 
 #clock {
-    background-color: @surface_container;
-    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+    background-color: transparent;
+    border-radius: calc((60px - (10px * 2)) / 2);
 
     color: @on_surface;
 
@@ -68,65 +63,85 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#group-pulseaudio-output {
+#audioContainer {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-icon-pulseaudio-output {
+#custom-iconAudioOutput {
     background-color: @primary;
     border-radius: 100%;
 
     color: @on_primary;
 
-    margin-right: 5px;
-
     min-width: calc(60px - (10px * 2) - (5px * 2));
 }
 
-#group-pulseaudio-input {
-    background-color: @surface_container;
-    border-radius: calc((60px - (10px * 2)) / 2);
-
-    padding: 5px;
-}
-
-#custom-icon-pulseaudio-input {
-    background-color: @primary;
-    border-radius: 100%;
-
-    color: @on_primary;
-
-    margin-right: 5px;
-
-    min-width: calc(60px - (10px * 2) - (5px * 2));
-}
-
-#pulseaudio {
-    background-color: @surface_container;
+#audio {
+    background-color: transparent;
     border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
 
-    color: @on_surface;
-
-    padding: 0 5px;
+    margin: 0 5px;
 
     transition: background 200ms ease;
 }
 
-#pulseaudio:hover {
+#audio:hover {
     background-color: @surface_bright;
 }
 
-#group-memory {
+#wireplumber {
+    background-color: transparent;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_surface;
+
+    margin-right: 5px;
+    padding: 0 5px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#audio:hover #wireplumber {
+    background-color: transparent;
+}
+
+#wireplumber.source {
+    margin-right: 0;
+}
+
+#wireplumber.muted {
+    background-color: @error;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    color: @on_error;
+}
+
+#audio:hover #wireplumber.muted {
+    color: @error;
+}
+
+#custom-iconAudioInput {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#memoryContainer {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-icon-memory{
+#custom-iconMemory {
     background-color: @primary;
     border-radius: 100%;
 
@@ -138,10 +153,8 @@ tooltip label {
 }
 
 #memory {
-    background-color: @surface_container;
+    background-color: transparent;
     border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
-
-    color: @on_surface;
 
     padding: 0 5px;
 
@@ -152,7 +165,6 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-/* Modules Center */
 #workspaces {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
@@ -162,7 +174,7 @@ tooltip label {
 
 #workspaces button {
     background-color: @surface_container_high;
-    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+    border-radius: calc(((60px - (10px * 2) - (5px * 2)) / 2) / 2);
 
     color: @on_surface;
 
@@ -170,13 +182,27 @@ tooltip label {
 
     min-width: calc(60px - (10px * 2) - (5px * 2));
 
-    transition: 
+    transition:
         background 200ms ease,
-        color 200ms ease,
-        min-width 200ms ease;
+        border-radius 200ms ease,
+        color 200ms ease;
+}
+
+#workspaces button:first-child {
+    border-radius:
+        calc((60px - (10px * 2) - (5px * 2)) / 2)
+        calc(((60px - (10px * 2) - (5px * 2)) / 2) / 2)
+        calc(((60px - (10px * 2) - (5px * 2)) / 2) / 2)
+        calc((60px - (10px * 2) - (5px * 2)) / 2);
 }
 
 #workspaces button:last-child {
+    border-radius:
+        calc(((60px - (10px * 2) - (5px * 2)) / 2) / 2)
+        calc((60px - (10px * 2) - (5px * 2)) / 2)
+        calc((60px - (10px * 2) - (5px * 2)) / 2)
+        calc(((60px - (10px * 2) - (5px * 2)) / 2) / 2);
+
     margin-right: 0;
 }
 
@@ -196,47 +222,12 @@ tooltip label {
     color: @primary;
 }
 
-#workspaces button.active {
-    background-color: @primary;
-
-    color: @on_primary;
-
-    min-width: calc((60px - (10px * 2) - (5px * 2)) * 2);
-}
-
+#workspaces button.active,
 #workspaces button.active:hover {
     background-color: @primary;
+    border-radius: 100%;
 
     color: @on_primary;
-}
-
-/* Modules Right */
-#network {
-    background-color: @error;
-    border-radius: 100%;
-
-    color: @on_error;
-
-    min-width: calc(60px - (10px * 2));
-
-    transition:
-        background 200ms ease,
-        color 200ms ease;
-}
-
-#network:hover {
-    background-color: @error_container;
-
-    color: @on_error_container;
-}
-
-#language {
-    background-color: @surface_container;
-    border-radius: 100%;
-
-    color: @on_surface;
-
-    min-width: calc(60px - (10px * 2));
 }
 
 #privacy {
@@ -255,11 +246,29 @@ tooltip label {
     min-width: calc(60px - (10px * 2) - (5px * 2));
 }
 
+#network.disconnected {
+    background-color: @error;
+    border-radius: 100%;
+
+    color: @on_error;
+
+    min-width: calc(60px - (10px * 2))
+}
+
+#language {
+    background-color: @surface_container;
+    border-radius: 100%;
+
+    color: @on_surface;
+
+    min-width: calc(60px - (10px * 2));
+}
+
 #tray {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
-    padding: 0 10px;
+    padding: 10px;
 
     min-width: calc(60px - (10px * 2));
 }
@@ -273,7 +282,7 @@ tooltip label {
 
 #tray menu menuitem {
     background-color: transparent;
-    border-radius: 20px;
+    border-radius: calc(40px / 2);
 
     color: @on_surface;
 
@@ -288,17 +297,34 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#custom-theme {
+#toolbox {
     background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+}
+
+#toolbox:hover {
+    padding-left: 5px;
+}
+
+#custom-userIcon {
+    background: url("../hypr/assets/user_icon.jpg");
+    background-size: cover;
     border-radius: 100%;
 
-    color: @on_surface;
-
     min-width: calc(60px - (10px * 2));
+}
+
+#toolbox .not-userIcon > * {
+    background-color: @surface_container_high;
+    border-radius: 100%;
+
+    margin: 5px 5px 5px 0;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
 
     transition: background 200ms ease;
 }
 
-#custom-theme:hover {
+#toolbox .not-userIcon > *:hover {
     background-color: @surface_bright;
 }

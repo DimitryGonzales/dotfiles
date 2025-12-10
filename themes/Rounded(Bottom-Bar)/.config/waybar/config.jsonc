@@ -1,17 +1,16 @@
 {
-    "position":               "bottom",
-    
-    "height":                 60,
+    "position": "bottom",
 
-    "spacing":                5,
+    "height": 60,
+
+    "spacing": 5,
 
     "reload_style_on_change": true,
 
     "modules-left": [
-        "group/group-clock",
-        "group/group-pulseaudio-output",
-        "group/group-pulseaudio-input",
-        "group/group-memory"
+        "group/clockContainer",
+        "group/audioContainer",
+        "group/memoryContainer"
     ],
 
     "modules-center": [
@@ -19,190 +18,208 @@
     ],
 
     "modules-right": [
+        "privacy",
         "network",
         "hyprland/language",
-        "privacy",
         "tray",
-        "custom/theme"
+        "group/toolbox"
     ],
 
-    "group/group-clock": {
+    "group/clockContainer": {
 		"orientation": "horizontal",
+
 		"modules": [
-            "custom/icon-clock",
+            "custom/iconClock",
 			"clock"
 		]
 	},
 
-    "custom/icon-clock": {
-        "format":  "",
+	"custom/iconClock": {
+        "format": "",
 
         "tooltip": false
     },
 
     "clock": {
-        "interval":       1,
+        "interval": 1,
 
-        "format":         "{:%H:%M:%S}",
+        "format": "{:%H:%M}",
 
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-            "mode":         "year",
+            "mode": "year",
             "mode-mon-col": 4,
 
-            "weeks-pos":    "right",
+            "weeks-pos": "right",
 
-            "on-scroll":    1,
+            "on-scroll": 1,
 
             "format": {
-                "months":   "<span color='#ffffff'><b>{}</b></span>",
-                "days":     "<span color='#aaaaaa'><b>{}</b></span>",
-                "weeks":    "<span color='#ffffff'><b>W{}</b></span>",
-                "weekdays": "<span color='#ffffff'><b>{}</b></span>",
-                "today":    "<span color='#0091ff'><b><u>{}</u></b></span>"
+                "months": "<span color='#eeeeee'><b>{}</b></span>",
+                "days": "<span color='#aaaaaa'><b>{}</b></span>",
+                "weeks": "<span color='#eeeeee'><b>W{}</b></span>",
+                "weekdays": "<span color='#eeeeee'><b>{}</b></span>",
+                "today": "<span color='#eeeeee'><b><u>{}</u></b></span>"
             }
-        },
-
-        "on-click":       "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw"
+        }
     },
 
-    "group/group-pulseaudio-output": {
+    "group/audioContainer": {
 		"orientation": "horizontal",
+
 		"modules": [
-            "custom/icon-pulseaudio-output",
-			"pulseaudio#output"
+            "custom/iconAudioOutput",
+            "group/audio",
+			"custom/iconAudioInput"
 		]
 	},
 
-    "custom/icon-pulseaudio-output": {
-        "format":  "",
+	"custom/iconAudioOutput": {
+        "format": "",
 
         "tooltip": false
     },
 
-    "pulseaudio#output": {
-        "format":       "{volume}%",
+    "group/audio": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "wireplumber",
+            "wireplumber#source"
+        ]
+    },
+
+	"wireplumber": {
+        "format": "{volume}%",
         "format-muted": "Muted",
 
-        "tooltip":      false,
-
-        "on-click":     "pavucontrol"
+        "on-click": "pavucontrol"
     },
 
-    "group/group-pulseaudio-input": {
+    "wireplumber#source": {
+        "format": "{volume}%",
+        "format-muted": "Muted",
+
+        "on-click": "pavucontrol",
+
+        "node-type": "Audio/Source"
+    },
+
+    "custom/iconAudioInput": {
+           "format": "",
+
+           "tooltip": false
+    },
+
+    "group/memoryContainer": {
 		"orientation": "horizontal",
+
 		"modules": [
-            "custom/icon-pulseaudio-input",
-			"pulseaudio#input"
+            "custom/iconMemory",
+            "memory"
 		]
 	},
 
-    "custom/icon-pulseaudio-input": {
-        "format":  "",
+	"custom/iconMemory": {
+           "format": "",
 
-        "tooltip": false
-    },
-
-    "pulseaudio#input": {
-        "format":              "{format_source}",
-        "format-source":       "{volume}%",
-        "format-source-muted": "Muted",
-
-        "tooltip":             false,
-
-        "on-click":            "pavucontrol"
-    },
-
-    "group/group-memory": {
-		"orientation": "horizontal",
-		"modules": [
-            "custom/icon-memory",
-			"memory"
-		]
-	},
-
-    "custom/icon-memory": {
-        "format":  "",
-
-        "tooltip": false
+           "tooltip": false
     },
 
     "memory": {
-        "interval":       1,
+        "interval": 1,
 
-        "format":         "{used} GB",
+        "format": "{used}GiB",
 
-        "tooltip":        true,
-        "tooltip-format": "Available: {avail} GB\nTotal: {total} GB",
+        "on-click": "missioncenter",
 
-        "on-click":       "missioncenter"
+        "tooltip-format": "Available: {avail}GiB\nTotal: {total}GiB"
     },
 
     "hyprland/workspaces": {
-        "on-click":       "activate",
+        "sort-by-number": true,
 
-        "all-outputs":    true,
-        
-        "sort-by-number": true
-    },
+        "all-outputs": true,
 
-    "network": {
-        "interval":                    1,
-
-        "format-wifi":                 "",
-
-        "format-ethernet":             "",
-
-        "format-disconnected":         "",
-        "tooltip-format-disconnected": "Disconnected",
-
-        "max-length":                  50
-    },
-
-    "hyprland/language": {
-        "format": "{short}"
+        "on-click": "activate"
     },
 
     "privacy": {
-        "icon-size":    16,
         "icon-spacing": 5,
-        
+        "icon-size": 16,
+
         "modules": [
             {
-                "type":              "screenshare",
+                "type": "screenshare",
 
-                "tooltip":           true,
                 "tooltip-icon-size": 16
             },
 
             {
-                "type":              "audio-out",
+                "type": "audio-in",
 
-                "tooltip":           true,
-                "tooltip-icon-size": 16
-            },
-
-            {
-                "type":              "audio-in",
-
-                "tooltip":           true,
                 "tooltip-icon-size": 16
             }
         ]
     },
 
+    "network": {
+        "format": "",
+        "format-disconnected": "",
+
+        "tooltip-format": "Disconnected"
+    },
+
+    "hyprland/language": {
+        "format": "{short}",
+
+        "tooltip": false
+    },
+
     "tray": {
         "icon-size": 18,
 
-        "spacing":   5
+        "spacing": 5
+    },
+
+    "group/toolbox": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "custom/userIcon",
+            "custom/power",
+            "custom/theme"
+        ],
+
+        "drawer": {
+            "transition-duration": 200,
+            "transition-left-to-right": false,
+
+            "children-class": "not-userIcon"
+        }
+    },
+
+    "custom/userIcon": {
+        "format": " ",
+
+        "on-click": "swaync-client -t -sw",
+
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": "",
+
+        "on-click": "rofi -show power-menu",
+
+        "tooltip-format": "Power menu"
     },
 
     "custom/theme": {
-        "format":   "",
+        "format": "",
 
-        "tooltip":  false,
+        "on-click": "waypaper",
 
-        "on-click": "waypaper"
+        "tooltip-format": "Select wallpaper"
     }
 }

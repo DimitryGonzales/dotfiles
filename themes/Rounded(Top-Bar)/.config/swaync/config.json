@@ -3,7 +3,7 @@
 
     "ignore-gtk-theme": true,
 
-    "positionX": "left",
+    "positionX": "right",
     "positionY": "top",
 
     "layer": "overlay",
@@ -16,8 +16,8 @@
 
     "control-center-margin-top": 5,
     "control-center-margin-bottom": 5,
-    "control-center-margin-right": 0,
-    "control-center-margin-left": 5,
+    "control-center-margin-right": 5,
+    "control-center-margin-left": 0,
 
     "notification-2fa-action": true,
     "notification-inline-replies": false,
@@ -111,7 +111,7 @@
             "show-album-art": "always",
             "loop-carousel": false
         },
-        
+
         "buttons-grid": {
             "buttons-per-row": 7,
             "actions": [

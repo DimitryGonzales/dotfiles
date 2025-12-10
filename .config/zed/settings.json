@@ -56,10 +56,6 @@
     },
 
     // Theme
-    "theme": {
-        "mode": "system",
-        "light": "Matugen Light",
-        "dark": "One Dark Pro"
-    },
+    "theme": "One Dark Pro",
     "icon_theme": "Material Icon Theme"
 }
