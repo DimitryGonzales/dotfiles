@@ -27,21 +27,26 @@ plugins=(
 # Installation
 source $ZSH/oh-my-zsh.sh
 
-# ZSH #
-# Aliases
-alias cp="cp --verbose -r"
-alias mkdir="mkdir -p"
-
+# ALIASES #
+# cat to bat
 alias cat="bat"
 
+# File management
+alias cp="cp -v"
+alias mkdir="mkdir -p"
+alias mv="mv -v"
+alias rm="rm -v"
+
+# ls to eza
 alias ls="eza -lh --hyperlink --smart-group --time-style '+%d/%m/%Y %H:%M'"
 alias lsa="eza -lah --hyperlink --smart-group --time-style '+%d/%m/%Y %H:%M'"
 
+# Package management
+alias cleanpp="paru -Sccd"
 alias p="sudo pacman"
-alias pc="paru -Sccd"
-alias pu="sudo pacman -Syu && paru"
-
 alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
+alias update="remi && p -Syu && paru -Sua"
 
-alias st="~/themes/theme.sh"
-alias sw="matugen -v image"
+# Scripts
+alias select-theme="~/themes/theme.sh"
+alias select-wallpaper="matugen -v image"
