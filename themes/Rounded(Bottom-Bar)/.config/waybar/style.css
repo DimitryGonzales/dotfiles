@@ -30,7 +30,7 @@ tooltip label {
     padding: 10px;
 }
 
-#clockContainer {
+#containerClock {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
@@ -63,7 +63,7 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#audioContainer {
+#containerAudio {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
@@ -134,7 +134,7 @@ tooltip label {
     min-width: calc(60px - (10px * 2) - (5px * 2));
 }
 
-#memoryContainer {
+#containerMemory {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 

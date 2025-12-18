@@ -8,9 +8,9 @@
     "reload_style_on_change": true,
 
     "modules-left": [
-        "group/clockContainer",
-        "group/audioContainer",
-        "group/memoryContainer"
+        "group/containerClock",
+        "group/containerAudio",
+        "group/containerMemory"
     ],
 
     "modules-center": [
@@ -25,7 +25,7 @@
         "group/toolbox"
     ],
 
-    "group/clockContainer": {
+    "group/containerClock": {
 		"orientation": "horizontal",
 
 		"modules": [
@@ -64,7 +64,7 @@
         }
     },
 
-    "group/audioContainer": {
+    "group/containerAudio": {
 		"orientation": "horizontal",
 
 		"modules": [
@@ -111,7 +111,7 @@
            "tooltip": false
     },
 
-    "group/memoryContainer": {
+    "group/containerMemory": {
 		"orientation": "horizontal",
 
 		"modules": [
