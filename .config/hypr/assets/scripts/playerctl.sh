@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-audio_info=$(playerctl metadata --format "{{artist}} - {{title}}")
+AUDIO_INFO=$(playerctl metadata --format "{{artist}} - {{title}}")
 
-echo "$audio_info"
+if [ -z "$AUDIO_INFO" ]; then
+    echo "Nothing playing"
+else
+    echo "$AUDIO_INFO"
+fi
