@@ -48,6 +48,6 @@ alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pa
 alias update="remi && p -Syu && paru -Sua"
 
 # Scripts
-alias set-theme="~/themes/theme.sh"
+alias set-theme="~/.config/hypr/assets/scripts/set-theme.sh"
 alias set-user-icon="~/.config/hypr/assets/scripts/set-user-icon.sh"
 alias set-wallpaper="matugen -v image"

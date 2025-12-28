@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+printf "GO MAKE A NEW AND BETTER THEME SCRIPT!!!\n"
+exit 0
+
 shopt -s nullglob
 shopt -s dotglob
 
