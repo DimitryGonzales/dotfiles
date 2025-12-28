@@ -30,14 +30,14 @@ tooltip label {
     padding: 10px;
 }
 
-#containerClock {
+#container-clock {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-iconClock {
+#custom-icon-clock {
     background-color: @primary;
     border-radius: 100%;
 
@@ -63,14 +63,14 @@ tooltip label {
     background-color: @surface_bright;
 }
 
-#containerAudio {
+#container-audio {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-iconAudioOutput {
+#custom-icon-audio-output {
     background-color: @primary;
     border-radius: 100%;
 
@@ -125,7 +125,7 @@ tooltip label {
     color: @error;
 }
 
-#custom-iconAudioInput {
+#custom-icon-audio-input {
     background-color: @primary;
     border-radius: 100%;
 
@@ -134,14 +134,14 @@ tooltip label {
     min-width: calc(60px - (10px * 2) - (5px * 2));
 }
 
-#containerMemory {
+#container-memory {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
     padding: 5px;
 }
 
-#custom-iconMemory {
+#custom-icon-memory {
     background-color: @primary;
     border-radius: 100%;
 
@@ -306,15 +306,15 @@ tooltip label {
     padding-left: 5px;
 }
 
-#custom-userIcon {
-    background: url("../hypr/assets/user_icon.jpg");
+#custom-user-icon {
+    background: url("../hypr/assets/user-icon.jpg");
     background-size: cover;
     border-radius: 100%;
 
     min-width: calc(60px - (10px * 2));
 }
 
-#toolbox .not-userIcon > * {
+#toolbox .not-user-icon > * {
     background-color: @surface_container_high;
     border-radius: 100%;
 
@@ -325,6 +325,6 @@ tooltip label {
     transition: background 200ms ease;
 }
 
-#toolbox .not-userIcon > *:hover {
+#toolbox .not-user-icon > *:hover {
     background-color: @surface_bright;
 }

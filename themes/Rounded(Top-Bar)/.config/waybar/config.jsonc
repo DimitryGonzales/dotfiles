@@ -8,9 +8,9 @@
     "reload_style_on_change": true,
 
     "modules-left": [
-        "group/containerClock",
-        "group/containerAudio",
-        "group/containerMemory"
+        "group/container-clock",
+        "group/container-audio",
+        "group/container-memory"
     ],
 
     "modules-center": [
@@ -25,16 +25,16 @@
         "group/toolbox"
     ],
 
-    "group/containerClock": {
+    "group/container-clock": {
 		"orientation": "horizontal",
 
 		"modules": [
-            "custom/iconClock",
+            "custom/icon-clock",
 			"clock"
 		]
 	},
 
-	"custom/iconClock": {
+	"custom/icon-clock": {
         "format": "",
 
         "tooltip": false
@@ -64,17 +64,17 @@
         }
     },
 
-    "group/containerAudio": {
+    "group/container-audio": {
 		"orientation": "horizontal",
 
 		"modules": [
-            "custom/iconAudioOutput",
+            "custom/icon-audio-output",
             "group/audio",
-			"custom/iconAudioInput"
+			"custom/icon-audio-input"
 		]
 	},
 
-	"custom/iconAudioOutput": {
+	"custom/icon-audio-output": {
         "format": "",
 
         "tooltip": false
@@ -105,22 +105,22 @@
         "node-type": "Audio/Source"
     },
 
-    "custom/iconAudioInput": {
+    "custom/icon-audio-input": {
            "format": "",
 
            "tooltip": false
     },
 
-    "group/containerMemory": {
+    "group/container-memory": {
 		"orientation": "horizontal",
 
 		"modules": [
-            "custom/iconMemory",
+            "custom/icon-memory",
             "memory"
 		]
 	},
 
-	"custom/iconMemory": {
+	"custom/icon-memory": {
            "format": "",
 
            "tooltip": false
@@ -186,7 +186,7 @@
         "orientation": "horizontal",
 
         "modules": [
-            "custom/userIcon",
+            "custom/user-icon",
             "custom/power",
             "custom/theme"
         ],
@@ -195,11 +195,11 @@
             "transition-duration": 200,
             "transition-left-to-right": false,
 
-            "children-class": "not-userIcon"
+            "children-class": "not-user-icon"
         }
     },
 
-    "custom/userIcon": {
+    "custom/user-icon": {
         "format": " ",
 
         "on-click": "swaync-client -t -sw",
