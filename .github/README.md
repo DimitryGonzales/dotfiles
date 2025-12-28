@@ -76,6 +76,6 @@ yadm clone "https://github.com/DimitryGonzales/dotfiles.git" && yadm checkout --
 
 ## 🎨 Choose a theme
 
-1. Execute `~/themes/theme.sh`(soon `~/.config/hypr/assets/scripts/set-theme.sh`) or `set-theme`.
+1. Execute `~/.config/hypr/assets/scripts/set-theme.sh` or `set-theme`.
 2. Select theme.
 3. Select wallpaper.
