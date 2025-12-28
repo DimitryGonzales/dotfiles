@@ -25,7 +25,7 @@ chafa -s 25x "$1" < /dev/null
 read -rp "Apply the change? [Y/n] " APPLY
 APPLY=${APPLY,,};
 if [[ "$APPLY" == "n" ]]; then
-    printf "[ABORT] Canceled user icon change!\n"
+    printf "[ABORT] Execution canceled!\n"
     exit 0
 fi
 

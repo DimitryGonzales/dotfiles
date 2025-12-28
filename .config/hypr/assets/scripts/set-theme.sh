@@ -22,18 +22,18 @@ for item in "${dependencies[@]}"; do
         missing_dependency="true"
     fi
 done
-if [[ "$missing_dependency" == "true" ]]; then
-    exit 1
-fi
+[[ "$missing_dependency" == "true" ]] && exit 1
 
 # Select directory
 while true; do
     theme=$(find "$themes_directory" -mindepth 1 -maxdepth 1 -type d | fzf --delimiter=/ --with-nth=-1 --preview 'eza -Ta --color=always {} && img=$(find {} -maxdepth 1 -iname "preview.*" | head -1) && [ -n "$img" ] && echo && chafa -s 25x "$img"')
+    if [[ -z "$theme" ]]; then
+        printf "[ABORT] Execution canceled!\n"
+        exit 0
+    fi
 
     theme_files=("$theme"/!(post-hook.sh|preview.*))
-    if [[ "${#theme_files[@]}" -gt 0 ]]; then
-        break
-    fi
+    [[ "${#theme_files[@]}" -gt 0 ]] && break
 
     printf "[ALERT] No valid files in the directory! Restarting...\n"; sleep 2
 done
@@ -50,7 +50,7 @@ if [[ -f "$theme/post-hook.sh" ]]; then
     if "$theme/post-hook.sh" > /dev/null; then
         printf "Executed 'post-hook.sh'.\n"
     else
-        printf "[ALERT] Failed to execute 'post-hook.sh'!"
+        printf "[ALERT] Failed to execute 'post-hook.sh'!\n"
     fi
 else
     printf "No existing 'post-hook.sh' file. Skipping post-hook execution...\n"
