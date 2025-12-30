@@ -45,7 +45,7 @@ alias lsa="eza -lah --hyperlink --smart-group --time-style '+%d/%m/%Y %H:%M'"
 alias cleanpp="paru -Sccd"
 alias p="sudo pacman"
 alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
-alias update="remi && p -Syu && paru -Sua"
+alias update="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu && paru -Sua"
 
 # Scripts
 alias set-theme="~/.config/hypr/assets/scripts/set-theme.sh"

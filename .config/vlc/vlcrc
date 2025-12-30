@@ -4514,13 +4514,13 @@ key-rate-slower-fine=
 #global-key-next=
 
 # Next (string)
-key-next=l
+key-next=Ctrl+Right
 
 # Previous (string)
 #global-key-prev=
 
 # Previous (string)
-key-prev=j
+key-prev=Ctrl+Left
 
 # Stop (string)
 #global-key-stop=
