@@ -18,7 +18,6 @@ keybind = ctrl+alt+s=goto_split:down
 keybind = ctrl+alt+a=goto_split:left
 keybind = ctrl+w=close_tab:this
 keybind = ctrl+t=new_tab
-keybind = ctrl+shift+q=close_surface
 
 window-padding-x = 10
 window-padding-y = 10

@@ -22,6 +22,10 @@ plugins=(
     emoji
     fancy-ctrl-z
     git
+    qrcode
+    safe-paste
+    sudo
+    universalarchive
 )
 
 # Installation
