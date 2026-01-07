@@ -147,7 +147,9 @@
 
         "workspace-taskbar": {
             "enable": true
-        }
+        },
+
+        "show-special": true
     },
 
     "privacy": {
