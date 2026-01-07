@@ -137,11 +137,17 @@
     },
 
     "hyprland/workspaces": {
+        "format": "{icon} {windows}",
+
         "sort-by-number": true,
 
         "all-outputs": true,
 
-        "on-click": "activate"
+        "on-click": "activate",
+
+        "workspace-taskbar": {
+            "enable": true
+        }
     },
 
     "privacy": {
@@ -202,7 +208,7 @@
     "custom/user-icon": {
         "format": " ",
 
-        "on-click": "swaync-client -t -sw",
+        "on-click": "swaync-client -t",
 
         "tooltip": false
     },

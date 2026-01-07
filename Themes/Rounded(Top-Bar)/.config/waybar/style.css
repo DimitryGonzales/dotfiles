@@ -179,6 +179,7 @@ tooltip label {
     color: @on_surface;
 
     margin-right: 5px;
+    padding: 0 5px;
 
     min-width: calc(60px - (10px * 2) - (5px * 2));
 
@@ -186,6 +187,10 @@ tooltip label {
         background 200ms ease,
         border-radius 200ms ease,
         color 200ms ease;
+}
+
+#workspaces button:hover {
+    background-color: @surface_bright;
 }
 
 #workspaces button:first-child {
@@ -206,10 +211,6 @@ tooltip label {
     margin-right: 0;
 }
 
-#workspaces button:hover {
-    background-color: @surface_bright;
-}
-
 #workspaces button.visible {
     background-color: @primary_container;
 
@@ -225,7 +226,7 @@ tooltip label {
 #workspaces button.active,
 #workspaces button.active:hover {
     background-color: @primary;
-    border-radius: 100%;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
 
     color: @on_primary;
 }
@@ -268,7 +269,7 @@ tooltip label {
     background-color: @surface_container;
     border-radius: calc((60px - (10px * 2)) / 2);
 
-    padding: 10px;
+    padding: 0 10px;
 
     min-width: calc(60px - (10px * 2));
 }
