@@ -20,6 +20,7 @@ plugins=(
     bgnotify
     colored-man-pages
     emoji
+    extract
     fancy-ctrl-z
     git
     qrcode

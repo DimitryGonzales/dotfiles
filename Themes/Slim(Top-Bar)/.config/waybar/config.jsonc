@@ -1,0 +1,295 @@
+{
+    "position": "top",
+
+    "height": 60,
+
+    "spacing": 10,
+
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "custom/user-icon",
+        "group/window-info"
+    ],
+
+    "modules-center": [
+        "group/system-info",
+        "hyprland/workspaces",
+        "clock"
+    ],
+
+    "modules-right": [
+        "hyprland/language",
+        "custom/separator",
+        "tray",
+        "privacy",
+        "group/control-center"
+    ],
+
+    "custom/separator": {
+        "format": "·",
+
+        "tooltip": false
+    },
+
+    "custom/user-icon": {
+        "format": " ",
+
+        "on-click": "rofi -show drun",
+
+        "tooltip": false
+    },
+
+    "group/window-info": {
+		"orientation": "vertical",
+
+		"modules": [
+		    "hyprland/window#class",
+			"hyprland/window#title"
+		]
+	},
+
+	"hyprland/window#class": {
+        "format": "{class}",
+
+        "max-length": 30,
+
+        "tooltip": false
+	},
+
+	"hyprland/window#title": {
+        "format": "{title}",
+
+        "max-length": 30,
+
+        "tooltip": false
+	},
+
+	"group/system-info": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "custom/icon-memory",
+            "memory",
+            "mpris#icon",
+            "mpris#title"
+        ]
+    },
+
+    "custom/icon-memory": {
+        "format": "",
+
+        "tooltip": false
+    },
+
+    "memory": {
+        "interval": 1,
+
+        "format": "{used}GiB",
+
+        "states": {
+            "warning": 75,
+            "critical": 90
+        },
+
+        "on-click": "missioncenter",
+
+        "tooltip-format": "Available: {avail}GiB\nTotal: {total}GiB"
+    },
+
+    "mpris#icon": {
+        "format": "{status_icon}",
+
+        "status-icons": {
+            "paused": "",
+            "playing": ""
+        },
+
+        "tooltip": false
+    },
+
+    "mpris#title": {
+        "format": "{artist} - {title}",
+
+        "artist-len": 30,
+        "title-len": 30,
+
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{windows}",
+
+        "sort-by-number": true,
+
+        "all-outputs": true,
+
+        "persistent-workspaces": {
+            "*": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+
+        "on-click": "activate",
+
+        "workspace-taskbar": {
+            "enable": true,
+        },
+
+        "show-special": true
+    },
+
+    "clock": {
+        "interval": 60,
+
+        "format": "{:%H:%M · %a, %d/%m}",
+
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 4,
+
+            "weeks-pos": "right",
+
+            "format": {
+                "months": "<span color='#eeeeee'><b>{}</b></span>",
+                "days": "<span color='#aaaaaa'><b>{}</b></span>",
+                "weeks": "<span color='#eeeeee'><b>W{}</b></span>",
+                "weekdays": "<span color='#eeeeee'><b>{}</b></span>",
+                "today": "<span color='#eeeeee'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "hyprland/language": {
+        "format": "{short}",
+
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 18,
+
+        "spacing": 5
+    },
+
+    "privacy": {
+        "icon-spacing": 5,
+        "icon-size": 16,
+
+        "transition-duration": 200,
+
+        "modules": [
+            {
+                "type": "screenshare",
+
+                "tooltip-icon-size": 18
+            },
+
+            {
+                "type": "audio-in",
+
+                "tooltip-icon-size": 18
+            }
+        ]
+    },
+
+    "group/control-center": {
+        "orientation": "horizontal",
+
+		"modules": [
+		    "group/audio-output",
+			"group/audio-input",
+			"custom/notification"
+		]
+    },
+
+    "group/audio-output": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "wireplumber#output-icon",
+            "wireplumber#output-percentage"
+		],
+
+		"drawer": {
+            "transition-duration": 200,
+            "transition-left-to-right": true
+        },
+    },
+
+    "wireplumber#output-icon": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
+
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "wireplumber#output-percentage": {
+        "format": "{volume}%",
+        "format-muted": "Muted",
+
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "group/audio-input": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "wireplumber#input-icon",
+            "wireplumber#input-percentage"
+		],
+
+		"drawer": {
+            "transition-duration": 200,
+            "transition-left-to-right": true
+        },
+    },
+
+    "wireplumber#input-icon": {
+        "format": "",
+        "format-muted": "",
+
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+
+        "node-type": "Audio/Source"
+    },
+
+    "wireplumber#input-percentage": {
+        "format": "{volume}%",
+        "format-muted": "Muted",
+
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+
+        "node-type": "Audio/Source"
+    },
+
+    "custom/notification": {
+        "exec": "swaync-client -swb",
+        "exec-if": "which swaync-client",
+
+        "return-type": "json",
+
+        "format": "{icon}",
+        "format-icons": {
+            "none": "",
+            "notification": "",
+            "dnd-none": "",
+            "dnd-notification": "",
+        },
+
+      "on-click": "swaync-client -t",
+      "on-click-right": "swaync-client -d",
+
+      "tooltip": true,
+
+      "escape": true
+    },
+}

@@ -1,0 +1,371 @@
+@import "matugen-colors.css";
+
+* {
+    all: unset;
+
+    font-family: "Inter", "Font Awesome 7 Free";
+
+    transition: all 0s;
+}
+
+#waybar {
+    background-color: @surface;
+    border-radius:
+        0
+        0
+        calc(60px / 2)
+        calc(60px / 2);
+}
+
+#waybar > box {
+    padding: 10px;
+}
+
+tooltip {
+    background-color: @surface_container_high;
+    border-radius: 20px;
+}
+
+tooltip label {
+    color: @on_surface;
+
+    padding: 10px;
+}
+
+#custom-separator {
+    color: @on_surface_variant;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#custom-user-icon {
+    background: url("../hypr/assets/user-icon.jpg");
+    background-size: cover;
+    border-radius: 100%;
+
+    min-width: calc(60px - (10px * 2));
+}
+
+#window.class {
+    color: @on_surface_variant;
+    font-size: 14px;
+}
+
+#window.title {
+    color: @on_surface;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#system-info {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
+    font-size: 16px;
+
+    padding: 5px;
+}
+
+#custom-icon-memory {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#memory {
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    padding: 0 5px;
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#memory:hover {
+    background-color: @surface_bright;
+}
+
+#memory.warning {
+    background-color: @error;
+
+    color: @on_error;
+}
+
+#memory.critical {
+    background-color: @error_container;
+
+    color: @on_error_container;
+}
+
+#mpris.icon {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    margin-right: 5px;
+    margin-left: 10px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+
+    transition:
+        background 200ms ease,
+        color 200ms ease;
+}
+
+#mpris.icon:hover {
+    background-color: @inverse_primary;
+
+    color: @primary;
+}
+
+#mpris.title {
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    padding: 0 5px;
+
+    transition: background 200ms ease
+}
+
+#mpris.title:hover {
+    background-color: @surface_bright;
+}
+
+#workspaces {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#workspaces button {
+    background-color: @surface_container_high;
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    font-size: 0;
+
+    margin-right: 5px;
+    padding: 0 5px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2) - (5px * 2));
+
+    transition:
+        background 200ms ease,
+        border-radius 200ms ease,
+        box-shadow 200ms ease,
+        margin 200ms ease,
+        padding 200ms ease,
+        min-width 200ms ease;
+}
+
+#workspaces button:hover {
+    background-color: @surface_bright;
+}
+
+#workspaces button:last-child {
+    margin-right: 0;
+}
+
+#workspaces button.empty {
+    border-radius: 100%;
+
+    margin-top: 12px;
+    margin-right: 10px;
+    margin-bottom: 12px;
+    padding: 0;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2) - (12px * 2))
+}
+
+#workspaces button.empty:hover {
+    margin-top: 9px;
+    margin-bottom: 9px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2) - (9px * 2))
+}
+
+#workspaces button.empty.visible,
+#workspaces button.empty.active {
+    margin-top: 6px;
+    margin-bottom: 6px;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2) - (6px * 2))
+}
+
+#workspaces button:not(.empty) + button.empty,
+#workspaces button.empty:first-child {
+    margin-left: 5px;
+}
+
+#workspaces button.empty:last-child {
+    margin-right: 5px;
+}
+
+#workspaces button.visible {
+    background-color: @primary_container;
+}
+
+#workspaces button.visible:hover {
+    background-color: @inverse_primary;
+}
+
+#workspaces button.active,
+#workspaces button.active:hover {
+    background-color: @primary;
+}
+
+#workspaces button.special {
+    background-color: @surface_container_high;
+    box-shadow: 0 0 0 2px @outline_variant;
+}
+
+#workspaces button.special:hover {
+    background-color: @surface_container_high;
+    box-shadow: 0 0 0 2px @outline;
+}
+
+#workspaces button.special.visible {
+    box-shadow: 0 0 0 2px @primary_container;
+}
+
+#workspaces button.special.active {
+    box-shadow: 0 0 0 2px @primary;
+}
+
+#clock {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
+    font-size: 16px;
+
+    padding: 0 10px;
+}
+
+#language {
+    color: @on_surface;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#tray menu {
+    background-color: @surface_container;
+    border-radius: 30px;
+
+    color: @on_surface;
+    font-size: 16px;
+
+    padding: 10px;
+}
+
+#tray menu menuitem {
+    background-color: @surface_container_high;
+    border-radius: 5px;
+
+    margin-bottom: 2px;
+    padding: 15px 10px;
+
+    transition: background 200ms ease;
+}
+
+#tray menu menuitem:hover {
+    background-color: @surface_bright;
+}
+
+#tray menu menuitem:first-child {
+    border-radius:
+        20px
+        20px
+        5px
+        5px;
+}
+
+#tray menu menuitem:last-child {
+    border-radius:
+        5px
+        5px
+        20px
+        20px;
+
+    margin-bottom: 0;
+}
+
+#privacy {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    padding: 5px;
+}
+
+#privacy-item {
+    background-color: @primary;
+    border-radius: 100%;
+
+    color: @on_primary;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#control-center {
+    background-color: @surface_container;
+    border-radius: calc((60px - (10px * 2)) / 2);
+
+    color: @on_surface;
+    font-size: 16px;
+    font-weight: bold;
+
+    padding: 5px;
+}
+
+#audio-output,
+#audio-input {
+    border-radius: calc((60px - (10px * 2) - (5px * 2)) / 2);
+
+    margin-right: 5px;
+
+    transition: background 200ms ease;
+}
+
+#audio-output:hover,
+#audio-input:hover {
+    background-color: @surface_bright;
+
+    padding: 0 5px;
+}
+
+#wireplumber.output-icon,
+#wireplumber.input-icon {
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+}
+
+#audio-output:hover #wireplumber.output-icon,
+#audio-input:hover #wireplumber.input-icon {
+    margin-right: 5px;
+
+    min-width: 0;
+}
+
+#wireplumber.output-percentage,
+#wireplumber.input-percentage {
+    color: @on_surface_variant;
+    font-weight: normal;
+}
+
+#custom-notification {
+    border-radius: 100%;
+
+    min-width: calc(60px - (10px * 2) - (5px * 2));
+
+    transition: background 200ms ease;
+}
+
+#custom-notification:hover {
+    background-color: @surface_bright;
+}

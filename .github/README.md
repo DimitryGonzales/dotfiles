@@ -20,6 +20,23 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 
 <table align="center">
     <tr>
+        <th colspan="3" style="text-align:center">Rounded(Bottom Bar)</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="/.github/assets/Rounded(Bottom-Bar)-desktop.png">
+        </td>
+        <td>
+            <img src="/.github/assets/Rounded(Bottom-Bar)-menus.png">
+        </td>
+        <td>
+            <img src="/.github/assets/Rounded(Bottom-Bar)-apps.png">
+        </td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
         <th colspan="3" style="text-align:center">Rounded(Top Bar)</th>
     </tr>
     <tr>
@@ -37,17 +54,34 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 
 <table align="center">
     <tr>
-        <th colspan="3" style="text-align:center">Rounded(Bottom Bar)</th>
+        <th colspan="3" style="text-align:center">Slim(Bottom Bar)</th>
     </tr>
     <tr>
         <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-desktop.png">
+            <img src="/.github/assets/Slim(Bottom-Bar)-desktop.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-menus.png">
+            <img src="/.github/assets/Slim(Bottom-Bar)-menus.png">
         </td>
         <td>
-            <img src="/.github/assets/Rounded(Bottom-Bar)-apps.png">
+            <img src="/.github/assets/Slim(Bottom-Bar)-apps.png">
+        </td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <th colspan="3" style="text-align:center">Slim(Top Bar)</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="/.github/assets/Slim(Top-Bar)-desktop.png">
+        </td>
+        <td>
+            <img src="/.github/assets/Slim(Top-Bar)-menus.png">
+        </td>
+        <td>
+            <img src="/.github/assets/Slim(Top-Bar)-apps.png">
         </td>
     </tr>
 </table>

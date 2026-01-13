@@ -1,0 +1,15 @@
+configuration {
+    modi: "drun,clipboard:~/.config/rofi/scripts/cliphist-rofi-img,emoji";
+
+    display-drun:        "Apps";
+    display-clipboard:   "Clipboard";
+    display-emoji:       "Emoji";
+
+    show-icons: true;
+
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+@theme "~/.config/rofi/theme.rasi"
