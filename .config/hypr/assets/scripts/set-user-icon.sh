@@ -2,18 +2,24 @@
 
 export USER_ICON_DIRECTORY="$HOME/.config/hypr/assets"
 
-# Check if input is a JPG file
-if [[ ! -f "$1" ]] || [[ $(file -b --mime-type "$1") != "image/jpeg" ]]; then
-    printf "[ERROR] Input isn't a JPG file!\n" >&2
+# Check if input is an image
+if [[ $(file -b --mime-type "$1") != image/* ]]; then
+    printf "[ERROR] Input isn't an image!\n" >&2
     exit 1
 fi
+
+# Check dependencies
+missing_dependency="false"
+dependencies=("chafa" "magick")
+for item in "${dependencies[@]}"; do
+    if ! command -v "$item" > /dev/null; then
+        printf "[ERROR] '%s' isn't installed, install it to continue!\n" "$item" >&2
+        missing_dependency="true"
+    fi
+done
+[[ "$missing_dependency" == "true" ]] && exit 1
 
 # Display preview
-if ! command -v chafa > /dev/null; then
-    printf "[ERROR] 'chafa' isn't installed, install it to continue!\n" >&2
-    exit 1
-fi
-
 if [[ -f "$USER_ICON_DIRECTORY/user-icon.jpg" ]]; then
     printf "Existing user icon:\n"
     chafa -s 25x "$USER_ICON_DIRECTORY/user-icon.jpg" < /dev/null
@@ -40,21 +46,32 @@ else
     printf "No existing user icon found! Skipping backup...\n"
 fi
 
-# Copy new user icon
-if ! cp "$1" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
-    printf "[ERROR] Failed to copy new user icon!\n" >&2
-
-    if [[ -f "$USER_ICON_DIRECTORY/user-icon.jpg.bak" ]]; then
-        if mv -v "$USER_ICON_DIRECTORY/user-icon.jpg.bak" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
-            printf "Undid user icon backup.\n"
-        else
-            printf "[ERROR] Failed to undo user icon backup!\n" >&2
-        fi
+# Convert and/or copy new user icon
+undo_backup="false"
+if [[ $(file -b --mime-type "$1") != image/jpeg ]]; then
+    if magick "$1" "$USER_ICON_DIRECTORY/user-icon.jpg"; then
+        printf "Converted to JPEG and applied new user icon.\n"
+    else
+        printf "[ERROR] Failed to convert to JPEG and apply new user icon!\n"
+        undo_backup="true"
     fi
-
-    exit 1
+else
+    if cp "$1" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
+        printf "Applied new user icon\n"
+    else
+        printf "[ERROR] Failed to apply new user icon!\n" >&2
+        undo_backup="true"
+    fi
 fi
-printf "Copied new user icon.\n"
+
+# Undo backup if necessary
+if [[ "$undo_backup" == "true" && -f "$USER_ICON_DIRECTORY/user-icon.jpg.bak" ]]; then
+    if ! mv -v "$USER_ICON_DIRECTORY/user-icon.jpg.bak" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
+        printf "[ERROR] Failed to undo user icon backup!\n" >&2
+        exit 1
+    fi
+    printf "Undid user icon backup.\n"
+fi
 
 # Restart/Start waybar
 if command -v waybar > /dev/null; then
