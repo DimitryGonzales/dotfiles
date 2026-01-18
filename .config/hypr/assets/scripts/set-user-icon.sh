@@ -57,7 +57,7 @@ if [[ $(file -b --mime-type "$1") != image/jpeg ]]; then
     fi
 else
     if cp "$1" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
-        printf "Applied new user icon\n"
+        printf "Applied new user icon.\n"
     else
         printf "[ERROR] Failed to apply new user icon!\n" >&2
         undo_backup="true"
@@ -66,7 +66,7 @@ fi
 
 # Undo backup if necessary
 if [[ "$undo_backup" == "true" && -f "$USER_ICON_DIRECTORY/user-icon.jpg.bak" ]]; then
-    if ! mv -v "$USER_ICON_DIRECTORY/user-icon.jpg.bak" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
+    if ! mv "$USER_ICON_DIRECTORY/user-icon.jpg.bak" "$USER_ICON_DIRECTORY/user-icon.jpg" > /dev/null; then
         printf "[ERROR] Failed to undo user icon backup!\n" >&2
         exit 1
     fi
