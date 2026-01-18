@@ -8,14 +8,14 @@ cursor-style = block
 
 mouse-hide-while-typing = true
 
-keybind = ctrl+shift+w=new_split:up
-keybind = ctrl+shift+d=new_split:right
-keybind = ctrl+shift+s=new_split:down
-keybind = ctrl+shift+a=new_split:left
-keybind = ctrl+alt+w=goto_split:up
-keybind = ctrl+alt+d=goto_split:right
-keybind = ctrl+alt+s=goto_split:down
-keybind = ctrl+alt+a=goto_split:left
+keybind = ctrl+up=new_split:up
+keybind = ctrl+right=new_split:right
+keybind = ctrl+down=new_split:down
+keybind = ctrl+left=new_split:left
+keybind = ctrl+shift+up=goto_split:up
+keybind = ctrl+shift+right=goto_split:right
+keybind = ctrl+shift+down=goto_split:down
+keybind = ctrl+shift+left=goto_split:left
 keybind = ctrl+w=close_tab:this
 keybind = ctrl+t=new_tab
 
