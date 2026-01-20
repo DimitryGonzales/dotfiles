@@ -51,7 +51,7 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 
 <br>
 
-## 🛠️ Install
+## 🛠️ Installation
 
 > [!CAUTION]
 > This will overwrite existing files.
@@ -75,7 +75,7 @@ yadm clone "https://github.com/DimitryGonzales/dotfiles.git" && yadm checkout --
 
 ## 💻 Commands
 
-### Select a theme:
+### Select theme:
 
 ```
 theme
@@ -85,7 +85,7 @@ theme
 
 Execute `~/.config/hypr/assets/scripts/theme.sh`.
 
-### Apply a wallpaper
+### Apply wallpaper
 
 ```
 wallpaper <wallpaper>
