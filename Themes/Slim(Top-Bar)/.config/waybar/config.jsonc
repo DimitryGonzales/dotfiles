@@ -8,7 +8,7 @@
     "reload_style_on_change": true,
 
     "modules-left": [
-        "custom/user-icon",
+        "custom/menu",
         "group/window-info"
     ],
 
@@ -32,8 +32,8 @@
         "tooltip": false
     },
 
-    "custom/user-icon": {
-        "format": " ",
+    "custom/menu": {
+        "format": "",
 
         "on-click": "rofi -show drun",
 

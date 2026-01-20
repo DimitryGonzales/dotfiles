@@ -53,6 +53,5 @@ alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pa
 alias update="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu && paru -Sua"
 
 # Scripts
-alias set-theme="~/.config/hypr/assets/scripts/set-theme.sh"
-alias set-user-icon="~/.config/hypr/assets/scripts/set-user-icon.sh"
-alias set-wallpaper="matugen -v image"
+alias theme="~/.config/hypr/assets/scripts/theme.sh"
+alias wallpaper="matugen -v image"

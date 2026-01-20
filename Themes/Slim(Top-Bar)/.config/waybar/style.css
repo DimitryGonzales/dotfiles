@@ -38,12 +38,19 @@ tooltip label {
     font-weight: bold;
 }
 
-#custom-user-icon {
-    background: url("../hypr/assets/user-icon.jpg");
-    background-size: cover;
+#custom-menu {
+    background-color: @surface_container;
     border-radius: 100%;
 
+    color: @on_surface;
+
     min-width: calc(60px - (10px * 2));
+
+    transition: background 200ms ease;
+}
+
+#custom-menu:hover {
+    background-color: @surface_bright;
 }
 
 #window.class {
