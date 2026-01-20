@@ -69,7 +69,7 @@ yadm checkout --force
 yadm clone "https://github.com/DimitryGonzales/dotfiles.git" && yadm checkout --force
 ```
 
-### 2. [Select theme](#select-a-theme).
+### 2. [Select theme](#select-theme).
 
 <br>
 
