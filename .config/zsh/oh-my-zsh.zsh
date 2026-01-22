@@ -1,18 +1,5 @@
-# Oh My Zsh directory
+# Oh My Zsh directory (must be at the start)
 export ZSH="/usr/share/oh-my-zsh"
-
-# Update frequency
-zstyle ':omz:update' frequency 7
-
-# Theme
-#ZSH_THEME="steeef"
-
-# Prompt
-autoload -U promptinit; promptinit
-prompt pure
-
-# Time stamp shown in the history command output.
-HIST_STAMPS="%d/%m/%Y"
 
 # Command correction
 ENABLE_CORRECTION="true"
@@ -32,5 +19,9 @@ plugins=(
     universalarchive
 )
 
-# Oh My Zsh
+# Prompt
+autoload -U promptinit; promptinit
+prompt pure
+
+# Oh My Zsh (must be at the end)
 source $ZSH/oh-my-zsh.sh
