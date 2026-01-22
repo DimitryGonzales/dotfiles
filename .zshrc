@@ -1,57 +1,11 @@
-# OH MY ZSH #
-# Installation directory
-export ZSH="/usr/share/oh-my-zsh"
+# Autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Theme
-ZSH_THEME="steeef"
+# Oh My Zsh
+source ~/.config/zsh/oh-my-zsh.zsh
 
-# Update frequency
-zstyle ':omz:update' frequency 7
+# Aliases (must be sourced after Oh My Zsh)
+source ~/.config/zsh/aliases.zsh
 
-# Command correction
-ENABLE_CORRECTION="true"
-
-# Command execution time stamp shown in the history command output.
-HIST_STAMPS="%d/%m/%Y"
-
-# Plugins
-plugins=(
-    aliases
-    bgnotify
-    colored-man-pages
-    emoji
-    extract
-    fancy-ctrl-z
-    git
-    qrcode
-    safe-paste
-    sudo
-    universalarchive
-)
-
-# Installation
-source $ZSH/oh-my-zsh.sh
-
-# ALIASES #
-# cat to bat
-alias cat="bat"
-
-# File management
-alias cp="cp -v"
-alias mkdir="mkdir -p"
-alias mv="mv -v"
-alias rm="rm -v"
-
-# ls to eza
-alias ls="eza -lh --hyperlink --smart-group --time-style '+%d/%m/%Y %H:%M'"
-alias lsa="eza -lah --hyperlink --smart-group --time-style '+%d/%m/%Y %H:%M'"
-
-# Package management
-alias cleanpp="paru -Sccd"
-alias p="sudo pacman"
-alias remi="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist"
-alias update="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu && paru -Sua"
-
-# Scripts
-alias theme="~/.config/hypr/assets/scripts/theme.sh"
-alias wallpaper="matugen -v image"
+# Syntax-highlighting (must be sourced at the end)
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
