@@ -21,8 +21,8 @@ keybind = ctrl+alt+left=goto_split:left
 keybind = ctrl+shift+e=equalize_splits
 keybind = ctrl+shift+f=toggle_split_zoom
 
-keybind = ctrl+w=close_tab:this
 keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_tab:this
 
 window-padding-x = 10
 window-padding-y = 10

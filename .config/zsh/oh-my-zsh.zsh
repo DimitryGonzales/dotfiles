@@ -24,16 +24,16 @@ print() {
     [[ $# -eq 0 && ${funcstack[-1]} = prompt_pure_precmd ]] || builtin print "$@"
 }
 
-PROMPT_NEEDS_NEWLINE=false
+prompt_needs_newline=false
 precmd() {
-    if [[ "$PROMPT_NEEDS_NEWLINE" == true ]]; then
+    if [[ "$prompt_needs_newline" == true ]]; then
         echo
     fi
-    PROMPT_NEEDS_NEWLINE=true
+    prompt_needs_newline=true
 }
 
 clear() {
-    PROMPT_NEEDS_NEWLINE=false
+    prompt_needs_newline=false
     command clear
 }
 

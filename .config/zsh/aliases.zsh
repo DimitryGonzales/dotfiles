@@ -12,7 +12,7 @@ alias ls="eza -lgh --hyperlink --group-directories-first"
 alias lsa="eza -lagh --hyperlink --group-directories-first"
 
 # Package management
-alias clean="paru -Sccd"
+alias clean="sudo rm -r /var/cache/pacman/pkg/download-* && paru -Sccd"
 alias p="sudo pacman"
 alias update="sudo reflector --verbose --country Brazil --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syu && paru -Sua"
 
