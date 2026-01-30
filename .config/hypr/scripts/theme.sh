@@ -56,6 +56,19 @@ else
     printf "No existing 'post-hook.sh' file. Skipping post-hook execution...\n"
 fi
 
+# Restart/Start swaync
+if command -v swaync > /dev/null; then
+    if swaync-client -R -rs > /dev/null; then
+        printf "Restarted 'swaync'.\n"
+    elif (swaync > /dev/null &); then
+        printf "Started 'swaync'.\n"
+    else
+        printf "[ALERT] Failed to restart/start 'swaync'!\n"
+    fi
+else
+    printf "'swaync' isn't installed. Skipping restart/start...\n"
+fi
+
 # Restart/Start waybar
 if command -v waybar > /dev/null; then
     if pkill -SIGUSR2 waybar > /dev/null; then
