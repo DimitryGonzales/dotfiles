@@ -20,6 +20,10 @@
     background-color: @surface_container;
     border-radius: calc(40px / 2);
 
+    color: @on_surface;
+    font-size: 1rem;
+    font-weight: bold;
+
     margin-right: 5px;
 
     min-height: 40px;
