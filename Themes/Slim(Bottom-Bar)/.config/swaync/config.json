@@ -36,7 +36,7 @@
                 },
 
                 {
-                    "label": "",
+                    "label": "",
                     "command": "swaync-client -d",
                     "update-command": "swaync-client -D",
                     "type": "toggle"
