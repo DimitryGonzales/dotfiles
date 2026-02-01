@@ -113,7 +113,7 @@ body {
     --offline: var(--text-4); /* change to #82838b for default offline color */
 
     /* border colors */
-    --border-light: {{colors.outline.default.hex}}; /* general light border color */
+    --border-light: transparent; /* general light border color */
     --border: {{colors.outline_variant.default.hex}}; /* general normal border color */
     --border-hover: {{colors.primary.default.hex}}; /* border color of panels when hovered */
     --button-border: {{colors.outline.default.hex}}; /* neutral border color of buttons */
