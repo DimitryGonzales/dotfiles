@@ -22,10 +22,10 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
     </tr>
     <tr>
         <td>
-            <img src=".github/assets/slim_bottom-bar.png" alt="Slim(Bottom Bar)">
+            <img src="/.github/assets/slim_bottom-bar.png" alt="Slim(Bottom Bar)">
         </td>
         <td>
-            <img src=".github/assets/slim_top-bar.png" alt="Slim(Top Bar)">
+            <img src="/.github/assets/slim_top-bar.png" alt="Slim(Top Bar)">
         </td>
     </tr>
 </table>
