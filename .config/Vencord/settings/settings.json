@@ -737,7 +737,8 @@
             "enabled": true
         },
         "MoreQuickReactions": {
-            "enabled": false
+            "enabled": false,
+            "reactionCount": 5
         }
     },
     "notifications": {
@@ -750,7 +751,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1769949964382
+        "settingsSyncVersion": 1769957241801
     },
     "uiElements": {
         "chatBarButtons": {},
