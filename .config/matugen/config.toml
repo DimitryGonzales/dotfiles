@@ -6,7 +6,7 @@ set = true
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/matugen-colors'
-post_hook = 'pkill -SIGUSR2 ghostty'
+post_hook = 'pkill -SIGUSR2 ghostty > /dev/null'
 
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
@@ -19,12 +19,17 @@ output_path = '~/.config/gtk-4.0/matugen-colors.css'
 [templates.hyprland]
 input_path = '~/.config/matugen/templates/hyprland.conf'
 output_path = '~/.config/hypr/source/matugen-colors.conf'
-post_hook = 'hyprctl reload'
+post_hook = 'hyprctl reload > /dev/null'
+
+[templates.millennium]
+input_path = '~/.config/matugen/templates/millennium.css'
+output_path = '~/.steam/steam/steamui/skins/Material-Theme/css/main/colors/matugen.css'
+post_hook = '~/.config/matugen/scripts/restart_steam.sh'
 
 [templates.pywalfox]
 input_path = '~/.config/matugen/templates/pywalfox.json'
 output_path = '~/.cache/wal/colors.json'
-post_hook = 'pywalfox update'
+post_hook = 'pywalfox update > /dev/null'
 
 [templates.qt5ct]
 input_path = '~/.config/matugen/templates/qtct.conf'
@@ -41,16 +46,12 @@ output_path = '~/.config/rofi/matugen-colors.rasi'
 [templates.swaync]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/swaync/matugen-colors.css'
-post_hook = 'swaync-client -rs'
+post_hook = 'swaync-client -rs > /dev/null'
 
 [templates.vencord]
-input_path = '~/.config/matugen/templates/discord.css'
+input_path = '~/.config/matugen/templates/vencord.css'
 output_path = '~/.config/Vencord/themes/matugen-colors.css'
 
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/matugen-colors.css'
-
-[templates.root]
-input_path = '~/.config/matugen/templates/root-light-dark.css'
-output_path = '~/Documents/matugen-colors.css'
