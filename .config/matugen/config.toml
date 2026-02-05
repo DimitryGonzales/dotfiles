@@ -6,7 +6,7 @@ set = true
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/matugen-colors'
-post_hook = 'pkill -SIGUSR2 ghostty > /dev/null'
+post_hook = 'pkill -SIGUSR2 ghostty'
 
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk.css'
@@ -24,12 +24,12 @@ post_hook = 'hyprctl reload > /dev/null'
 [templates.millennium]
 input_path = '~/.config/matugen/templates/millennium.css'
 output_path = '~/.steam/steam/steamui/skins/Material-Theme/css/main/colors/matugen.css'
-post_hook = '~/.config/matugen/scripts/restart_steam.sh'
+post_hook = '~/.config/hypr/scripts/restart_app.sh steam &'
 
 [templates.pywalfox]
 input_path = '~/.config/matugen/templates/pywalfox.json'
 output_path = '~/.cache/wal/colors.json'
-post_hook = 'pywalfox update > /dev/null'
+post_hook = 'pywalfox update'
 
 [templates.qt5ct]
 input_path = '~/.config/matugen/templates/qtct.conf'
@@ -55,3 +55,8 @@ output_path = '~/.config/Vencord/themes/matugen-colors.css'
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/matugen-colors.css'
+
+[templates.youtube-music]
+input_path = '~/.config/matugen/templates/youtube-music.css'
+output_path = '~/.config/YouTube Music/matugen-colors.css'
+post_hook = '~/.config/hypr/scripts/restart_app.sh youtube-music &'

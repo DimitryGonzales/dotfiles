@@ -17,6 +17,11 @@
     "showPluginNotifications": true,
     "showUpdateNotifications": true
   },
+  "plugins": {
+    "enabledPlugins": [
+      "extendium"
+    ]
+  },
   "themes": {
     "activeTheme": "Material-Theme",
     "allowedScripts": true,
