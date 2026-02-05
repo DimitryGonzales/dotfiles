@@ -1,3 +1,5 @@
+/* Original: https://github.com/catppuccin/youtubemusic/blob/main/src/mocha.css */
+
 html:not(.style-scope)
 {
   --unthemed-yet: inherit !important;

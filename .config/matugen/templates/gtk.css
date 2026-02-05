@@ -1,10 +1,10 @@
-/* adw-gtk3 defaults.css - https://github.com/lassekongo83/adw-gtk3/blob/main/src/sass/_defaults.scss */
+/* Original: https://github.com/lassekongo83/adw-gtk3/blob/main/src/sass/_defaults.scss */
 
 /* The main accent color and the matching text value */
 @define-color accent_bg_color {{colors.primary.default.hex}};
 @define-color accent_fg_color {{colors.on_primary.default.hex}};
 
-/* destructive-action buttons */
+/* Destructive-action buttons */
 @define-color destructive_bg_color {{colors.error.default.hex}};
 @define-color destructive_fg_color {{colors.on_error.default.hex}};
 
@@ -19,7 +19,6 @@
 @define-color error_fg_color {{colors.on_error.default.hex}};
 
 /* Colors derived from their matching bg color */
-
 @define-color accent_color {{colors.primary_container.default.hex}};
 @define-color destructive_color {{colors.error_container.default.hex}};
 @define-color success_color {{colors.primary_container.default.hex}};
