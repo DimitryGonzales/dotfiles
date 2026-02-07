@@ -1,4 +1,7 @@
 {
+    // AI
+    "disable_ai": true,
+
     // Editor
     "autosave": "on_focus_change",
     "format_on_save": "off",
@@ -16,6 +19,7 @@
     },
 
     "edit_predictions": {
+        "provider": "zed",
         "mode": "subtle"
     },
 
