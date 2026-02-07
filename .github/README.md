@@ -4,12 +4,6 @@ Personal dotfiles with **Material You**-inspired colors and dynamic theming usin
 
 <br>
 
-## 📝 TODO
-
-- [ ] Add `install.sh` script.
-
-<br>
-
 ## 🖼️ Showcase
 
 > [!NOTE]
