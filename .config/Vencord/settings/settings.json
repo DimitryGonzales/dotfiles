@@ -281,7 +281,8 @@
             "ignoreGuilds": "",
             "logEdits": true,
             "logDeletes": true,
-            "deleteStyle": "text"
+            "deleteStyle": "text",
+            "inlineEdits": true
         },
         "MessageTags": {
             "enabled": false
@@ -553,7 +554,7 @@
             "multiplier": 2
         },
         "WhoReacted": {
-            "enabled": false
+            "enabled": true
         },
         "XSOverlay": {
             "enabled": false
@@ -590,6 +591,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1770256914392
+        "settingsSyncVersion": 1770328587342
     }
 }
