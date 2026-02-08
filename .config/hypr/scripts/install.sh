@@ -14,12 +14,21 @@ WHITE="\e[0;37m"
 RESET="\e[0m"
 
 abort() {
-    printf "%b\nExecution aborted!%b\n" "$RED" "$RESET" >&2
+    printf "%bExecution aborted!%b\n" "$RED" "$RESET" >&2
     exit 1
 }
 
+confirm() {
+    local confirm
+    read -rp "$1 [Y/n] " confirm
+    confirm="${confirm,,}"
+    [[ "$confirm" == "n" ]] && abort
+}
+
 # Update system
+confirm "Update system?"
 printf "%bUpdating system...%b\n" "$YELLOW" "$RESET"
+
 if ! sudo pacman -Syu --noconfirm; then
     printf "%bFailed to update system!%b\n" "$RED" "$RESET" >&2
     abort
@@ -28,20 +37,22 @@ printf "%bUpdated system successfully.%b\n" "$GREEN" "$RESET"
 
 # Check and install paru
 if ! pacman -Q paru > /dev/null 2>&1; then
-    printf "%b\nparu isn't installed, installing...%b\n" "$YELLOW" "$RESET"
+    printf "\nParu is not installed.\n"
+    confirm "Install paru?"
+    printf "%bInstalling paru...%b\n" "$YELLOW" "$RESET"
 
     if ! (
         sudo pacman -S --needed --noconfirm base-devel git &&
         cd /tmp &&
         git clone "https://aur.archlinux.org/paru.git" &&
         cd paru &&
-        makepkg -si &&
+        makepkg -si --noconfirm --skipreview &&
         cd ~
-    ) > /dev/null; then
+    ); then
         printf "%bFailed to install paru!%b\n" "$RED" "$RESET" >&2
         abort
     fi
-    printf "%bparu installed successfully.%b\n" "$GREEN" "$RESET"
+    printf "%bParu installed successfully.%b\n" "$GREEN" "$RESET"
 fi
 
 # Check and install packages
@@ -167,7 +178,7 @@ packages=(
     xdg-desktop-portal-hyprland
 )
 
-printf "\n%bPackages:%b\n" "$BLUE" "$RESET"
+printf "%b\nPackages:%b\n" "$BLUE" "$RESET"
 packages_needed=false
 for item in "${packages[@]}"; do
     if pacman -Q "$item" > /dev/null 2>&1; then
@@ -179,9 +190,8 @@ for item in "${packages[@]}"; do
 done
 
 if [[ "$packages_needed" = true ]]; then
-    read -rp "Install missing packages? [Y/n] " packages_confirm
-    packages_confirm="${packages_confirm,,}"
-    [[ "$packages_confirm" == "n" ]] && abort
+    confirm "Install missing packages?"
+    printf "%bInstalling missing packages...%b\n" "$YELLOW" "$RESET"
 
     if ! paru -S --needed --noconfirm "${packages[@]}"; then
         printf "%bFailed to install all missing packages!%b\n" "$RED" "$RESET" >&2
@@ -190,7 +200,7 @@ if [[ "$packages_needed" = true ]]; then
     printf "%bInstalled all missing packages successfully.%b\n" "$GREEN" "$RESET"
 fi
 
-# Add user to groups
+# Check and add user to groups
 groups=(
     gamemode
     input
@@ -198,7 +208,7 @@ groups=(
     plugdev
 )
 
-printf "\n%bGroups:%b\n" "$BLUE" "$RESET"
+printf "%b\nGroups:%b\n" "$BLUE" "$RESET"
 groups_needed=false
 for item in "${groups[@]}"; do
     if groups "$USER" | grep -q "$item"; then
@@ -210,9 +220,8 @@ for item in "${groups[@]}"; do
 done
 
 if [[ "$groups_needed" == true ]]; then
-    read -rp "Add "$USER" to missing groups? [Y/n] " groups_confirm
-    groups_confirm="${groups_confirm,,}"
-    [[ "$groups_confirm" == "n" ]] && abort
+    confirm "Add $USER to missing groups?"
+    printf "%bAdding %s to missing groups...%b\n" "$YELLOW" "$USER" "$RESET"
 
     for item in "${groups[@]}"; do
         if ! groups "$USER" | grep -q "$item"; then
@@ -245,9 +254,8 @@ for item in "${services[@]}"; do
 done
 
 if [[ "$services_needed" == true ]]; then
-    read -rp "Enable disabled services? [Y/n] " services_confirm
-    services_confirm="${services_confirm,,}"
-    [[ "$services_confirm" == "n" ]] && abort
+    confirm "Enable disabled services?"
+    printf "%bEnabling disabled services...%b\n" "$YELLOW" "$RESET"
 
     for item in "${services[@]}"; do
         if ! systemctl is-enabled "$item" > /dev/null; then
@@ -260,14 +268,27 @@ if [[ "$services_needed" == true ]]; then
     done
 fi
 
-abort
+# Enable firewall
+if sudo ufw status | grep -iq "inactive"; then
+    printf "\nFirewall(UFW) is not enabled.\n"
+    confirm "Enable firewall(UFW)?"
+    printf "%bEnabling firewall(UFW)...%b\n" "$YELLOW" "$RESET"
+
+    if ! sudo ufw enable; then
+        printf "%bFailed to enable firewall(UFW)!%b\n" "$RED" "$RESET" >&2
+        abort
+    fi
+    printf "%bEnabled firewall(UFW) successfully.%b\n" "$GREEN" "$RESET"
+fi
 
 # Clone dotfiles
-printf "%b\nCloning dotfiles...%b\n" "$YELLOW" "$RESET"
+printf "%b\nDotfiles:%b https://github.com/DimitryGonzales/dotfiles.git\n" "$BLUE" "$RESET"
+confirm "Clone dotfiles?"
+printf "%bCloning dotfiles...%b\n" "$YELLOW" "$RESET"
 if ! (
     yadm clone "https://github.com/DimitryGonzales/dotfiles.git" &&
     yadm checkout --force
-) > /dev/null; then
+); then
     printf "%bFailed to clone dotfiles!%b\n" "$RED" "$RESET" >&2
     abort
 fi
@@ -281,9 +302,25 @@ if ! ~/.config/hypr/scripts/theme.sh; then
 fi
 printf "%bApplied theme successfully.%b\n" "$GREEN" "$RESET"
 
-# Swap ly@tty1.service with disable getty@tty1.service
+# Change current shell to ZSH
+ZSH_PATH="$(command -v zsh)"
+if [[ "$SHELL" != "$ZSH_PATH" ]]; then
+    printf "%b\nZSH isn't the current shell.%b\n"
+    confirm "Change current shell to ZSH?"
+    printf "%bChanging current shell to ZSH...\n" "$YELLOW" "$RESET"
+
+    if ! chsh -s "$ZSH_PATH"; then
+        printf "%bFailed to change current shell to ZSH!%b\n" "$RED" "$RESET" >&2
+        abort
+    fi
+    printf "%bChanged current shell to ZSH successfully.%b\n" "$GREEN" "$RESET"
+fi
+
+# Swap ly@tty1.service with getty@tty1.service
 if ! systemctl status ly@tty1.service | grep -iq "enabled"; then
-    printf "%b\nly@tty1.service is disabled, swapping with getty@tty1.service...%b\n" "$YELLOW" "$RESET"
+    printf "\nly@tty1.service is disabled.\n"
+    confirm "Swap ly@tty1.service with getty@tty1.service?"
+    printf "%bSwapping ly@tty1.service with getty@tty1.service...%b\n" "$YELLOW" "$RESET"
 
     if ! (
         sudo systemctl enable ly@tty1.service &&
@@ -297,8 +334,8 @@ fi
 
 printf "%b\nInstall script executed successfully.\n%b" "$GREEN" "$RESET"
 
-# Prompt to restart system
-read -rp "Restart system?(recommended) [Y/n] " restart_confirm
-restart_confirm="${restart_confirm,,}"
-[[ "$restart_confirm" == "n" ]] && exit 0
+# Prompt to reboot system
+printf "\nIt's recommended to reboot the system to apply all changes.\n"
+confirm "Reboot system?"
+printf "%bRebooting system...%b\n" "$YELLOW" "$RESET"
 reboot
