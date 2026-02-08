@@ -27,8 +27,6 @@ confirm() {
 
 # Update system
 confirm "Update system?"
-printf "%bUpdating system...%b\n" "$YELLOW" "$RESET"
-
 if ! sudo pacman -Syu --noconfirm; then
     printf "%bFailed to update system!%b\n" "$RED" "$RESET" >&2
     abort
@@ -39,14 +37,12 @@ printf "%bUpdated system successfully.%b\n" "$GREEN" "$RESET"
 if ! pacman -Q paru > /dev/null 2>&1; then
     printf "\nParu is not installed.\n"
     confirm "Install paru?"
-    printf "%bInstalling paru...%b\n" "$YELLOW" "$RESET"
-
     if ! (
         sudo pacman -S --needed --noconfirm base-devel git &&
         cd /tmp &&
         git clone "https://aur.archlinux.org/paru.git" &&
         cd paru &&
-        makepkg -si --noconfirm --skipreview &&
+        makepkg -si --noconfirm &&
         cd ~
     ); then
         printf "%bFailed to install paru!%b\n" "$RED" "$RESET" >&2
@@ -164,7 +160,7 @@ packages=(
     gtk4
 
     # Style: Qt
-    darkly-bin
+    darkly-bin frameworkintegration
     qt5-base
     qt5-wayland
     qt5ct
@@ -191,8 +187,6 @@ done
 
 if [[ "$packages_needed" = true ]]; then
     confirm "Install missing packages?"
-    printf "%bInstalling missing packages...%b\n" "$YELLOW" "$RESET"
-
     if ! paru -S --needed --noconfirm "${packages[@]}"; then
         printf "%bFailed to install all missing packages!%b\n" "$RED" "$RESET" >&2
         abort
@@ -205,7 +199,7 @@ groups=(
     gamemode
     input
     openrazer
-    plugdev
+#    plugdev
 )
 
 printf "%b\nGroups:%b\n" "$BLUE" "$RESET"
@@ -221,8 +215,6 @@ done
 
 if [[ "$groups_needed" == true ]]; then
     confirm "Add $USER to missing groups?"
-    printf "%bAdding %s to missing groups...%b\n" "$YELLOW" "$USER" "$RESET"
-
     for item in "${groups[@]}"; do
         if ! groups "$USER" | grep -q "$item"; then
             if ! sudo gpasswd -a "$USER" "$item" > /dev/null; then
@@ -255,11 +247,9 @@ done
 
 if [[ "$services_needed" == true ]]; then
     confirm "Enable disabled services?"
-    printf "%bEnabling disabled services...%b\n" "$YELLOW" "$RESET"
-
     for item in "${services[@]}"; do
         if ! systemctl is-enabled "$item" > /dev/null; then
-            if ! sudo systemctl enable --now "$item" > /dev/null; then
+            if ! sudo systemctl enable --now "$item" > /dev/null 2>&1; then
                 printf "%bFailed to enable %s!%b\n" "$RED" "$item" "$RESET" >&2
                 abort
             fi
@@ -272,21 +262,19 @@ fi
 if sudo ufw status | grep -iq "inactive"; then
     printf "\nFirewall(UFW) is not enabled.\n"
     confirm "Enable firewall(UFW)?"
-    printf "%bEnabling firewall(UFW)...%b\n" "$YELLOW" "$RESET"
-
-    if ! sudo ufw enable; then
+    if ! sudo ufw enable > /dev/null; then
         printf "%bFailed to enable firewall(UFW)!%b\n" "$RED" "$RESET" >&2
         abort
     fi
     printf "%bEnabled firewall(UFW) successfully.%b\n" "$GREEN" "$RESET"
 fi
 
-# Clone dotfiles
-printf "%b\nDotfiles:%b https://github.com/DimitryGonzales/dotfiles.git\n" "$BLUE" "$RESET"
+# Clone dotfiles and apply theme
+DOTFILES="https://github.com/DimitryGonzales/dotfiles.git"
+printf "%b\nDotfiles:%b %s\n" "$BLUE" "$RESET" "$DOTFILES"
 confirm "Clone dotfiles?"
-printf "%bCloning dotfiles...%b\n" "$YELLOW" "$RESET"
 if ! (
-    yadm clone "https://github.com/DimitryGonzales/dotfiles.git" &&
+    yadm clone "$DOTFILES" &&
     yadm checkout --force
 ); then
     printf "%bFailed to clone dotfiles!%b\n" "$RED" "$RESET" >&2
@@ -294,8 +282,6 @@ if ! (
 fi
 printf "%bCloned dotfiles successfully.%b\n" "$GREEN" "$RESET"
 
-# Select theme
-printf "%b\nSelecting theme...%b\n" "$YELLOW" "$RESET"
 if ! ~/.config/hypr/scripts/theme.sh; then
     printf "%bFailed to apply theme!%b\n" "$RED" "$RESET" >&2
     abort
@@ -303,13 +289,10 @@ fi
 printf "%bApplied theme successfully.%b\n" "$GREEN" "$RESET"
 
 # Change current shell to ZSH
-ZSH_PATH="$(command -v zsh)"
-if [[ "$SHELL" != "$ZSH_PATH" ]]; then
+if [[ "$SHELL" != "$(command -v zsh)" ]]; then
     printf "%b\nZSH isn't the current shell.%b\n"
     confirm "Change current shell to ZSH?"
-    printf "%bChanging current shell to ZSH...\n" "$YELLOW" "$RESET"
-
-    if ! chsh -s "$ZSH_PATH"; then
+    if ! chsh -s "$(command -v zsh)" > /dev/null; then
         printf "%bFailed to change current shell to ZSH!%b\n" "$RED" "$RESET" >&2
         abort
     fi
@@ -320,12 +303,10 @@ fi
 if ! systemctl status ly@tty1.service | grep -iq "enabled"; then
     printf "\nly@tty1.service is disabled.\n"
     confirm "Swap ly@tty1.service with getty@tty1.service?"
-    printf "%bSwapping ly@tty1.service with getty@tty1.service...%b\n" "$YELLOW" "$RESET"
-
     if ! (
         sudo systemctl enable ly@tty1.service &&
         sudo systemctl disable getty@tty1.service
-    ) > /dev/null; then
+    ) > /dev/null 2>&1; then
         printf "%bFailed to swap ly@tty1.service with getty@tty1.service!%b\n" "$RED" "$RESET" >&2
         abort
     fi
@@ -337,5 +318,4 @@ printf "%b\nInstall script executed successfully.\n%b" "$GREEN" "$RESET"
 # Prompt to reboot system
 printf "\nIt's recommended to reboot the system to apply all changes.\n"
 confirm "Reboot system?"
-printf "%bRebooting system...%b\n" "$YELLOW" "$RESET"
 reboot
