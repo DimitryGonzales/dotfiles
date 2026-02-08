@@ -35,7 +35,7 @@ printf "%bUpdated system successfully.%b\n" "$GREEN" "$RESET"
 
 # Check and install paru
 if ! pacman -Q paru > /dev/null 2>&1; then
-    printf "\nParu is not installed.\n"
+    printf "\n%bParu is not installed.%b\n" "$YELLOW" "$RESET"
     confirm "Install paru?"
     if ! (
         sudo pacman -S --needed --noconfirm base-devel git &&
@@ -199,7 +199,7 @@ groups=(
     gamemode
     input
     openrazer
-#    plugdev
+    plugdev
 )
 
 printf "%b\nGroups:%b\n" "$BLUE" "$RESET"
@@ -216,6 +216,15 @@ done
 if [[ "$groups_needed" == true ]]; then
     confirm "Add $USER to missing groups?"
     for item in "${groups[@]}"; do
+        if ! getent group "$item" > /dev/null; then
+            printf "%b%s doesn't exist, creating...%b\n" "$YELLOW" "$item" "$RESET"
+            if ! sudo groupadd "$item" > /dev/null; then
+                printf "%bFailed to create %s!%b\n" "$RED" "$item" "$RESET" >&2
+                abort
+            fi
+            printf "%bCreated %s successfully.%b\n" "$GREEN" "$item" "$RESET"
+        fi
+
         if ! groups "$USER" | grep -q "$item"; then
             if ! sudo gpasswd -a "$USER" "$item" > /dev/null; then
                 printf "%bFailed to add %s to %s!%b\n" "$RED" "$USER" "$item" "$RESET" >&2
@@ -317,5 +326,5 @@ printf "%b\nInstall script executed successfully.\n%b" "$GREEN" "$RESET"
 
 # Prompt to reboot system
 printf "\nIt's recommended to reboot the system to apply all changes.\n"
-confirm "Reboot system?"
+confirm "Reboot system?" && sleep 3
 reboot
