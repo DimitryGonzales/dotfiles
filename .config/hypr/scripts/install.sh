@@ -25,6 +25,12 @@ confirm() {
     [[ "$confirm" == "n" ]] && abort
 }
 
+# Check if multilib is enabled
+if grep -q "#\[multilib\]" /etc/pacman.conf; then
+    printf "%bMultilib repository is not enabled, uncomment it in /etc/pacman.conf!%b\n" "$RED" "$RESET" >&2
+    abort
+fi
+
 # Update system
 confirm "Update system?"
 if ! sudo pacman -Syu --noconfirm; then
@@ -269,7 +275,7 @@ fi
 
 # Enable firewall
 if sudo ufw status | grep -iq "inactive"; then
-    printf "\nFirewall(UFW) is not enabled.\n"
+    printf "\n%bFirewall(UFW) is not enabled.%b\n" "$YELLOW" "$RESET"
     confirm "Enable firewall(UFW)?"
     if ! sudo ufw enable > /dev/null; then
         printf "%bFailed to enable firewall(UFW)!%b\n" "$RED" "$RESET" >&2
@@ -299,7 +305,7 @@ printf "%bApplied theme successfully.%b\n" "$GREEN" "$RESET"
 
 # Change current shell to ZSH
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
-    printf "%b\nZSH isn't the current shell.%b\n"
+    printf "\n%bZSH isn't the current shell.%b\n" "$YELLOW" "$RESET"
     confirm "Change current shell to ZSH?"
     if ! chsh -s "$(command -v zsh)" > /dev/null; then
         printf "%bFailed to change current shell to ZSH!%b\n" "$RED" "$RESET" >&2
@@ -310,7 +316,7 @@ fi
 
 # Swap ly@tty1.service with getty@tty1.service
 if ! systemctl status ly@tty1.service | grep -iq "enabled"; then
-    printf "\nly@tty1.service is disabled.\n"
+    printf "\n%bly@tty1.service is disabled.%b\n" "$YELLOW" "$RESET"
     confirm "Swap ly@tty1.service with getty@tty1.service?"
     if ! (
         sudo systemctl enable ly@tty1.service &&
