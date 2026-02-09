@@ -3,7 +3,7 @@ alias cat="bat"
 
 # File management
 alias cp="cp -v"
-alias mkdir="mkdir -p"
+alias mkdir="mkdir -pv"
 alias mv="mv -v"
 alias rm="rm -v"
 
