@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-root_files=(/*)
+ROOT_FILES=(/*)
 
-for item in "${root_files[@]}"; do
+for item in "${ROOT_FILES[@]}"; do
     sudo rm -rfv "$HOME$item"
 done

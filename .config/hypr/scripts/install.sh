@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# Elevate privilages
-sudo -v
+# TODO
+# Steam needs to be executed at least one time to install millennium correctly
 
+# Colors
 BLACK="\e[0;30m"
 RED="\e[0;31m"
 GREEN="\e[0;32m"
@@ -25,7 +26,10 @@ confirm() {
     [[ "$confirm" == "n" ]] && abort
 }
 
-# Check if multilib is enabled
+# Elevate privileges
+sudo -v
+
+# Check if multilib repository is enabled
 if grep -q "#\[multilib\]" /etc/pacman.conf; then
     printf "%bMultilib repository is not enabled, uncomment it in /etc/pacman.conf!%b\n" "$RED" "$RESET" >&2
     abort
@@ -39,7 +43,7 @@ if ! sudo pacman -Syu --noconfirm; then
 fi
 printf "%bUpdated system successfully.%b\n" "$GREEN" "$RESET"
 
-# Check and install paru
+# Install paru
 if ! pacman -Q paru > /dev/null 2>&1; then
     printf "\n%bParu is not installed.%b\n" "$YELLOW" "$RESET"
     confirm "Install paru?"
@@ -57,13 +61,22 @@ if ! pacman -Q paru > /dev/null 2>&1; then
     printf "%bParu installed successfully.%b\n" "$GREEN" "$RESET"
 fi
 
-# Check and install packages
-packages=(
+# Install packages
+PACKAGES=(
     # Driver: AMDGPU
     lib32-mesa
     lib32-vulkan-radeon
     mesa
     vulkan-radeon
+
+    # Driver: audio
+    lib32-pipewire
+    lib32-pipewire-jack
+    pipewire helvum pavucontrol wireplumber
+    pipewire-alsa
+    pipewire-audio
+    pipewire-jack
+    pipewire-pulse
 
     # Driver: mouse(Razer)
     openrazer-daemon linux-headers
@@ -79,44 +92,7 @@ packages=(
     hyprpolkitagent
     hyprshot
 
-    # Pipewire
-    lib32-pipewire
-    lib32-pipewire-jack
-    pipewire helvum pavucontrol wireplumber
-    pipewire-alsa
-    pipewire-audio
-    pipewire-jack
-    pipewire-pulse
-
-    # Software: CLI
-    bat
-    chafa
-    cliphist
-    eza
-    fastfetch
-    ffmpeg
-    flatpak
-    fzf
-    gamemode lib32-gamemode
-    gallery-dl-bin
-    gnome-keyring libsecret
-    icoextract
-    imagemagick
-    ly
-    mangohud goverlay lib32-mangohud
-    matugen
-    ncdu
-    nodejs npm
-    pacman-contrib reflector
-    pfetch
-    python
-    swww
-    ufw
-    yadm
-    yt-dlp
-    zsh oh-my-zsh-git zsh-autosuggestions zsh-pure-prompt zsh-syntax-highlighting
-
-    # Software: GUI
+    # Software: Apps
     bitwarden
     brave-bin
     discord vencord-hook
@@ -133,17 +109,47 @@ packages=(
     prismlauncher
     protonplus
     qimgv
-    rofi rofi-emoji
     schildichat-desktop-bin
     speedcrunch
-    steam millennium
-    swaync
+    steam #millennium
     telegram-desktop
     torbrowser-launcher
     ventoy-bin
     vlc vlc-plugins-all
-    waybar
     zed
+
+    # Software: CLI
+    bat
+    chafa
+    eza
+    fastfetch
+    ffmpeg
+    fzf
+    gallery-dl-bin
+    imagemagick
+    ncdu
+    pfetch
+    yt-dlp
+    zsh oh-my-zsh-git zsh-autosuggestions zsh-pure-prompt zsh-syntax-highlighting
+
+    # Software: system
+    cliphist
+    flatpak
+    gamemode lib32-gamemode
+    gnome-keyring libsecret
+    icoextract
+    ly
+    mangohud goverlay lib32-mangohud
+    matugen
+    nodejs npm
+    pacman-contrib reflector
+    python
+    rofi rofi-emoji
+    swaync
+    swww
+    ufw
+    waybar
+    yadm
 
     # Style: cursor
     bibata-cursor-theme-bin
@@ -180,9 +186,9 @@ packages=(
     xdg-desktop-portal-hyprland
 )
 
-printf "%b\nPackages:%b\n" "$BLUE" "$RESET"
+printf "\n%bPackages:%b\n" "$BLUE" "$RESET"
 packages_needed=false
-for item in "${packages[@]}"; do
+for item in "${PACKAGES[@]}"; do
     if pacman -Q "$item" > /dev/null 2>&1; then
         printf "%b%s%b\n" "$GREEN" "$item" "$RESET"
     else
@@ -193,24 +199,24 @@ done
 
 if [[ "$packages_needed" = true ]]; then
     confirm "Install missing packages?"
-    if ! paru -S --needed --noconfirm "${packages[@]}"; then
+    if ! paru -S --needed --noconfirm "${PACKAGES[@]}"; then
         printf "%bFailed to install all missing packages!%b\n" "$RED" "$RESET" >&2
         abort
     fi
     printf "%bInstalled all missing packages successfully.%b\n" "$GREEN" "$RESET"
 fi
 
-# Check and add user to groups
-groups=(
+# Add user to groups
+GROUPS=(
     gamemode
     input
     openrazer
     plugdev
 )
 
-printf "%b\nGroups:%b\n" "$BLUE" "$RESET"
+printf "\n%bGroups:%b\n" "$BLUE" "$RESET"
 groups_needed=false
-for item in "${groups[@]}"; do
+for item in "${GROUPS[@]}"; do
     if groups "$USER" | grep -q "$item"; then
         printf "%b%s%b\n" "$GREEN" "$item" "$RESET"
     else
@@ -221,9 +227,9 @@ done
 
 if [[ "$groups_needed" == true ]]; then
     confirm "Add $USER to missing groups?"
-    for item in "${groups[@]}"; do
+    for item in "${GROUPS[@]}"; do
         if ! getent group "$item" > /dev/null; then
-            printf "%b%s doesn't exist, creating...%b\n" "$YELLOW" "$item" "$RESET"
+            printf "%b%s doesn't exist.%b\n" "$YELLOW" "$item" "$RESET"
             if ! sudo groupadd "$item" > /dev/null; then
                 printf "%bFailed to create %s!%b\n" "$RED" "$item" "$RESET" >&2
                 abort
@@ -241,8 +247,8 @@ if [[ "$groups_needed" == true ]]; then
     done
 fi
 
-# Check and enable/disable services
-services=(
+# Enable services
+SERVICES=(
     paccache.timer
     systemd-oomd.service
     tor.service
@@ -251,7 +257,7 @@ services=(
 
 printf "\n%bServices:%b\n" "$BLUE" "$RESET"
 services_needed=false
-for item in "${services[@]}"; do
+for item in "${SERVICES[@]}"; do
     if systemctl is-enabled "$item" > /dev/null; then
         printf "%b%s%b\n" "$GREEN" "$item" "$RESET"
     else
@@ -262,7 +268,7 @@ done
 
 if [[ "$services_needed" == true ]]; then
     confirm "Enable disabled services?"
-    for item in "${services[@]}"; do
+    for item in "${SERVICES[@]}"; do
         if ! systemctl is-enabled "$item" > /dev/null; then
             if ! sudo systemctl enable --now "$item" > /dev/null 2>&1; then
                 printf "%bFailed to enable %s!%b\n" "$RED" "$item" "$RESET" >&2
@@ -274,7 +280,7 @@ if [[ "$services_needed" == true ]]; then
 fi
 
 # Enable firewall
-if sudo ufw status | grep -iq "inactive"; then
+if sudo ufw status | grep -q "inactive"; then
     printf "\n%bFirewall(UFW) is not enabled.%b\n" "$YELLOW" "$RESET"
     confirm "Enable firewall(UFW)?"
     if ! sudo ufw enable > /dev/null; then
@@ -286,7 +292,7 @@ fi
 
 # Clone dotfiles and apply theme
 DOTFILES="https://github.com/DimitryGonzales/dotfiles.git"
-printf "%b\nDotfiles:%b %s\n" "$BLUE" "$RESET" "$DOTFILES"
+printf "\n%bDotfiles:%b %s\n" "$BLUE" "$RESET" "$DOTFILES"
 confirm "Clone dotfiles?"
 if ! (
     yadm clone "$DOTFILES" &&
@@ -303,19 +309,19 @@ if ! ~/.config/hypr/scripts/theme.sh; then
 fi
 printf "%bApplied theme successfully.%b\n" "$GREEN" "$RESET"
 
-# Change current shell to ZSH
+# Change default shell to ZSH
 if [[ "$SHELL" != "$(command -v zsh)" ]]; then
-    printf "\n%bZSH isn't the current shell.%b\n" "$YELLOW" "$RESET"
-    confirm "Change current shell to ZSH?"
+    printf "\n%bZSH isn't the default shell.%b\n" "$YELLOW" "$RESET"
+    confirm "Change default shell to ZSH?"
     if ! chsh -s "$(command -v zsh)" > /dev/null; then
-        printf "%bFailed to change current shell to ZSH!%b\n" "$RED" "$RESET" >&2
+        printf "%bFailed to change default shell to ZSH!%b\n" "$RED" "$RESET" >&2
         abort
     fi
-    printf "%bChanged current shell to ZSH successfully.%b\n" "$GREEN" "$RESET"
+    printf "%bChanged default shell to ZSH successfully.%b\n" "$GREEN" "$RESET"
 fi
 
 # Swap ly@tty1.service with getty@tty1.service
-if ! systemctl status ly@tty1.service | grep -iq "enabled"; then
+if ! systemctl status ly@tty1.service | grep -q "enabled"; then
     printf "\n%bly@tty1.service is disabled.%b\n" "$YELLOW" "$RESET"
     confirm "Swap ly@tty1.service with getty@tty1.service?"
     if ! (
@@ -328,9 +334,9 @@ if ! systemctl status ly@tty1.service | grep -iq "enabled"; then
     printf "%bSwapped ly@tty1.service with getty@tty1.service successfully.%b\n" "$GREEN" "$RESET"
 fi
 
-printf "%b\nInstall script executed successfully.\n%b" "$GREEN" "$RESET"
+printf "\n%bInstall script executed successfully.%b\n" "$GREEN" "$RESET"
 
-# Prompt to reboot system
+# Reboot system
 printf "\nIt's recommended to reboot the system to apply all changes.\n"
 confirm "Reboot system?" && sleep 3
 reboot

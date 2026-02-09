@@ -1,83 +1,88 @@
 #!/usr/bin/env bash
 
+# Colors
+BLACK="\e[0;30m"
+RED="\e[0;31m"
+GREEN="\e[0;32m"
+YELLOW="\e[0;33m"
+BLUE="\e[0;34m"
+MAGENTA="\e[0;35m"
+CYAN="\e[0;36m"
+WHITE="\e[0;37m"
+RESET="\e[0m"
+
+abort() {
+    printf "%bExecution aborted!%b\n" "$RED" "$RESET" >&2
+    exit 1
+}
+
+# Shell options
 shopt -s dotglob extglob nullglob
 
-themes_directory="$HOME/Themes"
-
-# Check if input is a directory
-if [[ -n "$1" ]]; then
-    if [[ ! -d "$1" ]];then
-        printf "[ERROR] Input isn't a directory!\n" >&2
-        exit 1
-    fi
-    themes_directory="$1"
-fi
+THEMES_DIRECTORY="$HOME/Themes"
 
 # Check dependencies
+DEPENDENCIES=(
+    "chafa"
+    "eza"
+    "fzf"
+)
+
 missing_dependency="false"
-dependencies=("chafa" "eza" "fzf")
-for item in "${dependencies[@]}"; do
+for item in "${DEPENDENCIES[@]}"; do
     if ! command -v "$item" > /dev/null; then
-        printf "[ERROR] '%s' isn't installed, install it to continue!\n" "$item" >&2
+        printf "%b%s isn't installed!%b\n" "$RED" "$item" "$RESET" >&2
         missing_dependency="true"
     fi
 done
-[[ "$missing_dependency" == "true" ]] && exit 1
+[[ "$missing_dependency" == "true" ]] && abort
 
-# Select directory
+# Select theme
 while true; do
-    theme=$(find "$themes_directory" -mindepth 1 -maxdepth 1 -type d | fzf --delimiter=/ --with-nth=-1 --preview 'eza -Ta --color=always {} && img=$(find {} -maxdepth 1 -iname "preview.*" | head -1) && [ -n "$img" ] && echo && chafa -s 25x "$img"')
-    if [[ -z "$theme" ]]; then
-        printf "[ABORT] Execution canceled!\n"
-        exit 0
-    fi
+    THEME=$(find "$THEMES_DIRECTORY" -mindepth 1 -maxdepth 1 -type d | fzf --delimiter=/ --with-nth=-1 --preview 'eza -Ta --color=always {} && img=$(find {} -maxdepth 1 -iname "preview.*" | head -1) && [[ -n "$img" ]] && echo && chafa -s 25x "$img"')
+    [[ -z "$THEME" ]] && abort
 
-    theme_files=("$theme"/!(post-hook.sh|preview.*))
-    [[ "${#theme_files[@]}" -gt 0 ]] && break
+    THEME_FILES=("$THEME"/!(post-hook.sh|preview.*))
+    [[ "${#THEME_FILES[@]}" -gt 0 ]] && break
 
-    printf "[ALERT] No valid files in the directory! Restarting...\n"; sleep 2
+    printf "%bNo valid theme files.%b\n" "$YELLOW" "$RESET"
+    sleep 2
 done
 
-# Copy directory files
-if ! cp -r "${theme_files[@]}" "$HOME" > /dev/null; then
-    printf "[ERROR] Failed to copy directory files!\n" >&2
-    exit 1
+# Apply theme
+if ! cp -r "${THEME_FILES[@]}" "$HOME" > /dev/null; then
+    printf "%bFailed to apply theme!%b\n" "$RED" "$RESET" >&2
+    abort
 fi
-printf "Copied directory files.\n"
+printf "%bApplied theme successfully.%b\n" "$GREEN" "$RESET"
 
 # Execute post-hook
-if [[ -f "$theme/post-hook.sh" ]]; then
-    if "$theme/post-hook.sh" > /dev/null; then
-        printf "Executed 'post-hook.sh'.\n"
+if [[ -f "$THEME/post-hook.sh" ]]; then
+    if "$THEME/post-hook.sh" > /dev/null; then
+        printf "%bExecuted post-hook successfully.%b\n" "$GREEN" "$RESET"
     else
-        printf "[ALERT] Failed to execute 'post-hook.sh'!\n"
+        printf "%bFailed to execute post-hook!%b\n" "$RED" "$RESET" >&2
     fi
-else
-    printf "No existing 'post-hook.sh' file. Skipping post-hook execution...\n"
 fi
 
 # Restart/Start swaync
-if command -v swaync > /dev/null; then
-    if swaync-client -R -rs > /dev/null; then
-        printf "Restarted 'swaync'.\n"
-    elif (swaync > /dev/null &); then
-        printf "Started 'swaync'.\n"
+if pgrep swaync > /dev/null; then
+    if swaync-client -R > /dev/null && swaync-client -rs > /dev/null; then
+        printf "%bRestarted swaync.%b\n" "$GREEN" "$RESET"
+    elif nohup swaync > /dev/null 2>&1 & disown; then
+        printf "%bStarted swaync.%b\n" "$GREEN" "$RESET"
     else
-        printf "[ALERT] Failed to restart/start 'swaync'!\n"
+        printf "%bFailed to restart/start swaync!%b\n" "$RED" "$RESET" >&2
     fi
-else
-    printf "'swaync' isn't installed. Skipping restart/start...\n"
 fi
 
 # Restart/Start waybar
-if command -v waybar > /dev/null; then
+if pgrep waybar > /dev/null; then
     if pkill -SIGUSR2 waybar > /dev/null; then
-        printf "Restarted 'waybar'.\n"
-    elif (waybar > /dev/null &); then
-        printf "Started 'waybar'.\n"
+        printf "%bRestarted waybar.%b\n" "$GREEN" "$RESET"
+    elif nohup waybar > /dev/null 2>&1 & disown; then
+        printf "%bStarted waybar.%b\n" "$GREEN" "$RESET"
     else
-        printf "[ALERT] Failed to restart/start 'waybar'!\n"
+        printf "%bFailed to restart/start waybar!%b\n" "$RED" "$RESET" >&2
     fi
-else
-    printf "'waybar' isn't installed. Skipping restart/start...\n"
 fi
