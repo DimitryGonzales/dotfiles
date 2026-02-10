@@ -21,7 +21,7 @@
             "enabled": true
         },
         "DynamicImageModalAPI": {
-            "enabled": false
+            "enabled": true
         },
         "MemberListDecoratorsAPI": {
             "enabled": false
@@ -239,7 +239,9 @@
             "zoom": 2,
             "nearestNeighbour": false,
             "square": true,
-            "zoomSpeed": 0.5
+            "zoomSpeed": 0.5,
+            "saveZoomValues": true,
+            "invertScroll": true
         },
         "ImplicitRelationships": {
             "enabled": false
@@ -445,7 +447,8 @@
         "ShowHiddenChannels": {
             "enabled": true,
             "showMode": 0,
-            "hideUnreads": true
+            "hideUnreads": true,
+            "defaultAllowedUsersAndRolesDropdownState": true
         },
         "ShowHiddenThings": {
             "enabled": true,
@@ -508,7 +511,8 @@
             "enabled": false
         },
         "UnlockedAvatarZoom": {
-            "enabled": true
+            "enabled": true,
+            "zoomMultiplier": 4
         },
         "UnsuppressEmbeds": {
             "enabled": false
@@ -538,7 +542,7 @@
             "enabled": false
         },
         "ViewIcons": {
-            "enabled": false
+            "enabled": true
         },
         "ViewRaw": {
             "enabled": false
@@ -575,6 +579,15 @@
         },
         "SupportHelper": {
             "enabled": true
+        },
+        "ContextMenuAPI": {
+            "enabled": true
+        },
+        "MenuItemDemanglerAPI": {
+            "enabled": true
+        },
+        "NoticesAPI": {
+            "enabled": true
         }
     },
     "uiElements": {
@@ -591,6 +604,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1770328587342
+        "settingsSyncVersion": 1770665222515
     }
 }

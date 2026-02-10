@@ -2,8 +2,8 @@
 
 AUDIO_INFO=$(playerctl metadata --format "{{artist}} - {{title}}")
 
-if [ -z "$AUDIO_INFO" ]; then
-    echo "Nothing playing..."
-else
+if [ -n "$AUDIO_INFO" ]; then
     echo "$AUDIO_INFO"
+else
+    echo "Nothing playing..."
 fi

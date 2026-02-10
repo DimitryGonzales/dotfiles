@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # TODO
-# Steam needs to be executed at least one time to install millennium correctly
+# Discord needs to be installed after vencord-hook to activate the trigger
+# Steam needs to be executed at least one time before installing millennium
 
 # Colors
 BLACK="\e[0;30m"
