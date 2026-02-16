@@ -73,7 +73,7 @@ PACKAGES=(
     # Driver: audio
     lib32-pipewire
     lib32-pipewire-jack
-    pipewire helvum pavucontrol wireplumber
+    pipewire helvum pwvucontrol wireplumber
     pipewire-alsa
     pipewire-audio
     pipewire-jack
@@ -100,7 +100,6 @@ PACKAGES=(
     ente-auth-bin
     ghostty
     gparted
-    heroic-games-launcher-bin
     localsend-bin
     lutris
     mission-center
@@ -109,6 +108,7 @@ PACKAGES=(
     pear-desktop-bin
     prismlauncher
     protonplus
+    qbittorrent
     qimgv
     schildichat-desktop-bin
     speedcrunch
@@ -176,10 +176,10 @@ PACKAGES=(
     darkly-bin frameworkintegration
     qt5-base
     qt5-wayland
-    qt5ct
+    qt5ct-kde
     qt6-base
     qt6-wayland
-    qt6ct
+    qt6ct-kde
 
     # XDG
     xdg-desktop-portal

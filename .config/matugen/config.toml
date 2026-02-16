@@ -31,13 +31,9 @@ input_path = '~/.config/matugen/templates/pywalfox.json'
 output_path = '~/.cache/wal/colors.json'
 post_hook = 'pywalfox update'
 
-[templates.qt5ct]
-input_path = '~/.config/matugen/templates/qtct.conf'
-output_path = '~/.config/qt5ct/colors/matugen-colors.conf'
-
-[templates.qt6ct]
-input_path = '~/.config/matugen/templates/qtct.conf'
-output_path = '~/.config/qt6ct/colors/matugen-colors.conf'
+[templates.qtct]
+input_path = '~/.config/matugen/templates/qtct.colors'
+output_path = '~/.local/share/color-schemes/matugen-colors.colors'
 
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi.rasi'

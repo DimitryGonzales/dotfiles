@@ -19,7 +19,7 @@ abort() {
 # Shell options
 shopt -s dotglob extglob nullglob
 
-THEMES_DIRECTORY="$HOME/Themes"
+THEMES_DIRECTORY="$HOME/themes"
 
 # Check dependencies
 DEPENDENCIES=(
