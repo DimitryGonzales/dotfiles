@@ -1,5 +1,5 @@
 configuration {
-    modi: "drun,clipboard:~/.config/rofi/scripts/cliphist-rofi-img,emoji";
+    modi: "drun,clipboard:~/.config/rofi/scripts/cliphist-rofi-img.sh,emoji";
 
     display-drun:        "";
     display-clipboard:   "";
